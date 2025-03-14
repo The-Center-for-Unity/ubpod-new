@@ -33,6 +33,14 @@ export default function Header() {
                   {item.label}
                 </Link>
               ))}
+              <Link
+                to="/disclaimer"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="body-lg text-sm text-white/70 hover:text-white/90 transition-colors tracking-wider"
+              >
+                Disclaimer
+              </Link>
               <a
                 href="https://www.thecenterforunity.org/contribute"
                 target="_blank"
@@ -93,6 +101,15 @@ export default function Header() {
                   {item.label}
                 </Link>
               ))}
+              <Link
+                to="/disclaimer"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-2xl font-semibold text-white hover:text-gold transition-colors"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Disclaimer
+              </Link>
               <a
                 href="https://www.thecenterforunity.org/contribute"
                 target="_blank"

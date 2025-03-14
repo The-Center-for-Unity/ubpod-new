@@ -23,23 +23,8 @@ export default function Footer() {
             <h3 className="text-lg font-semibold text-white">Quick Links</h3>
             <ul className="space-y-2">
               <li>
-                <Link to="/" className="text-white/70 hover:text-white/90 transition-colors">
+                <Link to="/urantia-papers" className="text-white/70 hover:text-white/90 transition-colors">
                   The Urantia Papers
-                </Link>
-              </li>
-              <li>
-                <Link to="/discover-jesus" className="text-white/70 hover:text-white/90 transition-colors">
-                  Discover Jesus
-                </Link>
-              </li>
-              <li>
-                <Link to="/history" className="text-white/70 hover:text-white/90 transition-colors">
-                  A History of the Urantia Papers
-                </Link>
-              </li>
-              <li>
-                <Link to="/sadler-workbooks" className="text-white/70 hover:text-white/90 transition-colors">
-                  Dr. Sadler's Workbooks
                 </Link>
               </li>
               <li>
