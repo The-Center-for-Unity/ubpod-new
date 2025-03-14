@@ -1,20 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Search, BookOpen, Play, Download } from 'lucide-react';
-import Layout from '../components/layout/Layout';
 import { Link } from 'react-router-dom';
+import { Search, Book, Headphones, Download, ChevronDown, ChevronUp, Play, Pause, BookOpen } from 'lucide-react';
+import { Episode } from '../types/index';
+import { getUrantiaPapers, getUrantiaPaperPart } from '../data/episodes';
+import Layout from '../components/layout/Layout';
 
-// Define types for our data structure
-interface UrantiaPaper {
-  id: number;
-  title: string;
-  description: string;
-  part: number;
-  audioUrl: string;
-  pdfUrl: string;
-}
-
-// Mock data for demonstration
+// Define the parts of the Urantia Book
 const URANTIA_PARTS = [
   { id: 1, title: "The Central and Superuniverses", papers: [1, 31], color: "from-blue-500/20" },
   { id: 2, title: "The Local Universe", papers: [32, 56], color: "from-green-500/20" },
@@ -22,103 +14,126 @@ const URANTIA_PARTS = [
   { id: 4, title: "The Life and Teachings of Jesus", papers: [120, 196], color: "from-rose-500/20" }
 ];
 
-// Generate mock papers data
-const generateMockPapers = (): UrantiaPaper[] => {
-  const papers: UrantiaPaper[] = [];
-  
-  // Part 1: Papers 1-31
-  for (let i = 1; i <= 31; i++) {
-    papers.push({
-      id: i,
-      title: `Paper ${i}: ${i === 1 ? "The Universal Father" : `Sample Title ${i}`}`,
-      description: `This paper discusses important concepts related to ${i === 1 ? "the nature of God" : "the universe structure and divine administration"}`,
-      part: 1,
-      audioUrl: `/audio/paper-${i}.mp3`,
-      pdfUrl: `/pdfs/paper-${i}.pdf`
-    });
-  }
-  
-  // Part 2: Papers 32-56
-  for (let i = 32; i <= 56; i++) {
-    papers.push({
-      id: i,
-      title: `Paper ${i}: Sample Title ${i}`,
-      description: "This paper explores the local universe of Nebadon, its creation, and administration.",
-      part: 2,
-      audioUrl: `/audio/paper-${i}.mp3`,
-      pdfUrl: `/pdfs/paper-${i}.pdf`
-    });
-  }
-  
-  // Part 3: Papers 57-119
-  for (let i = 57; i <= 119; i++) {
-    papers.push({
-      id: i,
-      title: `Paper ${i}: Sample Title ${i}`,
-      description: "This paper details the history of Urantia (Earth) from its formation to human civilization.",
-      part: 3,
-      audioUrl: `/audio/paper-${i}.mp3`,
-      pdfUrl: `/pdfs/paper-${i}.pdf`
-    });
-  }
-  
-  // Part 4: Papers 120-196
-  for (let i = 120; i <= 196; i++) {
-    papers.push({
-      id: i,
-      title: `Paper ${i}: Sample Title ${i}`,
-      description: "This paper presents details about the life and teachings of Jesus of Nazareth.",
-      part: 4,
-      audioUrl: `/audio/paper-${i}.mp3`,
-      pdfUrl: `/pdfs/paper-${i}.pdf`
-    });
-  }
-  
-  return papers;
+// Paper Card Component
+interface PaperCardProps {
+  paper: Episode;
+}
+
+const PaperCard: React.FC<PaperCardProps> = ({ paper }) => {
+  // Get part color based on paper ID
+  const getPartColor = (paperId: number) => {
+    const part = getUrantiaPaperPart(paperId);
+    switch (part) {
+      case 1: return 'border-blue-500/30';
+      case 2: return 'border-green-500/30';
+      case 3: return 'border-amber-500/30';
+      case 4: return 'border-rose-500/30';
+      default: return 'border-gray-500/30';
+    }
+  };
+
+  return (
+    <motion.div
+      className={`bg-navy-light/30 rounded-lg overflow-hidden border ${getPartColor(paper.id)} hover:border-primary/30 transition-all`}
+      whileHover={{ y: -5, boxShadow: '0 10px 30px -15px rgba(0, 174, 239, 0.2)' }}
+    >
+      <div className="p-5">
+        <div className="flex justify-between items-start mb-3">
+          <span className="text-primary font-bold">{paper.id}</span>
+          <span className="text-xs text-white/50">Part {getUrantiaPaperPart(paper.id)}</span>
+        </div>
+        <h3 className="text-lg font-semibold mb-2 text-white">{paper.title}</h3>
+        <p className="text-white/70 text-sm mb-4 line-clamp-2">{paper.description}</p>
+        
+        <div className="flex space-x-3 mt-auto">
+          <button
+            className="flex items-center gap-1.5 px-3 py-1.5 bg-primary text-white rounded-md hover:bg-primary-dark transition-colors text-sm"
+          >
+            <Play size={14} />
+            <span>Listen</span>
+          </button>
+          
+          {paper.pdfUrl && (
+            <a
+              href={paper.pdfUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 px-3 py-1.5 bg-navy-light text-white/80 rounded-md hover:bg-navy transition-colors text-sm"
+            >
+              <BookOpen size={14} />
+              <span>Read</span>
+            </a>
+          )}
+          
+          <a
+            href={paper.audioUrl}
+            download
+            className="flex items-center gap-1.5 px-3 py-1.5 bg-navy-light text-white/80 rounded-md hover:bg-navy transition-colors text-sm"
+          >
+            <Download size={14} />
+            <span>Download</span>
+          </a>
+        </div>
+      </div>
+    </motion.div>
+  );
 };
 
+// Main Page Component
 export default function UrantiaPapersPage() {
-  const [activePart, setActivePart] = useState<number>(1);
+  const [papers, setPapers] = useState<Episode[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>('');
-  const [papers, setPapers] = useState<UrantiaPaper[]>([]);
-  const [filteredPapers, setFilteredPapers] = useState<UrantiaPaper[]>([]);
+  const [filteredPapers, setFilteredPapers] = useState<Episode[]>([]);
+  const [expandedParts, setExpandedParts] = useState<number[]>([1]); // Start with Part 1 expanded
+  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   
-  // Initialize papers data
+  // Load papers on component mount
   useEffect(() => {
-    const allPapers = generateMockPapers();
+    const allPapers = getUrantiaPapers();
     setPapers(allPapers);
-    setFilteredPapers(allPapers.filter(paper => paper.part === activePart));
+    setFilteredPapers(allPapers);
   }, []);
   
-  // Filter papers when active part or search query changes
+  // Filter papers when search query changes
   useEffect(() => {
-    let filtered = papers.filter(paper => paper.part === activePart);
-    
-    if (searchQuery.trim() !== '') {
-      const query = searchQuery.toLowerCase();
-      filtered = filtered.filter(
-        paper => 
-          paper.title.toLowerCase().includes(query) || 
-          paper.description.toLowerCase().includes(query) ||
-          paper.id.toString() === query
-      );
+    if (searchQuery.trim() === '') {
+      setFilteredPapers(papers);
+      return;
     }
     
+    const query = searchQuery.toLowerCase();
+    const filtered = papers.filter(paper => 
+      paper.title.toLowerCase().includes(query) || 
+      paper.description.toLowerCase().includes(query) ||
+      paper.id.toString() === query
+    );
+    
     setFilteredPapers(filtered);
-  }, [activePart, searchQuery, papers]);
+  }, [searchQuery, papers]);
   
-  // Get the color for the active part
-  const getActivePartColor = () => {
-    const part = URANTIA_PARTS.find(p => p.id === activePart);
-    return part ? part.color : "from-blue-500/20";
+  // Toggle part expansion
+  const togglePartExpansion = (partId: number) => {
+    if (expandedParts.includes(partId)) {
+      setExpandedParts(expandedParts.filter(id => id !== partId));
+    } else {
+      setExpandedParts([...expandedParts, partId]);
+    }
   };
+  
+  // Get papers for a specific part
+  const getPapersForPart = (partId: number) => {
+    return filteredPapers.filter(paper => getUrantiaPaperPart(paper.id) === partId);
+  };
+  
+  // Check if search is active
+  const isSearchActive = searchQuery.trim() !== '';
 
   return (
     <Layout>
       <div className="container mx-auto px-4 py-8">
         {/* Hero Section */}
         <motion.div 
-          className={`rounded-xl p-8 mb-8 bg-gradient-to-r ${getActivePartColor()} to-transparent`}
+          className="rounded-xl p-8 mb-8 bg-gradient-to-r from-blue-500/20 to-transparent"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -128,11 +143,9 @@ export default function UrantiaPapersPage() {
             Explore all 197 papers of the Urantia Book through AI-narrated episodes.
             Listen while reading along with the original text.
           </p>
-        </motion.div>
-        
-        {/* Search and Filter Bar */}
-        <div className="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
-          <div className="relative w-full md:w-auto flex-1 max-w-md">
+          
+          {/* Search Bar */}
+          <div className="relative max-w-md mt-6">
             <input
               type="text"
               placeholder="Search papers by title, number, or keyword..."
@@ -143,84 +156,86 @@ export default function UrantiaPapersPage() {
             <Search className="absolute left-3 top-2.5 text-white/50" size={18} />
           </div>
           
-          {/* Part Tabs */}
-          <div className="flex space-x-1 bg-navy-light/30 p-1 rounded-lg">
-            {URANTIA_PARTS.map((part) => (
-              <button
-                key={part.id}
-                className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-                  activePart === part.id 
-                    ? 'bg-primary text-white' 
-                    : 'text-white/70 hover:text-white/90'
-                }`}
-                onClick={() => setActivePart(part.id)}
+          {/* View Mode Toggle */}
+          <div className="flex mt-4 space-x-2">
+            <button 
+              className={`px-3 py-1 rounded text-sm ${viewMode === 'grid' ? 'bg-primary text-white' : 'bg-navy-light/50 text-white/70'}`}
+              onClick={() => setViewMode('grid')}
+            >
+              Grid View
+            </button>
+            <button 
+              className={`px-3 py-1 rounded text-sm ${viewMode === 'list' ? 'bg-primary text-white' : 'bg-navy-light/50 text-white/70'}`}
+              onClick={() => setViewMode('list')}
+            >
+              List View
+            </button>
+          </div>
+        </motion.div>
+        
+        {/* Search Results Count */}
+        {isSearchActive && (
+          <div className="mb-6 text-white/70">
+            Found {filteredPapers.length} papers matching "{searchQuery}"
+            <button 
+              className="ml-2 text-primary hover:underline"
+              onClick={() => setSearchQuery('')}
+            >
+              Clear
+            </button>
+          </div>
+        )}
+        
+        {/* Papers by Part */}
+        {!isSearchActive ? (
+          // Organized by parts when not searching
+          URANTIA_PARTS.map(part => (
+            <div key={part.id} className="mb-8">
+              {/* Part Header */}
+              <div 
+                className={`flex justify-between items-center p-4 rounded-lg bg-gradient-to-r ${part.color} to-transparent cursor-pointer mb-4`}
+                onClick={() => togglePartExpansion(part.id)}
               >
-                Part {part.id}
-              </button>
+                <h2 className="text-xl font-semibold text-white">
+                  Part {part.id}: {part.title}
+                </h2>
+                <button className="text-white/80 hover:text-white">
+                  {expandedParts.includes(part.id) ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+                </button>
+              </div>
+              
+              {/* Papers Grid/List */}
+              {expandedParts.includes(part.id) && (
+                <motion.div 
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: 'auto' }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className={viewMode === 'grid' ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4' : 'space-y-3'}
+                >
+                  {getPapersForPart(part.id).map(paper => (
+                    viewMode === 'grid' ? (
+                      <PaperCard key={paper.id} paper={paper} />
+                    ) : (
+                      <PaperListItem key={paper.id} paper={paper} />
+                    )
+                  ))}
+                </motion.div>
+              )}
+            </div>
+          ))
+        ) : (
+          // Flat list when searching
+          <div className={viewMode === 'grid' ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4' : 'space-y-3'}>
+            {filteredPapers.map(paper => (
+              viewMode === 'grid' ? (
+                <PaperCard key={paper.id} paper={paper} />
+              ) : (
+                <PaperListItem key={paper.id} paper={paper} />
+              )
             ))}
           </div>
-        </div>
-        
-        {/* Active Part Title */}
-        <div className="mb-6">
-          <h2 className="section-subtitle">
-            Part {activePart}: {URANTIA_PARTS.find(p => p.id === activePart)?.title}
-          </h2>
-          <p className="text-white/50 text-sm">
-            Papers {URANTIA_PARTS.find(p => p.id === activePart)?.papers[0]} - {URANTIA_PARTS.find(p => p.id === activePart)?.papers[1]}
-          </p>
-        </div>
-        
-        {/* Papers Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredPapers.map((paper) => (
-            <motion.div
-              key={paper.id}
-              className="bg-navy-light/30 rounded-lg overflow-hidden border border-white/5 hover:border-primary/30 transition-all"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3 }}
-              whileHover={{ y: -5, boxShadow: '0 10px 30px -15px rgba(0, 174, 239, 0.2)' }}
-            >
-              <div className="p-6">
-                <div className="flex justify-between items-start mb-3">
-                  <span className="text-primary font-bold">{paper.id}</span>
-                </div>
-                <h3 className="text-xl font-semibold mb-2 text-white">{paper.title}</h3>
-                <p className="text-white/70 text-sm mb-4 line-clamp-2">{paper.description}</p>
-                
-                <div className="flex space-x-3 mt-auto">
-                  <Link
-                    to={`/listen/urantia-papers/${paper.id}`}
-                    className="flex items-center gap-1.5 px-3 py-1.5 bg-primary text-white rounded-md hover:bg-primary-dark transition-colors text-sm"
-                  >
-                    <Play size={14} />
-                    <span>Listen</span>
-                  </Link>
-                  
-                  <a
-                    href={paper.pdfUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-1.5 px-3 py-1.5 bg-navy-light text-white/80 rounded-md hover:bg-navy transition-colors text-sm"
-                  >
-                    <BookOpen size={14} />
-                    <span>Read</span>
-                  </a>
-                  
-                  <a
-                    href={paper.audioUrl}
-                    download
-                    className="flex items-center gap-1.5 px-3 py-1.5 bg-navy-light text-white/80 rounded-md hover:bg-navy transition-colors text-sm"
-                  >
-                    <Download size={14} />
-                    <span>Download</span>
-                  </a>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+        )}
         
         {/* Empty State */}
         {filteredPapers.length === 0 && (
@@ -237,4 +252,54 @@ export default function UrantiaPapersPage() {
       </div>
     </Layout>
   );
-} 
+}
+
+// Paper List Item Component
+const PaperListItem: React.FC<PaperCardProps> = ({ paper }) => {
+  return (
+    <motion.div
+      className="bg-navy-light/30 rounded-lg overflow-hidden border border-white/5 hover:border-primary/30 transition-all"
+      whileHover={{ x: 5, boxShadow: '0 4px 20px -10px rgba(0, 174, 239, 0.2)' }}
+    >
+      <div className="p-4 flex justify-between items-center">
+        <div className="flex items-center space-x-4">
+          <span className="text-primary font-bold w-8">{paper.id}</span>
+          <div>
+            <h3 className="text-white font-medium">{paper.title}</h3>
+            <p className="text-white/50 text-sm hidden md:block">{paper.description.substring(0, 60)}...</p>
+          </div>
+        </div>
+        
+        <div className="flex space-x-2">
+          <button
+            className="flex items-center gap-1 px-2 py-1 bg-primary text-white rounded hover:bg-primary-dark transition-colors text-sm"
+          >
+            <Play size={14} />
+            <span className="hidden md:inline">Listen</span>
+          </button>
+          
+          {paper.pdfUrl && (
+            <a
+              href={paper.pdfUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1 px-2 py-1 bg-navy-light text-white/80 rounded hover:bg-navy transition-colors text-sm"
+            >
+              <Book size={14} />
+              <span className="hidden md:inline">Read</span>
+            </a>
+          )}
+          
+          <a
+            href={paper.audioUrl}
+            download
+            className="flex items-center gap-1 px-2 py-1 bg-navy-light text-white/80 rounded hover:bg-navy transition-colors text-sm"
+          >
+            <Download size={14} />
+            <span className="hidden md:inline">Download</span>
+          </a>
+        </div>
+      </div>
+    </motion.div>
+  );
+}; 
