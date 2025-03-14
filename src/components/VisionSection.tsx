@@ -43,7 +43,7 @@ export function VisionSection() {
             <Link 
               to="/initiatives"
               onClick={() => window.scrollTo(0, 0)}
-              className="inline-flex items-center px-8 py-3 bg-blue-button text-white rounded-full 
+              className="inline-flex items-center px-8 py-3 bg-primary text-white rounded-full 
                         hover:bg-opacity-90 transition-all duration-300 btn-text group"
             >
               Browse All Initiatives

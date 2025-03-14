@@ -2,11 +2,11 @@ import React, { Suspense } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Analytics } from '@vercel/analytics/react';
 import './index.css';
-import LoadingSpinner from './components/ui/LoadingSpinner';
 
 // Lazy load pages for better performance
 const UrantiaPapersPage = React.lazy(() => import('./pages/UrantiaPapersPage'));
 const EpisodePage = React.lazy(() => import('./pages/EpisodePage'));
+const DiscoverJesusPage = React.lazy(() => import('./pages/DiscoverJesusPage'));
 
 // Placeholder components until we implement the actual pages
 const HomePage = () => (
@@ -35,6 +35,13 @@ const NotFoundPage = () => (
   </div>
 );
 
+// Simple loading spinner component
+const LoadingSpinner = () => (
+  <div className="min-h-screen flex items-center justify-center bg-navy-dark">
+    <div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+  </div>
+);
+
 function App() {
   return (
     <BrowserRouter>
@@ -43,6 +50,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/urantia-papers" element={<UrantiaPapersPage />} />
           <Route path="/episode/:id" element={<EpisodePage />} />
+          <Route path="/discover-jesus" element={<DiscoverJesusPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Suspense>

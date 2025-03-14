@@ -199,7 +199,7 @@ export default function EpisodePage() {
             <div>
               <div className="flex items-center">
                 <span className="text-primary text-2xl font-bold mr-3">{episode.id}</span>
-                <h1 className="title-main">{episode.title}</h1>
+                <h1 className="title-main text-2xl md:text-4xl lg:text-5xl">{episode.title}</h1>
               </div>
               <p className="body-lg mt-2 max-w-3xl">{episode.description}</p>
             </div>
@@ -292,7 +292,7 @@ export default function EpisodePage() {
               </div>
               
               {/* Controls */}
-              <div className="flex items-center justify-between">
+              <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
                 <div className="flex items-center space-x-4">
                   <button 
                     onClick={() => navigateToEpisode('prev')}
@@ -318,7 +318,7 @@ export default function EpisodePage() {
                   </button>
                 </div>
                 
-                <div className="flex items-center space-x-2">
+                <div className="flex items-center space-x-2 w-full sm:w-auto mt-2 sm:mt-0">
                   <button 
                     onClick={toggleMute}
                     className="text-white/70 hover:text-white"
@@ -333,7 +333,7 @@ export default function EpisodePage() {
                     step="0.01"
                     value={isMuted ? 0 : volume}
                     onChange={handleVolumeChange}
-                    className="w-24 accent-primary"
+                    className="w-full sm:w-24 accent-primary"
                   />
                 </div>
               </div>
@@ -345,31 +345,17 @@ export default function EpisodePage() {
         {episode.pdfUrl && (
           <div className="bg-navy-light/30 rounded-xl border border-white/10 p-6 mb-8">
             <h2 className="text-xl font-semibold text-white mb-4">Read Along</h2>
-            <div className="aspect-w-16 aspect-h-9 bg-navy-dark rounded-lg overflow-hidden">
-              {pdfError ? (
-                <div className="flex flex-col items-center justify-center h-full text-center">
-                  <AlertTriangle size={36} className="text-amber-500 mb-4" />
-                  <p className="text-white/70 max-w-lg mb-4">
-                    PDF file could not be loaded. Please check that the file exists at the specified path.
-                  </p>
-                  <a
-                    href={episode.pdfUrl}
-                    className="bg-primary text-white px-4 py-2 rounded-md hover:bg-primary-dark transition-colors"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    View PDF URL
-                  </a>
-                </div>
-              ) : (
-                <iframe 
-                  src={episode.pdfUrl}
-                  className="w-full h-full"
-                  title={`PDF for ${episode.title}`}
-                  onError={handlePdfError}
-                  allowFullScreen
-                />
-              )}
+            <div className="flex flex-col items-center justify-center py-8">
+              <p className="text-white/70 mb-6">For the best reading experience, we recommend opening the PDF in a new tab.</p>
+              <a
+                href={episode.pdfUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-6 py-3 bg-primary text-white rounded-md hover:bg-primary-dark transition-colors"
+              >
+                <BookOpen size={20} />
+                <span>Open PDF in New Tab</span>
+              </a>
             </div>
           </div>
         )}
