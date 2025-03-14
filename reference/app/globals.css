@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-primary: #00aeef;
+  --color-secondary: #ef7d00;
+  --color-light: #f8f9fa;
+  --color-dark: #333333;
+}
+
+@layer base {
+  body {
+    @apply bg-light text-dark font-body min-h-screen flex flex-col;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading text-primary;
+  }
+  main {
+    @apply flex-grow;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-primary text-white font-bold py-2 px-4 rounded hover:bg-primary-dark transition duration-300;
+  }
+  .btn-nav {
+    @apply bg-primary text-white font-bold py-2 px-4 rounded hover:bg-primary-dark transition duration-300 whitespace-nowrap text-center min-h-[44px];
+  }
+ 
+  .link {
+    @apply text-primary hover:text-primary-dark underline;
+  }
+  .footer-link {
+    @apply text-primary hover:text-primary-light underline transition duration-300;
+  }
+}
