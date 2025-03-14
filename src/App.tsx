@@ -6,6 +6,7 @@ import LoadingSpinner from './components/ui/LoadingSpinner';
 
 // Lazy load pages for better performance
 const UrantiaPapersPage = React.lazy(() => import('./pages/UrantiaPapersPage'));
+const EpisodePage = React.lazy(() => import('./pages/EpisodePage'));
 
 // Placeholder components until we implement the actual pages
 const HomePage = () => (
@@ -41,6 +42,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/urantia-papers" element={<UrantiaPapersPage />} />
+          <Route path="/episode/:id" element={<EpisodePage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Suspense>

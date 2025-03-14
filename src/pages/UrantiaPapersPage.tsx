@@ -46,12 +46,13 @@ const PaperCard: React.FC<PaperCardProps> = ({ paper }) => {
         <p className="text-white/70 text-sm mb-4 line-clamp-2">{paper.description}</p>
         
         <div className="flex space-x-3 mt-auto">
-          <button
+          <Link
+            to={`/episode/${paper.id}`}
             className="flex items-center gap-1.5 px-3 py-1.5 bg-primary text-white rounded-md hover:bg-primary-dark transition-colors text-sm"
           >
             <Play size={14} />
             <span>Listen</span>
-          </button>
+          </Link>
           
           {paper.pdfUrl && (
             <a
@@ -271,12 +272,13 @@ const PaperListItem: React.FC<PaperCardProps> = ({ paper }) => {
         </div>
         
         <div className="flex space-x-2">
-          <button
+          <Link
+            to={`/episode/${paper.id}`}
             className="flex items-center gap-1 px-2 py-1 bg-primary text-white rounded hover:bg-primary-dark transition-colors text-sm"
           >
             <Play size={14} />
             <span className="hidden md:inline">Listen</span>
-          </button>
+          </Link>
           
           {paper.pdfUrl && (
             <a
