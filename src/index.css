@@ -1,0 +1,83 @@
+/* Import fonts */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap');
+@import url('https://use.typekit.net/ruy4wnb.css'); /* For Trajan Pro 3 */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base Typography */
+:root {
+  --font-trajan: "trajan-pro-3", serif;
+  --font-cinzel: 'Cinzel', serif;
+  --font-montserrat: 'Montserrat', sans-serif;
+  
+  /* Colors */
+  --color-navy: #0c1631;
+  --color-navy-light: #132048;
+  --color-gold: #d4af37;
+  --color-gold-light: #e6c458;
+}
+
+body {
+  font-family: var(--font-montserrat);
+  @apply bg-navy text-white;
+}
+
+/* Typography utility classes */
+@layer components {
+  .title-main {
+    font-family: var(--font-trajan);
+    @apply text-5xl md:text-6xl font-normal text-white;
+    line-height: 1.1;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .title-subtitle {
+    font-family: var(--font-cinzel);
+    @apply text-xl md:text-2xl text-white tracking-wide;
+    line-height: 1.4;
+    letter-spacing: 0.02em;
+  }
+
+  .section-subtitle {
+    font-family: var(--font-cinzel);
+    @apply text-xl md:text-2xl text-white/90 tracking-wide;
+    line-height: 1.4;
+    letter-spacing: 0.02em;
+  }
+
+  .body-lg {
+    font-family: var(--font-montserrat);
+    @apply text-lg leading-relaxed text-white/70 font-light;
+    line-height: 1.7;
+    letter-spacing: 0.015em;
+  }
+
+  .btn-text {
+    font-family: var(--font-montserrat);
+    @apply text-base font-medium tracking-wide;
+    letter-spacing: 0.02em;
+  }
+}
+
+/* Custom color classes */
+@layer utilities {
+  .bg-navy {
+    background-color: var(--color-navy);
+  }
+  .bg-navy-light {
+    background-color: var(--color-navy-light);
+  }
+  .bg-gold {
+    background-color: var(--color-gold);
+  }
+  .bg-gold-light {
+    background-color: var(--color-gold-light);
+  }
+  .text-gold {
+    color: var(--color-gold);
+  }
+}

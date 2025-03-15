@@ -1,0 +1,213 @@
+# UrantiaBookPod Vite - Cursor Rules
+
+## Project Overview
+
+UrantiaBookPod is a React application that provides an audio podcast experience for exploring the Urantia Book. It allows users to listen to AI-generated narrations of Urantia Book papers while reading along with the text. This project migrates the original Next.js application to a Vite-based implementation using The Divine Within's design system.
+
+## Technical Stack
+
+- **Frontend**: React 18 with TypeScript
+- **Build Tool**: Vite
+- **Styling**: Tailwind CSS with custom design system classes
+- **Routing**: React Router v6
+- **Animation**: Framer Motion
+- **UI Icons**: Lucide React
+- **Analytics**: Vercel Analytics
+
+## Core Principles
+
+1. **Component-Based Architecture**
+   - Each component should have a single responsibility
+   - Prefer functional components with hooks
+   - Keep component files under 250 lines of code
+   - Use TypeScript interfaces for prop definitions
+
+2. **Styling Approach**
+   - Use Tailwind utility classes for layout and basic styling
+   - Use custom design system classes (like `title-main`) for typography
+   - Keep styling consistent with TDW's design language
+   - Avoid inline styles except for dynamic values
+
+3. **State Management**
+   - Use React hooks for local component state
+   - Create custom hooks for reusable logic
+   - Keep state as close to where it's used as possible
+   - Avoid prop drilling by using context where appropriate
+
+4. **Error Handling**
+   - Implement robust error handling, especially for audio playback
+   - Provide user-friendly error messages
+   - Always include fallback UI states
+   - Log errors for debugging purposes
+
+5. **Performance Considerations**
+   - Lazy load components for code splitting
+   - Implement proper loading states
+   - Optimize image and audio loading
+   - Use React.memo for expensive renders when necessary
+
+## File Structure
+
+- `src/components/` - Reusable UI components
+  - `audio/` - Audio-related components
+  - `layout/` - Layout components (Header, Footer, etc.)
+  - `ui/` - Basic UI components (buttons, cards, etc.)
+- `src/pages/` - Page components
+- `src/hooks/` - Custom React hooks
+- `src/data/` - Data models and static data
+- `src/types/` - TypeScript type definitions
+- `src/utils/` - Utility functions
+- `src/constants/` - Constant values and configurations
+- `src/styles/` - Global styles and CSS
+- `public/` - Static assets (audio, PDFs, images)
+
+## Component Conventions
+
+1. **Component File Structure**
+   ```typescript
+   // Imports
+   import React, { useState } from 'react';
+   import { useNavigate } from 'react-router-dom';
+   
+   // Types
+   interface ComponentProps {
+     prop1: string;
+     prop2?: number;
+   }
+   
+   // Component
+   export default function Component({ prop1, prop2 = 0 }: ComponentProps) {
+     // State and hooks
+     const [state, setState] = useState(0);
+     const navigate = useNavigate();
+     
+     // Event handlers
+     const handleClick = () => {
+       // Logic
+     };
+     
+     // Conditional rendering
+     if (!prop1) {
+       return <div>Fallback UI</div>;
+     }
+     
+     // Main render
+     return (
+       <div>
+         {/* JSX */}
+       </div>
+     );
+   }
+   ```
+
+2. **Page Component Structure**
+   ```typescript
+   import React from 'react';
+   import { useParams } from 'react-router-dom';
+   import Layout from '../components/layout/Layout';
+   
+   export default function PageName() {
+     const { id } = useParams();
+     
+     return (
+       <Layout>
+         <div className="container mx-auto px-4 py-8">
+           {/* Page content */}
+         </div>
+       </Layout>
+     );
+   }
+   ```
+
+## Audio Implementation Guidelines
+
+1. **Audio Player Component**
+   - Implement play/pause controls
+   - Show loading and error states
+   - Track and display progress
+   - Provide volume controls
+   - Include analytics tracking
+   - Support keyboard controls
+   - Ensure mobile compatibility
+
+2. **Audio Loading**
+   - Check file existence before attempting playback
+   - Provide fallback download links
+   - Handle browser autoplay restrictions
+   - Implement proper preloading
+
+## PDF Viewer Guidelines
+
+1. **PDF Integration**
+   - Use native browser PDF viewing when possible
+   - Always provide download option as fallback
+   - Handle PDF loading errors gracefully
+   - Support mobile viewing
+
+## Animation Guidelines
+
+1. **Framer Motion Usage**
+   - Use consistent animation durations (0.3-0.6s)
+   - Implement page transitions
+   - Add subtle hover effects
+   - Ensure animations work with reduced motion preferences
+   - Reuse animation variants from constants/animations.ts
+
+## Error Resolution Process
+
+When encountering issues:
+
+1. Identify the specific component or function causing the error
+2. Check browser console for detailed error messages
+3. Verify that all required props are being passed correctly
+4. Check for API or file loading issues
+5. Implement appropriate error boundaries or fallback UI
+6. Add error logging for future debugging
+
+## Testing Guidelines
+
+Before submitting code:
+
+1. Test audio playback in multiple browsers (Chrome, Firefox, Safari)
+2. Verify mobile responsiveness on small screens
+3. Test keyboard navigation for accessibility
+4. Verify that analytics events are firing correctly
+5. Check error states by intentionally breaking functionality
+
+## Dependencies Management
+
+Current key dependencies:
+- react: ^18.2.0
+- react-dom: ^18.2.0
+- react-router-dom: ^6.18.0
+- framer-motion: ^10.17.9
+- lucide-react: ^0.288.0
+- @vercel/analytics: ^1.1.1
+
+When adding new dependencies:
+1. Evaluate necessity and bundle size impact
+2. Prefer established libraries with TypeScript support
+3. Check for potential conflicts with existing dependencies
+4. Document usage in component comments
+
+## Tailwind Guidelines
+
+1. Use Tailwind utility classes for:
+   - Layout (flex, grid, padding, margin)
+   - Spacing
+   - Basic colors
+   - Responsive breakpoints
+
+2. Use custom utility classes for:
+   - Typography styles
+   - Brand colors
+   - Animation patterns
+
+3. Follow responsive design patterns:
+   ```html
+   <div className="text-base md:text-lg lg:text-xl">
+     Responsive text
+   </div>
+   ```
+
+Remember that this Vite implementation aims to preserve all functionality from the original Next.js app while improving the design system and component structure.

@@ -1,0 +1,25 @@
+{
+  "name": "The Divine Within",
+  "short_name": "Divine Within",
+  "description": "A service framework to facilitate the spiritual journey through technology, human connection, and timeless wisdom",
+  "icons": [
+    {
+      "src": "/favicon_io/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon_io/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/",
+  "theme_color": "#107cc4",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "orientation": "portrait",
+  "scope": "/",
+  "lang": "en-US",
+  "categories": ["spirituality", "education", "lifestyle"]
+}
