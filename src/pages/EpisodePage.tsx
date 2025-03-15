@@ -445,7 +445,16 @@ export default function EpisodePage() {
               <ChevronLeft size={20} className="mr-1 group-hover:transform group-hover:-translate-x-1 transition-transform" />
               <div className="text-left">
                 <span className="block text-xs text-white/50">Previous</span>
-                <span className="block">{prevEpisode.title.length > 25 ? prevEpisode.title.substring(0, 25) + '...' : prevEpisode.title}</span>
+                {series === 'urantia-papers' ? (
+                  <>
+                    <span className="hidden md:block">{prevEpisode.title}</span>
+                    <span className="block md:hidden">
+                      {prevEpisode.id === 0 ? 'Foreword' : `Paper ${prevEpisode.id}`}
+                    </span>
+                  </>
+                ) : (
+                  <span className="block">{prevEpisode.title.length > 25 ? prevEpisode.title.substring(0, 25) + '...' : prevEpisode.title}</span>
+                )}
               </div>
             </button>
           ) : (
@@ -459,7 +468,16 @@ export default function EpisodePage() {
             >
               <div className="text-right">
                 <span className="block text-xs text-white/50">Next</span>
-                <span className="block">{nextEpisode.title.length > 25 ? nextEpisode.title.substring(0, 25) + '...' : nextEpisode.title}</span>
+                {series === 'urantia-papers' ? (
+                  <>
+                    <span className="hidden md:block">{nextEpisode.title}</span>
+                    <span className="block md:hidden">
+                      {nextEpisode.id === 0 ? 'Foreword' : `Paper ${nextEpisode.id}`}
+                    </span>
+                  </>
+                ) : (
+                  <span className="block">{nextEpisode.title.length > 25 ? nextEpisode.title.substring(0, 25) + '...' : nextEpisode.title}</span>
+                )}
               </div>
               <ChevronLeft size={20} className="ml-1 transform rotate-180 group-hover:transform group-hover:translate-x-1 transition-transform" />
             </button>
