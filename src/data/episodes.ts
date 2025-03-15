@@ -1,5 +1,6 @@
 import { Episode } from '../types/index';
 import urantiaSummaries from './json/urantia_summaries.json';
+import { getAudioUrl, getPdfUrl } from '../config/audio';
 
 // Define the structure of the summary data
 interface UrantiaSummary {
@@ -65,8 +66,8 @@ function createUrantiaPaper(id: number, title: string): Episode {
   const episode: Episode = {
     id,
     title: formattedTitle,
-    audioUrl: id === 0 ? "/audio/foreword.mp3" : `/audio/paper-${id}.mp3`,
-    pdfUrl: id === 0 ? "/pdfs/foreword.pdf" : `/pdfs/paper-${id}.pdf`,
+    audioUrl: getAudioUrl('urantia-papers', id),
+    pdfUrl: getPdfUrl('urantia-papers', id),
     series: "urantia-papers",
     description: id === 0 ? "An introduction to the Urantia Papers, covering Deity, reality, universe definitions, and an outline of the structure of the cosmos." : `Paper ${id}: ${title}`,
   };
@@ -327,7 +328,7 @@ const discoverJesusEpisodes: Episode[] = [
   {
     id: 1,
     title: "Birth and Infancy of Jesus",
-    audioUrl: "/audio/discoverjesus/Event - Birth and Infancy of Jesus.mp3",
+    audioUrl: getAudioUrl('discover-jesus', 1),
     series: "discover-jesus",
     sourceUrl: "https://discoverjesus.com/event/birth-and-infancy-of-jesus",
     imageUrl: "/images/discoverjesus/birth.jpg",
@@ -336,7 +337,7 @@ const discoverJesusEpisodes: Episode[] = [
   {
     id: 2,
     title: "The Twelve Apostles",
-    audioUrl: "/audio/discoverjesus/Group - The Twelve Apostles.mp3",
+    audioUrl: getAudioUrl('discover-jesus', 2),
     series: "discover-jesus",
     sourceUrl: "https://discoverjesus.com/group/the-twelve-apostles",
     description: "An overview of the twelve apostles chosen by Jesus, their backgrounds, and their relationships with the Master."
@@ -348,7 +349,7 @@ const historyEpisodes: Episode[] = [
   {
     id: 1,
     title: "A History of the Urantia Papers",
-    audioUrl: "/audio/history/a-history-of-the-urantia-papers.mp3",
+    audioUrl: getAudioUrl('history', 1),
     series: "history",
     imageUrl: "/images/history/a history of the urantia papers.png",
     sourceUrl: "https://urantia-book.org/archive/history/doc722.htm",
@@ -361,7 +362,7 @@ const sadlerWorkbooksEpisodes: Episode[] = [
   {
     id: 1,
     title: "Dr. Sadler's Workbooks - Volume 4, Part 1",
-    audioUrl: "/audio/sadler/vol4-part1.mp3",
+    audioUrl: getAudioUrl('sadler-workbooks', 1),
     series: "sadler-workbooks",
     sourceUrl: "https://urantiabookstudy.com/urantiabook/workbooks/foreword.pdf",
     description: "Dr. William S. Sadler's study notes and commentary on the Foreword and Paper 1."
@@ -369,7 +370,7 @@ const sadlerWorkbooksEpisodes: Episode[] = [
   {
     id: 2,
     title: "Dr. Sadler's Workbooks - Volume 4, Part 2",
-    audioUrl: "/audio/sadler/vol4-part2.mp3",
+    audioUrl: getAudioUrl('sadler-workbooks', 2),
     series: "sadler-workbooks",
     sourceUrl: "https://urantiabookstudy.com/urantiabook/workbooks/foreword.pdf",
     description: "Dr. William S. Sadler's study notes and commentary on Papers 2-3."
