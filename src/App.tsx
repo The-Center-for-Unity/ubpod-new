@@ -2,6 +2,7 @@ import React, { Suspense } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Analytics } from '@vercel/analytics/react';
 import './index.css';
+import ScrollToTopOnNavigate from './components/utils/ScrollToTopOnNavigate';
 
 // Lazy load pages for better performance
 const HomePage = React.lazy(() => import('./pages/Home'));
@@ -32,6 +33,7 @@ const LoadingSpinner = () => (
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTopOnNavigate />
       <Suspense fallback={<LoadingSpinner />}>
         <Routes>
           <Route path="/" element={<HomePage />} />
