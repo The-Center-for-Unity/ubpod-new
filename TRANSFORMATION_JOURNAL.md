@@ -273,7 +273,6 @@ Our focus for the next development sprint will be:
 ### Lessons for Future Planning
 - Allow more time for CSS configuration and troubleshooting
 - Consider dependencies between components more carefully when planning
-<<<<<<< HEAD
 - Build more buffer time into the schedule for unexpected challenges 
 
 ## Episode Summaries and Navigation Improvements
@@ -522,6 +521,67 @@ We also improved the list view display of papers to better utilize available spa
    - Increased text contrast from `text-white/50` to `text-white/70`
 
 These improvements demonstrate our commitment to creating a polished, user-friendly experience that meets modern web standards and user expectations. 
-=======
-- Build more buffer time into the schedule for unexpected challenges 
->>>>>>> origin/main
+
+## Repository Management and Deployment Strategy
+
+### Handling Large Media Files in Git
+
+We encountered and resolved a significant challenge related to managing large media files in the Git repository:
+
+1. **Problem Identified**
+   - When attempting to push code changes to the remote repository, we hit GitHub's 2GB push limit
+   - This occurred despite having audio and PDF files listed in the `.gitignore` file
+   - The issue stemmed from Git's behavior: once files are tracked, adding them to `.gitignore` doesn't remove them from tracking
+
+2. **Root Cause Analysis**
+   - Audio files had been pushed to the repository in small batches over time
+   - These files remained in Git's history, causing the repository size to grow beyond GitHub's limits
+   - When attempting to merge new code changes, Git tried to include all historical files in the push
+
+3. **Solution Implemented**
+   - Created a new orphan branch called `code-only` using `git checkout --orphan code-only`
+   - This branch started with a clean history, without any of the audio or PDF files
+   - Added all code files to this branch while ensuring media files remained untracked
+   - Successfully pushed the code-only branch to the remote repository
+
+4. **Implementation Details**
+   ```bash
+   # Create a new branch with no history
+   git checkout --orphan code-only
+   
+   # Add all files (audio and PDF files excluded via .gitignore)
+   git add --all
+   
+   # Commit the changes
+   git commit -m "Initial code-only commit with all application code"
+   
+   # Push the branch to the remote repository
+   git push -u origin code-only
+   ```
+
+5. **Repository Structure**
+   - **main branch**: Contains the audio and PDF files pushed in small batches
+   - **code-only branch**: Contains all code changes without the large media files
+   - The `.gitignore` file in both branches excludes `public/audio/` and `public/pdfs/` directories
+
+### Deployment Strategy
+
+For deploying the application with Vercel (which is connected to the main branch):
+
+1. **Merging Strategy**
+   - Create a pull request from the `code-only` branch to the `main` branch
+   - Review the changes to ensure only code files are being merged
+   - Complete the merge to trigger Vercel's auto-deployment
+
+2. **Media File Management**
+   - Audio and PDF files should be managed separately from the code
+   - These files can be uploaded directly to the production server or a CDN
+   - The application code references these files by URL, but they are not stored in the Git repository
+
+3. **Future Development Workflow**
+   - Continue development on the `code-only` branch
+   - Keep media files in the local development environment but excluded from Git
+   - Periodically merge changes from `code-only` to `main` to trigger deployments
+   - For new media files, upload them directly to the production environment
+
+This approach allows us to maintain a clean, efficient Git repository while still providing all necessary media files in the deployed application.
