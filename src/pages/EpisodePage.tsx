@@ -194,6 +194,14 @@ export default function EpisodePage() {
       });
   };
 
+  // Add this new function to handle viewing the audio URL
+  const handleViewAudioUrl = () => {
+    if (episode) {
+      alert(`Audio URL: ${episode.audioUrl}`);
+      console.log('Audio URL:', episode.audioUrl);
+    }
+  };
+
   if (isLoading) {
     return (
       <Layout>
@@ -325,14 +333,12 @@ export default function EpisodePage() {
                 >
                   Back to Papers
                 </button>
-                <a
-                  href={episode.audioUrl}
+                <button
+                  onClick={handleViewAudioUrl}
                   className="bg-primary text-white px-4 py-2 rounded-md hover:bg-primary-dark transition-colors"
-                  target="_blank"
-                  rel="noopener noreferrer"
                 >
                   View Audio URL
-                </a>
+                </button>
               </div>
             </div>
           ) : (
