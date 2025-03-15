@@ -1,7 +1,7 @@
 {
-  "name": "The Divine Within",
-  "short_name": "Divine Within",
-  "description": "A service framework to facilitate the spiritual journey through technology, human connection, and timeless wisdom",
+  "name": "Urantia Book Podcast",
+  "short_name": "UBPod",
+  "description": "Experience AI-powered audio journeys through the Urantia Papers. Listen while reading along with the original text.",
   "icons": [
     {
       "src": "/favicon_io/android-chrome-192x192.png",
@@ -16,7 +16,7 @@
   ],
   "start_url": "/",
   "theme_color": "#107cc4",
-  "background_color": "#ffffff",
+  "background_color": "#0c1631",
   "display": "standalone",
   "orientation": "portrait",
   "scope": "/",

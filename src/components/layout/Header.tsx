@@ -17,6 +17,11 @@ export default function Header() {
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <Link to="/" className="flex items-center space-x-3">
+              <img 
+                src="/logo.png" 
+                alt="UrantiaBookPod Logo" 
+                className="h-8 w-auto" 
+              />
               <span className="title-subtitle text-sm tracking-[0.15em]">
                 Urantia Book Podcast
               </span>
@@ -91,6 +96,15 @@ export default function Header() {
             </button>
             
             <nav className="flex flex-col space-y-8 mt-8">
+              {/* Logo in mobile menu */}
+              <div className="flex items-center space-x-3 mb-4">
+                <img 
+                  src="/logo.png" 
+                  alt="UrantiaBookPod Logo" 
+                  className="h-10 w-auto" 
+                />
+              </div>
+              
               {navigationItems.map((item) => (
                 <Link
                   key={item.path}

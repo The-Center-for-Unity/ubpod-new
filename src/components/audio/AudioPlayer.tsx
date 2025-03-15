@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Play, Pause, Volume2, VolumeX, SkipBack, SkipForward } from 'lucide-react';
-import { AudioPlayerState } from '../../types';
+import { AudioPlayerState } from '../../types/index';
 
 interface AudioPlayerProps {
   audioUrl: string;
@@ -19,6 +19,7 @@ export default function AudioPlayer({ audioUrl, title, onEnded, onError }: Audio
     loading: true,
     error: null
   });
+  const [showVolumeSlider, setShowVolumeSlider] = useState(false);
 
   const { isPlaying, currentTime, duration, volume, loading, error } = playerState;
 
@@ -60,6 +61,11 @@ export default function AudioPlayer({ audioUrl, title, onEnded, onError }: Audio
       audioRef.current.volume = newVolume;
       setPlayerState((prev: AudioPlayerState) => ({ ...prev, volume: newVolume }));
     }
+  };
+
+  // Toggle volume slider visibility
+  const toggleVolumeSlider = () => {
+    setShowVolumeSlider(!showVolumeSlider);
   };
 
   // Handle seeking
@@ -134,6 +140,24 @@ export default function AudioPlayer({ audioUrl, title, onEnded, onError }: Audio
       audio.removeEventListener('error', handleError);
     };
   }, [onEnded, onError]);
+
+  // Close volume slider when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: Event) => {
+      const target = event.target as HTMLElement;
+      if (showVolumeSlider && !target.closest('.volume-control')) {
+        setShowVolumeSlider(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('touchstart', handleClickOutside);
+    
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('touchstart', handleClickOutside);
+    };
+  }, [showVolumeSlider]);
 
   // Update audio source when audioUrl changes
   useEffect(() => {
@@ -216,24 +240,41 @@ export default function AudioPlayer({ audioUrl, title, onEnded, onError }: Audio
               </button>
             </div>
 
-            <div className="flex items-center space-x-2">
+            <div className="volume-control relative flex items-center">
               <button
-                onClick={toggleMute}
-                className="p-2 rounded-full hover:bg-gray-100"
+                onClick={toggleVolumeSlider}
+                className="p-2 rounded-full hover:bg-gray-100 z-10"
                 aria-label={volume === 0 ? 'Unmute' : 'Mute'}
               >
                 {volume === 0 ? <VolumeX size={20} /> : <Volume2 size={20} />}
               </button>
 
-              <input
-                type="range"
-                min={0}
-                max={1}
-                step={0.01}
-                value={volume}
-                onChange={handleVolumeChange}
-                className="w-20 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
-              />
+              {/* Mobile-friendly volume slider */}
+              <div 
+                className={`absolute bottom-full right-0 bg-white shadow-lg rounded-lg p-3 mb-2 transition-opacity duration-200 ${
+                  showVolumeSlider ? 'opacity-100' : 'opacity-0 pointer-events-none'
+                }`}
+              >
+                <input
+                  type="range"
+                  min={0}
+                  max={1}
+                  step={0.01}
+                  value={volume}
+                  onChange={handleVolumeChange}
+                  className="w-32 h-6 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+                  style={{
+                    // Improve touch target size
+                    WebkitAppearance: 'none',
+                    appearance: 'none'
+                  }}
+                />
+                <div className="flex justify-between text-xs text-gray-500 mt-1">
+                  <span>0%</span>
+                  <span>{Math.round(volume * 100)}%</span>
+                  <span>100%</span>
+                </div>
+              </div>
             </div>
           </div>
         </>
