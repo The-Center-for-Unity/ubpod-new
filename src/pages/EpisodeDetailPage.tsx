@@ -164,6 +164,7 @@ export default function EpisodeDetailPage() {
               <AudioPlayer 
                 audioUrl={episode.audioUrl} 
                 title={episode.title}
+                episodeId={episode.id}
                 onError={handleAudioError}
               />
             </div>

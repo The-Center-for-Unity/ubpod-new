@@ -1,15 +1,17 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Play, Pause, Volume2, VolumeX, SkipBack, SkipForward } from 'lucide-react';
 import { AudioPlayerState } from '../../types/index';
+import { useAudioAnalytics } from '../../hooks/useAudioAnalytics';
 
 interface AudioPlayerProps {
   audioUrl: string;
   title: string;
+  episodeId?: string | number;
   onEnded?: () => void;
   onError?: (error: string) => void;
 }
 
-export default function AudioPlayer({ audioUrl, title, onEnded, onError }: AudioPlayerProps) {
+export default function AudioPlayer({ audioUrl, title, episodeId, onEnded, onError }: AudioPlayerProps) {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [playerState, setPlayerState] = useState<AudioPlayerState>({
     isPlaying: false,
@@ -22,6 +24,13 @@ export default function AudioPlayer({ audioUrl, title, onEnded, onError }: Audio
   const [showVolumeSlider, setShowVolumeSlider] = useState(false);
 
   const { isPlaying, currentTime, duration, volume, loading, error } = playerState;
+
+  // Initialize analytics tracking
+  useAudioAnalytics({
+    audioRef,
+    title,
+    id: episodeId
+  });
 
   // Format time in MM:SS format
   const formatTime = (time: number): string => {

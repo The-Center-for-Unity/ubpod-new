@@ -5,6 +5,7 @@ import { Play, Pause, SkipBack, SkipForward, Volume2, VolumeX, Download, Chevron
 import Layout from '../components/layout/Layout';
 import { getEpisodeById, getUrantiaPaperPart } from '../data/episodes';
 import { Episode } from '../types/index';
+import { useAudioAnalytics } from '../hooks/useAudioAnalytics';
 
 export default function EpisodePage() {
   const { id, series = 'urantia-papers' } = useParams<{ id: string; series?: string }>();
@@ -22,6 +23,13 @@ export default function EpisodePage() {
   const [shareNotification, setShareNotification] = useState<string | null>(null);
   const audioRef = useRef<HTMLAudioElement>(null);
   const progressBarRef = useRef<HTMLDivElement>(null);
+
+  // Initialize analytics tracking if episode is loaded
+  useAudioAnalytics({
+    audioRef,
+    title: episode?.title || 'Unknown Episode',
+    id: episode?.id || id || 'unknown'
+  });
 
   // Load episode data
   useEffect(() => {
