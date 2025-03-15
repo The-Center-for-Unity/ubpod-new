@@ -7,6 +7,7 @@ import './index.css';
 const HomePage = React.lazy(() => import('./pages/Home'));
 const UrantiaPapersPage = React.lazy(() => import('./pages/UrantiaPapersPage'));
 const EpisodePage = React.lazy(() => import('./pages/EpisodePage'));
+const ListenPage = React.lazy(() => import('./pages/ListenPage'));
 const DisclaimerPage = React.lazy(() => import('./pages/DisclaimerPage'));
 
 const NotFoundPage = () => (
@@ -36,6 +37,8 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/urantia-papers" element={<UrantiaPapersPage />} />
           <Route path="/episode/:id" element={<EpisodePage />} />
+          <Route path="/listen/:series/:id" element={<EpisodePage />} />
+          <Route path="/listen/:series" element={<ListenPage />} />
           <Route path="/disclaimer" element={<DisclaimerPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>

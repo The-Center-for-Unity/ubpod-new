@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { ArrowLeft, FileText, Download } from 'lucide-react';
+import { ArrowLeft, FileText, Download, Share2 } from 'lucide-react';
 import Layout from '../components/layout/Layout';
 import AudioPlayer from '../components/audio/AudioPlayer';
-import { Episode } from '../types';
+import { Episode } from '../types/index';
 import { getEpisodeById } from '../data/episodes';
 
 export default function EpisodeDetailPage() {
@@ -12,6 +12,7 @@ export default function EpisodeDetailPage() {
   const [episode, setEpisode] = useState<Episode | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [shareNotification, setShareNotification] = useState<string | null>(null);
 
   useEffect(() => {
     setLoading(true);
@@ -45,6 +46,43 @@ export default function EpisodeDetailPage() {
     setError(errorMessage);
   };
 
+  const handleShare = async () => {
+    const url = window.location.href;
+    
+    // Try to use the Web Share API if available
+    if (navigator.share && episode) {
+      try {
+        await navigator.share({
+          title: episode.title,
+          text: episode.description,
+          url: url
+        });
+        setShareNotification('Shared successfully!');
+      } catch (err) {
+        // Fallback to clipboard if user cancels or share fails
+        copyToClipboard(url);
+      }
+    } else {
+      // Fallback for browsers that don't support the Web Share API
+      copyToClipboard(url);
+    }
+    
+    // Clear notification after 3 seconds
+    setTimeout(() => {
+      setShareNotification(null);
+    }, 3000);
+  };
+  
+  const copyToClipboard = (text: string) => {
+    navigator.clipboard.writeText(text)
+      .then(() => {
+        setShareNotification('Link copied to clipboard!');
+      })
+      .catch(() => {
+        setShareNotification('Failed to copy link');
+      });
+  };
+
   return (
     <Layout>
       <div className="container mx-auto px-4 py-8">
@@ -73,6 +111,13 @@ export default function EpisodeDetailPage() {
             <div className="mb-8">
               <h1 className="title-main mb-4">{episode.title}</h1>
               <p className="text-lg text-gray-600 mb-6">{episode.description}</p>
+              
+              {episode.summary && (
+                <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 mb-6">
+                  <h3 className="text-lg font-semibold text-gray-800 mb-2">Summary</h3>
+                  <p className="text-gray-700 leading-relaxed">{episode.summary}</p>
+                </div>
+              )}
               
               <div className="flex flex-wrap gap-4 mb-8">
                 {episode.pdfUrl && (
@@ -106,6 +151,14 @@ export default function EpisodeDetailPage() {
                     <span>View Source</span>
                   </a>
                 )}
+                
+                <button 
+                  onClick={handleShare}
+                  className="flex items-center gap-2 px-4 py-2 bg-gray-100 text-gray-800 rounded-md hover:bg-gray-200 transition-colors"
+                >
+                  <Share2 size={20} />
+                  <span>Share</span>
+                </button>
               </div>
               
               <AudioPlayer 
@@ -124,6 +177,13 @@ export default function EpisodeDetailPage() {
                 />
               </div>
             )}
+          </div>
+        )}
+        
+        {/* Share Notification */}
+        {shareNotification && (
+          <div className="fixed bottom-4 right-4 bg-primary text-white px-4 py-3 rounded-lg shadow-lg transition-opacity duration-300">
+            {shareNotification}
           </div>
         )}
       </div>

@@ -32,6 +32,19 @@ const PaperCard: React.FC<PaperCardProps> = ({ paper }) => {
     }
   };
 
+  // Determine which summary to display, with fallbacks
+  const displaySummary = paper.cardSummary || paper.summary || paper.description;
+
+  // Debug: Log summary info for the first few papers
+  if (paper.id < 5) {
+    console.log(`PaperCard ${paper.id} (${paper.title}):`, { 
+      hasCardSummary: !!paper.cardSummary, 
+      hasSummary: !!paper.summary,
+      willDisplaySummary: !!displaySummary,
+      displaySource: paper.cardSummary ? 'cardSummary' : (paper.summary ? 'summary' : 'description')
+    });
+  }
+
   return (
     <motion.div
       className={`bg-navy-light/30 rounded-lg overflow-hidden border ${getPartColor(paper.id)} hover:border-primary/30 transition-all`}
@@ -43,11 +56,11 @@ const PaperCard: React.FC<PaperCardProps> = ({ paper }) => {
           <span className="text-xs text-white/50">Part {getUrantiaPaperPart(paper.id)}</span>
         </div>
         <h3 className="text-lg font-semibold mb-2 text-white">{paper.title}</h3>
-        <p className="text-white/70 text-sm mb-4 line-clamp-2">{paper.description}</p>
+        <p className="text-white/70 text-sm mb-4 line-clamp-2">{displaySummary}</p>
         
         <div className="flex space-x-3 mt-auto">
           <Link
-            to={`/episode/${paper.id}`}
+            to={`/listen/urantia-papers/${paper.id}`}
             className="flex items-center gap-1.5 px-3 py-1.5 bg-primary text-white rounded-md hover:bg-primary-dark transition-colors text-sm"
           >
             <Play size={14} />
@@ -257,6 +270,9 @@ export default function UrantiaPapersPage() {
 
 // Paper List Item Component
 const PaperListItem: React.FC<PaperCardProps> = ({ paper }) => {
+  // Determine which summary to display, with fallbacks
+  const displaySummary = paper.cardSummary || paper.summary || paper.description;
+  
   return (
     <motion.div
       className="bg-navy-light/30 rounded-lg overflow-hidden border border-white/5 hover:border-primary/30 transition-all"
@@ -267,13 +283,13 @@ const PaperListItem: React.FC<PaperCardProps> = ({ paper }) => {
           <span className="text-primary font-bold w-8">{paper.id}</span>
           <div>
             <h3 className="text-white font-medium">{paper.title}</h3>
-            <p className="text-white/50 text-sm hidden md:block">{paper.description.substring(0, 60)}...</p>
+            <p className="text-white/50 text-sm hidden md:block">{displaySummary.substring(0, 60)}...</p>
           </div>
         </div>
         
         <div className="flex space-x-2">
           <Link
-            to={`/episode/${paper.id}`}
+            to={`/listen/urantia-papers/${paper.id}`}
             className="flex items-center gap-1 px-2 py-1 bg-primary text-white rounded hover:bg-primary-dark transition-colors text-sm"
           >
             <Play size={14} />

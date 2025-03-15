@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Play, FileText, Download } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { Episode } from '../../types';
+import { Episode } from '../../types/index';
 
 interface EpisodeCardProps {
   episode: Episode;
@@ -9,7 +9,36 @@ interface EpisodeCardProps {
 }
 
 export default function EpisodeCard({ episode, onPlay }: EpisodeCardProps) {
-  const { id, title, description, audioUrl, pdfUrl, series, imageUrl } = episode;
+  const { id, title, description, summary, cardSummary, audioUrl, pdfUrl, series, imageUrl } = episode;
+
+  // Determine which summary to display, with fallbacks
+  const displaySummary = cardSummary || summary;
+  
+  // Debug: Log detailed episode info when component mounts
+  useEffect(() => {
+    if (id < 5) {
+      console.log(`EpisodeCard mounted for ${id} (${title}):`, { 
+        id,
+        title,
+        hasCardSummary: !!cardSummary, 
+        hasSummary: !!summary,
+        cardSummaryType: cardSummary ? typeof cardSummary : 'undefined',
+        summaryType: summary ? typeof summary : 'undefined',
+        cardSummary: cardSummary ? cardSummary.substring(0, 30) + '...' : 'undefined',
+        summary: summary ? summary.substring(0, 30) + '...' : 'undefined',
+        displaySummary: displaySummary ? displaySummary.substring(0, 30) + '...' : 'undefined',
+        description: description ? description.substring(0, 30) + '...' : 'undefined',
+        fullEpisode: JSON.stringify(episode).substring(0, 100) + '...'
+      });
+    }
+  }, [id, title, cardSummary, summary, description, episode]);
+  
+  // Debug: Log summary info for all episodes
+  console.log(`EpisodeCard render ${id} (${title}):`, { 
+    hasCardSummary: !!cardSummary, 
+    hasSummary: !!summary,
+    willDisplaySummary: !!displaySummary
+  });
 
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden transition-all hover:shadow-lg">
@@ -26,7 +55,20 @@ export default function EpisodeCard({ episode, onPlay }: EpisodeCardProps) {
       <div className="p-4">
         <h3 className="text-xl font-semibold mb-2 line-clamp-2">{title}</h3>
         
-        <p className="text-gray-600 mb-4 line-clamp-3">{description}</p>
+        <div className="mb-4">
+          {displaySummary ? (
+            <>
+              <p className="text-gray-700 font-medium line-clamp-3">{displaySummary}</p>
+              {summary && summary !== displaySummary && (
+                <div className="mt-1 flex items-center">
+                  <span className="text-xs text-primary font-medium">Full summary available</span>
+                </div>
+              )}
+            </>
+          ) : (
+            <p className="text-gray-600 line-clamp-3">{description}</p>
+          )}
+        </div>
         
         <div className="flex flex-wrap gap-2 mt-auto">
           <Link 

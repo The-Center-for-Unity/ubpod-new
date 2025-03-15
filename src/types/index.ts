@@ -7,6 +7,8 @@ export interface Episode {
   pdfUrl?: string;
   series: SeriesType;
   description: string;
+  summary?: string;
+  cardSummary?: string;
   imageUrl?: string;
   sourceUrl?: string;
 }
