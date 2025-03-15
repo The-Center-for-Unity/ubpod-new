@@ -3,6 +3,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Analytics } from '@vercel/analytics/react';
 import './index.css';
 import ScrollToTopOnNavigate from './components/utils/ScrollToTopOnNavigate';
+import HotjarAnalytics from './components/analytics/HotjarAnalytics';
+import OptinMonster from './components/analytics/OptinMonster';
 
 // Lazy load pages for better performance
 const HomePage = React.lazy(() => import('./pages/Home'));
@@ -10,6 +12,11 @@ const UrantiaPapersPage = React.lazy(() => import('./pages/UrantiaPapersPage'));
 const EpisodePage = React.lazy(() => import('./pages/EpisodePage'));
 const ListenPage = React.lazy(() => import('./pages/ListenPage'));
 const DisclaimerPage = React.lazy(() => import('./pages/DisclaimerPage'));
+
+// Analytics IDs
+const HOTJAR_ID = '5205817';
+const OPTINMONSTER_USER_ID = '345457';
+const OPTINMONSTER_ACCOUNT_ID = '365360';
 
 const NotFoundPage = () => (
   <div className="min-h-screen flex items-center justify-center bg-navy-dark">
@@ -46,6 +53,8 @@ function App() {
         </Routes>
       </Suspense>
       <Analytics />
+      <HotjarAnalytics HOTJAR_ID={HOTJAR_ID} />
+      <OptinMonster userId={OPTINMONSTER_USER_ID} accountId={OPTINMONSTER_ACCOUNT_ID} />
     </BrowserRouter>
   );
 }
