@@ -288,6 +288,8 @@ export default function EpisodePage() {
               <a
                 href={episode.audioUrl}
                 download
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex items-center gap-2 px-4 py-2 bg-navy-light/70 text-white/90 rounded-md hover:bg-navy transition-colors"
               >
                 <Download size={18} />
