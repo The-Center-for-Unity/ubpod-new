@@ -19,7 +19,7 @@ export default function HomePage() {
             Podcast
           </h1>
           <p className="section-subtitle text-xl text-gold tracking-wide">
-            These first AI-generated conversations about the Urantia Papers are truly inspiring!
+            Experience AI-powered audio journeys through the Urantia Papers
           </p>
           <p className="body-lg max-w-2xl mx-auto tracking-wide">
             Explore the profound teachings of The Urantia Book through AI-narrated episodes.

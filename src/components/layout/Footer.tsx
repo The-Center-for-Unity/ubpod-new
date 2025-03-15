@@ -14,7 +14,7 @@ export default function Footer() {
               </span>
             </Link>
             <p className="body-lg text-white/70">
-              AI-generated summaries of the Urantia Book papers
+              AI-crafted audio companions for exploring cosmic truth
             </p>
           </div>
 

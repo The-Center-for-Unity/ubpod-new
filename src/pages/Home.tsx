@@ -24,13 +24,13 @@ export default function HomePage() {
           <div className="container mx-auto px-4 relative z-20">
             <div className="max-w-3xl ml-4 md:ml-12">
               {/* Main heading with improved contrast */}
-              <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl mb-6 text-white leading-tight drop-shadow-lg">
+              <h1 className="title-main text-5xl md:text-6xl lg:text-7xl mb-6 text-white leading-tight drop-shadow-lg">
                 The Urantia<br />Book Podcast
               </h1>
               
               {/* Description text with improved visibility */}
-              <p className="text-xl text-white mb-10 max-w-xl drop-shadow-md">
-                AI-generated discussions exploring cosmic wisdom
+              <p className="section-subtitle text-xl text-white mb-10 max-w-xl drop-shadow-md">
+                AI-powered audio journeys through cosmic wisdom
               </p>
               
               {/* Call to action buttons */}
@@ -69,8 +69,8 @@ export default function HomePage() {
                 A New Way to Experience<br />The Urantia Book
               </h3>
               <p className="body-lg text-white/80 max-w-2xl mx-auto">
-                UrantiaBookPod brings the cosmic teachings to life through AI-generated 
-                discussions that make complex concepts accessible and engaging.
+                UrantiaBookPod brings the cosmic teachings to life through AI-crafted 
+                audio narrations that make complex concepts accessible and engaging.
               </p>
             </div>
 
@@ -185,8 +185,8 @@ function StepCard({ number, title, description }: StepProps & { number: number }
 const features: FeatureProps[] = [
   {
     icon: <MessageCircle className="w-10 h-10" />,
-    title: "AI-Generated Discussions",
-    description: "Listen to engaging podcast-style discussions that explore the Urantia Book's concepts with fresh perspectives and insights."
+    title: "AI-Crafted Audio Journeys",
+    description: "Listen to engaging podcast-style narrations that explore the Urantia Book's concepts with fresh perspectives and insights."
   },
   {
     icon: <Sparkles className="w-10 h-10" />,

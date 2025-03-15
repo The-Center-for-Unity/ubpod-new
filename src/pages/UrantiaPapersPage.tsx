@@ -154,8 +154,8 @@ export default function UrantiaPapersPage() {
         >
           <h1 className="title-main mb-4">The Urantia Papers</h1>
           <p className="body-lg max-w-3xl">
-            Explore all 197 papers of the Urantia Book through AI-narrated episodes.
-            Listen while reading along with the original text.
+            Immerse yourself in cosmic wisdom through AI-crafted audio journeys of the Urantia Book.
+            Experience profound teachings in a new, accessible format.
           </p>
           
           {/* Search Bar */}
