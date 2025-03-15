@@ -7,7 +7,7 @@ import { getEpisodeById, getUrantiaPaperPart } from '../data/episodes';
 import { Episode } from '../types/index';
 
 export default function EpisodePage() {
-  const { id } = useParams<{ id: string }>();
+  const { id, series = 'urantia-papers' } = useParams<{ id: string; series?: string }>();
   const navigate = useNavigate();
   const [episode, setEpisode] = useState<Episode | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -19,6 +19,7 @@ export default function EpisodePage() {
   const [error, setError] = useState<string | null>(null);
   const [audioError, setAudioError] = useState<boolean>(false);
   const [pdfError, setPdfError] = useState<boolean>(false);
+  const [shareNotification, setShareNotification] = useState<string | null>(null);
   const audioRef = useRef<HTMLAudioElement>(null);
   const progressBarRef = useRef<HTMLDivElement>(null);
 
@@ -26,12 +27,12 @@ export default function EpisodePage() {
   useEffect(() => {
     if (id) {
       try {
-        const episodeData = getEpisodeById(parseInt(id), 'urantia-papers');
+        const episodeData = getEpisodeById(parseInt(id), series);
         if (episodeData) {
           setEpisode(episodeData);
           setIsLoading(false);
         } else {
-          setError('Episode not found');
+          setError(`Episode not found in ${series} series`);
           setIsLoading(false);
         }
       } catch (err) {
@@ -39,7 +40,7 @@ export default function EpisodePage() {
         setIsLoading(false);
       }
     }
-  }, [id]);
+  }, [id, series]);
 
   // Audio control functions
   const togglePlayPause = () => {
@@ -120,21 +121,26 @@ export default function EpisodePage() {
 
   // Navigate to previous or next episode
   const navigateToEpisode = (direction: 'prev' | 'next') => {
-    if (episode) {
-      const currentId = episode.id;
-      const targetId = direction === 'prev' ? currentId - 1 : currentId + 1;
-      
-      // Check if target episode exists
-      try {
-        const targetEpisode = getEpisodeById(targetId, 'urantia-papers');
-        if (targetEpisode) {
-          navigate(`/episode/${targetId}`);
-        }
-      } catch (err) {
-        // Do nothing if episode doesn't exist
+    if (!episode) return;
+    
+    const targetId = direction === 'prev' 
+      ? episode.id - 1 
+      : episode.id + 1;
+    
+    // Check if target episode exists
+    try {
+      const targetEpisode = getEpisodeById(targetId, series);
+      if (targetEpisode) {
+        navigate(`/listen/${series}/${targetId}`);
       }
+    } catch (err) {
+      console.error('Error navigating to episode:', err);
     }
   };
+
+  // Get previous and next episode info for navigation
+  const prevEpisode = episode ? getEpisodeById(episode.id - 1, series) : null;
+  const nextEpisode = episode ? getEpisodeById(episode.id + 1, series) : null;
 
   const handleAudioError = () => {
     setAudioError(true);
@@ -143,6 +149,49 @@ export default function EpisodePage() {
 
   const handlePdfError = () => {
     setPdfError(true);
+  };
+
+  const handleShare = async () => {
+    if (!episode) return;
+    
+    const shareUrl = `${window.location.origin}/listen/${series}/${episode.id}`;
+    const shareTitle = `Listen to ${episode.title} | Urantia Book Podcast`;
+    const shareText = `Check out this episode of the Urantia Book Podcast: ${episode.title}`;
+    
+    // Try to use the Web Share API if available
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: shareTitle,
+          text: shareText,
+          url: shareUrl,
+        });
+      } catch (error) {
+        console.error('Error sharing:', error);
+        // Fall back to clipboard copy
+        copyToClipboard(shareUrl);
+        setShareNotification('Link copied to clipboard!');
+      }
+    } else {
+      // Fall back to clipboard copy
+      copyToClipboard(shareUrl);
+      setShareNotification('Link copied to clipboard!');
+    }
+    
+    // Clear notification after 3 seconds
+    setTimeout(() => {
+      setShareNotification(null);
+    }, 3000);
+  };
+  
+  const copyToClipboard = (text: string) => {
+    navigator.clipboard.writeText(text)
+      .then(() => {
+        setShareNotification('Link copied to clipboard!');
+      })
+      .catch(() => {
+        setShareNotification('Failed to copy link');
+      });
   };
 
   if (isLoading) {
@@ -201,7 +250,18 @@ export default function EpisodePage() {
                 <span className="text-primary text-2xl font-bold mr-3">{episode.id}</span>
                 <h1 className="title-main text-2xl md:text-4xl lg:text-5xl">{episode.title}</h1>
               </div>
-              <p className="body-lg mt-2 max-w-3xl">{episode.description}</p>
+              
+              {/* Only show description if it's not just repeating the title */}
+              {episode.description && !episode.description.includes(episode.title) && (
+                <p className="body-lg mt-2 max-w-3xl">{episode.description}</p>
+              )}
+              
+              {episode.summary && (
+                <div className="mt-4 p-4 bg-white/5 rounded-lg border border-white/10">
+                  <h3 className="text-lg font-semibold text-primary mb-2">Summary</h3>
+                  <p className="text-white/90 leading-relaxed">{episode.summary}</p>
+                </div>
+              )}
             </div>
             
             <div className="mt-4 md:mt-0 flex flex-wrap gap-3">
@@ -226,13 +286,28 @@ export default function EpisodePage() {
                 <span>Download Audio</span>
               </a>
               
-              <button className="flex items-center gap-2 px-4 py-2 bg-navy-light/70 text-white/90 rounded-md hover:bg-navy transition-colors">
+              <button 
+                onClick={handleShare}
+                className="flex items-center gap-2 px-4 py-2 bg-navy-light/70 text-white/90 rounded-md hover:bg-navy transition-colors"
+              >
                 <Share2 size={18} />
                 <span>Share</span>
               </button>
             </div>
           </div>
         </motion.div>
+        
+        {/* Share Notification */}
+        {shareNotification && (
+          <motion.div 
+            className="fixed bottom-4 right-4 bg-navy-light text-white px-4 py-3 rounded-lg shadow-lg"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+          >
+            {shareNotification}
+          </motion.div>
+        )}
         
         {/* Audio Player */}
         <div className="bg-navy-light/30 rounded-xl border border-white/10 p-6 mb-8">
@@ -362,21 +437,35 @@ export default function EpisodePage() {
         
         {/* Navigation */}
         <div className="flex justify-between mt-8 pt-4 border-t border-white/10">
-          <button 
-            onClick={() => navigateToEpisode('prev')}
-            className={`flex items-center text-white/70 hover:text-white ${episode.id <= 1 ? 'invisible' : ''}`}
-          >
-            <ChevronLeft size={20} className="mr-1" />
-            <span>Previous Paper</span>
-          </button>
+          {prevEpisode ? (
+            <button 
+              onClick={() => navigateToEpisode('prev')}
+              className="flex items-center text-white/70 hover:text-white group"
+            >
+              <ChevronLeft size={20} className="mr-1 group-hover:transform group-hover:-translate-x-1 transition-transform" />
+              <div className="text-left">
+                <span className="block text-xs text-white/50">Previous</span>
+                <span className="block">{prevEpisode.title.length > 25 ? prevEpisode.title.substring(0, 25) + '...' : prevEpisode.title}</span>
+              </div>
+            </button>
+          ) : (
+            <div></div> /* Empty div to maintain layout */
+          )}
           
-          <button 
-            onClick={() => navigateToEpisode('next')}
-            className={`flex items-center text-white/70 hover:text-white ${episode.id >= 196 ? 'invisible' : ''}`}
-          >
-            <span>Next Paper</span>
-            <ChevronLeft size={20} className="ml-1 transform rotate-180" />
-          </button>
+          {nextEpisode ? (
+            <button 
+              onClick={() => navigateToEpisode('next')}
+              className="flex items-center text-white/70 hover:text-white group"
+            >
+              <div className="text-right">
+                <span className="block text-xs text-white/50">Next</span>
+                <span className="block">{nextEpisode.title.length > 25 ? nextEpisode.title.substring(0, 25) + '...' : nextEpisode.title}</span>
+              </div>
+              <ChevronLeft size={20} className="ml-1 transform rotate-180 group-hover:transform group-hover:translate-x-1 transition-transform" />
+            </button>
+          ) : (
+            <div></div> /* Empty div to maintain layout */
+          )}
         </div>
       </div>
     </Layout>
