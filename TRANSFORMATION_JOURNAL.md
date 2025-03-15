@@ -273,6 +273,7 @@ Our focus for the next development sprint will be:
 ### Lessons for Future Planning
 - Allow more time for CSS configuration and troubleshooting
 - Consider dependencies between components more carefully when planning
+<<<<<<< HEAD
 - Build more buffer time into the schedule for unexpected challenges 
 
 ## Episode Summaries and Navigation Improvements
@@ -521,3 +522,6 @@ We also improved the list view display of papers to better utilize available spa
    - Increased text contrast from `text-white/50` to `text-white/70`
 
 These improvements demonstrate our commitment to creating a polished, user-friendly experience that meets modern web standards and user expectations. 
+=======
+- Build more buffer time into the schedule for unexpected challenges 
+>>>>>>> origin/main
