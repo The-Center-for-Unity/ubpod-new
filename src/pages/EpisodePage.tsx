@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Play, Pause, SkipBack, SkipForward, Volume2, VolumeX, Download, ChevronLeft, BookOpen, Share2, AlertTriangle } from 'lucide-react';
+import { Play, Pause, SkipBack, SkipForward, Volume2, VolumeX, Download, ChevronLeft, BookOpen, Share2, AlertTriangle, ExternalLink } from 'lucide-react';
 import Layout from '../components/layout/Layout';
-import { getEpisodeById, getUrantiaPaperPart } from '../data/episodes';
+import { getEpisodeById, getUrantiaPaperPart, discoverJesusLinks } from '../data/episodes';
 import { Episode } from '../types/index';
 import { useAudioAnalytics } from '../hooks/useAudioAnalytics';
 
@@ -447,6 +447,30 @@ export default function EpisodePage() {
                 <BookOpen size={20} />
                 <span>Open PDF in New Tab</span>
               </a>
+            </div>
+          </div>
+        )}
+        
+        {/* Discover Jesus Links - Only show for Part 4 papers (120-196) */}
+        {episode.id >= 120 && episode.id <= 196 && discoverJesusLinks[episode.id] && (
+          <div className="bg-navy-light/30 rounded-xl border border-white/10 p-6 mb-8">
+            <h2 className="text-xl font-semibold text-white mb-4">Learn More on Discover Jesus</h2>
+            <p className="text-white/70 mb-6">
+              Explore related content about Jesus' life and teachings on DiscoverJesus.com:
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {discoverJesusLinks[episode.id].map((link, index) => (
+                <a
+                  key={index}
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-between px-4 py-3 bg-navy-light/50 text-white/90 rounded-md hover:bg-navy-light transition-colors group"
+                >
+                  <span>{link.title}</span>
+                  <ExternalLink size={16} className="ml-2 text-white/50 group-hover:text-white transition-colors" />
+                </a>
+              ))}
             </div>
           </div>
         )}
