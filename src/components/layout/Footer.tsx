@@ -1,7 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { ClipboardCopy, Rss } from 'lucide-react';
 
 export default function Footer() {
+  const [rssNotification, setRssNotification] = useState<string | null>(null);
+
+  const copyRssToClipboard = () => {
+    const rssUrl = 'https://anchor.fm/s/fbec2574/podcast/rss';
+    
+    navigator.clipboard.writeText(rssUrl)
+      .then(() => {
+        setRssNotification('RSS feed URL copied to clipboard!');
+        setTimeout(() => {
+          setRssNotification(null);
+        }, 3000);
+      })
+      .catch(() => {
+        setRssNotification('Failed to copy RSS feed URL');
+        setTimeout(() => {
+          setRssNotification(null);
+        }, 3000);
+      });
+  };
+
   return (
     <footer className="py-12 bg-navy-light/30 border-t border-white/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -129,6 +150,15 @@ export default function Footer() {
                 className="h-10 w-auto"
               />
             </a>
+            <button
+              onClick={copyRssToClipboard}
+              className="flex items-center gap-2 px-4 py-2 bg-navy-light/70 text-white/90 rounded-md hover:bg-navy transition-colors"
+              aria-label="Copy RSS Feed URL"
+            >
+              <Rss size={18} className="text-gold" />
+              <ClipboardCopy size={16} />
+              <span>Copy RSS Feed</span>
+            </button>
           </div>
         </div>
 
@@ -139,6 +169,13 @@ export default function Footer() {
           </p>
         </div>
       </div>
+      
+      {/* RSS Notification */}
+      {rssNotification && (
+        <div className="fixed bottom-4 right-4 bg-navy-light text-white px-4 py-3 rounded-lg shadow-lg transition-opacity duration-300">
+          {rssNotification}
+        </div>
+      )}
     </footer>
   );
 } 

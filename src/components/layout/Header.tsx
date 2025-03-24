@@ -8,6 +8,7 @@ export default function Header() {
   // Simplified to only include The Urantia Papers
   const navigationItems = [
     { path: '/urantia-papers', label: 'The Urantia Papers' },
+    { path: '/contact', label: 'Contact' },
   ];
 
   return (

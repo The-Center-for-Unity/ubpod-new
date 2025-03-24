@@ -12,6 +12,7 @@ const UrantiaPapersPage = React.lazy(() => import('./pages/UrantiaPapersPage'));
 const EpisodePage = React.lazy(() => import('./pages/EpisodePage'));
 const ListenPage = React.lazy(() => import('./pages/ListenPage'));
 const DisclaimerPage = React.lazy(() => import('./pages/DisclaimerPage'));
+const ContactPage = React.lazy(() => import('./pages/ContactPage'));
 
 // Analytics IDs
 const HOTJAR_ID = '5205817';
@@ -49,6 +50,7 @@ function App() {
           <Route path="/listen/:series/:id" element={<EpisodePage />} />
           <Route path="/listen/:series" element={<ListenPage />} />
           <Route path="/disclaimer" element={<DisclaimerPage />} />
+          <Route path="/contact" element={<ContactPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Suspense>
