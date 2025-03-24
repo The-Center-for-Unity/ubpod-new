@@ -56,7 +56,33 @@ Implementing a contact form using Resend API in the UBPod project, based on the 
   - Confirmed form submission works in production environment
   - Verified email delivery via Resend API
 
-### 4. Testing & Deployment
+### 4. Polish & Enhancements
+- [x] Ensure dark theme consistency
+  - Fixed form backgrounds to use proper dark theme colors
+  - Adjusted input fields to have correct dark navy backgrounds
+- [x] Incorporate Layout component
+  - Wrapped ContactPage in Layout component to include site navigation
+  - Adjusted spacing to work properly with global layout
+- [x] Optimize CTA section
+  - Updated CTA to link to correct Urantia Papers page (/urantia-papers)
+  - Simplified to a single, clear call-to-action button
+- [x] Improve inquiry categories
+  - Updated inquiry type options with relevant categories for the podcast:
+    - General Question
+    - Technical Support
+    - Content Suggestion
+    - Narration Feedback
+    - Study Group Interest
+    - Accessibility Request
+    - Translation Inquiry
+    - Spiritual Question
+    - Resource Request
+    - Share My Experience
+- [x] Update FAQ content
+  - Customized FAQ content to be specific to the Urantia Book Podcast
+  - Updated questions and answers to be more relevant to user needs
+
+### 5. Testing & Deployment
 - [x] Add loading states
   - Added loading spinner during form submission
   - Disabled form while submission is in progress
@@ -80,7 +106,7 @@ Implementing a contact form using Resend API in the UBPod project, based on the 
   - Confirm API functionality on production domain
   - Deploy to production
 
-### 5. Creating a Vercel Preview Deployment
+### 6. Creating a Vercel Preview Deployment
 
 #### Option 1: Using Vercel API/CLI (Recommended)
 
@@ -181,10 +207,12 @@ Implementing a contact form using Resend API in the UBPod project, based on the 
   - Enhanced error messaging and success states
 - Tested form submission in development environment
 - Fixed styling issues to ensure proper dark background for all form elements
-- Committed all changes to version control
 - Created Vercel preview deployment to test in production environment
 - Fixed API endpoint to use correct Edge Function format
 - Successfully tested form submission in preview environment
+- Incorporated Layout component to include site menu
+- Fixed CTA to link to correct Urantia Papers page (/urantia-papers)
+- Updated inquiry categories with options specific to the podcast
 - Next step: Test across browsers and finalize production deployment
 
 ## Notes & Insights
@@ -203,4 +231,6 @@ Implementing a contact form using Resend API in the UBPod project, based on the 
 - The preview deployment process allows testing in a production-like environment before final deployment
 - Vercel CLI/API provides a more direct way to create preview deployments without requiring GitHub PRs
 - Vercel Edge Functions require a specific format with `export default function handler` and proper runtime configuration
-- API files must be placed in the top-level `api/` directory for Vercel to correctly identify them 
+- API files must be placed in the top-level `api/` directory for Vercel to correctly identify them
+- Inquiry categories should be specific to the content and purpose of the application
+- Layout component integration ensures consistent navigation and user experience across the site 
