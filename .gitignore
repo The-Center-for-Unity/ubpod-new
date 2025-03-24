@@ -58,3 +58,4 @@ scripts/generated/
 # Large media files
 public/audio/
 public/pdfs/
+.vercel

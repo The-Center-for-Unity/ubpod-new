@@ -306,10 +306,10 @@ export default function ContactPage() {
   };
 
   return (
-    <main className="flex flex-col bg-navy-dark text-white">
+    <main className="flex flex-col bg-navy-darker text-white">
       {/* Hero Section */}
       <section 
-        className="relative min-h-[40vh] bg-navy-dark pt-16"
+        className="relative min-h-[40vh] bg-navy-darker pt-16"
         style={{
           backgroundImage: 'url("/images/urantia/paper-background.jpg")',
           backgroundSize: 'cover',
@@ -317,7 +317,7 @@ export default function ContactPage() {
         }}
       >
         {/* Dark overlay */}
-        <div className="absolute inset-0 bg-navy-dark/70" />
+        <div className="absolute inset-0 bg-navy-darker/90" />
 
         {/* Content */}
         <div className="relative pt-32 pb-16">
@@ -338,7 +338,7 @@ export default function ContactPage() {
       </section>
 
       {/* Contact Form Section */}
-      <section className="py-16 bg-navy-dark scroll-mt-20" id="get-in-touch">
+      <section className="py-16 bg-navy-darker scroll-mt-20" id="get-in-touch">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
             className="space-y-12"
@@ -354,7 +354,7 @@ export default function ContactPage() {
               </p>
             </div>
             
-            <div className="bg-navy-light/30 p-8 rounded-lg border border-primary/20">
+            <div className="bg-navy-dark/50 p-8 rounded-lg border border-primary/20">
               {/* Environment notice */}
               {import.meta.env.DEV && (
                 <div className="mb-6 p-3 bg-blue-500/20 border border-blue-500/30 rounded-lg">
@@ -407,7 +407,7 @@ export default function ContactPage() {
                         required={field.required}
                         value={formState[field.id as keyof typeof formState] as string}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 bg-navy-dark border border-primary/30 rounded-lg focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary text-white"
+                        className="w-full px-4 py-3 !bg-[#060c1f] border border-primary/30 rounded-lg focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary text-white"
                         rows={5}
                       />
                     ) : field.type === 'select' ? (
@@ -417,11 +417,11 @@ export default function ContactPage() {
                         required={field.required}
                         value={formState[field.id as keyof typeof formState] as string}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 bg-navy-dark border border-primary/30 rounded-lg focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary text-white"
+                        className="w-full px-4 py-3 !bg-[#060c1f] border border-primary/30 rounded-lg focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary text-white"
                       >
-                        <option value="">{field.placeholder}</option>
+                        <option value="" className="!bg-[#060c1f]">{field.placeholder}</option>
                         {field.options?.map(option => (
-                          <option key={option} value={option}>{option}</option>
+                          <option key={option} value={option} className="!bg-[#060c1f] text-white">{option}</option>
                         ))}
                       </select>
                     ) : field.type === 'file' ? (
@@ -429,7 +429,7 @@ export default function ContactPage() {
                         <div className="flex items-center justify-center w-full">
                           <label
                             htmlFor={field.id}
-                            className="flex flex-col items-center justify-center w-full h-32 border-2 border-primary/30 border-dashed rounded-lg cursor-pointer bg-navy-dark hover:bg-navy-light/20 transition-colors"
+                            className="flex flex-col items-center justify-center w-full h-32 border-2 border-primary/30 border-dashed rounded-lg cursor-pointer !bg-[#060c1f] hover:bg-navy-light/20 transition-colors"
                           >
                             <div className="flex flex-col items-center justify-center pt-5 pb-6">
                               <Upload className="w-8 h-8 mb-3 text-primary/70" />
@@ -459,7 +459,7 @@ export default function ContactPage() {
                             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
                               {photoBase64.map((photo, index) => (
                                 <div key={index} className="relative group">
-                                  <div className="aspect-w-1 aspect-h-1 bg-navy-light/30 rounded-lg overflow-hidden">
+                                  <div className="aspect-w-1 aspect-h-1 bg-navy-dark/50 rounded-lg overflow-hidden">
                                     <img 
                                       src={photo.data} 
                                       alt={`Uploaded photo ${index + 1}`} 
@@ -517,7 +517,7 @@ export default function ContactPage() {
                         required={field.required}
                         value={formState[field.id as keyof typeof formState] as string}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 bg-navy-dark border border-primary/30 rounded-lg focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary text-white"
+                        className="w-full px-4 py-3 !bg-[#060c1f] border border-primary/30 rounded-lg focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary text-white"
                       />
                     )}
                   </div>
@@ -551,7 +551,7 @@ export default function ContactPage() {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-16 bg-navy-dark">
+      <section className="py-16 bg-navy-darker">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
             className="space-y-12"
@@ -632,10 +632,10 @@ export default function ContactPage() {
       </section>
 
       {/* Call to Action */}
-      <section className="py-16 bg-navy-light">
+      <section className="py-16 bg-navy-dark">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            className="bg-navy-dark/50 p-8 rounded-lg border border-primary/20 text-center"
+            className="bg-navy-darker/70 p-8 rounded-lg border border-primary/20 text-center"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
