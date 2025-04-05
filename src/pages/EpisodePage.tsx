@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Play, Pause, SkipBack, SkipForward, Volume2, VolumeX, Download, ChevronLeft, BookOpen, Share2, AlertTriangle, ExternalLink } from 'lucide-react';
+import { Play, Pause, SkipBack, SkipForward, Volume2, VolumeX, Download, ChevronLeft, BookOpen, Share2, AlertTriangle, ExternalLink, Clock } from 'lucide-react';
 import Layout from '../components/layout/Layout';
 import { getEpisodeById, getUrantiaPaperPart, discoverJesusLinks } from '../data/episodes';
 import { Episode } from '../types/index';
@@ -14,13 +14,19 @@ export default function EpisodePage() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
-  const [volume, setVolume] = useState(0.8);
+  const [volume, setVolume] = useState(
+    () => parseFloat(localStorage.getItem('audioVolume') || '1')
+  );
   const [isMuted, setIsMuted] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [audioError, setAudioError] = useState<boolean>(false);
   const [pdfError, setPdfError] = useState<boolean>(false);
   const [shareNotification, setShareNotification] = useState<string | null>(null);
+  const [playbackSpeed, setPlaybackSpeed] = useState(
+    parseFloat(localStorage.getItem('audioPlaybackSpeed') || '1.0')
+  );
+  const [showSpeedControls, setShowSpeedControls] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
   const progressBarRef = useRef<HTMLDivElement>(null);
 
@@ -49,6 +55,25 @@ export default function EpisodePage() {
       }
     }
   }, [id, series]);
+
+  // Initialize audio settings when component mounts
+  useEffect(() => {
+    if (audioRef.current) {
+      // Apply saved volume
+      try {
+        audioRef.current.volume = volume;
+      } catch (err) {
+        console.error('Error setting initial volume:', err);
+      }
+      
+      // Apply saved playback speed
+      try {
+        audioRef.current.playbackRate = playbackSpeed;
+      } catch (err) {
+        console.error('Error setting initial playback speed:', err);
+      }
+    }
+  }, [volume, playbackSpeed]);
 
   // Audio control functions
   const togglePlayPause = () => {
@@ -86,15 +111,34 @@ export default function EpisodePage() {
   };
 
   const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newVolume = parseFloat(e.target.value);
-    setVolume(newVolume);
-    if (audioRef.current && !audioError) {
-      audioRef.current.volume = newVolume;
-    }
-    if (newVolume === 0) {
-      setIsMuted(true);
-    } else {
-      setIsMuted(false);
+    try {
+      const newVolume = parseFloat(e.target.value);
+      setVolume(newVolume);
+      
+      if (audioRef.current && !audioError) {
+        // Some mobile browsers restrict volume changes
+        // We use try-catch to handle potential errors
+        audioRef.current.volume = newVolume;
+        
+        // Explicitly handle mute state
+        if (newVolume === 0) {
+          setIsMuted(true);
+          audioRef.current.muted = true;
+        } else if (isMuted) {
+          setIsMuted(false);
+          audioRef.current.muted = false;
+        }
+
+        // Store volume preference (optional)
+        try {
+          localStorage.setItem('audioVolume', newVolume.toString());
+        } catch (storageErr) {
+          // Ignore storage errors
+        }
+      }
+    } catch (err) {
+      console.error('Error changing volume:', err);
+      // Handle gracefully - some browsers restrict volume control
     }
   };
 
@@ -209,6 +253,43 @@ export default function EpisodePage() {
       console.log('Audio URL:', episode.audioUrl);
     }
   };
+
+  // Handle playback speed change
+  const handleSpeedChange = (speed: number) => {
+    if (audioRef.current) {
+      audioRef.current.playbackRate = speed;
+      setPlaybackSpeed(speed);
+      localStorage.setItem('audioPlaybackSpeed', speed.toString());
+      setShowSpeedControls(false);
+    }
+  };
+
+  // Toggle speed controls visibility
+  const toggleSpeedControls = () => {
+    setShowSpeedControls(!showSpeedControls);
+  };
+
+  // Set playback speed when audio loads
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.playbackRate = playbackSpeed;
+    }
+  }, [playbackSpeed, episode?.audioUrl]);
+
+  // Close speed controls when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      if (showSpeedControls && !target.closest('.speed-control')) {
+        setShowSpeedControls(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [showSpeedControls]);
 
   if (isLoading) {
     return (
@@ -407,12 +488,45 @@ export default function EpisodePage() {
                   >
                     <SkipForward size={24} />
                   </button>
+                  
+                  {/* Playback Speed Control */}
+                  <div className="speed-control relative">
+                    <button
+                      onClick={toggleSpeedControls}
+                      className="px-2 py-1 bg-navy-light/50 text-white/70 hover:text-white rounded flex items-center"
+                      aria-label="Playback Speed"
+                    >
+                      <Clock size={16} className="mr-1" />
+                      <span className="text-xs">{playbackSpeed}x</span>
+                    </button>
+                    
+                    {/* Speed control dropdown */}
+                    {showSpeedControls && (
+                      <div className="absolute top-full left-0 mt-1 bg-navy-dark border border-white/10 rounded p-2 z-30">
+                        <div className="flex flex-col space-y-1">
+                          {[0.5, 0.75, 1.0, 1.25, 1.5, 2.0].map((speed) => (
+                            <button
+                              key={speed}
+                              onClick={() => handleSpeedChange(speed)}
+                              className={`px-3 py-1 text-sm rounded text-left ${
+                                playbackSpeed === speed 
+                                  ? 'bg-primary text-white' 
+                                  : 'text-white/70 hover:bg-navy-light hover:text-white'
+                              }`}
+                            >
+                              {speed}x
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
                 </div>
                 
                 <div className="flex items-center space-x-2 w-full sm:w-auto mt-2 sm:mt-0">
                   <button 
                     onClick={toggleMute}
-                    className="text-white/70 hover:text-white"
+                    className="text-white/70 hover:text-white p-2"
                   >
                     {isMuted ? <VolumeX size={20} /> : <Volume2 size={20} />}
                   </button>
@@ -424,7 +538,14 @@ export default function EpisodePage() {
                     step="0.01"
                     value={isMuted ? 0 : volume}
                     onChange={handleVolumeChange}
-                    className="w-full sm:w-24 accent-primary"
+                    className="w-full sm:w-24 h-7 accent-primary appearance-none bg-navy-light/70 rounded-full cursor-pointer"
+                    style={{
+                      // Improve touch target size for mobile
+                      WebkitAppearance: 'none',
+                      appearance: 'none',
+                      // Custom track styling
+                      background: `linear-gradient(to right, var(--color-primary) 0%, var(--color-primary) ${isMuted ? 0 : volume * 100}%, #374151 ${isMuted ? 0 : volume * 100}%, #374151 100%)`
+                    }}
                   />
                 </div>
               </div>

@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Play, Pause, Volume2, VolumeX, SkipBack, SkipForward } from 'lucide-react';
+import { Play, Pause, Volume2, VolumeX, SkipBack, SkipForward, Clock } from 'lucide-react';
 import { AudioPlayerState } from '../../types/index';
 import { useAudioAnalytics } from '../../hooks/useAudioAnalytics';
 
@@ -19,11 +19,13 @@ export default function AudioPlayer({ audioUrl, title, episodeId, onEnded, onErr
     duration: 0,
     volume: 1,
     loading: true,
-    error: null
+    error: null,
+    playbackSpeed: parseFloat(localStorage.getItem('audioPlaybackSpeed') || '1.0')
   });
   const [showVolumeSlider, setShowVolumeSlider] = useState(false);
+  const [showSpeedControls, setShowSpeedControls] = useState(false);
 
-  const { isPlaying, currentTime, duration, volume, loading, error } = playerState;
+  const { isPlaying, currentTime, duration, volume, loading, error, playbackSpeed } = playerState;
 
   // Initialize analytics tracking
   useAudioAnalytics({
@@ -104,6 +106,20 @@ export default function AudioPlayer({ audioUrl, title, episodeId, onEnded, onErr
     }
   };
 
+  // Handle playback speed change
+  const handleSpeedChange = (newSpeed: number) => {
+    if (audioRef.current) {
+      audioRef.current.playbackRate = newSpeed;
+      setPlayerState((prev: AudioPlayerState) => ({ ...prev, playbackSpeed: newSpeed }));
+      localStorage.setItem('audioPlaybackSpeed', newSpeed.toString());
+    }
+  };
+
+  // Toggle speed controls visibility
+  const toggleSpeedControls = () => {
+    setShowSpeedControls(!showSpeedControls);
+  };
+
   // Set up event listeners
   useEffect(() => {
     const audio = audioRef.current;
@@ -119,6 +135,8 @@ export default function AudioPlayer({ audioUrl, title, episodeId, onEnded, onErr
         duration: audio.duration,
         loading: false
       }));
+      // Apply saved playback rate when audio metadata is loaded
+      audio.playbackRate = playerState.playbackSpeed;
     };
 
     const handleEnded = () => {
@@ -135,11 +153,17 @@ export default function AudioPlayer({ audioUrl, title, episodeId, onEnded, onErr
       if (onError) onError('Error loading audio file');
     };
 
+    const handleRateChange = () => {
+      setPlayerState((prev: AudioPlayerState) => ({ ...prev, playbackSpeed: audio.playbackRate }));
+      localStorage.setItem('audioPlaybackSpeed', audio.playbackRate.toString());
+    };
+
     // Add event listeners
     audio.addEventListener('timeupdate', handleTimeUpdate);
     audio.addEventListener('loadedmetadata', handleLoadedMetadata);
     audio.addEventListener('ended', handleEnded);
     audio.addEventListener('error', handleError);
+    audio.addEventListener('ratechange', handleRateChange);
 
     // Clean up
     return () => {
@@ -147,15 +171,19 @@ export default function AudioPlayer({ audioUrl, title, episodeId, onEnded, onErr
       audio.removeEventListener('loadedmetadata', handleLoadedMetadata);
       audio.removeEventListener('ended', handleEnded);
       audio.removeEventListener('error', handleError);
+      audio.removeEventListener('ratechange', handleRateChange);
     };
-  }, [onEnded, onError]);
+  }, [onEnded, onError, playerState.playbackSpeed]);
 
-  // Close volume slider when clicking outside
+  // Close volume and speed sliders when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: Event) => {
       const target = event.target as HTMLElement;
       if (showVolumeSlider && !target.closest('.volume-control')) {
         setShowVolumeSlider(false);
+      }
+      if (showSpeedControls && !target.closest('.speed-control')) {
+        setShowSpeedControls(false);
       }
     };
 
@@ -166,7 +194,7 @@ export default function AudioPlayer({ audioUrl, title, episodeId, onEnded, onErr
       document.removeEventListener('mousedown', handleClickOutside);
       document.removeEventListener('touchstart', handleClickOutside);
     };
-  }, [showVolumeSlider]);
+  }, [showVolumeSlider, showSpeedControls]);
 
   // Update audio source when audioUrl changes
   useEffect(() => {
@@ -247,6 +275,41 @@ export default function AudioPlayer({ audioUrl, title, episodeId, onEnded, onErr
               >
                 <SkipForward size={20} />
               </button>
+              
+              {/* Playback Speed Control */}
+              <div className="speed-control relative flex items-center">
+                <button
+                  onClick={toggleSpeedControls}
+                  className="flex items-center px-2 py-1 rounded bg-gray-100 hover:bg-gray-200"
+                  aria-label="Playback Speed"
+                >
+                  <Clock size={16} />
+                  <span className="ml-1 text-xs font-medium">{playbackSpeed}x</span>
+                </button>
+
+                {/* Speed control dropdown */}
+                <div 
+                  className={`absolute top-full left-0 mt-1 bg-white shadow-lg rounded-lg p-2 z-20 transition-opacity duration-200 ${
+                    showSpeedControls ? 'opacity-100' : 'opacity-0 pointer-events-none'
+                  }`}
+                >
+                  <div className="flex flex-col space-y-1">
+                    {[0.5, 0.75, 1.0, 1.25, 1.5, 2.0].map((speed) => (
+                      <button
+                        key={speed}
+                        onClick={() => handleSpeedChange(speed)}
+                        className={`px-3 py-1 text-sm rounded ${
+                          playbackSpeed === speed 
+                            ? 'bg-primary text-white' 
+                            : 'hover:bg-gray-100'
+                        }`}
+                      >
+                        {speed}x
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
             </div>
 
             <div className="volume-control relative flex items-center">

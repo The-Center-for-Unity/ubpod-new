@@ -29,6 +29,7 @@ export interface AudioPlayerState {
   volume: number;
   loading: boolean;
   error: string | null;
+  playbackSpeed: number;
 }
 
 // Navigation types
