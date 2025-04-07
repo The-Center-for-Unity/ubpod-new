@@ -43,7 +43,7 @@ export default function SeriesNavigation({ currentSeries }: SeriesNavigationProp
           className={`px-3 py-1 rounded ${activeCategory === 'parts-i-iii' ? 'bg-primary text-white' : 'bg-navy-light/30 text-white/70 hover:bg-navy-light/50'}`}
           onClick={() => setActiveCategory('parts-i-iii')}
         >
-          Parts I-III
+          Fifth Epochal Revelation
         </button>
       </div>
       
