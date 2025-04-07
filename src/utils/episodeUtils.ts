@@ -4,6 +4,7 @@ import {
   getEpisodeTitle, 
   getEpisodeAudioPath
 } from './seriesUtils';
+import { getAudioUrl, getPdfUrl } from '../config/audio';
 
 // Episode titles from the Series Organization markdown file
 const seriesEpisodeTitles: Record<string, string[]> = {
@@ -429,55 +430,22 @@ export function generateMockEpisodesForSeries(seriesId: string): Episode[] {
     const title = titles[i-1] || `Episode ${i}`;
     const logline = loglines[i-1] || '';
     
-    // Get the appropriate PDF URL based on series type
-    let pdfUrl: string | undefined;
+    // Use the audio URL function from config
+    const audioUrl = getAudioUrl(seriesId, i);
     
-    if (seriesId.startsWith('cosmic-')) {
-      // For Fifth Epochal Revelation series, link to the corresponding Urantia Paper
-      if (seriesInfo.paperRange) {
-        const paperNumbers = seriesInfo.paperRange.split('-').map(Number);
-        // If there's a specific paper mentioned in the title, use that
-        const titleMatch = title.match(/Paper (\d+)/);
-        let paperNumber: number;
-        
-        if (titleMatch) {
-          paperNumber = parseInt(titleMatch[1]);
-        } else if (paperNumbers.length === 1) {
-          paperNumber = paperNumbers[0];
-        } else if (paperNumbers.length >= 2) {
-          // Calculate a paper number within the range based on episode number
-          const [start, end] = paperNumbers;
-          const range = end - start;
-          paperNumber = start + Math.min(Math.floor((i-1) * range / (totalEpisodes-1)), range);
-        } else {
-          paperNumber = i;
-        }
-        
-        pdfUrl = `/pdfs/urantia-papers/paper-${paperNumber}.pdf`;
-      }
-    } else if (seriesId.startsWith('jesus-')) {
-      // For Jesus-focused series, don't set a PDF URL to avoid pointing to DiscoverJesus.com
-      pdfUrl = undefined;
-    } else {
-      // For other series, use the default pattern
-      pdfUrl = `/pdfs/${seriesId}/episode-${i}.pdf`;
-    }
-    
-    // Create a detailed summary for the episode
-    const summary = seriesId.startsWith('jesus-') 
-      ? `${logline || title} - This episode explores ${title.toLowerCase()} as part of the "${seriesInfo.title}" series. ${seriesInfo.description}`
-      : logline || `Detailed exploration of ${title}`;
+    // Use the PDF URL function from config for PDFs
+    const pdfUrl = getPdfUrl(seriesId, i);
     
     episodes.push({
       id: i,
-      title: title,
-      audioUrl: getEpisodeAudioPath(seriesId, i),
-      pdfUrl: pdfUrl,
+      title,
+      audioUrl,
+      pdfUrl,
       series: seriesId as SeriesType,
-      description: logline || `${title} - Part of the "${seriesInfo.title}" series.`,
-      summary: summary,
-      cardSummary: logline || `Exploring ${title}`,
-      imageUrl: seriesInfo.imageSrc
+      description: `${seriesInfo.title} - ${title}`,
+      summary: seriesInfo.description || '',
+      cardSummary: logline || seriesInfo.description || '',
+      imageUrl: `/images/${seriesId}/card-${i}.jpg`
     });
   }
   
@@ -502,11 +470,17 @@ export function getEpisodesForSeries(seriesId: string): Episode[] {
       // Paper titles would ideally come from a real data source
       const title = `Paper ${i}`;
       
+      // Use audio URL function from config
+      const audioUrl = getAudioUrl('urantia-papers', i);
+      
+      // Use PDF URL function from config
+      const pdfUrl = getPdfUrl('urantia-papers', i);
+      
       episodes.push({
         id: i,
         title: title,
-        audioUrl: `/audio/papers/paper-${i}.mp3`,
-        pdfUrl: `/pdfs/papers/paper-${i}.pdf`,
+        audioUrl,
+        pdfUrl,
         series: seriesId as SeriesType,
         description: `Urantia Book, Paper ${i}`,
         summary: `Summary of Paper ${i}`,
