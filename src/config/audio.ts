@@ -1,89 +1,93 @@
 // Audio file configuration
 
-// Base URL for audio files in Cloudflare R2
-export const AUDIO_BASE_URL = import.meta.env.VITE_AUDIO_BASE_URL || "https://pub-111d6f5663274cc5aefdcc72206eec40.r2.dev";
+// Base URLs for audio files in Cloudflare R2
+export const JESUS_AUDIO_BASE_URL = import.meta.env.VITE_JESUS_AUDIO_BASE_URL || "https://pub-111d6f5663274cc5aefdcc72206eec40.r2.dev";
+export const URANTIA_AUDIO_BASE_URL = import.meta.env.VITE_URANTIA_AUDIO_BASE_URL || "https://pub-69ae36e16d64438e9bb56350459d5c7d.r2.dev";
+
+/**
+ * Get the exact audio URL for the specific episode we know exists
+ * This handles special cases we've confirmed work
+ * 
+ * @param series The series ID
+ * @param id The episode ID within the series
+ * @returns Direct URL to the audio file if known
+ */
+function getExactAudioUrl(series: string, id: number): string | null {
+  // Working episode pattern map
+  // For each series, store the pattern that works for that series
+  const workingPatterns: Record<string, string> = {
+    'jesus-1': 'Establishing Jesus Ancestry{id}.mp3',
+    'jesus-10': 'Event - Baptism of Jesus in the Jordan.mp3'
+  };
+
+  // Check if we have a working pattern for this series
+  if (series.startsWith('jesus-') && workingPatterns[series]) {
+    const pattern = workingPatterns[series];
+    // Replace {id} with the actual id if present
+    const filename = pattern.replace('{id}', id.toString());
+    return `${JESUS_AUDIO_BASE_URL}/${encodeURIComponent(filename)}`;
+  }
+
+  
+  return null;
+}
 
 /**
  * Get the audio URL for an episode
- * This function maps different series IDs to their correct audio file paths in R2
  * 
  * @param series The series ID
  * @param id The episode ID within the series
  * @returns URL to the audio file
  */
 export function getAudioUrl(series: string, id: number): string {
-  console.log(`[DEBUG] Getting audio URL for ${series}/${id}`);
-  
-  // Use local paths if configured
-  if (import.meta.env.VITE_USE_LOCAL_AUDIO === 'true') {
-    // Use local paths
-    if (series === 'urantia-papers') {
-      return id === 0 ? "/audio/foreword.mp3" : `/audio/paper-${id}.mp3`;
-    } else if (series === 'discover-jesus') {
-      return `/audio/discoverjesus/Episode-${id}.mp3`;
-    } else if (series === 'history') {
-      return `/audio/history/episode-${id}.mp3`;
-    } else if (series === 'sadler-workbooks') {
-      return `/audio/sadler/vol4-part${id}.mp3`;
-    } else if (series.startsWith('jesus-')) {
-      // For jesus-1 through jesus-14 series
-      const seriesNum = series.split('-')[1];
-      return `/audio/jesus-series/series-${seriesNum}/episode-${id}.mp3`;
-    } else if (series.startsWith('cosmic-') || series.startsWith('series-')) {
-      return `/audio/new-series/${series}/episode-${id}.mp3`;
-    }
+  try {
+    console.log(`[DEBUG] Getting audio URL for series=${series}, id=${id}`);
     
-    // Default fallback for any other series
-    return `/audio/${series}/episode-${id}.mp3`;
-  }
-  
-  // Hard-coded debug URL for jesus-1/1 that we know works
-  if (series === 'jesus-1' && id === 1) {
-    console.log('[DEBUG] Using hard-coded URL for jesus-1/1');
-    return `${AUDIO_BASE_URL}/Topic - The Personality of God.mp3`;
-  }
-  
-  // Default: use Cloudflare R2
-  if (series === 'urantia-papers') {
-    return id === 0 
-      ? `${AUDIO_BASE_URL}/foreword.mp3` 
-      : `${AUDIO_BASE_URL}/paper-${id}.mp3`;
-  } else if (series === 'discover-jesus') {
-    return `${AUDIO_BASE_URL}/discoverjesus/Episode-${id}.mp3`;
-  } else if (series === 'history') {
-    return `${AUDIO_BASE_URL}/history/episode-${id}.mp3`;
-  } else if (series === 'sadler-workbooks') {
-    return `${AUDIO_BASE_URL}/sadler/vol4-part${id}.mp3`;
-  } else if (series.startsWith('jesus-')) {
-    // Get the exact file mapping for Jesus series episodes
-    const fileName = getJesusSeriesFileName(series, id);
-    if (fileName) {
-      // Important: Don't URL encode the filename as it's already properly encoded in the mapping
-      const url = `${AUDIO_BASE_URL}/${fileName}`;
-      console.log(`[DEBUG] Found mapped filename for ${series}/${id}:`, url);
+    // Special case for Urantia Papers (legacy format) and FER series
+    // FER series use the same URL pattern as urantia-papers
+    if (series === 'urantia-papers' || series.startsWith('FER')) {
+      const url = id === 0 
+        ? `${URANTIA_AUDIO_BASE_URL}/foreword.mp3` 
+        : `${URANTIA_AUDIO_BASE_URL}/paper-${id}.mp3`;
+      
+      console.log(`[DEBUG] Using Urantia/FER format, URL: ${url}`);
       return url;
     }
     
-    // If no mapping is found, use a standard fallback format
-    console.log(`[DEBUG] No mapping found for ${series}/${id}, using fallback`);
-    const seriesNum = series.split('-')[1];
-    return `${AUDIO_BASE_URL}/jesus-${seriesNum}-episode-${id}.mp3`;
-  } else if (series.startsWith('cosmic-') || series.startsWith('series-')) {
-    // For Fifth Epochal Revelation series (15+), we might be reusing Urantia Papers
-    // Handle Series 15-28 by mapping to actual paper numbers when applicable
-    if (series === 'cosmic-1' && id === 1) {
-      // First episode of Cosmic Origins maps to Paper 1
-      return `${AUDIO_BASE_URL}/paper-1.mp3`;
+    // For Jesus series, use the mapping function to get the correct filename
+    if (series.startsWith('jesus-')) {
+      console.log(`[DEBUG] Using Jesus series mapping for ${series}`);
+      
+      const filename = getJesusSeriesFileName(series, id);
+      console.log(`[DEBUG] Mapped filename: ${filename}`);
+      
+      if (filename) {
+        // The URL needs to be encoded (spaces become %20)
+        const encodedFilename = encodeURIComponent(filename);
+        const url = `${JESUS_AUDIO_BASE_URL}/${encodedFilename}`;
+        console.log(`[DEBUG] Final encoded URL: ${url}`);
+        return url;
+      }
+      
+      // If no mapping found, throw error
+      throw new Error(`No audio file mapping found for ${series} episode ${id}`);
     }
     
-    // Add other specific mappings as needed
+    // For discover-jesus series, use a specific format and Jesus base URL
+    if (series === 'discover-jesus') {
+      const url = `${JESUS_AUDIO_BASE_URL}/audio/discover-jesus/episode-${id}.mp3`;
+      console.log(`[DEBUG] Using discover-jesus format, URL: ${url}`);
+      return url;
+    }
     
-    // Default new series format
-    return `${AUDIO_BASE_URL}/new-series/${series}/episode-${id}.mp3`;
+    // Standard format for all other series - use Jesus base URL for any other content
+    const url = `${JESUS_AUDIO_BASE_URL}/audio/${series}/episode-${id}.mp3`;
+    console.log(`[DEBUG] Using standard format, URL: ${url}`);
+    return url;
+  } catch (error) {
+    console.error(`[ERROR] Error generating audio URL: ${error}`);
+    throw error; // Re-throw the error to be handled by the caller
   }
-  
-  // Default fallback for any other series
-  return `${AUDIO_BASE_URL}/${series}/episode-${id}.mp3`;
 }
 
 /**
@@ -93,21 +97,11 @@ export function getAudioUrl(series: string, id: number): string {
  * @returns URL to the PDF file or undefined if none exists
  */
 export function getPdfUrl(series: string, id: number): string | undefined {
-  // Always use Cloudflare R2 unless explicitly told to use local files
-  if (import.meta.env.VITE_USE_LOCAL_PDFS === 'true') {
-    // Use local paths
-    if (series === 'urantia-papers') {
-      return id === 0 ? "/pdfs/foreword.pdf" : `/pdfs/paper-${id}.pdf`;
-    }
-    // Other series don't have PDFs yet
-    return undefined;
-  }
-  
-  // Default: use Cloudflare R2
-  if (series === 'urantia-papers') {
+  // Both Urantia Papers and FER series have PDFs
+  if (series === 'urantia-papers' || series.startsWith('FER')) {
     return id === 0 
-      ? `${AUDIO_BASE_URL}/foreword.pdf` 
-      : `${AUDIO_BASE_URL}/paper-${id}.pdf`;
+      ? `${URANTIA_AUDIO_BASE_URL}/foreword.pdf` 
+      : `${URANTIA_AUDIO_BASE_URL}/paper-${id}.pdf`;
   }
   
   // Other series don't have PDFs yet
@@ -120,9 +114,11 @@ export function getPdfUrl(series: string, id: number): string | undefined {
  * 
  * @param seriesId The full series ID (e.g., "jesus-1")
  * @param episodeNum The episode number (1-5)
- * @returns The encoded filename for the R2 URL or null if not found
+ * @returns The filename for the R2 URL or null if not found
  */
 function getJesusSeriesFileName(seriesId: string, episodeNum: number): string | null {
+  console.log(`[DEBUG] Looking up filename for ${seriesId}, episode ${episodeNum}`);
+  
   // Complete mapping of all series episodes to their filenames
   // Based on "Urantia Book Podcast (UBPod) - Series Organization 1cd66b22be4f8075971afbec1c5f0393.md"
   // and matching to actual filenames in tree-level6.txt
@@ -249,7 +245,7 @@ function getJesusSeriesFileName(seriesId: string, episodeNum: number): string | 
     "jesus-14": [
       "Topic - Hobbies and Interests Jesus Enjoyed.mp3",
       "Topic - Did Jesus Ever Feel Sad.mp3",
-      "Topic - Did Jesus Marry Anyone.mp3",
+      "Topic - Did Jesus Ever Marry Anyone.mp3",
       "Topic - Importance of the Early Home Life.mp3",
       "Person - Jesus.mp3"
     ]
@@ -269,6 +265,8 @@ function getJesusSeriesFileName(seriesId: string, episodeNum: number): string | 
     return null;
   }
   
-  // Return the filename - we'll encode it at the time of URL construction
-  return episodes[arrayIndex];
+  // Return the filename
+  const filename = episodes[arrayIndex];
+  console.log(`[DEBUG] Found filename: ${filename}`);
+  return filename;
 } 
