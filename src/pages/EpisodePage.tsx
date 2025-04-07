@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useParams, useNavigate, Navigate, Link } from 'react-router-dom';
+import { useParams, useNavigate, Navigate, Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Play, Pause, SkipBack, SkipForward, Volume2, VolumeX, Download, ChevronLeft, BookOpen, Share2, AlertTriangle, ExternalLink, Clock } from 'lucide-react';
 import Layout from '../components/layout/Layout';
@@ -516,6 +516,38 @@ export default function EpisodePage() {
     }
   };
 
+  const decodeAudioUrl = (url: string): string => {
+    try {
+      // Check if the URL contains encoded characters
+      if (url.includes('%')) {
+        console.log('[EpisodePage] Decoding URL:', url);
+        
+        // Try to decode the entire URL
+        const decoded = decodeURIComponent(url);
+        
+        // Check if it's a relative URL
+        if (decoded.startsWith('/')) {
+          return decoded;
+        }
+        
+        // Check if it's an absolute URL
+        if (decoded.startsWith('http')) {
+          // For absolute URLs, we need to ensure the domain part is not double-decoded
+          const urlParts = new URL(url);
+          const origin = urlParts.origin; // This should remain encoded
+          const path = decodeURIComponent(urlParts.pathname); // Decode the path
+          return `${origin}${path}`;
+        }
+        
+        return decoded;
+      }
+      return url;
+    } catch (error) {
+      console.error('[EpisodePage] Error decoding URL:', error);
+      return url;
+    }
+  };
+
   // Render error state with improved UI
   if (error) {
     return (
@@ -590,6 +622,13 @@ export default function EpisodePage() {
                 <span className="text-primary text-2xl font-bold mr-3">{episode.id}</span>
                 <h1 className="title-main text-2xl md:text-4xl lg:text-5xl">{episode.title}</h1>
               </div>
+              
+              {/* Add logline here */}
+              {episode.cardSummary && (
+                <p className="mt-4 text-lg text-white/80 italic leading-relaxed max-w-3xl">
+                  {episode.cardSummary}
+                </p>
+              )}
               
               {/* Only show description if it's not just repeating the title */}
               {episode.description && !episode.description.includes(episode.title) && (
@@ -679,7 +718,7 @@ export default function EpisodePage() {
             <>
               <audio
                 ref={audioRef}
-                src={episode.audioUrl}
+                src={decodeAudioUrl(episode.audioUrl)}
                 onTimeUpdate={handleTimeUpdate}
                 onLoadedMetadata={handleLoadedMetadata}
                 onEnded={() => setIsPlaying(false)}

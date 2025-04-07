@@ -27,6 +27,22 @@ export default function AudioPlayer({ audioUrl, title, episodeId, onEnded, onErr
 
   const { isPlaying, currentTime, duration, volume, loading, error, playbackSpeed } = playerState;
 
+  // Log audio URL for debugging
+  useEffect(() => {
+    console.log(`[AudioPlayer] Loading audio from URL: ${audioUrl}`);
+    // Test direct access to the URL to verify it works
+    fetch(audioUrl, { method: 'HEAD' })
+      .then(response => {
+        console.log(`[AudioPlayer] HEAD request status: ${response.status} ${response.statusText}`);
+        if (!response.ok) {
+          console.error(`[AudioPlayer] Error loading audio file: ${response.status} ${response.statusText}`);
+        }
+      })
+      .catch(err => {
+        console.error(`[AudioPlayer] Fetch error:`, err);
+      });
+  }, [audioUrl]);
+
   // Initialize analytics tracking
   useAudioAnalytics({
     audioRef,
@@ -47,7 +63,9 @@ export default function AudioPlayer({ audioUrl, title, episodeId, onEnded, onErr
       if (isPlaying) {
         audioRef.current.pause();
       } else {
-        audioRef.current.play().catch(() => {
+        console.log('[AudioPlayer] Attempting to play audio...');
+        audioRef.current.play().catch((err) => {
+          console.error('[AudioPlayer] Play error:', err);
           setPlayerState((prev: AudioPlayerState) => ({ ...prev, error: 'Failed to play audio. Please try again.' }));
           if (onError) onError('Failed to play audio. Please try again.');
         });
@@ -130,6 +148,7 @@ export default function AudioPlayer({ audioUrl, title, episodeId, onEnded, onErr
     };
 
     const handleLoadedMetadata = () => {
+      console.log('[AudioPlayer] Metadata loaded successfully. Duration:', audio.duration);
       setPlayerState((prev: AudioPlayerState) => ({
         ...prev,
         duration: audio.duration,
@@ -144,13 +163,18 @@ export default function AudioPlayer({ audioUrl, title, episodeId, onEnded, onErr
       if (onEnded) onEnded();
     };
 
-    const handleError = () => {
+    const handleError = (e: Event) => {
+      console.error('[AudioPlayer] Audio error event:', e);
+      const errorElement = e.target as HTMLAudioElement;
+      console.error('[AudioPlayer] Audio error code:', errorElement.error?.code);
+      console.error('[AudioPlayer] Audio error message:', errorElement.error?.message);
+      
       setPlayerState((prev: AudioPlayerState) => ({
         ...prev,
-        error: 'Error loading audio file',
+        error: `Error loading audio file: ${errorElement.error?.message || 'Unknown error'}`,
         loading: false
       }));
-      if (onError) onError('Error loading audio file');
+      if (onError) onError(`Error loading audio file: ${errorElement.error?.message || 'Unknown error'}`);
     };
 
     const handleRateChange = () => {
@@ -198,6 +222,7 @@ export default function AudioPlayer({ audioUrl, title, episodeId, onEnded, onErr
 
   // Update audio source when audioUrl changes
   useEffect(() => {
+    console.log('[AudioPlayer] Audio URL changed:', audioUrl);
     setPlayerState((prev: AudioPlayerState) => ({ ...prev, loading: true, error: null }));
     if (audioRef.current) {
       audioRef.current.load();
@@ -211,6 +236,9 @@ export default function AudioPlayer({ audioUrl, title, episodeId, onEnded, onErr
         <p>{error}</p>
         <p className="mt-2 text-sm">
           Please try again or <a href={audioUrl} className="underline" download>download the audio file</a>.
+        </p>
+        <p className="mt-2 text-xs text-gray-500">
+          Debug URL: {audioUrl}
         </p>
       </div>
     );
