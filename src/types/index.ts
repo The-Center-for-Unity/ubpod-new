@@ -112,4 +112,24 @@ export interface AnimationProps {
   delay?: number;
   duration?: number;
   className?: string;
+}
+
+// Define the type for our master episodes JSON file
+export interface EpisodeData {
+  id: number;
+  title: string;
+  audioUrl: string;
+  pdfUrl: string;
+  summaryKey: string | null;
+  imageUrl: string;
+}
+
+export interface SeriesData {
+  seriesTitle: string;
+  seriesDescription: string;
+  episodes: EpisodeData[];
+}
+
+export interface EpisodesJson {
+  [seriesId: string]: SeriesData;
 } 

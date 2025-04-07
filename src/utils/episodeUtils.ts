@@ -4,8 +4,9 @@ import {
   getEpisodeTitle, 
   getEpisodeAudioPath
 } from './seriesUtils';
-import { getAudioUrl, getPdfUrl } from '../config/audio';
+import { getAudioUrl, getPdfUrl, JESUS_AUDIO_BASE_URL, URANTIA_AUDIO_BASE_URL } from '../config/audio';
 import { discoverJesusSummaries } from '../data/discoverJesusSummaries';
+import episodesData from '../data/json/episodes.json';
 
 // Episode titles from the Series Organization markdown file
 const seriesEpisodeTitles: Record<string, string[]> = {
@@ -414,170 +415,132 @@ const seriesEpisodeLoglines: Record<string, string[]> = {
 };
 
 /**
- * Generate mock episodes for a series to use for testing
- * @param seriesId The series ID
- * @returns Array of mock episodes
- */
-export function generateMockEpisodesForSeries(seriesId: string): Episode[] {
-  const seriesInfo = getSeriesInfo(seriesId);
-  if (!seriesInfo) return [];
-  
-  const episodes: Episode[] = [];
-  const totalEpisodes = seriesInfo.totalEpisodes || 5;
-  const titles = seriesEpisodeTitles[seriesId] || [];
-  
-  for (let i = 1; i <= totalEpisodes; i++) {
-    const title = titles[i-1] || `Episode ${i}`;
-    
-    // Use audio URL function from config
-    const audioUrl = getAudioUrl(seriesId, i);
-    
-    // Use PDF URL function from config
-    const pdfUrl = getPdfUrl(seriesId, i);
-    
-    // Get the logline from the series info if available
-    const logline = seriesInfo.logline || '';
-    
-    // Special case for jesus-1 series to use our summaries from JSON
-    if (seriesId === 'jesus-1') {
-      // Set source URLs based on episode number
-      let sourceUrl = '';
-      switch (i) {
-        case 1:
-          sourceUrl = 'https://discoverjesus.com/topic/the-personality-of-god';
-          break;
-        case 2:
-          sourceUrl = 'https://discoverjesus.com/event/birth-and-infancy-of-jesus';
-          break;
-        case 3:
-          sourceUrl = 'https://discoverjesus.com/event/sojourn-in-alexandria';
-          break;
-        case 4:
-          sourceUrl = 'https://discoverjesus.com/event/jesus-first-passover-age-13';
-          break;
-        case 5:
-          sourceUrl = 'https://discoverjesus.com/event/the-great-temptation';
-          break;
-        default:
-          break;
-      }
-      
-      // Get the summaries for this episode
-      const summaries = sourceUrl ? getDiscoverJesusSummary(sourceUrl) : {};
-      
-      console.log('DEBUG generating jesus-1 episode:', {
-        episodeId: i,
-        title,
-        sourceUrl, 
-        hasSummaries: !!summaries,
-        hasCardSummary: !!summaries.cardSummary,
-        hasSummary: !!summaries.summary
-      });
-      
-      episodes.push({
-        id: i,
-        title,
-        audioUrl,
-        pdfUrl,
-        series: seriesId as SeriesType,
-        sourceUrl,
-        description: `${seriesInfo.title} - ${title}`,
-        summary: summaries.summary || seriesInfo.description || '',
-        cardSummary: summaries.cardSummary || logline || seriesInfo.description || '',
-        imageUrl: `/images/${seriesId}/card-${i}.jpg`
-      });
-    } else {
-      // Default behavior for other series
-      episodes.push({
-        id: i,
-        title,
-        audioUrl,
-        pdfUrl,
-        series: seriesId as SeriesType,
-        description: `${seriesInfo.title} - ${title}`,
-        summary: seriesInfo.description || '',
-        cardSummary: logline || seriesInfo.description || '',
-        imageUrl: `/images/${seriesId}/card-${i}.jpg`
-      });
-    }
-  }
-  
-  return episodes;
-}
-
-/**
  * Get episodes for a specific series
  * @param seriesId The series ID to get episodes for
  * @returns Array of episodes for the specified series
  */
 export function getEpisodesForSeries(seriesId: string): Episode[] {
-  // Special case for 'urantia-papers' to support existing shared links
-  if (seriesId === 'urantia-papers') {
-    // Generate mock episodes for Urantia Papers (Papers 1-196)
-    const episodes: Episode[] = [];
-    
-    // Get a reasonable count of episodes
-    const totalEpisodes = 196;
-    
-    for (let i = 1; i <= totalEpisodes; i++) {
-      // Paper titles would ideally come from a real data source
-      const title = `Paper ${i}`;
-      
-      // Use audio URL function from config
-      const audioUrl = getAudioUrl('urantia-papers', i);
-      
-      // Use PDF URL function from config
-      const pdfUrl = getPdfUrl('urantia-papers', i);
-      
-      episodes.push({
-        id: i,
-        title: title,
-        audioUrl,
-        pdfUrl,
-        series: seriesId as SeriesType,
-        description: `Urantia Book, Paper ${i}`,
-        summary: `Summary of Paper ${i}`,
-        cardSummary: `Brief overview of Paper ${i}`,
-        imageUrl: '/images/urantia-book-cover.jpg'
-      });
-    }
-    
-    return episodes;
+  console.log(`Getting episodes for series: ${seriesId}`);
+  
+  // Get the series data from our master JSON
+  const seriesData = episodesData[seriesId as keyof typeof episodesData];
+  if (!seriesData) {
+    console.log(`No series data found for: ${seriesId}`);
+    return [];
   }
   
-  // In production, this would fetch from an API or database
-  // For now, we'll generate mock episodes
-  return generateMockEpisodesForSeries(seriesId);
+  // Map the JSON data to Episode objects
+  return seriesData.episodes.map(episodeData => {
+    // Get summary data if available
+    const summaryKey = episodeData.summaryKey;
+    let summary = '';
+    let cardSummary = '';
+    
+    if (summaryKey) {
+      const summaryData = discoverJesusSummaries[summaryKey];
+      if (summaryData) {
+        summary = summaryData.fullSummary;
+        cardSummary = summaryData.shortSummary;
+        console.log(`Found summary for: ${summaryKey}`);
+      } else {
+        console.log(`No summary found for: ${summaryKey}`);
+      }
+    }
+    
+    // Determine the base URL based on the series
+    let audioUrl = episodeData.audioUrl;
+    if (seriesId.startsWith('jesus-')) {
+      // Use the Jesus audio base URL and encode the filename
+      audioUrl = `${JESUS_AUDIO_BASE_URL}/${encodeURIComponent(audioUrl)}`;
+    } else if (seriesId === 'urantia-papers') {
+      // Use the Urantia papers base URL
+      audioUrl = `${URANTIA_AUDIO_BASE_URL}/${audioUrl}`;
+    } else {
+      // Default for other series
+      audioUrl = `${JESUS_AUDIO_BASE_URL}/${audioUrl}`;
+    }
+    
+    // Create the proper sourceUrl for DiscoverJesus.com if we have a summaryKey
+    let sourceUrl = '';
+    if (summaryKey && seriesId.startsWith('jesus-')) {
+      sourceUrl = `https://discoverjesus.com/${summaryKey}`;
+      console.log(`Created source URL: ${sourceUrl}`);
+    }
+    
+    // Set PDF URL - for now, let's just make sure it's a valid URL or undefined
+    let pdfUrl: string | undefined = undefined;
+    if (episodeData.pdfUrl) {
+      // If we have a PDF URL in the data, use it
+      pdfUrl = episodeData.pdfUrl;
+      console.log(`Using PDF: ${pdfUrl}`);
+    } else if (sourceUrl) {
+      // For Jesus series, we could potentially link to DiscoverJesus.com PDFs
+      // But let's disable this for now until we confirm they exist
+      // pdfUrl = `${sourceUrl}/pdf`;
+      console.log(`No PDF URL in data, and not using external PDFs for now`);
+    }
+    
+    // Build the complete Episode object
+    return {
+      id: episodeData.id,
+      title: episodeData.title,
+      audioUrl: audioUrl,
+      pdfUrl: pdfUrl,
+      series: seriesId as SeriesType,
+      sourceUrl: sourceUrl,
+      description: `${seriesData.seriesTitle} - ${episodeData.title}`,
+      summary: summary || seriesData.seriesDescription || '',
+      cardSummary: cardSummary || seriesData.seriesDescription || '',
+      imageUrl: episodeData.imageUrl
+    };
+  });
 }
 
 /**
- * Get a specific episode by series and episode ID
- * @param seriesId The series ID
- * @param episodeId The episode ID
- * @returns The episode or undefined if not found
+ * Get a specific episode by series and id
  */
 export function getEpisode(seriesId: string, episodeId: number): Episode | undefined {
+  console.log(`Getting episode: ${seriesId}/${episodeId}`);
+  
+  // Get all episodes for the series
   const episodes = getEpisodesForSeries(seriesId);
-  return episodes.find(episode => episode.id === episodeId);
+  
+  // Find the requested episode
+  const episode = episodes.find(ep => ep.id === episodeId);
+  
+  if (!episode) {
+    console.log(`Episode not found: ${seriesId}/${episodeId}`);
+  } else {
+    console.log(`Found episode: ${episode.title}`);
+  }
+  
+  return episode;
 }
 
 /**
  * Get recent episodes across all series
- * @param limit Maximum number of episodes to return
+ * @param count Maximum number of episodes to return
  * @returns Array of recent episodes
  */
-export function getRecentEpisodes(limit = 6): Episode[] {
-  // In production, this would be dynamic based on publication date
-  // For now, just return some mock episodes
-  const recentSeries = ['jesus-1', 'jesus-2', 'cosmic-1'];
-  const episodes: Episode[] = [];
+export function getRecentEpisodes(count: number = 5): Episode[] {
+  // You could customize logic here to determine what "recent" means
+  // For now, we'll take a sample from each series
   
-  recentSeries.forEach(seriesId => {
-    const seriesEpisodes = generateMockEpisodesForSeries(seriesId).slice(0, 2);
-    episodes.push(...seriesEpisodes);
+  const allEpisodes: Episode[] = [];
+  
+  // Get one episode from each series
+  Object.keys(episodesData).forEach(seriesId => {
+    const episodes = getEpisodesForSeries(seriesId);
+    if (episodes.length > 0) {
+      allEpisodes.push(episodes[0]); // Get the first episode
+    }
   });
   
-  return episodes.slice(0, limit);
+  // Sort by some criteria if needed
+  // allEpisodes.sort((a, b) => ...);
+  
+  // Return the requested number of episodes
+  return allEpisodes.slice(0, count);
 }
 
 /**
@@ -587,48 +550,38 @@ export function getRecentEpisodes(limit = 6): Episode[] {
  * @returns An array of file paths that would be expected in R2
  */
 export function generateAudioFileList(seriesId: string): string[] {
-  const seriesInfo = getSeriesInfo(seriesId);
-  if (!seriesInfo) return [];
-  
-  const fileList: string[] = [];
-  const totalEpisodes = seriesInfo.totalEpisodes || 5;
-  const titles = seriesEpisodeTitles[seriesId] || [];
-  
-  for (let i = 1; i <= totalEpisodes; i++) {
-    const title = titles[i-1] || `Episode ${i}`;
-    
-    // For jesus-focused series
-    if (seriesId.startsWith('jesus-')) {
-      const seriesNum = seriesId.split('-')[1];
-      
-      // Add both possible naming formats
-      fileList.push(`${title.replace(/ /g, '%20')}${i}.mp3`);
-      fileList.push(`jesus-${seriesNum}-episode-${i}.mp3`);
-    }
-    // For other series types
-    else {
-      fileList.push(`${seriesId}/episode-${i}.mp3`);
-    }
-  }
-  
-  return fileList;
+  const episodes = getEpisodesForSeries(seriesId);
+  return episodes.map(episode => episode.audioUrl);
 }
 
 // Get the DiscoverJesus.com summary for an episode
 export function getDiscoverJesusSummary(sourceUrl: string | undefined): { cardSummary?: string; summary?: string } {
   if (!sourceUrl) return {};
   
-  // Extract the path part from the URL (everything after discoverjesus.com/)
-  const urlPath = sourceUrl.split('discoverjesus.com/')[1];
+  console.log(`Looking up summary for: ${sourceUrl}`);
+  
+  // Extract the path part from the URL (if it contains discoverjesus.com/)
+  let urlPath = sourceUrl;
+  if (sourceUrl.includes('discoverjesus.com/')) {
+    urlPath = sourceUrl.split('discoverjesus.com/')[1];
+  }
   
   // Look up the summary in our map
   const summary = discoverJesusSummaries[urlPath];
   
+  // Log what we found (or didn't find)
+  console.log(`Summary lookup for "${urlPath}": ${summary ? 'FOUND' : 'NOT FOUND'}`);
+  
+  // Determine the category from the URL path
+  const category = urlPath.split('/')[0];
   if (summary) {
+    console.log(`Found summary in category: ${category}`);
     return {
       cardSummary: summary.shortSummary,
       summary: summary.fullSummary
     };
+  } else {
+    console.log(`No summary found for ${urlPath}. Available categories: topic, event, person, group, relationship`);
   }
   
   return {};

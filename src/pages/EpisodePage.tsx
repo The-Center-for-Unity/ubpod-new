@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate, Navigate, Link, useLocation } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { Play, Pause, SkipBack, SkipForward, Volume2, VolumeX, Download, ChevronLeft, BookOpen, Share2, AlertTriangle, ExternalLink, Clock } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Play, Pause, SkipBack, SkipForward, Volume2, VolumeX, Download, ChevronLeft, BookOpen, Share2, AlertTriangle, ExternalLink, Clock, ChevronDown, ChevronUp, ChevronRight } from 'lucide-react';
 import Layout from '../components/layout/Layout';
 import { getEpisodeById, getUrantiaPaperPart, discoverJesusLinks } from '../data/episodes';
 import { Episode, SeriesType } from '../types/index';
@@ -46,6 +46,7 @@ export default function EpisodePage() {
   const [showSpeedControls, setShowSpeedControls] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
   const progressBarRef = useRef<HTMLDivElement>(null);
+  const [summaryExpanded, setSummaryExpanded] = useState(false);
 
   // Initialize analytics tracking if episode is loaded
   useAudioAnalytics({
@@ -548,6 +549,11 @@ export default function EpisodePage() {
     }
   };
 
+  // Toggle summary expansion
+  const toggleSummary = () => {
+    setSummaryExpanded(!summaryExpanded);
+  };
+
   // Render error state with improved UI
   if (error) {
     return (
@@ -637,14 +643,72 @@ export default function EpisodePage() {
               
               {episode.summary && (
                 <div className="mt-4 p-4 bg-white/5 rounded-lg border border-white/10">
-                  <h3 className="text-lg font-semibold text-primary mb-2">Summary</h3>
-                  <p className="text-white/90 leading-relaxed">{episode.summary}</p>
+                  <div className="flex justify-between items-center">
+                    <h3 className="text-lg font-semibold text-primary mb-2">Summary</h3>
+                    <button 
+                      onClick={toggleSummary}
+                      className="text-white/70 hover:text-white flex items-center gap-1 text-sm"
+                      aria-label={summaryExpanded ? "Collapse summary" : "Expand summary"}
+                    >
+                      {summaryExpanded ? (
+                        <>
+                          <span>Read Less</span>
+                          <ChevronUp size={16} />
+                        </>
+                      ) : (
+                        <>
+                          <span>Read More</span>
+                          <ChevronDown size={16} />
+                        </>
+                      )}
+                    </button>
+                  </div>
+                  
+                  <AnimatePresence initial={false}>
+                    {summaryExpanded ? (
+                      <motion.div
+                        key="full-summary"
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <p className="text-white/90 leading-relaxed">{episode.summary}</p>
+                      </motion.div>
+                    ) : (
+                      <motion.div
+                        key="summary-preview"
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <p className="text-white/90 leading-relaxed line-clamp-3">
+                          {episode.summary}
+                        </p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
               )}
             </div>
             
             <div className="mt-4 md:mt-0 flex flex-wrap gap-3">
-              {episode.pdfUrl && (
+              {/* For Jesus series: Show "Read on DiscoverJesus.com" button */}
+              {episode.sourceUrl && episode.series.startsWith('jesus-') && (
+                <a
+                  href={episode.sourceUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 px-4 py-2 bg-gold text-navy-dark rounded-md hover:bg-gold-light transition-colors font-medium"
+                >
+                  <ExternalLink size={18} />
+                  <span>Read on DiscoverJesus.com</span>
+                </a>
+              )}
+              
+              {/* For other series: Show PDF button if available */}
+              {episode.pdfUrl && episode.pdfUrl.trim() !== '' && !episode.series.startsWith('jesus-') && (
                 <a
                   href={episode.pdfUrl}
                   target="_blank"
@@ -831,6 +895,41 @@ export default function EpisodePage() {
               </div>
             </>
           )}
+        </div>
+
+        {/* Episode Navigation */}
+        <div className="flex justify-between items-center mb-12">
+          <button 
+            onClick={() => navigateToEpisode('prev')}
+            disabled={episode.id <= 1}
+            className={`flex items-center gap-2 px-5 py-3 rounded-lg font-medium transition
+              ${episode.id <= 1 
+                ? 'bg-navy-light/30 text-white/30 cursor-not-allowed' 
+                : 'bg-navy-light hover:bg-navy text-white/90 hover:text-white'}`}
+          >
+            <ChevronLeft size={20} />
+            <span>Previous Episode</span>
+          </button>
+          
+          <button 
+            onClick={() => navigateToEpisode('next')}
+            disabled={episode.id >= (
+              episode.series === 'urantia-papers' ? 196 : 
+              episode.series.startsWith('jesus-') ? 14 : 
+              20 // Default max for other series
+            )}
+            className={`flex items-center gap-2 px-5 py-3 rounded-lg font-medium transition
+              ${episode.id >= (
+                episode.series === 'urantia-papers' ? 196 : 
+                episode.series.startsWith('jesus-') ? 14 : 
+                20
+              )
+                ? 'bg-navy-light/30 text-white/30 cursor-not-allowed' 
+                : 'bg-navy-light hover:bg-navy text-white/90 hover:text-white'}`}
+          >
+            <span>Next Episode</span>
+            <ChevronRight size={20} />
+          </button>
         </div>
       </main>
     </Layout>

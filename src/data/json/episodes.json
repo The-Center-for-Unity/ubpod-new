@@ -1,0 +1,324 @@
+{
+  "jesus-1": {
+    "seriesTitle": "The Divine and Human Jesus",
+    "seriesDescription": "Explore the profound dual nature of Jesus as both human and divine.",
+    "episodes": [
+      {
+        "id": 1,
+        "title": "The Personality of God",
+        "audioUrl": "Topic - The Personality of God.mp3",
+        "pdfUrl": "/pdfs/jesus-1/1.pdf",
+        "summaryKey": "topic/the-personality-of-god",
+        "imageUrl": "/images/jesus-1/card-1.jpg"
+      },
+      {
+        "id": 2,
+        "title": "Sojourn in Alexandria",
+        "audioUrl": "Event - Sojourn in Alexandria.mp3",
+        "pdfUrl": "/pdfs/jesus-1/2.pdf",
+        "summaryKey": "event/sojourn-in-alexandria",
+        "imageUrl": "/images/jesus-1/card-2.jpg"
+      },
+      {
+        "id": 3,
+        "title": "Birth and Infancy of Jesus",
+        "audioUrl": "Event - Birth and Infancy of Jesus.mp3",
+        "pdfUrl": "/pdfs/jesus-1/3.pdf",
+        "summaryKey": "event/birth-and-infancy-of-jesus",
+        "imageUrl": "/images/jesus-1/card-3.jpg"
+      },
+      {
+        "id": 4,
+        "title": "Jesus' First Passover (Age 13)",
+        "audioUrl": "Event - Jesus_ First Passover (Age 13).mp3",
+        "pdfUrl": "/pdfs/jesus-1/4.pdf",
+        "summaryKey": "event/jesus-first-passover-age-13",
+        "imageUrl": "/images/jesus-1/card-4.jpg"
+      },
+      {
+        "id": 5,
+        "title": "The Great Temptation",
+        "audioUrl": "Event - The Great Temptation.mp3",
+        "pdfUrl": "/pdfs/jesus-1/5.pdf",
+        "summaryKey": "event/the-great-temptation",
+        "imageUrl": "/images/jesus-1/card-5.jpg"
+      }
+    ]
+  },
+  "jesus-2": {
+    "seriesTitle": "Jesus' Journey Around the Mediterranean",
+    "seriesDescription": "Follow Jesus on his travels and experiences throughout the Mediterranean region.",
+    "episodes": [
+      {
+        "id": 1,
+        "title": "Sojourn in Alexandria",
+        "audioUrl": "Event - Sojourn in Alexandria.mp3",
+        "pdfUrl": "/pdfs/jesus-2/1.pdf",
+        "summaryKey": "event/sojourn-in-alexandria",
+        "imageUrl": "/images/jesus-2/card-1.jpg"
+      },
+      {
+        "id": 2,
+        "title": "Tour of the Mediterranean World",
+        "audioUrl": "Topic - Jesus_ Tour of the Mediterranean World.mp3",
+        "pdfUrl": "/pdfs/jesus-2/2.pdf",
+        "summaryKey": "event/jesus-tour-of-the-mediterranean-world",
+        "imageUrl": "/images/jesus-2/card-2.jpg"
+      },
+      {
+        "id": 3,
+        "title": "Jesus - The Son of God",
+        "audioUrl": "Topic - Jesus Combined Nature.mp3",
+        "pdfUrl": "/pdfs/jesus-2/3.pdf",
+        "summaryKey": "person/jesus",
+        "imageUrl": "/images/jesus-2/card-3.jpg"
+      },
+      {
+        "id": 4,
+        "title": "Star of Bethlehem",
+        "audioUrl": "Topic - Star of Bethlehem.mp3",
+        "pdfUrl": "/pdfs/jesus-2/4.pdf",
+        "summaryKey": "topic/star-of-bethlehem",
+        "imageUrl": "/images/jesus-2/card-4.jpg"
+      },
+      {
+        "id": 5,
+        "title": "Jesus' Harp",
+        "audioUrl": "Topic - Jesus Harp.mp3",
+        "pdfUrl": "/pdfs/jesus-2/5.pdf",
+        "summaryKey": "topic/jesus-harp",
+        "imageUrl": "/images/jesus-2/card-5.jpg"
+      }
+    ]
+  },
+  "jesus-3": {
+    "seriesTitle": "The Spirit of Truth",
+    "seriesDescription": "Discover the meaning and significance of the spirit of truth in Jesus' teachings.",
+    "episodes": [
+      {
+        "id": 1,
+        "title": "Indwelling Spirit of God",
+        "audioUrl": "Topic - Indwelling Spirit of God.mp3",
+        "pdfUrl": "/pdfs/jesus-3/1.pdf",
+        "summaryKey": "topic/indwelling-spirit-of-god",
+        "imageUrl": "/images/jesus-3/card-1.jpg"
+      },
+      {
+        "id": 2,
+        "title": "Spirit of Truth - The Comforter",
+        "audioUrl": "Topic - Spirit of Truth - _The Comforter_.mp3",
+        "pdfUrl": "/pdfs/jesus-3/2.pdf",
+        "summaryKey": "topic/spirit-of-truth-the-comforter",
+        "imageUrl": "/images/jesus-3/card-2.jpg"
+      },
+      {
+        "id": 3,
+        "title": "Jesus' Personalized Indwelling Spirit",
+        "audioUrl": "Topic - Jesus Personalized Indwelling Spirit.mp3",
+        "pdfUrl": "/pdfs/jesus-3/3.pdf",
+        "summaryKey": "topic/jesus-personalized-indwelling-spirit",
+        "imageUrl": "/images/jesus-3/card-3.jpg"
+      },
+      {
+        "id": 4,
+        "title": "Personal Religion of Jesus",
+        "audioUrl": "Topic - Personal Religion of Jesus.mp3",
+        "pdfUrl": "/pdfs/jesus-3/4.pdf",
+        "summaryKey": "topic/personal-religion-of-jesus",
+        "imageUrl": "/images/jesus-3/card-4.jpg"
+      },
+      {
+        "id": 5,
+        "title": "Sonship with God",
+        "audioUrl": "Topic - Sonship with God.mp3",
+        "pdfUrl": "/pdfs/jesus-3/5.pdf",
+        "summaryKey": "topic/sonship-with-god",
+        "imageUrl": "/images/jesus-3/card-5.jpg"
+      }
+    ]
+  },
+  "jesus-4": {
+    "seriesTitle": "Death and Resurrection",
+    "seriesDescription": "Explore the profound meanings behind Jesus' death and resurrection.",
+    "episodes": [
+      {
+        "id": 1,
+        "title": "What Happens When We Die",
+        "audioUrl": "Topic - What Happens When We Die.mp3",
+        "pdfUrl": "/pdfs/jesus-4/1.pdf",
+        "summaryKey": "topic/what-happens-when-we-die",
+        "imageUrl": "/images/jesus-4/card-1.jpg"
+      },
+      {
+        "id": 2,
+        "title": "What is the Soul",
+        "audioUrl": "Topic - What Is the Soul.mp3",
+        "pdfUrl": "/pdfs/jesus-4/2.pdf",
+        "summaryKey": "topic/what-is-the-soul",
+        "imageUrl": "/images/jesus-4/card-2.jpg"
+      },
+      {
+        "id": 3,
+        "title": "Jesus' Resurrection Experience",
+        "audioUrl": "Topic - Jesus_ Resurrection Experience.mp3",
+        "pdfUrl": "/pdfs/jesus-4/3.pdf",
+        "summaryKey": "topic/jesus-resurrection-experience",
+        "imageUrl": "/images/jesus-4/card-3.jpg"
+      },
+      {
+        "id": 4,
+        "title": "Jesus' Resurrected Morontia Body",
+        "audioUrl": "Topic - Jesus_ Resurrected Morontia Body.mp3",
+        "pdfUrl": "/pdfs/jesus-4/4.pdf",
+        "summaryKey": "topic/jesus-resurrected-morontia-body",
+        "imageUrl": "/images/jesus-4/card-4.jpg"
+      },
+      {
+        "id": 5,
+        "title": "The Resurrection of Jesus",
+        "audioUrl": "Event - The Resurrection of Jesus.mp3",
+        "pdfUrl": "/pdfs/jesus-4/5.pdf",
+        "summaryKey": "event/the-resurrection-of-jesus",
+        "imageUrl": "/images/jesus-4/card-5.jpg"
+      }
+    ]
+  },
+  "jesus-5": {
+    "seriesTitle": "Jesus and Women",
+    "seriesDescription": "Discover Jesus' revolutionary approach to women's dignity and equality.",
+    "episodes": [
+      {
+        "id": 1,
+        "title": "Jesus Establishes the Women's Corps",
+        "audioUrl": "Event - Jesus Establishes the Women_s Corps.mp3",
+        "pdfUrl": "/pdfs/jesus-5/1.pdf",
+        "summaryKey": "event/jesus-establishes-the-womens-corps",
+        "imageUrl": "/images/jesus-5/card-1.jpg"
+      },
+      {
+        "id": 2,
+        "title": "Women's Evangelistic Corps",
+        "audioUrl": "Group - Women_s Evangelistic Corps.mp3",
+        "pdfUrl": "/pdfs/jesus-5/2.pdf",
+        "summaryKey": "group/womens-evangelistic-corps",
+        "imageUrl": "/images/jesus-5/card-2.jpg"
+      },
+      {
+        "id": 3,
+        "title": "Mary Magdalene",
+        "audioUrl": "Person - Mary Magdalene.mp3",
+        "pdfUrl": "/pdfs/jesus-5/3.pdf",
+        "summaryKey": "person/mary-magdalene",
+        "imageUrl": "/images/jesus-5/card-3.jpg"
+      },
+      {
+        "id": 4,
+        "title": "How Did Jesus Treat Women",
+        "audioUrl": "Topic - How Did Jesus Treat Women.mp3",
+        "pdfUrl": "/pdfs/jesus-5/4.pdf",
+        "summaryKey": "topic/how-did-jesus-treat-women",
+        "imageUrl": "/images/jesus-5/card-4.jpg"
+      },
+      {
+        "id": 5,
+        "title": "Mary, Mother of Jesus",
+        "audioUrl": "Person - Mary - mother of Jesus.mp3",
+        "pdfUrl": "/pdfs/jesus-5/5.pdf",
+        "summaryKey": "person/mary-mother-of-jesus",
+        "imageUrl": "/images/jesus-5/card-5.jpg"
+      }
+    ]
+  },
+  "urantia-papers": {
+    "seriesTitle": "The Urantia Papers Podcast",
+    "seriesDescription": "Enjoy a narrative journey through the Urantia Book, one paper at a time.",
+    "episodes": [
+      {
+        "id": 1,
+        "title": "Paper 1: The Universal Father",
+        "audioUrl": "paper-1.mp3",
+        "pdfUrl": "paper-1.pdf",
+        "summaryKey": null,
+        "imageUrl": "/images/urantia-papers/card-1.jpg"
+      },
+      {
+        "id": 2,
+        "title": "Paper 2: The Nature of God",
+        "audioUrl": "paper-2.mp3",
+        "pdfUrl": "paper-2.pdf",
+        "summaryKey": null,
+        "imageUrl": "/images/urantia-papers/card-2.jpg"
+      },
+      {
+        "id": 3,
+        "title": "Paper 3: The Attributes of God",
+        "audioUrl": "paper-3.mp3",
+        "pdfUrl": "paper-3.pdf",
+        "summaryKey": null,
+        "imageUrl": "/images/urantia-papers/card-3.jpg"
+      },
+      {
+        "id": 4,
+        "title": "Paper 4: God's Relation to the Universe",
+        "audioUrl": "paper-4.mp3",
+        "pdfUrl": "paper-4.pdf",
+        "summaryKey": null,
+        "imageUrl": "/images/urantia-papers/card-4.jpg"
+      },
+      {
+        "id": 5,
+        "title": "Paper 5: God's Relation to the Individual",
+        "audioUrl": "paper-5.mp3",
+        "pdfUrl": "paper-5.pdf",
+        "summaryKey": null,
+        "imageUrl": "/images/urantia-papers/card-5.jpg"
+      }
+    ]
+  },
+  "history": {
+    "seriesTitle": "History of the Urantia Papers",
+    "seriesDescription": "The fascinating story behind the Urantia Papers and how they came to be.",
+    "episodes": [
+      {
+        "id": 1,
+        "title": "The Sleeping Subject",
+        "audioUrl": "history-1.mp3",
+        "pdfUrl": null,
+        "summaryKey": null,
+        "imageUrl": "/images/history/card-1.jpg"
+      },
+      {
+        "id": 2,
+        "title": "The Contact Commission",
+        "audioUrl": "history-2.mp3",
+        "pdfUrl": null,
+        "summaryKey": null,
+        "imageUrl": "/images/history/card-2.jpg"
+      },
+      {
+        "id": 3,
+        "title": "The Forum",
+        "audioUrl": "history-3.mp3",
+        "pdfUrl": null,
+        "summaryKey": null,
+        "imageUrl": "/images/history/card-3.jpg"
+      },
+      {
+        "id": 4,
+        "title": "The Seventy",
+        "audioUrl": "history-4.mp3",
+        "pdfUrl": null,
+        "summaryKey": null,
+        "imageUrl": "/images/history/card-4.jpg"
+      },
+      {
+        "id": 5,
+        "title": "Publication and the Urantia Foundation",
+        "audioUrl": "history-5.mp3",
+        "pdfUrl": null,
+        "summaryKey": null,
+        "imageUrl": "/images/history/card-5.jpg"
+      }
+    ]
+  }
+} 
