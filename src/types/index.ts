@@ -60,14 +60,15 @@ export type EpisodeSeries = SeriesType;
 export interface Episode {
   id: number;
   title: string;
+  description?: string;
+  shortSummary?: string;  // Brief summary that appears under the title
+  summary?: string;       // Full detailed summary
+  cardSummary?: string;   // Summary used in cards/previews
   audioUrl: string;
   pdfUrl?: string;
   series: SeriesType;
-  description: string;
-  summary?: string;
-  cardSummary?: string;
-  imageUrl?: string;
   sourceUrl?: string;
+  imageUrl?: string;
 }
 
 export interface AnimationVariants {

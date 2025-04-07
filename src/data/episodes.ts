@@ -1,7 +1,32 @@
 import { Episode } from '../types/index';
 import urantiaSummaries from './json/urantia_summaries.json';
+import scraperSummaries from './json/summaries.json';  // Import the scraped summaries
 import { getAudioUrl, getPdfUrl } from '../config/audio';
-import { getEpisode as getEpisodeUtil } from '../utils/episodeUtils';
+import { getEpisode as getEpisodeUtil, getDiscoverJesusSummary } from '../utils/episodeUtils';
+
+// Create a map from the scraped summaries for fast lookup by ID
+interface ScrapedSummary {
+  id: string;
+  title: string;
+  shortSummary: string;
+  fullSummary: string;
+  sourceUrl: string;
+}
+
+// Convert the array of summaries into a map keyed by ID for easier lookup
+const discoverJesusSummaries: Record<string, ScrapedSummary> = {};
+(scraperSummaries as ScrapedSummary[]).forEach((summary) => {
+  discoverJesusSummaries[summary.id] = summary;
+});
+
+// Debug: Log information about the summaries data
+console.log('DEBUG SUMMARIES:', {
+  summariesCount: (scraperSummaries as ScrapedSummary[]).length,
+  mappedCount: Object.keys(discoverJesusSummaries).length,
+  sampleKeys: Object.keys(discoverJesusSummaries).slice(0, 3),
+  hasPersonalityOfGod: !!discoverJesusSummaries["topic/the-personality-of-god"],
+  personalityOfGodData: discoverJesusSummaries["topic/the-personality-of-god"]
+});
 
 // Define the structure of the summary data
 interface UrantiaSummary {
@@ -328,22 +353,65 @@ const urantiaEpisodes = generateUrantiaPapers();
 const discoverJesusEpisodes: Episode[] = [
   {
     id: 1,
-    title: "Birth and Infancy of Jesus",
+    title: "The Personality of God",
     audioUrl: getAudioUrl('discover-jesus', 1),
     series: "discover-jesus",
-    sourceUrl: "https://discoverjesus.com/event/birth-and-infancy-of-jesus",
-    imageUrl: "/images/discoverjesus/birth.jpg",
-    description: "The remarkable circumstances surrounding Jesus' birth in Bethlehem and his early childhood."
+    sourceUrl: "https://discoverjesus.com/topic/the-personality-of-god",
+    description: "God isn't an abstract force but a personality who seeks relationship—meet the Universal Father who knows you personally.",
+    cardSummary: discoverJesusSummaries["topic/the-personality-of-god"]?.shortSummary,
+    summary: discoverJesusSummaries["topic/the-personality-of-god"]?.fullSummary
   },
   {
     id: 2,
-    title: "The Twelve Apostles",
+    title: "Birth and Infancy of Jesus",
     audioUrl: getAudioUrl('discover-jesus', 2),
     series: "discover-jesus",
-    sourceUrl: "https://discoverjesus.com/group/the-twelve-apostles",
-    description: "An overview of the twelve apostles chosen by Jesus, their backgrounds, and their relationships with the Master."
+    sourceUrl: "https://discoverjesus.com/event/birth-and-infancy-of-jesus",
+    imageUrl: "/images/discoverjesus/birth.jpg",
+    description: "The remarkable circumstances surrounding Jesus' birth in Bethlehem and his early childhood.",
+    cardSummary: discoverJesusSummaries["event/birth-and-infancy-of-jesus"]?.shortSummary,
+    summary: discoverJesusSummaries["event/birth-and-infancy-of-jesus"]?.fullSummary
+  },
+  {
+    id: 3,
+    title: "Sojourn in Alexandria",
+    audioUrl: getAudioUrl('discover-jesus', 3),
+    series: "discover-jesus",
+    sourceUrl: "https://discoverjesus.com/event/sojourn-in-alexandria",
+    description: "During his unrecorded youth, Jesus studied with the greatest minds in Alexandria—shaping a cosmic perspective no gospel ever mentioned.",
+    cardSummary: discoverJesusSummaries["event/sojourn-in-alexandria"]?.shortSummary,
+    summary: discoverJesusSummaries["event/sojourn-in-alexandria"]?.fullSummary
+  },
+  {
+    id: 4,
+    title: "Jesus' First Passover",
+    audioUrl: getAudioUrl('discover-jesus', 4),
+    series: "discover-jesus",
+    sourceUrl: "https://discoverjesus.com/event/jesus-first-passover-age-13",
+    description: "Jesus' first visit to Jerusalem and the temple at age 13, where he engaged with religious scholars.",
+    cardSummary: discoverJesusSummaries["event/jesus-first-passover-age-13"]?.shortSummary,
+    summary: discoverJesusSummaries["event/jesus-first-passover-age-13"]?.fullSummary
+  },
+  {
+    id: 5,
+    title: "The Great Temptation",
+    audioUrl: getAudioUrl('discover-jesus', 5),
+    series: "discover-jesus",
+    sourceUrl: "https://discoverjesus.com/event/the-great-temptation",
+    description: "Jesus' six weeks alone with God on Mount Hermon, where he mastered his mind and consecrated himself for his earthly mission.",
+    cardSummary: discoverJesusSummaries["event/the-great-temptation"]?.shortSummary,
+    summary: discoverJesusSummaries["event/the-great-temptation"]?.fullSummary
   }
 ];
+
+// Debug log for the first episode
+console.log('DEBUG FIRST EPISODE:', {
+  episode: discoverJesusEpisodes[0],
+  cardSummaryExists: !!discoverJesusEpisodes[0].cardSummary,
+  summaryExists: !!discoverJesusEpisodes[0].summary,
+  cardSummaryValue: discoverJesusEpisodes[0].cardSummary,
+  summaryValuePreview: discoverJesusEpisodes[0].summary?.substring(0, 100)
+});
 
 // History Episodes
 const historyEpisodes: Episode[] = [
@@ -411,11 +479,22 @@ export function getSadlerWorkbooks(): Episode[] {
  * @returns The episode or undefined if not found
  */
 export function getEpisodeById(id: number, series: string): Episode | undefined {
+  // Debug for the specific series we're working with
+  console.log('DEBUG getEpisodeById:', { id, series, isJesusSeries: series.startsWith('jesus-') });
+  
   // Check for new series IDs (jesus-1, jesus-2, cosmic-1, etc.)
   if (series.startsWith('jesus-') || series.startsWith('cosmic-') || series.startsWith('series-platform-')) {
     try {
       // For new series IDs, use the utility function from episodeUtils
-      return getEpisodeUtil(series, id);
+      const episodeData = getEpisodeUtil(series, id);
+      console.log('DEBUG jesus series episode:', { 
+        episodeFound: !!episodeData,
+        hasSummary: episodeData?.summary ? true : false,
+        hasCardSummary: episodeData?.cardSummary ? true : false,
+        cardSummary: episodeData?.cardSummary?.substring(0, 50),
+        summary: episodeData?.summary?.substring(0, 50)
+      });
+      return episodeData;
     } catch (err) {
       console.error(`Error getting episode for ${series}:${id}`, err);
       return undefined;
@@ -425,6 +504,51 @@ export function getEpisodeById(id: number, series: string): Episode | undefined 
   // Handle Urantia Papers specifically
   if (series === 'urantia-papers') {
     return urantiaEpisodes.find(ep => ep.id === id);
+  }
+  
+  // Handle discover-jesus episodes
+  if (series === 'discover-jesus') {
+    const episode = discoverJesusEpisodes.find(ep => ep.id === id);
+    
+    // Debug the episode retrieval
+    console.log('DEBUG GET_EPISODE_BY_ID:', {
+      requestedId: id,
+      requestedSeries: series,
+      episodeFound: !!episode,
+      episodeDetails: episode ? {
+        id: episode.id,
+        title: episode.title, 
+        hasSummary: !!episode.summary,
+        hasCardSummary: !!episode.cardSummary
+      } : null
+    });
+    
+    // If the episode exists but doesn't have summaries (cardSummary/summary), 
+    // try to add them directly from the JSON
+    if (episode && episode.sourceUrl && (!episode.cardSummary || !episode.summary)) {
+      // Extract the path part from the URL (everything after discoverjesus.com/)
+      const urlPath = episode.sourceUrl.split('discoverjesus.com/')[1];
+      
+      // Debug the summary lookup
+      console.log('DEBUG SUMMARY LOOKUP:', {
+        urlPath,
+        summaryExists: !!discoverJesusSummaries[urlPath],
+        summaryData: discoverJesusSummaries[urlPath]
+      });
+      
+      // Get the summaries directly from the imported JSON
+      const summaryData = discoverJesusSummaries[urlPath];
+      
+      if (summaryData) {
+        return {
+          ...episode,
+          cardSummary: episode.cardSummary || summaryData.shortSummary,
+          summary: episode.summary || summaryData.fullSummary
+        };
+      }
+    }
+    
+    return episode;
   }
   
   // For other legacy series types
@@ -656,4 +780,12 @@ export const discoverJesusLinks: {
     { title: "Jesus Heals Josiah – the Blind Beggar", url: "https://discoverjesus.com/event/jesus-heals-josiah-the-blind-beggar" },
     { title: "Sanhedrin", url: "https://discoverjesus.com/group/sanhedrin" }
   ]
+}; 
+
+// Export for debugging
+export const debugData = {
+  summariesCount: (scraperSummaries as ScrapedSummary[]).length,
+  mappedCount: Object.keys(discoverJesusSummaries).length,
+  personalityOfGodData: discoverJesusSummaries["topic/the-personality-of-god"],
+  sampleData: (scraperSummaries as ScrapedSummary[]).slice(0, 3)
 }; 

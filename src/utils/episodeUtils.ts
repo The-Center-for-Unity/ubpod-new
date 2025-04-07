@@ -5,6 +5,7 @@ import {
   getEpisodeAudioPath
 } from './seriesUtils';
 import { getAudioUrl, getPdfUrl } from '../config/audio';
+import { discoverJesusSummaries } from '../data/discoverJesusSummaries';
 
 // Episode titles from the Series Organization markdown file
 const seriesEpisodeTitles: Record<string, string[]> = {
@@ -424,29 +425,81 @@ export function generateMockEpisodesForSeries(seriesId: string): Episode[] {
   const episodes: Episode[] = [];
   const totalEpisodes = seriesInfo.totalEpisodes || 5;
   const titles = seriesEpisodeTitles[seriesId] || [];
-  const loglines = seriesEpisodeLoglines[seriesId] || [];
   
   for (let i = 1; i <= totalEpisodes; i++) {
     const title = titles[i-1] || `Episode ${i}`;
-    const logline = loglines[i-1] || '';
     
-    // Use the audio URL function from config
+    // Use audio URL function from config
     const audioUrl = getAudioUrl(seriesId, i);
     
-    // Use the PDF URL function from config for PDFs
+    // Use PDF URL function from config
     const pdfUrl = getPdfUrl(seriesId, i);
     
-    episodes.push({
-      id: i,
-      title,
-      audioUrl,
-      pdfUrl,
-      series: seriesId as SeriesType,
-      description: `${seriesInfo.title} - ${title}`,
-      summary: seriesInfo.description || '',
-      cardSummary: logline || seriesInfo.description || '',
-      imageUrl: `/images/${seriesId}/card-${i}.jpg`
-    });
+    // Get the logline from the series info if available
+    const logline = seriesInfo.logline || '';
+    
+    // Special case for jesus-1 series to use our summaries from JSON
+    if (seriesId === 'jesus-1') {
+      // Set source URLs based on episode number
+      let sourceUrl = '';
+      switch (i) {
+        case 1:
+          sourceUrl = 'https://discoverjesus.com/topic/the-personality-of-god';
+          break;
+        case 2:
+          sourceUrl = 'https://discoverjesus.com/event/birth-and-infancy-of-jesus';
+          break;
+        case 3:
+          sourceUrl = 'https://discoverjesus.com/event/sojourn-in-alexandria';
+          break;
+        case 4:
+          sourceUrl = 'https://discoverjesus.com/event/jesus-first-passover-age-13';
+          break;
+        case 5:
+          sourceUrl = 'https://discoverjesus.com/event/the-great-temptation';
+          break;
+        default:
+          break;
+      }
+      
+      // Get the summaries for this episode
+      const summaries = sourceUrl ? getDiscoverJesusSummary(sourceUrl) : {};
+      
+      console.log('DEBUG generating jesus-1 episode:', {
+        episodeId: i,
+        title,
+        sourceUrl, 
+        hasSummaries: !!summaries,
+        hasCardSummary: !!summaries.cardSummary,
+        hasSummary: !!summaries.summary
+      });
+      
+      episodes.push({
+        id: i,
+        title,
+        audioUrl,
+        pdfUrl,
+        series: seriesId as SeriesType,
+        sourceUrl,
+        description: `${seriesInfo.title} - ${title}`,
+        summary: summaries.summary || seriesInfo.description || '',
+        cardSummary: summaries.cardSummary || logline || seriesInfo.description || '',
+        imageUrl: `/images/${seriesId}/card-${i}.jpg`
+      });
+    } else {
+      // Default behavior for other series
+      episodes.push({
+        id: i,
+        title,
+        audioUrl,
+        pdfUrl,
+        series: seriesId as SeriesType,
+        description: `${seriesInfo.title} - ${title}`,
+        summary: seriesInfo.description || '',
+        cardSummary: logline || seriesInfo.description || '',
+        imageUrl: `/images/${seriesId}/card-${i}.jpg`
+      });
+    }
   }
   
   return episodes;
@@ -559,4 +612,24 @@ export function generateAudioFileList(seriesId: string): string[] {
   }
   
   return fileList;
+}
+
+// Get the DiscoverJesus.com summary for an episode
+export function getDiscoverJesusSummary(sourceUrl: string | undefined): { cardSummary?: string; summary?: string } {
+  if (!sourceUrl) return {};
+  
+  // Extract the path part from the URL (everything after discoverjesus.com/)
+  const urlPath = sourceUrl.split('discoverjesus.com/')[1];
+  
+  // Look up the summary in our map
+  const summary = discoverJesusSummaries[urlPath];
+  
+  if (summary) {
+    return {
+      cardSummary: summary.shortSummary,
+      summary: summary.fullSummary
+    };
+  }
+  
+  return {};
 } 

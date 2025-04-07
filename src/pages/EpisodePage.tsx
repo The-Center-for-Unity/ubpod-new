@@ -597,7 +597,7 @@ export default function EpisodePage() {
 
   return (
     <Layout>
-      <div className="container mx-auto px-4 py-8">
+      <main className="container mx-auto px-4 py-8 max-w-6xl">
         {/* Back Button */}
         <button 
           onClick={() => navigate(getBackLink())}
@@ -822,10 +822,8 @@ export default function EpisodePage() {
                     onChange={handleVolumeChange}
                     className="w-full sm:w-24 h-7 accent-primary appearance-none bg-navy-light/70 rounded-full cursor-pointer"
                     style={{
-                      // Improve touch target size for mobile
                       WebkitAppearance: 'none',
                       appearance: 'none',
-                      // Custom track styling
                       background: `linear-gradient(to right, var(--color-primary) 0%, var(--color-primary) ${isMuted ? 0 : volume * 100}%, #374151 ${isMuted ? 0 : volume * 100}%, #374151 100%)`
                     }}
                   />
@@ -834,109 +832,7 @@ export default function EpisodePage() {
             </>
           )}
         </div>
-        
-        {/* PDF Viewer */}
-        {episode.pdfUrl && (
-          <div className="bg-navy-light/30 rounded-xl border border-white/10 p-6 mb-8">
-            <h2 className="text-xl font-semibold text-white mb-4">Read Along</h2>
-            <div className="flex flex-col items-center justify-center py-8">
-              <p className="text-white/70 mb-6">For the best reading experience, we recommend opening the PDF in a new tab.</p>
-              <a
-                href={episode.pdfUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 px-6 py-3 bg-primary text-white rounded-md hover:bg-primary-dark transition-colors"
-              >
-                <BookOpen size={20} />
-                <span>Open PDF in New Tab</span>
-              </a>
-            </div>
-          </div>
-        )}
-        
-        {/* Discover Jesus Links - Only show for Part 4 papers (120-196) */}
-        {episode.id >= 120 && episode.id <= 196 && discoverJesusLinks[episode.id] && (
-          <div className="bg-navy-light/30 rounded-xl border border-white/10 p-6 mb-8">
-            <h2 className="text-xl font-semibold text-white mb-4">Learn More on Discover Jesus</h2>
-            <p className="text-white/70 mb-6">
-              Explore related content about Jesus' life and teachings on DiscoverJesus.com:
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {discoverJesusLinks[episode.id].map((link, index) => (
-                <a
-                  key={index}
-                  href={link.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-between px-4 py-3 bg-navy-light/50 text-white/90 rounded-md hover:bg-navy-light transition-colors group"
-                >
-                  <span>{link.title}</span>
-                  <ExternalLink size={16} className="ml-2 text-white/50 group-hover:text-white transition-colors" />
-                </a>
-              ))}
-            </div>
-          </div>
-        )}
-        
-        {/* Navigation */}
-        <div className="flex justify-between mt-8 pt-4 border-t border-white/10">
-          {prevEpisode ? (
-            <button 
-              onClick={() => navigateToEpisode('prev')}
-              className="flex items-center text-white/70 hover:text-white group"
-            >
-              <ChevronLeft size={20} className="mr-1 group-hover:transform group-hover:-translate-x-1 transition-transform" />
-              <div className="text-left">
-                <span className="block text-xs text-white/50">Previous</span>
-                <span className="block">
-                  {prevEpisode.title.length > 25 ? prevEpisode.title.substring(0, 25) + '...' : prevEpisode.title}
-                </span>
-              </div>
-            </button>
-          ) : prevUrl ? (
-            <Link 
-              to={prevUrl}
-              className="flex items-center text-white/70 hover:text-white group"
-            >
-              <ChevronLeft size={20} className="mr-1 group-hover:transform group-hover:-translate-x-1 transition-transform" />
-              <div className="text-left">
-                <span className="block text-xs text-white/50">Previous</span>
-                <span className="block">Previous Episode</span>
-              </div>
-            </Link>
-          ) : (
-            <div></div>  /* Empty div to maintain layout */
-          )}
-          
-          {nextEpisode ? (
-            <button 
-              onClick={() => navigateToEpisode('next')}
-              className="flex items-center text-white/70 hover:text-white group"
-            >
-              <div className="text-right">
-                <span className="block text-xs text-white/50">Next</span>
-                <span className="block">
-                  {nextEpisode.title.length > 25 ? nextEpisode.title.substring(0, 25) + '...' : nextEpisode.title}
-                </span>
-              </div>
-              <ChevronLeft size={20} className="ml-1 transform rotate-180 group-hover:transform group-hover:translate-x-1 transition-transform" />
-            </button>
-          ) : nextUrl ? (
-            <Link 
-              to={nextUrl}
-              className="flex items-center text-white/70 hover:text-white group"
-            >
-              <div className="text-right">
-                <span className="block text-xs text-white/50">Next</span>
-                <span className="block">Next Episode</span>
-              </div>
-              <ChevronLeft size={20} className="ml-1 transform rotate-180 group-hover:transform group-hover:translate-x-1 transition-transform" />
-            </Link>
-          ) : (
-            <div></div>  /* Empty div to maintain layout */
-          )}
-        </div>
-      </div>
+      </main>
     </Layout>
   );
 }
