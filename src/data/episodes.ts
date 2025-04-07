@@ -1,6 +1,7 @@
 import { Episode } from '../types/index';
 import urantiaSummaries from './json/urantia_summaries.json';
 import { getAudioUrl, getPdfUrl } from '../config/audio';
+import { getEpisode as getEpisodeUtil } from '../utils/episodeUtils';
 
 // Define the structure of the summary data
 interface UrantiaSummary {
@@ -403,20 +404,34 @@ export function getSadlerWorkbooks(): Episode[] {
   return sadlerWorkbooksEpisodes;
 }
 
-// Helper function to get an episode by ID from any series
+/**
+ * Get an episode by ID and series
+ * @param id The episode ID
+ * @param series The series ID
+ * @returns The episode or undefined if not found
+ */
 export function getEpisodeById(id: number, series: string): Episode | undefined {
-  switch (series) {
-    case 'urantia-papers':
-      return urantiaEpisodes.find(ep => ep.id === id);
-    case 'discover-jesus':
-      return discoverJesusEpisodes.find(ep => ep.id === id);
-    case 'history':
-      return historyEpisodes.find(ep => ep.id === id);
-    case 'sadler-workbooks':
-      return sadlerWorkbooksEpisodes.find(ep => ep.id === id);
-    default:
+  // Check for new series IDs (jesus-1, jesus-2, cosmic-1, etc.)
+  if (series.startsWith('jesus-') || series.startsWith('cosmic-') || series.startsWith('series-platform-')) {
+    try {
+      // For new series IDs, use the utility function from episodeUtils
+      return getEpisodeUtil(series, id);
+    } catch (err) {
+      console.error(`Error getting episode for ${series}:${id}`, err);
       return undefined;
+    }
   }
+  
+  // Handle Urantia Papers specifically
+  if (series === 'urantia-papers') {
+    return urantiaEpisodes.find(ep => ep.id === id);
+  }
+  
+  // For other legacy series types
+  // (Implementation would depend on what other legacy series are available)
+  
+  // If we get here, we couldn't find the episode
+  return undefined;
 }
 
 // Define the DiscoverJesus links

@@ -1,16 +1,33 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Navigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Play, Pause, SkipBack, SkipForward, Volume2, VolumeX, Download, ChevronLeft, BookOpen, Share2, AlertTriangle, ExternalLink, Clock } from 'lucide-react';
 import Layout from '../components/layout/Layout';
 import { getEpisodeById, getUrantiaPaperPart, discoverJesusLinks } from '../data/episodes';
-import { Episode } from '../types/index';
+import { Episode, SeriesType } from '../types/index';
 import { useAudioAnalytics } from '../hooks/useAudioAnalytics';
+import { getEpisode as getEpisodeUtils } from '../utils/episodeUtils';
+import { getSeriesInfo } from '../utils/seriesUtils';
+import { mapLegacyUrl, getPlatformSeriesForPaper } from '../utils/urlUtils';
 
 export default function EpisodePage() {
-  const { id, series = 'urantia-papers' } = useParams<{ id: string; series?: string }>();
+  // Support both old format (/listen/:series/:id) and new format (/series/:seriesId/:episodeId)
+  const { 
+    id, 
+    series, 
+    seriesId, 
+    episodeId 
+  } = useParams<{ 
+    id?: string; 
+    series?: string; 
+    seriesId?: string; 
+    episodeId?: string; 
+  }>();
+  
   const navigate = useNavigate();
   const [episode, setEpisode] = useState<Episode | null>(null);
+  const [shouldRedirect, setShouldRedirect] = useState<boolean>(false);
+  const [redirectUrl, setRedirectUrl] = useState<string>("");
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -34,19 +51,20 @@ export default function EpisodePage() {
   useAudioAnalytics({
     audioRef,
     title: episode?.title || 'Unknown Episode',
-    id: episode?.id || id || 'unknown'
+    id: episode?.id?.toString() || id || episodeId || 'unknown'
   });
 
   // Load episode data
   useEffect(() => {
-    if (id) {
+    // Case 1: New URL format (/series/:seriesId/:episodeId)
+    if (seriesId && episodeId) {
       try {
-        const episodeData = getEpisodeById(parseInt(id), series);
+        const episodeData = getEpisodeUtils(seriesId, parseInt(episodeId, 10));
         if (episodeData) {
           setEpisode(episodeData);
           setIsLoading(false);
         } else {
-          setError(`Episode not found in ${series} series`);
+          setError(`Episode not found in ${seriesId} series`);
           setIsLoading(false);
         }
       } catch (err) {
@@ -54,7 +72,145 @@ export default function EpisodePage() {
         setIsLoading(false);
       }
     }
-  }, [id, series]);
+    // Case 2: Old URL format (/listen/:series/:id) - needs redirection to new format
+    else if (series && id) {
+      try {
+        // Validate the ID is a valid number
+        const episodeIdNumber = parseInt(id, 10);
+        if (isNaN(episodeIdNumber)) {
+          setError(`Invalid episode ID: ${id}`);
+          setIsLoading(false);
+          return;
+        }
+        
+        // Validate the series is recognized - include all valid series IDs
+        const validLegacySeries = ['urantia-papers', 'discover-jesus', 'history', 'sadler-workbooks'];
+        const validJesusSeries = Array.from({ length: 14 }, (_, i) => `jesus-${i + 1}`);
+        const validCosmicSeries = Array.from({ length: 14 }, (_, i) => `cosmic-${i + 1}`);
+        const validPlatformSeries = Array.from({ length: 4 }, (_, i) => `series-platform-${i + 1}`);
+        
+        const allValidSeries = [
+          ...validLegacySeries,
+          ...validJesusSeries,
+          ...validCosmicSeries,
+          ...validPlatformSeries
+        ];
+        
+        if (!allValidSeries.includes(series)) {
+          setError(`Unknown series: ${series}`);
+          setIsLoading(false);
+          return;
+        }
+        
+        // First, try to load the episode from the old data source
+        const oldEpisodeData = getEpisodeById(parseInt(id), series as string);
+        
+        if (oldEpisodeData) {
+          setEpisode(oldEpisodeData);
+          setIsLoading(false);
+          
+          // Don't redirect if it's the urantia-papers or jesus series to preserve existing links
+          if (series === 'urantia-papers' || series.startsWith('jesus-')) {
+            // Just keep the current URL
+            return;
+          }
+          
+          // Set up redirection to new URL format for other series
+          const { seriesId: newSeriesId, episodeId: newEpisodeId } = mapLegacyUrl(
+            series as string, 
+            id as string
+          );
+          const newUrl = `/series/${newSeriesId}/${newEpisodeId}`;
+          setRedirectUrl(newUrl);
+          
+          // Allow content to render first, then redirect
+          setTimeout(() => {
+            setShouldRedirect(true);
+          }, 500);
+        } else {
+          // Get series info to display in error message
+          const seriesInfo = getSeriesInfo(series as string);
+          const seriesTitle = seriesInfo ? seriesInfo.title : series;
+          
+          setError(`Episode ${episodeIdNumber} not found in ${seriesTitle} series`);
+          setIsLoading(false);
+        }
+      } catch (err) {
+        console.error('Error loading episode:', err);
+        setError('Failed to load episode');
+        setIsLoading(false);
+      }
+    }
+    // Case 3: Just episode ID from historical URLs (/episode/:id) - usually Urantia Papers
+    else if (id && !series && !seriesId) {
+      try {
+        // Assume it's a Urantia Paper
+        const paperNumber = parseInt(id as string, 10);
+        
+        // Handle case where the paper number isn't a valid number
+        if (isNaN(paperNumber)) {
+          setError(`Invalid paper number: ${id}`);
+          setIsLoading(false);
+          return;
+        }
+        
+        const paperSeriesId = getPlatformSeriesForPaper(paperNumber);
+        
+        // Calculate episode number within the series
+        let seriesEpisodeNumber: number;
+        if (paperNumber >= 1 && paperNumber <= 31) {
+          seriesEpisodeNumber = paperNumber;
+        } else if (paperNumber >= 32 && paperNumber <= 56) {
+          seriesEpisodeNumber = paperNumber - 31;
+        } else if (paperNumber >= 57 && paperNumber <= 119) {
+          seriesEpisodeNumber = paperNumber - 56;
+        } else if (paperNumber >= 120 && paperNumber <= 196) {
+          seriesEpisodeNumber = paperNumber - 119;
+        } else {
+          // Handle out of range paper numbers
+          setError(`Paper number ${paperNumber} is out of range`);
+          setIsLoading(false);
+          return;
+        }
+        
+        // Check if a paper with this number exists
+        try {
+          const oldEpisodeData = getEpisodeById(paperNumber, 'urantia-papers');
+          
+          if (!oldEpisodeData) {
+            setError(`Paper ${paperNumber} not found`);
+            setIsLoading(false);
+            return;
+          }
+        } catch (err) {
+          // Just continue with redirection anyway
+        }
+        
+        // Set up redirection to new URL format
+        const newUrl = `/series/${paperSeriesId}/${seriesEpisodeNumber}`;
+        setRedirectUrl(newUrl);
+        
+        // Allow content to render first, then redirect
+        setTimeout(() => {
+          setShouldRedirect(true);
+        }, 500);
+      } catch (err) {
+        setError('Failed to load episode');
+        setIsLoading(false);
+      }
+    } else {
+      setError('Invalid episode URL');
+      setIsLoading(false);
+    }
+  }, [id, series, seriesId, episodeId]);
+
+  // Perform redirection if needed
+  useEffect(() => {
+    if (shouldRedirect && redirectUrl) {
+      // Navigate programmatically instead of using the Navigate component
+      navigate(redirectUrl, { replace: true });
+    }
+  }, [shouldRedirect, redirectUrl, navigate]);
 
   // Initialize audio settings when component mounts
   useEffect(() => {
@@ -73,7 +229,7 @@ export default function EpisodePage() {
         console.error('Error setting initial playback speed:', err);
       }
     }
-  }, [volume, playbackSpeed]);
+  }, [volume, playbackSpeed, episode]);
 
   // Audio control functions
   const togglePlayPause = () => {
@@ -160,20 +316,31 @@ export default function EpisodePage() {
   };
 
   // Get part color based on paper ID
-  const getPartColor = (paperId: number) => {
-    const part = getUrantiaPaperPart(paperId);
-    switch (part) {
-      case 1: return 'border-blue-500/30 from-blue-500/20';
-      case 2: return 'border-green-500/30 from-green-500/20';
-      case 3: return 'border-amber-500/30 from-amber-500/20';
-      case 4: return 'border-rose-500/30 from-rose-500/20';
-      default: return 'border-gray-500/30 from-gray-500/20';
+  const getPartColor = (paperId: number, seriesType: string) => {
+    // For Urantia Papers series
+    if (seriesType === 'urantia-papers') {
+      const part = getUrantiaPaperPart(paperId);
+      switch (part) {
+        case 1: return 'border-blue-500/30 from-blue-500/20';
+        case 2: return 'border-green-500/30 from-green-500/20';
+        case 3: return 'border-amber-500/30 from-amber-500/20';
+        case 4: return 'border-rose-500/30 from-rose-500/20';
+        default: return 'border-gray-500/30 from-gray-500/20';
+      }
     }
+    
+    // For Jesus series
+    if (seriesType.startsWith('jesus-')) {
+      return 'border-rose-500/30 from-rose-500/20'; // Use the same color as Part 4 (Jesus)
+    }
+    
+    // Default fallback
+    return 'border-gray-500/30 from-gray-500/20';
   };
 
   // Navigate to previous or next episode
   const navigateToEpisode = (direction: 'prev' | 'next') => {
-    if (!episode) return;
+    if (!episode || !series) return;
     
     const targetId = direction === 'prev' 
       ? episode.id - 1 
@@ -181,7 +348,7 @@ export default function EpisodePage() {
     
     // Check if target episode exists
     try {
-      const targetEpisode = getEpisodeById(targetId, series);
+      const targetEpisode = getEpisodeById(targetId, series as string);
       if (targetEpisode) {
         navigate(`/listen/${series}/${targetId}`);
       }
@@ -191,8 +358,8 @@ export default function EpisodePage() {
   };
 
   // Get previous and next episode info for navigation
-  const prevEpisode = episode ? getEpisodeById(episode.id - 1, series) : null;
-  const nextEpisode = episode ? getEpisodeById(episode.id + 1, series) : null;
+  const prevEpisode = (episode && series) ? getEpisodeById(episode.id - 1, series as string) : null;
+  const nextEpisode = (episode && series) ? getEpisodeById(episode.id + 1, series as string) : null;
 
   const handleAudioError = () => {
     setAudioError(true);
@@ -291,28 +458,102 @@ export default function EpisodePage() {
     };
   }, [showSpeedControls]);
 
+  // Get series info for navigation
+  const currentSeriesInfo = seriesId ? getSeriesInfo(seriesId) : null;
+  
+  // Calculate the next and previous episode for new URL format
+  const getNextEpisodeUrl = () => {
+    if (!episodeId || !seriesId) return '';
+    
+    const currentEpisodeNumber = parseInt(episodeId, 10);
+    const seriesInfo = getSeriesInfo(seriesId);
+    
+    if (!seriesInfo || currentEpisodeNumber >= seriesInfo.totalEpisodes) {
+      return '';
+    }
+    
+    return `/series/${seriesId}/${currentEpisodeNumber + 1}`;
+  };
+  
+  const getPrevEpisodeUrl = () => {
+    if (!episodeId || !seriesId) return '';
+    
+    const currentEpisodeNumber = parseInt(episodeId, 10);
+    
+    if (currentEpisodeNumber <= 1) {
+      return '';
+    }
+    
+    return `/series/${seriesId}/${currentEpisodeNumber - 1}`;
+  };
+  
+  const nextUrl = getNextEpisodeUrl();
+  const prevUrl = getPrevEpisodeUrl();
+
+  // Get the appropriate back link based on series type
+  const getBackLink = () => {
+    if (!series && !seriesId) return '/series';
+    
+    if (series === 'urantia-papers') {
+      return '/urantia-papers';
+    } else if (series && series.startsWith('jesus-')) {
+      return `/series/${series}`;
+    } else if (seriesId && seriesId.startsWith('jesus-')) {
+      return `/series/${seriesId}`;
+    } else {
+      return '/series';
+    }
+  };
+  
+  // Get back button text based on series type
+  const getBackButtonText = () => {
+    if (series === 'urantia-papers') {
+      return 'Back to Papers';
+    } else if ((series && series.startsWith('jesus-')) || (seriesId && seriesId.startsWith('jesus-'))) {
+      return 'Back to Episodes';
+    } else {
+      return 'Back to Series';
+    }
+  };
+
+  // Render error state with improved UI
+  if (error) {
+    return (
+      <Layout>
+        <main className="min-h-screen bg-navy-dark flex items-center justify-center">
+          <div className="flex flex-col items-center text-center">
+            <h1 className="text-6xl font-bold text-white mb-6">ERROR</h1>
+            <p className="text-lg text-white/80 mb-10 max-w-lg">
+              {error}
+            </p>
+            
+            <div className="flex gap-4">
+              <Link
+                to={series && typeof series === 'string' ? `/series/${series}` : '/series'}
+                className="px-6 py-3 bg-gold text-navy-dark rounded-full hover:bg-gold-light transition-all duration-300 font-bold"
+              >
+                <ChevronLeft className="inline mr-2 h-5 w-5" />
+                Back to Series
+              </Link>
+              
+              <Link
+                to="/"
+                className="px-6 py-3 bg-navy-light/50 text-white rounded-full hover:bg-navy-light/70 transition-all duration-300 font-bold"
+              >
+                Home
+              </Link>
+            </div>
+          </div>
+        </main>
+      </Layout>
+    );
+  }
+
   if (isLoading) {
     return (
       <Layout>
         <div className="container mx-auto px-4 py-8 min-h-screen flex items-center justify-center">
           <div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
-        </div>
-      </Layout>
-    );
-  }
-
-  if (error && !episode) {
-    return (
-      <Layout>
-        <div className="container mx-auto px-4 py-8 min-h-screen flex flex-col items-center justify-center">
-          <h1 className="text-2xl font-bold text-white mb-4">Error</h1>
-          <p className="text-white/70 mb-6">{error || 'Episode not found'}</p>
-          <button 
-            onClick={() => navigate('/urantia-papers')}
-            className="bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary-dark transition-colors"
-          >
-            Back to Papers
-          </button>
         </div>
       </Layout>
     );
@@ -327,16 +568,18 @@ export default function EpisodePage() {
       <div className="container mx-auto px-4 py-8">
         {/* Back Button */}
         <button 
-          onClick={() => navigate('/urantia-papers')}
+          onClick={() => navigate(getBackLink())}
           className="flex items-center text-white/70 hover:text-white mb-6"
         >
           <ChevronLeft size={20} className="mr-1" />
-          <span>Back to Papers</span>
+          <span>
+            {getBackButtonText()}
+          </span>
         </button>
         
         {/* Episode Header */}
         <motion.div 
-          className={`rounded-xl p-8 mb-8 bg-gradient-to-r ${getPartColor(episode.id)} to-transparent border border-white/10`}
+          className={`rounded-xl p-8 mb-8 bg-gradient-to-r ${getPartColor(episode.id, episode.series)} to-transparent border border-white/10`}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -606,20 +849,24 @@ export default function EpisodePage() {
               <ChevronLeft size={20} className="mr-1 group-hover:transform group-hover:-translate-x-1 transition-transform" />
               <div className="text-left">
                 <span className="block text-xs text-white/50">Previous</span>
-                {series === 'urantia-papers' ? (
-                  <>
-                    <span className="hidden md:block">{prevEpisode.title}</span>
-                    <span className="block md:hidden">
-                      {prevEpisode.id === 0 ? 'Foreword' : `Paper ${prevEpisode.id}`}
-                    </span>
-                  </>
-                ) : (
-                  <span className="block">{prevEpisode.title.length > 25 ? prevEpisode.title.substring(0, 25) + '...' : prevEpisode.title}</span>
-                )}
+                <span className="block">
+                  {prevEpisode.title.length > 25 ? prevEpisode.title.substring(0, 25) + '...' : prevEpisode.title}
+                </span>
               </div>
             </button>
+          ) : prevUrl ? (
+            <Link 
+              to={prevUrl}
+              className="flex items-center text-white/70 hover:text-white group"
+            >
+              <ChevronLeft size={20} className="mr-1 group-hover:transform group-hover:-translate-x-1 transition-transform" />
+              <div className="text-left">
+                <span className="block text-xs text-white/50">Previous</span>
+                <span className="block">Previous Episode</span>
+              </div>
+            </Link>
           ) : (
-            <div></div> /* Empty div to maintain layout */
+            <div></div>  /* Empty div to maintain layout */
           )}
           
           {nextEpisode ? (
@@ -629,24 +876,28 @@ export default function EpisodePage() {
             >
               <div className="text-right">
                 <span className="block text-xs text-white/50">Next</span>
-                {series === 'urantia-papers' ? (
-                  <>
-                    <span className="hidden md:block">{nextEpisode.title}</span>
-                    <span className="block md:hidden">
-                      {nextEpisode.id === 0 ? 'Foreword' : `Paper ${nextEpisode.id}`}
-                    </span>
-                  </>
-                ) : (
-                  <span className="block">{nextEpisode.title.length > 25 ? nextEpisode.title.substring(0, 25) + '...' : nextEpisode.title}</span>
-                )}
+                <span className="block">
+                  {nextEpisode.title.length > 25 ? nextEpisode.title.substring(0, 25) + '...' : nextEpisode.title}
+                </span>
               </div>
               <ChevronLeft size={20} className="ml-1 transform rotate-180 group-hover:transform group-hover:translate-x-1 transition-transform" />
             </button>
+          ) : nextUrl ? (
+            <Link 
+              to={nextUrl}
+              className="flex items-center text-white/70 hover:text-white group"
+            >
+              <div className="text-right">
+                <span className="block text-xs text-white/50">Next</span>
+                <span className="block">Next Episode</span>
+              </div>
+              <ChevronLeft size={20} className="ml-1 transform rotate-180 group-hover:transform group-hover:translate-x-1 transition-transform" />
+            </Link>
           ) : (
-            <div></div> /* Empty div to maintain layout */
+            <div></div>  /* Empty div to maintain layout */
           )}
         </div>
       </div>
     </Layout>
   );
-} 
+}
