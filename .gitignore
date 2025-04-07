@@ -59,3 +59,7 @@ scripts/generated/
 public/audio/
 public/pdfs/
 .vercel
+
+# Export files
+docs/**/*.zip
+docs/**/Export-*.zip
