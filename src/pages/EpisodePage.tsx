@@ -1012,7 +1012,12 @@ export default function EpisodePage() {
                   <button 
                     onClick={() => navigateToEpisode('next')}
                     className="text-white/70 hover:text-white disabled:opacity-50"
-                    disabled={episode.id >= 196}
+                    disabled={episode.id >= (
+                      episode.series === 'urantia-papers' ? 196 : 
+                      episode.series.startsWith('jesus-') ? 5 : 
+                      episode.series.startsWith('cosmic-') ? 5 :
+                      5 // Default max for most series is 5 episodes
+                    )}
                   >
                     <SkipForward size={24} />
                   </button>
@@ -1097,14 +1102,16 @@ export default function EpisodePage() {
             onClick={() => navigateToEpisode('next')}
             disabled={episode.id >= (
               episode.series === 'urantia-papers' ? 196 : 
-              episode.series.startsWith('jesus-') ? 14 : 
-              20 // Default max for other series
+              episode.series.startsWith('jesus-') ? 5 : 
+              episode.series.startsWith('cosmic-') ? 5 :
+              5 // Default max for most series is 5 episodes
             )}
             className={`flex items-center gap-2 px-5 py-3 rounded-lg font-medium transition
               ${episode.id >= (
                 episode.series === 'urantia-papers' ? 196 : 
-                episode.series.startsWith('jesus-') ? 14 : 
-                20
+                episode.series.startsWith('jesus-') ? 5 : 
+                episode.series.startsWith('cosmic-') ? 5 :
+                5 // Default max for most series is 5 episodes
               )
                 ? 'bg-navy-light/30 text-white/30 cursor-not-allowed' 
                 : 'bg-navy-light hover:bg-navy text-white/90 hover:text-white'}`}
