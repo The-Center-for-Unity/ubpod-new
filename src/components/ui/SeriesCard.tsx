@@ -20,7 +20,7 @@ export default function SeriesCard({ series }: SeriesCardProps) {
         };
       case 'parts-i-iii':
         return {
-          text: 'Parts I-III',
+          text: 'Cosmic Series',
           className: 'bg-blue-400/20 text-blue-400'
         };
       default:

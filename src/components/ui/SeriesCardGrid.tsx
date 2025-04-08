@@ -35,7 +35,7 @@ export default function SeriesCardGrid() {
           className={`px-4 py-2 rounded-full transition-colors ${activeCategory === 'parts-i-iii' ? 'bg-primary text-white' : 'bg-navy-light/30 text-white/70 hover:bg-navy-light/50'}`}
           onClick={() => setActiveCategory('parts-i-iii')}
         >
-          Parts I-III Series
+          Cosmic Series
         </button>
       </div>
       

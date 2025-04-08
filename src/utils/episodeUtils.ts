@@ -7,6 +7,11 @@ import {
 import { getAudioUrl, getPdfUrl, JESUS_AUDIO_BASE_URL, URANTIA_AUDIO_BASE_URL } from '../config/audio';
 import { discoverJesusSummaries } from '../data/discoverJesusSummaries';
 import episodesData from '../data/json/episodes.json';
+import urantiaSummariesData from '../data/json/urantia_summaries.json';
+
+// Define the cosmic audio URL - use the same R2 backend that other audio files use
+// This should be updated to the actual URL when cosmic audio files are available
+const COSMIC_AUDIO_BASE_URL = import.meta.env.VITE_COSMIC_AUDIO_BASE_URL || URANTIA_AUDIO_BASE_URL;
 
 // Episode titles from the Series Organization markdown file
 const seriesEpisodeTitles: Record<string, string[]> = {
@@ -437,35 +442,43 @@ export function getEpisodesForSeries(seriesId: string): Episode[] {
     let cardSummary = '';
     
     if (summaryKey) {
-      const summaryData = discoverJesusSummaries[summaryKey];
-      if (summaryData) {
-        summary = summaryData.fullSummary;
-        cardSummary = summaryData.shortSummary;
-        console.log(`Found summary for: ${summaryKey}`);
+      // Check if this is a Urantia paper summary key (format: paper_X)
+      if (summaryKey.startsWith('paper_')) {
+        const paperNumber = parseInt(summaryKey.substring(6), 10);
+        console.log(`Looking for Urantia summary for paper number: ${paperNumber}`);
+        
+        // Find the matching paper in urantiaSummariesData
+        const paperSummary = urantiaSummariesData.find(paper => paper.paper_number === paperNumber);
+        
+        if (paperSummary) {
+          summary = paperSummary.episode_page;
+          cardSummary = paperSummary.episode_card;
+          console.log(`Found Urantia summary for paper: ${paperNumber}`);
+        } else {
+          console.log(`No Urantia summary found for paper: ${paperNumber}`);
+        }
       } else {
-        console.log(`No summary found for: ${summaryKey}`);
+        // Handle original DiscoverJesus summaries
+        const summaryData = discoverJesusSummaries[summaryKey];
+        if (summaryData) {
+          summary = summaryData.fullSummary;
+          cardSummary = summaryData.shortSummary;
+          console.log(`Found DiscoverJesus summary for: ${summaryKey}`);
+        } else {
+          console.log(`No DiscoverJesus summary found for: ${summaryKey}`);
+        }
       }
-    }
-    
-    // Determine the base URL based on the series
-    let audioUrl = episodeData.audioUrl;
-    if (seriesId.startsWith('jesus-')) {
-      // Use the Jesus audio base URL and encode the filename
-      audioUrl = `${JESUS_AUDIO_BASE_URL}/${encodeURIComponent(audioUrl)}`;
-    } else if (seriesId === 'urantia-papers') {
-      // Use the Urantia papers base URL
-      audioUrl = `${URANTIA_AUDIO_BASE_URL}/${audioUrl}`;
-    } else {
-      // Default for other series
-      audioUrl = `${JESUS_AUDIO_BASE_URL}/${audioUrl}`;
     }
     
     // Create the proper sourceUrl for DiscoverJesus.com if we have a summaryKey
     let sourceUrl = '';
-    if (summaryKey && seriesId.startsWith('jesus-')) {
+    if (summaryKey && seriesId.startsWith('jesus-') && !summaryKey.startsWith('paper_')) {
       sourceUrl = `https://discoverjesus.com/${summaryKey}`;
       console.log(`Created source URL: ${sourceUrl}`);
     }
+    
+    // Determine the base URL based on the series
+    let audioUrl = episodeData.audioUrl;
     
     // Set PDF URL - for now, let's just make sure it's a valid URL or undefined
     let pdfUrl: string | undefined = undefined;
@@ -478,6 +491,145 @@ export function getEpisodesForSeries(seriesId: string): Episode[] {
       // But let's disable this for now until we confirm they exist
       // pdfUrl = `${sourceUrl}/pdf`;
       console.log(`No PDF URL in data, and not using external PDFs for now`);
+    }
+    
+    if (seriesId.startsWith('jesus-')) {
+      // Use the Jesus audio base URL and encode the filename
+      audioUrl = `${JESUS_AUDIO_BASE_URL}/${encodeURIComponent(audioUrl)}`;
+    } else if (seriesId === 'urantia-papers') {
+      // Use the Urantia papers base URL
+      audioUrl = `${URANTIA_AUDIO_BASE_URL}/${audioUrl}`;
+    } else if (seriesId.startsWith('cosmic-')) {
+      // For cosmic series, convert to appropriate paper format
+      // Extract the episode number (e.g., "cosmic-1-3.mp3" → 3)
+      const match = audioUrl.match(/cosmic-\d+-(\d+)\.mp3$/);
+      const episodeNumber = match ? parseInt(match[1], 10) : null;
+      
+      // Map episode numbers to corresponding paper numbers
+      // For example, cosmic-1-1 might correspond to Paper 1
+      const seriesNum = parseInt(seriesId.split('-')[1], 10);
+      let paperNumber: number | null = null;
+      
+      // Series specific mappings based on series organization
+      switch(seriesId) {
+        case 'cosmic-1':
+          // Map to papers 1, 12, 13, 15, 42
+          const paper1Mapping = [1, 12, 13, 15, 42];
+          paperNumber = episodeNumber && episodeNumber <= 5 ? paper1Mapping[episodeNumber - 1] : null;
+          break;
+        case 'cosmic-2':
+          // Map to papers on eternal son, infinite spirit, trinity, etc.
+          const paper2Mapping = [6, 8, 10, 20, 16];
+          paperNumber = episodeNumber && episodeNumber <= 5 ? paper2Mapping[episodeNumber - 1] : null;
+          break;
+        case 'cosmic-3':
+          // Map to papers on Thought Adjusters
+          const paper3Mapping = [107, 108, 110, 111, 112];
+          paperNumber = episodeNumber && episodeNumber <= 5 ? paper3Mapping[episodeNumber - 1] : null;
+          break;
+        case 'cosmic-4':
+          // Map to papers on Local Universe
+          const paper4Mapping = [32, 33, 34, 35, 41];
+          paperNumber = episodeNumber && episodeNumber <= 5 ? paper4Mapping[episodeNumber - 1] : null;
+          break;
+        case 'cosmic-5':
+          // Map to papers on Angels
+          const paper5Mapping = [38, 39, 113, 114, 77];
+          paperNumber = episodeNumber && episodeNumber <= 5 ? paper5Mapping[episodeNumber - 1] : null;
+          break;
+        case 'cosmic-6':
+          // Map to papers on Ascension Career
+          const paper6Mapping = [40, 47, 48, 31, 56];
+          paperNumber = episodeNumber && episodeNumber <= 5 ? paper6Mapping[episodeNumber - 1] : null;
+          break;
+        case 'cosmic-7':
+          // Map to papers on Urantia History
+          const paper7Mapping = [57, 58, 62, 64, 66];
+          paperNumber = episodeNumber && episodeNumber <= 5 ? paper7Mapping[episodeNumber - 1] : null;
+          break;
+        case 'cosmic-8':
+          // Map to papers on Lucifer Rebellion
+          const paper8Mapping = [53, 54, 67, 75, 66];
+          paperNumber = episodeNumber && episodeNumber <= 5 ? paper8Mapping[episodeNumber - 1] : null;
+          break;
+        case 'cosmic-9':
+          // Map to papers on Adam and Eve
+          const paper9Mapping = [73, 74, 76, 78, 75];
+          paperNumber = episodeNumber && episodeNumber <= 5 ? paper9Mapping[episodeNumber - 1] : null;
+          break;
+        case 'cosmic-10':
+          // Map to papers on Melchizedek
+          const paper10Mapping = [93, 94, 95, 96, 98];
+          paperNumber = episodeNumber && episodeNumber <= 5 ? paper10Mapping[episodeNumber - 1] : null;
+          break;
+        case 'cosmic-11':
+          // Map to papers on Religion Evolution
+          const paper11Mapping = [85, 86, 87, 89, 92];
+          paperNumber = episodeNumber && episodeNumber <= 5 ? paper11Mapping[episodeNumber - 1] : null;
+          break;
+        case 'cosmic-12':
+          // Map to papers on Religion in Human Experience
+          const paper12Mapping = [100, 101, 102, 103, 196];
+          paperNumber = episodeNumber && episodeNumber <= 5 ? paper12Mapping[episodeNumber - 1] : null;
+          break;
+        case 'cosmic-13':
+          // Map to papers on Supreme Being
+          const paper13Mapping = [0, 105, 115, 116, 117];
+          paperNumber = episodeNumber && episodeNumber <= 5 ? paper13Mapping[episodeNumber - 1] : null;
+          break;
+        case 'cosmic-14':
+          // Map to papers on Trinity Relations of Deity
+          const paper14Mapping = [4, 5, 7, 9, 10];
+          paperNumber = episodeNumber && episodeNumber <= 5 ? paper14Mapping[episodeNumber - 1] : null;
+          break;
+        default:
+          // If no specific mapping, use generic approach
+          paperNumber = null;
+      }
+      
+      if (paperNumber !== null) {
+        if (paperNumber === 0) {
+          // Special case for Foreword
+          audioUrl = `${URANTIA_AUDIO_BASE_URL}/foreword.mp3`;
+          
+          // Also set PDF URL for foreword
+          if (episodeData.pdfUrl) {
+            pdfUrl = `${URANTIA_AUDIO_BASE_URL}/foreword.pdf`;
+          }
+          
+          // If we don't have summary from the paper_0 summaryKey, try to get it from urantiaSummariesData
+          if (!summary || !cardSummary) {
+            const forewordSummary = urantiaSummariesData.find(paper => paper.paper_number === 0);
+            if (forewordSummary) {
+              summary = forewordSummary.episode_page;
+              cardSummary = forewordSummary.episode_card;
+            }
+          }
+        } else {
+          // Regular paper
+          audioUrl = `${URANTIA_AUDIO_BASE_URL}/paper-${paperNumber}.mp3`;
+          
+          // Also set PDF URL to the corresponding Urantia paper
+          if (episodeData.pdfUrl) {
+            pdfUrl = `${URANTIA_AUDIO_BASE_URL}/paper-${paperNumber}.pdf`;
+          }
+          
+          // If we don't have summary from the paper_X summaryKey, try to get it from urantiaSummariesData
+          if (!summary || !cardSummary) {
+            const paperSummary = urantiaSummariesData.find(paper => paper.paper_number === paperNumber);
+            if (paperSummary) {
+              summary = paperSummary.episode_page;
+              cardSummary = paperSummary.episode_card;
+            }
+          }
+        }
+      } else {
+        // Fallback to direct URL format if no mapping exists
+        audioUrl = `${COSMIC_AUDIO_BASE_URL}/${audioUrl}`;
+      }
+    } else {
+      // Default for other series
+      audioUrl = `${JESUS_AUDIO_BASE_URL}/${audioUrl}`;
     }
     
     // Build the complete Episode object

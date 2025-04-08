@@ -48,7 +48,7 @@ export default function UrantiaPapersTimelinePage() {
       const query = searchQuery.toLowerCase();
       filtered = filtered.filter(paper => 
         paper.title.toLowerCase().includes(query) || 
-        paper.description.toLowerCase().includes(query) ||
+        (paper.description && paper.description.toLowerCase().includes(query)) ||
         paper.id.toString() === query
       );
     }
@@ -105,7 +105,7 @@ export default function UrantiaPapersTimelinePage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h1 className="title-main mb-4">The Urantia Papers</h1>
+          <h1 className="title-main text-xl md:text-2xl lg:text-3xl mb-4">The Urantia Papers</h1>
           <p className="body-lg max-w-3xl">
             Explore all 197 papers of the Urantia Book through AI-narrated episodes.
             Listen while reading along with the original text.

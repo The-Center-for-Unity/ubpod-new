@@ -67,6 +67,11 @@ export function mapLegacyUrl(oldSeries: string | undefined, episodeId: string | 
     }
   }
   
+  // For cosmic series, keep the same series ID (no mapping)
+  if (series.startsWith('cosmic-')) {
+    return { seriesId: series, episodeId: id };
+  }
+  
   // For other legacy series, use the mapping table
   const newSeriesId = legacySeriesMap[series] || 'series-platform-1';
   return { seriesId: newSeriesId, episodeId: id };

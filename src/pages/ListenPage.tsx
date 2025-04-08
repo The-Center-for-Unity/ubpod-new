@@ -46,7 +46,7 @@ export default function ListenPage() {
       case 'jesus-focused':
         return 'Jesus-Focused Series';
       case 'parts-i-iii':
-        return 'Parts I-III Series';
+        return 'Cosmic Series';
       default:
         return 'Series';
     }

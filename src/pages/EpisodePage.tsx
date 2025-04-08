@@ -60,7 +60,117 @@ export default function EpisodePage() {
     // Case 1: New URL format (/series/:seriesId/:episodeId)
     if (seriesId && episodeId) {
       try {
-        const episodeData = getEpisodeUtils(seriesId, parseInt(episodeId, 10));
+        let episodeData = getEpisodeUtils(seriesId, parseInt(episodeId, 10));
+        
+        // Special handling for cosmic series - make them mirror the Urantia Papers exactly
+        if (seriesId.startsWith('cosmic-')) {
+          // Extract series number and episode number
+          const seriesNum = parseInt(seriesId.split('-')[1], 10);
+          const episodeNum = parseInt(episodeId, 10);
+          
+          // Map to the corresponding paper number
+          let mappedPaperNumber: number | null = null;
+          
+          // Use the same mapping as in episodeUtils.ts
+          switch(seriesId) {
+            case 'cosmic-1':
+              const paper1Mapping = [1, 12, 13, 15, 42];
+              mappedPaperNumber = episodeNum && episodeNum <= 5 ? paper1Mapping[episodeNum - 1] : null;
+              break;
+            case 'cosmic-2':
+              const paper2Mapping = [6, 8, 10, 20, 16];
+              mappedPaperNumber = episodeNum && episodeNum <= 5 ? paper2Mapping[episodeNum - 1] : null;
+              break;
+            case 'cosmic-3':
+              const paper3Mapping = [107, 108, 110, 111, 112];
+              mappedPaperNumber = episodeNum && episodeNum <= 5 ? paper3Mapping[episodeNum - 1] : null;
+              break;
+            case 'cosmic-4':
+              const paper4Mapping = [32, 33, 34, 35, 41];
+              mappedPaperNumber = episodeNum && episodeNum <= 5 ? paper4Mapping[episodeNum - 1] : null;
+              break;
+            case 'cosmic-5':
+              const paper5Mapping = [38, 39, 113, 114, 77];
+              mappedPaperNumber = episodeNum && episodeNum <= 5 ? paper5Mapping[episodeNum - 1] : null;
+              break;
+            case 'cosmic-6':
+              const paper6Mapping = [40, 47, 48, 31, 56];
+              mappedPaperNumber = episodeNum && episodeNum <= 5 ? paper6Mapping[episodeNum - 1] : null;
+              break;
+            case 'cosmic-7':
+              const paper7Mapping = [57, 58, 62, 64, 66];
+              mappedPaperNumber = episodeNum && episodeNum <= 5 ? paper7Mapping[episodeNum - 1] : null;
+              break;
+            case 'cosmic-8':
+              const paper8Mapping = [53, 54, 67, 75, 66];
+              mappedPaperNumber = episodeNum && episodeNum <= 5 ? paper8Mapping[episodeNum - 1] : null;
+              break;
+            case 'cosmic-9':
+              const paper9Mapping = [73, 74, 76, 78, 75];
+              mappedPaperNumber = episodeNum && episodeNum <= 5 ? paper9Mapping[episodeNum - 1] : null;
+              break;
+            case 'cosmic-10':
+              const paper10Mapping = [93, 94, 95, 96, 98];
+              mappedPaperNumber = episodeNum && episodeNum <= 5 ? paper10Mapping[episodeNum - 1] : null;
+              break;
+            case 'cosmic-11':
+              const paper11Mapping = [85, 86, 87, 89, 92];
+              mappedPaperNumber = episodeNum && episodeNum <= 5 ? paper11Mapping[episodeNum - 1] : null;
+              break;
+            case 'cosmic-12':
+              const paper12Mapping = [100, 101, 102, 103, 196];
+              mappedPaperNumber = episodeNum && episodeNum <= 5 ? paper12Mapping[episodeNum - 1] : null;
+              break;
+            case 'cosmic-13':
+              const paper13Mapping = [0, 105, 115, 116, 117];
+              mappedPaperNumber = episodeNum && episodeNum <= 5 ? paper13Mapping[episodeNum - 1] : null;
+              break;
+            case 'cosmic-14':
+              const paper14Mapping = [4, 5, 7, 9, 10];
+              mappedPaperNumber = episodeNum && episodeNum <= 5 ? paper14Mapping[episodeNum - 1] : null;
+              break;
+          }
+          
+          if (mappedPaperNumber !== null) {
+            // Get the corresponding Urantia paper
+            // Handle the foreword as a special case
+            if (mappedPaperNumber === 0) {
+              // For foreword (paper 0), we need to handle it specially
+              try {
+                // Try to get the foreword episode by ID 0
+                const forewordEpisode = getEpisodeUtils('urantia-papers', 0);
+                if (forewordEpisode) {
+                  const originalUrl = episodeData?.audioUrl;
+                  episodeData = {
+                    ...forewordEpisode,
+                    series: seriesId as SeriesType,
+                    id: episodeNum,
+                    audioUrl: originalUrl || forewordEpisode.audioUrl
+                  };
+                }
+              } catch (error) {
+                console.error("Error loading foreword:", error);
+              }
+            } else {
+              // For regular papers, use the paper number directly
+              const urantiaEpisode = getEpisodeUtils('urantia-papers', mappedPaperNumber);
+              
+              if (urantiaEpisode) {
+                // Override the episode data with the Urantia paper data, but keep the original URL
+                const originalUrl = episodeData?.audioUrl;
+                episodeData = {
+                  ...urantiaEpisode,
+                  series: seriesId as SeriesType,
+                  // Keep the original series ID for navigation purposes
+                  id: episodeNum,
+                  // Keep the cosmic URL pattern for consistency with nav links
+                  audioUrl: originalUrl || urantiaEpisode.audioUrl
+                };
+              }
+            }
+          }
+        }
+        
         if (episodeData) {
           setEpisode(episodeData);
           setIsLoading(false);
@@ -110,8 +220,8 @@ export default function EpisodePage() {
           setEpisode(oldEpisodeData);
           setIsLoading(false);
           
-          // Don't redirect if it's the urantia-papers or jesus series to preserve existing links
-          if (series === 'urantia-papers' || series.startsWith('jesus-')) {
+          // Don't redirect if it's the urantia-papers, jesus-series, or cosmic-series to preserve those links
+          if (series === 'urantia-papers' || series.startsWith('jesus-') || series.startsWith('cosmic-')) {
             // Just keep the current URL
             return;
           }
@@ -364,7 +474,13 @@ export default function EpisodePage() {
 
   const handleAudioError = () => {
     setAudioError(true);
-    setError('Audio file not found or cannot be played. Please check that the file exists at the specified path.');
+    
+    // Display a more specific message for cosmic series since they're not available yet
+    if (episode?.series?.startsWith('cosmic-')) {
+      setError('The audio for this cosmic series episode is not available yet. We are currently working on generating these files.');
+    } else {
+      setError('Failed to load audio file. Please try again later.');
+    }
   };
 
   const handlePdfError = () => {
@@ -554,35 +670,103 @@ export default function EpisodePage() {
     setSummaryExpanded(!summaryExpanded);
   };
 
-  // Render error state with improved UI
-  if (error) {
+  // Near the top of the component, add a function to format the title:
+  const formatTitle = (title: string, seriesId: string | undefined, episodeId: string | number | undefined) => {
+    // For cosmic series, ensure we show the "PAPER X:" prefix if it's not already there
+    if (seriesId?.startsWith('cosmic-')) {
+      // Extract the mapped paper number
+      const seriesNum = parseInt(seriesId.split('-')[1], 10);
+      const episodeNum = parseInt(String(episodeId), 10);
+      let mappedPaperNumber: number | null = null;
+      
+      // Same mapping logic as above
+      switch(seriesId) {
+        case 'cosmic-1':
+          const paper1Mapping = [1, 12, 13, 15, 42];
+          mappedPaperNumber = episodeNum && episodeNum <= 5 ? paper1Mapping[episodeNum - 1] : null;
+          break;
+        case 'cosmic-2':
+          const paper2Mapping = [6, 8, 10, 20, 16];
+          mappedPaperNumber = episodeNum && episodeNum <= 5 ? paper2Mapping[episodeNum - 1] : null;
+          break;
+        case 'cosmic-3':
+          const paper3Mapping = [107, 108, 110, 111, 112];
+          mappedPaperNumber = episodeNum && episodeNum <= 5 ? paper3Mapping[episodeNum - 1] : null;
+          break;
+        case 'cosmic-4':
+          const paper4Mapping = [32, 33, 34, 35, 41];
+          mappedPaperNumber = episodeNum && episodeNum <= 5 ? paper4Mapping[episodeNum - 1] : null;
+          break;
+        case 'cosmic-5':
+          const paper5Mapping = [38, 39, 113, 114, 77];
+          mappedPaperNumber = episodeNum && episodeNum <= 5 ? paper5Mapping[episodeNum - 1] : null;
+          break;
+        case 'cosmic-6':
+          const paper6Mapping = [40, 47, 48, 31, 56];
+          mappedPaperNumber = episodeNum && episodeNum <= 5 ? paper6Mapping[episodeNum - 1] : null;
+          break;
+        case 'cosmic-7':
+          const paper7Mapping = [57, 58, 62, 64, 66];
+          mappedPaperNumber = episodeNum && episodeNum <= 5 ? paper7Mapping[episodeNum - 1] : null;
+          break;
+        case 'cosmic-8':
+          const paper8Mapping = [53, 54, 67, 75, 66];
+          mappedPaperNumber = episodeNum && episodeNum <= 5 ? paper8Mapping[episodeNum - 1] : null;
+          break;
+        case 'cosmic-9':
+          const paper9Mapping = [73, 74, 76, 78, 75];
+          mappedPaperNumber = episodeNum && episodeNum <= 5 ? paper9Mapping[episodeNum - 1] : null;
+          break;
+        case 'cosmic-10':
+          const paper10Mapping = [93, 94, 95, 96, 98];
+          mappedPaperNumber = episodeNum && episodeNum <= 5 ? paper10Mapping[episodeNum - 1] : null;
+          break;
+        case 'cosmic-11':
+          const paper11Mapping = [85, 86, 87, 89, 92];
+          mappedPaperNumber = episodeNum && episodeNum <= 5 ? paper11Mapping[episodeNum - 1] : null;
+          break;
+        case 'cosmic-12':
+          const paper12Mapping = [100, 101, 102, 103, 196];
+          mappedPaperNumber = episodeNum && episodeNum <= 5 ? paper12Mapping[episodeNum - 1] : null;
+          break;
+        case 'cosmic-13':
+          const paper13Mapping = [0, 105, 115, 116, 117];
+          mappedPaperNumber = episodeNum && episodeNum <= 5 ? paper13Mapping[episodeNum - 1] : null;
+          break;
+        case 'cosmic-14':
+          const paper14Mapping = [4, 5, 7, 9, 10];
+          mappedPaperNumber = episodeNum && episodeNum <= 5 ? paper14Mapping[episodeNum - 1] : null;
+          break;
+      }
+      
+      if (mappedPaperNumber) {
+        // Special case for foreword
+        if (mappedPaperNumber === 0) {
+          return "FOREWORD";
+        }
+        
+        // Check if title already has "PAPER X:" prefix
+        if (!title.toUpperCase().includes('PAPER')) {
+          return `PAPER ${mappedPaperNumber}: ${title}`;
+        }
+      }
+    }
+    return title;
+  };
+
+  // Show error if any
+  if (error && !episode) {
     return (
       <Layout>
-        <main className="min-h-screen bg-navy-dark flex items-center justify-center">
-          <div className="flex flex-col items-center text-center">
-            <h1 className="text-6xl font-bold text-white mb-6">ERROR</h1>
-            <p className="text-lg text-white/80 mb-10 max-w-lg">
-              {error}
-            </p>
-            
-            <div className="flex gap-4">
-              <Link
-                to={series && typeof series === 'string' ? `/series/${series}` : '/series'}
-                className="px-6 py-3 bg-gold text-navy-dark rounded-full hover:bg-gold-light transition-all duration-300 font-bold"
-              >
-                <ChevronLeft className="inline mr-2 h-5 w-5" />
-                Back to Series
-              </Link>
-              
-              <Link
-                to="/"
-                className="px-6 py-3 bg-navy-light/50 text-white rounded-full hover:bg-navy-light/70 transition-all duration-300 font-bold"
-              >
-                Home
-              </Link>
-            </div>
+        <div className="container mx-auto px-4 py-8">
+          <div className="bg-red-50 border border-red-200 rounded-lg p-4 text-red-800">
+            <p className="font-medium">Error</p>
+            <p>{error}</p>
+            <Link to="/" className="mt-4 inline-block bg-primary text-white px-4 py-2 rounded-lg">
+              Return Home
+            </Link>
           </div>
-        </main>
+        </div>
       </Layout>
     );
   }
@@ -626,7 +810,9 @@ export default function EpisodePage() {
             <div>
               <div className="flex items-center">
                 <span className="text-primary text-2xl font-bold mr-3">{episode.id}</span>
-                <h1 className="title-main text-2xl md:text-4xl lg:text-5xl">{episode.title}</h1>
+                <h1 className="title-main text-xl md:text-2xl lg:text-3xl">
+                  {formatTitle(episode.title, episode.series, episode.id)}
+                </h1>
               </div>
               
               {/* Add logline here */}
@@ -757,37 +943,33 @@ export default function EpisodePage() {
         {/* Audio Player */}
         <div className="bg-navy-light/30 rounded-xl border border-white/10 p-6 mb-8">
           {audioError ? (
-            <div className="flex flex-col items-center justify-center py-8 text-center">
-              <AlertTriangle size={48} className="text-amber-500 mb-4" />
-              <h3 className="text-xl font-semibold text-white mb-2">Audio Unavailable</h3>
-              <p className="text-white/70 max-w-lg mb-4">
-                Audio file could not be loaded. Please check that the file exists at the specified path.
-              </p>
-              <div className="flex gap-4">
-                <button 
-                  onClick={() => navigate('/urantia-papers')}
-                  className="bg-navy-light text-white px-4 py-2 rounded-md hover:bg-navy transition-colors"
-                >
-                  Back to Papers
-                </button>
-                <button
-                  onClick={handleViewAudioUrl}
-                  className="bg-primary text-white px-4 py-2 rounded-md hover:bg-primary-dark transition-colors"
-                >
-                  View Audio URL
-                </button>
+            <div className="bg-orange-50 border border-orange-200 rounded-lg p-4 text-orange-800 mb-6">
+              <div className="flex items-start">
+                <AlertTriangle className="h-5 w-5 mr-2 flex-shrink-0 mt-0.5" />
+                <div>
+                  <p className="font-medium">Audio Not Available</p>
+                  <p>{error}</p>
+                  {episode?.series?.startsWith('cosmic-') && (
+                    <p className="mt-2 text-sm">
+                      The cosmic series audio files are still being created. You can continue exploring the text content below.
+                    </p>
+                  )}
+                </div>
               </div>
             </div>
           ) : (
             <>
               <audio
                 ref={audioRef}
-                src={decodeAudioUrl(episode.audioUrl)}
                 onTimeUpdate={handleTimeUpdate}
                 onLoadedMetadata={handleLoadedMetadata}
                 onEnded={() => setIsPlaying(false)}
                 onError={handleAudioError}
-              />
+                className="hidden"
+              >
+                <source src={decodeAudioUrl(episode.audioUrl)} type="audio/mpeg" />
+                Your browser does not support the audio element.
+              </audio>
               
               {/* Progress Bar */}
               <div 

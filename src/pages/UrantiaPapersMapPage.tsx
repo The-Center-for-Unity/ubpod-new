@@ -38,7 +38,7 @@ export default function UrantiaPapersMapPage() {
     const query = searchQuery.toLowerCase();
     const filtered = papers.filter(paper => 
       paper.title.toLowerCase().includes(query) || 
-      paper.description.toLowerCase().includes(query) ||
+      (paper.description && paper.description.toLowerCase().includes(query)) ||
       paper.id.toString() === query
     );
     
@@ -126,7 +126,7 @@ export default function UrantiaPapersMapPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h1 className="title-main mb-4">The Urantia Papers</h1>
+          <h1 className="title-main text-xl md:text-2xl lg:text-3xl mb-4">The Urantia Papers</h1>
           <p className="body-lg max-w-3xl">
             Explore all 197 papers of the Urantia Book through this visual map.
             Each dot represents a paper, color-coded by part.
