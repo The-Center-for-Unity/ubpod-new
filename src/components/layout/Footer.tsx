@@ -49,6 +49,11 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link to="/series" className="body-lg text-white/70 hover:text-white/90 transition-colors">
+                  Series Collections
+                </Link>
+              </li>
+              <li>
                 <Link to="/disclaimer" className="body-lg text-white/70 hover:text-white/90 transition-colors">
                   Disclaimer
                 </Link>

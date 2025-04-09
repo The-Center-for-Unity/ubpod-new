@@ -6,9 +6,10 @@ import { SeriesType } from '../../types/index';
 
 interface SeriesNavigationProps {
   currentSeries?: SeriesType;
+  hideTitle?: boolean;
 }
 
-export default function SeriesNavigation({ currentSeries }: SeriesNavigationProps) {
+export default function SeriesNavigation({ currentSeries, hideTitle = false }: SeriesNavigationProps) {
   const [activeCategory, setActiveCategory] = useState<'all' | 'jesus-focused' | 'parts-i-iii'>('all');
   
   // Get series based on selected category
@@ -23,7 +24,9 @@ export default function SeriesNavigation({ currentSeries }: SeriesNavigationProp
   
   return (
     <div className="bg-navy-dark rounded-lg p-6">
-      <h2 className="title-subtitle mb-4">Podcast Series</h2>
+      {!hideTitle && (
+        <h2 className="title-subtitle mb-4">PODCAST SERIES</h2>
+      )}
       
       {/* Category tabs */}
       <div className="flex flex-wrap gap-2 mb-4 text-sm">

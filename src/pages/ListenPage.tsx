@@ -72,20 +72,9 @@ export default function ListenPage() {
         {seriesInfo && (
           <div className="bg-navy py-8 mb-12">
             <div className="container mx-auto px-4">
-              <div className="flex flex-col md:flex-row items-start gap-8">
-                {/* Image */}
-                <div className="md:w-1/3 lg:w-1/4">
-                  <div className="rounded-lg overflow-hidden shadow-xl">
-                    <img 
-                      src={seriesInfo.imageSrc} 
-                      alt={seriesInfo.title} 
-                      className="w-full h-auto object-cover aspect-square" 
-                    />
-                  </div>
-                </div>
-                
-                {/* Info */}
-                <div className="md:w-2/3 lg:w-3/4">
+              <div className="flex flex-col">
+                {/* Info - now full width without the image */}
+                <div className="w-full">
                   <div className={`inline-block px-3 py-1 rounded-full text-xs font-semibold tracking-wide text-white mb-4 ${getCategoryBadgeClass()}`}>
                     {getCategoryBadgeText()}
                   </div>
@@ -113,11 +102,26 @@ export default function ListenPage() {
         )}
         
         <div className="container mx-auto px-4">
+          {/* Section Titles Row - Added to align titles */}
+          <div className="flex mb-6">
+            <div className="lg:w-1/4 xl:w-1/5">
+              <h2 className="title-subtitle text-xl tracking-[0.15em] text-gold">
+                PODCAST SERIES
+              </h2>
+            </div>
+            <div className="lg:w-3/4 xl:w-4/5">
+              <h2 className="title-subtitle text-xl tracking-[0.15em] text-gold">
+                EPISODES
+              </h2>
+            </div>
+          </div>
+          
           <div className="flex flex-col lg:flex-row gap-8">
             {/* Left sidebar for series navigation */}
             <div className="lg:w-1/4 xl:w-1/5">
               <SeriesNavigation 
                 currentSeries={seriesId as SeriesType} 
+                hideTitle={true} 
               />
             </div>
             
@@ -141,9 +145,6 @@ export default function ListenPage() {
                 </div>
               ) : (
                 <>
-                  <h2 className="title-subtitle text-xl tracking-[0.15em] text-gold mb-6">
-                    EPISODES
-                  </h2>
                   <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
                     {episodes.map((episode) => (
                       <EpisodeCard
