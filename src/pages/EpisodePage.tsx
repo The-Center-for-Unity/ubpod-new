@@ -24,6 +24,7 @@ export default function EpisodePage() {
     episodeId?: string; 
   }>();
   
+  const location = useLocation();
   const navigate = useNavigate();
   const [episode, setEpisode] = useState<Episode | null>(null);
   const [shouldRedirect, setShouldRedirect] = useState<boolean>(false);
@@ -342,6 +343,18 @@ export default function EpisodePage() {
     }
   }, [volume, playbackSpeed, episode]);
 
+  // Add cleanup effect to stop audio when component unmounts
+  useEffect(() => {
+    return () => {
+      // Clean up audio when component unmounts
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current.currentTime = 0;
+        setIsPlaying(false);
+      }
+    };
+  }, []);
+
   // Audio control functions
   const togglePlayPause = () => {
     if (audioRef.current && !audioError) {
@@ -420,6 +433,22 @@ export default function EpisodePage() {
     }
   };
 
+  const skipForward = () => {
+    if (audioRef.current && !audioError) {
+      const newTime = Math.min(audioRef.current.currentTime + 10, duration);
+      audioRef.current.currentTime = newTime;
+      setCurrentTime(newTime);
+    }
+  };
+
+  const skipBackward = () => {
+    if (audioRef.current && !audioError) {
+      const newTime = Math.max(audioRef.current.currentTime - 10, 0);
+      audioRef.current.currentTime = newTime;
+      setCurrentTime(newTime);
+    }
+  };
+
   const formatTime = (time: number) => {
     const minutes = Math.floor(time / 60);
     const seconds = Math.floor(time % 60);
@@ -451,20 +480,53 @@ export default function EpisodePage() {
 
   // Navigate to previous or next episode
   const navigateToEpisode = (direction: 'prev' | 'next') => {
-    if (!episode || !series) return;
+    if (!episode) return;
+
+    // Stop audio playback when navigating
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0;
+      setIsPlaying(false);
+    }
     
-    const targetId = direction === 'prev' 
-      ? episode.id - 1 
-      : episode.id + 1;
-    
-    // Check if target episode exists
-    try {
-      const targetEpisode = getEpisodeById(targetId, series as string);
-      if (targetEpisode) {
-        navigate(`/listen/${series}/${targetId}`);
+    // Handle navigation based on URL format
+    if (seriesId && episodeId) {
+      // New URL format (/series/:seriesId/:episodeId)
+      const currentEpisodeNumber = parseInt(episodeId, 10);
+      const targetEpisodeNumber = direction === 'prev' 
+        ? currentEpisodeNumber - 1 
+        : currentEpisodeNumber + 1;
+      
+      const seriesInfo = getSeriesInfo(seriesId);
+      
+      // Validate episode number is in range
+      if (direction === 'prev' && targetEpisodeNumber < 1) return;
+      if (direction === 'next' && seriesInfo && targetEpisodeNumber > seriesInfo.totalEpisodes) return;
+      
+      // Navigate to the new episode
+      const targetUrl = `/series/${seriesId}/${targetEpisodeNumber}`;
+      
+      // Force a hard navigation by not using React Router
+      window.location.href = targetUrl;
+    } 
+    else if (series && episode) {
+      // Old URL format (/listen/:series/:id)
+      const targetId = direction === 'prev' 
+        ? episode.id - 1 
+        : episode.id + 1;
+      
+      // Check if target episode exists
+      try {
+        const targetEpisode = getEpisodeById(targetId, series as string);
+        if (targetEpisode) {
+          const targetUrl = `/listen/${series}/${targetId}`;
+          
+          // Force a hard navigation by not using React Router
+          window.location.href = targetUrl;
+        }
+      } catch (err) {
+        console.error('Error navigating to episode:', err);
       }
-    } catch (err) {
-      console.error('Error navigating to episode:', err);
     }
   };
 
@@ -617,6 +679,10 @@ export default function EpisodePage() {
       return `/series/${series}`;
     } else if (seriesId && seriesId.startsWith('jesus-')) {
       return `/series/${seriesId}`;
+    } else if (series && series.startsWith('cosmic-')) {
+      return `/series/${series}`;
+    } else if (seriesId && seriesId.startsWith('cosmic-')) {
+      return `/series/${seriesId}`;
     } else {
       return '/series';
     }
@@ -626,7 +692,8 @@ export default function EpisodePage() {
   const getBackButtonText = () => {
     if (series === 'urantia-papers') {
       return 'Back to Papers';
-    } else if ((series && series.startsWith('jesus-')) || (seriesId && seriesId.startsWith('jesus-'))) {
+    } else if ((series && series.startsWith('jesus-')) || (seriesId && seriesId.startsWith('jesus-')) ||
+              (series && series.startsWith('cosmic-')) || (seriesId && seriesId.startsWith('cosmic-'))) {
       return 'Back to Episodes';
     } else {
       return 'Back to Series';
@@ -787,7 +854,7 @@ export default function EpisodePage() {
 
   return (
     <Layout>
-      <main className="container mx-auto px-4 py-8 max-w-6xl">
+      <main className="container mx-auto px-4 py-8 max-w-6xl" key={location.pathname}>
         {/* Back Button */}
         <button 
           onClick={() => navigate(getBackLink())}
@@ -995,11 +1062,11 @@ export default function EpisodePage() {
               <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
                 <div className="flex items-center space-x-4">
                   <button 
-                    onClick={() => navigateToEpisode('prev')}
-                    className="text-white/70 hover:text-white disabled:opacity-50"
-                    disabled={episode.id <= 1}
+                    onClick={skipBackward}
+                    className="flex items-center justify-center w-10 h-10 bg-navy-light hover:bg-navy text-white/90 hover:text-white rounded-lg transition"
+                    aria-label="Rewind 10 seconds"
                   >
-                    <SkipBack size={24} />
+                    <SkipBack size={20} />
                   </button>
                   
                   <button 
@@ -1010,16 +1077,11 @@ export default function EpisodePage() {
                   </button>
                   
                   <button 
-                    onClick={() => navigateToEpisode('next')}
-                    className="text-white/70 hover:text-white disabled:opacity-50"
-                    disabled={episode.id >= (
-                      episode.series === 'urantia-papers' ? 196 : 
-                      episode.series.startsWith('jesus-') ? 5 : 
-                      episode.series.startsWith('cosmic-') ? 5 :
-                      5 // Default max for most series is 5 episodes
-                    )}
+                    onClick={skipForward}
+                    className="flex items-center justify-center w-10 h-10 bg-navy-light hover:bg-navy text-white/90 hover:text-white rounded-lg transition"
+                    aria-label="Fast forward 10 seconds"
                   >
-                    <SkipForward size={24} />
+                    <SkipForward size={20} />
                   </button>
                   
                   {/* Playback Speed Control */}
@@ -1088,9 +1150,15 @@ export default function EpisodePage() {
         <div className="flex justify-between items-center mb-12">
           <button 
             onClick={() => navigateToEpisode('prev')}
-            disabled={episode.id <= 1}
+            disabled={
+              seriesId && episodeId
+                ? parseInt(episodeId, 10) <= 1
+                : episode?.id <= 1
+            }
             className={`flex items-center gap-2 px-5 py-3 rounded-lg font-medium transition
-              ${episode.id <= 1 
+              ${(seriesId && episodeId
+                  ? parseInt(episodeId, 10) <= 1
+                  : episode?.id <= 1)
                 ? 'bg-navy-light/30 text-white/30 cursor-not-allowed' 
                 : 'bg-navy-light hover:bg-navy text-white/90 hover:text-white'}`}
           >
@@ -1100,19 +1168,25 @@ export default function EpisodePage() {
           
           <button 
             onClick={() => navigateToEpisode('next')}
-            disabled={episode.id >= (
-              episode.series === 'urantia-papers' ? 196 : 
-              episode.series.startsWith('jesus-') ? 5 : 
-              episode.series.startsWith('cosmic-') ? 5 :
-              5 // Default max for most series is 5 episodes
-            )}
+            disabled={
+              seriesId && episodeId
+                ? !getNextEpisodeUrl()
+                : episode?.id >= (
+                    episode?.series === 'urantia-papers' ? 196 : 
+                    episode?.series?.startsWith('jesus-') ? 5 : 
+                    episode?.series?.startsWith('cosmic-') ? 5 :
+                    5 // Default max for most series is 5 episodes
+                  )
+            }
             className={`flex items-center gap-2 px-5 py-3 rounded-lg font-medium transition
-              ${episode.id >= (
-                episode.series === 'urantia-papers' ? 196 : 
-                episode.series.startsWith('jesus-') ? 5 : 
-                episode.series.startsWith('cosmic-') ? 5 :
-                5 // Default max for most series is 5 episodes
-              )
+              ${(seriesId && episodeId
+                  ? !getNextEpisodeUrl()
+                  : episode?.id >= (
+                      episode?.series === 'urantia-papers' ? 196 : 
+                      episode?.series?.startsWith('jesus-') ? 5 : 
+                      episode?.series?.startsWith('cosmic-') ? 5 :
+                      5 // Default max for most series is 5 episodes
+                    ))
                 ? 'bg-navy-light/30 text-white/30 cursor-not-allowed' 
                 : 'bg-navy-light hover:bg-navy text-white/90 hover:text-white'}`}
           >
