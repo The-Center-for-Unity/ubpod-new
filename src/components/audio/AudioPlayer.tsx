@@ -29,6 +29,18 @@ export default function AudioPlayer({ audioUrl, title, episodeId, onEnded, onErr
 
   // Log audio URL for debugging
   useEffect(() => {
+    // Check if audioUrl is valid
+    if (!audioUrl) {
+      console.error('[AudioPlayer] No audio URL provided');
+      setPlayerState((prev: AudioPlayerState) => ({
+        ...prev,
+        error: 'Audio file is not available.',
+        loading: false
+      }));
+      if (onError) onError('Audio file is not available.');
+      return;
+    }
+
     console.log(`[AudioPlayer] Loading audio from URL: ${audioUrl}`);
     // Test direct access to the URL to verify it works
     fetch(audioUrl, { method: 'HEAD' })
@@ -36,12 +48,24 @@ export default function AudioPlayer({ audioUrl, title, episodeId, onEnded, onErr
         console.log(`[AudioPlayer] HEAD request status: ${response.status} ${response.statusText}`);
         if (!response.ok) {
           console.error(`[AudioPlayer] Error loading audio file: ${response.status} ${response.statusText}`);
+          setPlayerState((prev: AudioPlayerState) => ({
+            ...prev,
+            error: `Error accessing audio file: ${response.status} ${response.statusText}`,
+            loading: false
+          }));
+          if (onError) onError(`Error accessing audio file: ${response.status} ${response.statusText}`);
         }
       })
       .catch(err => {
         console.error(`[AudioPlayer] Fetch error:`, err);
+        setPlayerState((prev: AudioPlayerState) => ({
+          ...prev,
+          error: `Error accessing audio file: ${err.message || 'Unknown error'}`,
+          loading: false
+        }));
+        if (onError) onError(`Error accessing audio file: ${err.message || 'Unknown error'}`);
       });
-  }, [audioUrl]);
+  }, [audioUrl, onError]);
 
   // Initialize analytics tracking
   useAudioAnalytics({

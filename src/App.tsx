@@ -14,6 +14,7 @@ const ListenPage = React.lazy(() => import('./pages/ListenPage'));
 const DisclaimerPage = React.lazy(() => import('./pages/DisclaimerPage'));
 const ContactPage = React.lazy(() => import('./pages/ContactPage'));
 const SeriesPage = React.lazy(() => import('./pages/SeriesPage'));
+const DebugPage = React.lazy(() => import('./pages/Debug'));
 
 // Analytics IDs
 const HOTJAR_ID = '5205817';
@@ -61,6 +62,7 @@ function App() {
           {/* Other pages */}
           <Route path="/disclaimer" element={<DisclaimerPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/debug" element={<DebugPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Suspense>
