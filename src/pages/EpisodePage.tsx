@@ -9,6 +9,9 @@ import { useAudioAnalytics } from '../hooks/useAudioAnalytics';
 import { getEpisode as getEpisodeUtils } from '../utils/episodeUtils';
 import { getSeriesInfo } from '../utils/seriesUtils';
 import { mapLegacyUrl, getPlatformSeriesForPaper } from '../utils/urlUtils';
+import { formatTitleWithoutNumber } from '../utils/formatTitle';
+import { fadeIn } from '../constants/animations';
+import { useAudioPlayer } from '../hooks/useAudioPlayer';
 
 export default function EpisodePage() {
   // Support both old format (/listen/:series/:id) and new format (/series/:seriesId/:episodeId)
@@ -966,7 +969,7 @@ export default function EpisodePage() {
                   href={episode.pdfUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-4 py-2 bg-navy-light/70 text-white/90 rounded-md hover:bg-navy transition-colors"
+                  className="flex items-center gap-2 px-4 py-2 bg-navy-light/70 text-white/90 hover:bg-navy transition-colors"
                 >
                   <BookOpen size={18} />
                   <span>Read PDF</span>
@@ -978,7 +981,7 @@ export default function EpisodePage() {
                 download
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 px-4 py-2 bg-navy-light/70 text-white/90 rounded-md hover:bg-navy transition-colors"
+                className="flex items-center gap-2 px-4 py-2 bg-navy-light/70 text-white/90 hover:bg-navy transition-colors"
               >
                 <Download size={18} />
                 <span>Download Audio</span>
@@ -986,7 +989,7 @@ export default function EpisodePage() {
               
               <button 
                 onClick={handleShare}
-                className="flex items-center gap-2 px-4 py-2 bg-navy-light/70 text-white/90 rounded-md hover:bg-navy transition-colors"
+                className="flex items-center gap-2 px-4 py-2 bg-navy-light/70 text-white/90 hover:bg-navy transition-colors"
               >
                 <Share2 size={18} />
                 <span>Share</span>
@@ -994,18 +997,6 @@ export default function EpisodePage() {
             </div>
           </div>
         </motion.div>
-        
-        {/* Share Notification */}
-        {shareNotification && (
-          <motion.div 
-            className="fixed bottom-4 right-4 bg-navy-light text-white px-4 py-3 rounded-lg shadow-lg"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 20 }}
-          >
-            {shareNotification}
-          </motion.div>
-        )}
         
         {/* Audio Player */}
         <div className="bg-navy-light/30 rounded-xl border border-white/10 p-6 mb-8">
@@ -1145,55 +1136,47 @@ export default function EpisodePage() {
             </>
           )}
         </div>
-
-        {/* Episode Navigation */}
-        <div className="flex justify-between items-center mb-12">
-          <button 
-            onClick={() => navigateToEpisode('prev')}
-            disabled={
-              seriesId && episodeId
-                ? parseInt(episodeId, 10) <= 1
-                : episode?.id <= 1
-            }
-            className={`flex items-center gap-2 px-5 py-3 rounded-lg font-medium transition
-              ${(seriesId && episodeId
-                  ? parseInt(episodeId, 10) <= 1
-                  : episode?.id <= 1)
-                ? 'bg-navy-light/30 text-white/30 cursor-not-allowed' 
-                : 'bg-navy-light hover:bg-navy text-white/90 hover:text-white'}`}
+        
+        {/* DiscoverJesus.com related links for Urantia Papers */}
+        {episode.series === 'urantia-papers' && 
+         episode.id >= 120 && 
+         episode.id <= 196 && 
+         discoverJesusLinks[episode.id] && (
+          <motion.div 
+            className="bg-navy-light/30 rounded-xl border border-white/10 p-6 mb-8"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
           >
-            <ChevronLeft size={20} />
-            <span>Previous Episode</span>
-          </button>
-          
-          <button 
-            onClick={() => navigateToEpisode('next')}
-            disabled={
-              seriesId && episodeId
-                ? !getNextEpisodeUrl()
-                : episode?.id >= (
-                    episode?.series === 'urantia-papers' ? 196 : 
-                    episode?.series?.startsWith('jesus-') ? 5 : 
-                    episode?.series?.startsWith('cosmic-') ? 5 :
-                    5 // Default max for most series is 5 episodes
-                  )
-            }
-            className={`flex items-center gap-2 px-5 py-3 rounded-lg font-medium transition
-              ${(seriesId && episodeId
-                  ? !getNextEpisodeUrl()
-                  : episode?.id >= (
-                      episode?.series === 'urantia-papers' ? 196 : 
-                      episode?.series?.startsWith('jesus-') ? 5 : 
-                      episode?.series?.startsWith('cosmic-') ? 5 :
-                      5 // Default max for most series is 5 episodes
-                    ))
-                ? 'bg-navy-light/30 text-white/30 cursor-not-allowed' 
-                : 'bg-navy-light hover:bg-navy text-white/90 hover:text-white'}`}
+            <h3 className="text-xl font-bold mb-4">Related Content on DiscoverJesus.com</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {discoverJesusLinks[episode.id].map((link, index) => (
+                <a 
+                  key={index}
+                  href={link.url} 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 p-3 bg-navy-light/50 hover:bg-navy-light/80 text-white rounded-md transition-colors group"
+                >
+                  <ExternalLink size={16} className="flex-shrink-0 text-gold group-hover:text-gold-light transition-colors" />
+                  <span>{link.title}</span>
+                </a>
+              ))}
+            </div>
+          </motion.div>
+        )}
+        
+        {/* Share Notification */}
+        {shareNotification && (
+          <motion.div 
+            className="fixed bottom-4 right-4 bg-navy-light text-white px-4 py-3 rounded-lg shadow-lg"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
           >
-            <span>Next Episode</span>
-            <ChevronRight size={20} />
-          </button>
-        </div>
+            {shareNotification}
+          </motion.div>
+        )}
       </main>
     </Layout>
   );
