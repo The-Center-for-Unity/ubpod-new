@@ -1166,6 +1166,55 @@ export default function EpisodePage() {
           </motion.div>
         )}
         
+        {/* Episode Navigation */}
+        <div className="flex justify-between items-center mb-12">
+          <button 
+            onClick={() => navigateToEpisode('prev')}
+            disabled={
+              seriesId && episodeId
+                ? parseInt(episodeId, 10) <= 1
+                : episode?.id <= 1
+            }
+            className={`flex items-center gap-2 px-5 py-3 rounded-lg font-medium transition
+              ${(seriesId && episodeId
+                  ? parseInt(episodeId, 10) <= 1
+                  : episode?.id <= 1)
+                ? 'bg-navy-light/30 text-white/30 cursor-not-allowed' 
+                : 'bg-navy-light hover:bg-navy text-white/90 hover:text-white'}`}
+          >
+            <ChevronLeft size={20} />
+            <span>Previous Episode</span>
+          </button>
+          
+          <button 
+            onClick={() => navigateToEpisode('next')}
+            disabled={
+              seriesId && episodeId
+                ? !getNextEpisodeUrl()
+                : episode?.id >= (
+                    episode?.series === 'urantia-papers' ? 196 : 
+                    episode?.series?.startsWith('jesus-') ? 5 : 
+                    episode?.series?.startsWith('cosmic-') ? 5 :
+                    5 // Default max for most series is 5 episodes
+                  )
+            }
+            className={`flex items-center gap-2 px-5 py-3 rounded-lg font-medium transition
+              ${(seriesId && episodeId
+                  ? !getNextEpisodeUrl()
+                  : episode?.id >= (
+                      episode?.series === 'urantia-papers' ? 196 : 
+                      episode?.series?.startsWith('jesus-') ? 5 : 
+                      episode?.series?.startsWith('cosmic-') ? 5 :
+                      5 // Default max for most series is 5 episodes
+                    ))
+                ? 'bg-navy-light/30 text-white/30 cursor-not-allowed' 
+                : 'bg-navy-light hover:bg-navy text-white/90 hover:text-white'}`}
+          >
+            <span>Next Episode</span>
+            <ChevronRight size={20} />
+          </button>
+        </div>
+        
         {/* Share Notification */}
         {shareNotification && (
           <motion.div 
