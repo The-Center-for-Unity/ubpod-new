@@ -1,26 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Share2, Copy, X as XIcon, Facebook, Linkedin, Mail, MessageCircle } from 'lucide-react';
 
-// Add FB interface to the global Window type
-declare global {
-  interface Window {
-    fbAsyncInit?: () => void;
-    FB?: {
-      init: (params: {
-        appId: string;
-        autoLogAppEvents: boolean;
-        xfbml: boolean;
-        version: string;
-      }) => void;
-      ui: (params: {
-        method: string;
-        href: string;
-        quote?: string;
-      }) => void;
-    };
-  }
-}
-
 interface SocialShareMenuProps {
   url: string;
   title: string;
@@ -66,7 +46,7 @@ export default function SocialShareMenu({ url, title, description = '' }: Social
   const shareViaNative = async () => {
     try {
       await navigator.share({
-        title,
+        title: `${title} | Urantia Book Podcast`,
         text: description,
         url,
       });
@@ -95,51 +75,98 @@ export default function SocialShareMenu({ url, title, description = '' }: Social
 
   // Share to X (Twitter)
   const shareToX = () => {
-    const encodedText = encodeURIComponent(`${title}\n\n${url}`);
-    window.open(`https://x.com/intent/tweet?text=${encodedText}`, '_blank');
+    const shareText = `${title} | Urantia Book Podcast\n\n${description}\n\n${url}`;
+    const shareUrl = `https://x.com/intent/tweet?text=${encodeURIComponent(shareText)}`;
+    
+    // Open in a popup window with proper dimensions
+    const width = 550;
+    const height = 420;
+    const left = window.screen.width / 2 - width / 2;
+    const top = window.screen.height / 2 - height / 2;
+    
+    window.open(
+      shareUrl,
+      'x-share-dialog',
+      `width=${width},height=${height},top=${top},left=${left},toolbar=0,location=0,menubar=0,directories=0,scrollbars=0`
+    );
+    
     setIsOpen(false);
   };
 
   // Share to Facebook
   const shareToFacebook = () => {
-    // Use FB.ui dialog approach when possible as it provides better previews
-    if (typeof window.FB !== 'undefined') {
-      window.FB.ui({
-        method: 'share',
-        href: url,
-        quote: `${title}\n\n${description}`,
+    // First, copy the content to clipboard to make it easy for the user to paste
+    const shareText = `${title} | Urantia Book Podcast\n\n${description}\n\nListen to this episode: ${url}`;
+    
+    // Copy the text to clipboard
+    navigator.clipboard.writeText(shareText)
+      .then(() => {
+        // Show a notification that text has been copied
+        setNotification('Content copied to clipboard! Paste into Facebook post.');
+        
+        // Use the simpler URL without the quote parameter since Facebook ignores it
+        const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
+        
+        // Open in a popup window with proper dimensions
+        const width = 550;
+        const height = 400;
+        const left = window.screen.width / 2 - width / 2;
+        const top = window.screen.height / 2 - height / 2;
+        
+        window.open(
+          facebookUrl,
+          'facebook-share-dialog',
+          `width=${width},height=${height},top=${top},left=${left},toolbar=0,location=0,menubar=0,directories=0,scrollbars=0`
+        );
+      })
+      .catch(() => {
+        // If clipboard fails, still open Facebook
+        const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
+        window.open(
+          facebookUrl,
+          'facebook-share-dialog',
+          `width=550,height=400,top=${window.screen.height/2-200},left=${window.screen.width/2-275}`
+        );
       });
-    } else {
-      // Fallback to the standard sharer URL but with quote parameter
-      window.open(
-        `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}&quote=${encodeURIComponent(`${title}\n\n${description}`)}`,
-        '_blank',
-        'width=600,height=400'
-      );
-    }
+    
     setIsOpen(false);
+    
+    // Clear notification after 5 seconds (longer time since user needs to read it)
+    setTimeout(() => {
+      setNotification(null);
+    }, 5000);
   };
 
   // Share to LinkedIn
   const shareToLinkedIn = () => {
+    const shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`;
+    
+    // Open in a popup window with proper dimensions
+    const width = 550;
+    const height = 450;
+    const left = window.screen.width / 2 - width / 2;
+    const top = window.screen.height / 2 - height / 2;
+    
     window.open(
-      `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`, 
-      '_blank'
+      shareUrl,
+      'linkedin-share-dialog',
+      `width=${width},height=${height},top=${top},left=${left},toolbar=0,location=0,menubar=0,directories=0,scrollbars=0`
     );
+    
     setIsOpen(false);
   };
 
   // Share via Email
   const shareViaEmail = () => {
-    const subject = encodeURIComponent(title);
-    const body = encodeURIComponent(`${description}\n\n${url}`);
+    const subject = encodeURIComponent(`${title} | Urantia Book Podcast`);
+    const body = encodeURIComponent(`${description}\n\nListen to this episode: ${url}`);
     window.open(`mailto:?subject=${subject}&body=${body}`, '_blank');
     setIsOpen(false);
   };
 
   // Share via SMS (Text Message)
   const shareViaSMS = () => {
-    const body = encodeURIComponent(`${title}\n${url}`);
+    const body = encodeURIComponent(`${title} | Urantia Book Podcast\n\nListen to this episode: ${url}`);
     window.open(`sms:?&body=${body}`, '_blank');
     setIsOpen(false);
   };

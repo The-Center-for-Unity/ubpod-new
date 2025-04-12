@@ -104,7 +104,7 @@ export default function EpisodeDetailPage() {
               </a>
               
               <SocialShareMenu 
-                url={`${window.location.origin}/series/${series}/${episode.id}`}
+                url={window.location.href}
                 title={`Listen to ${episode.title} | Urantia Book Podcast`}
                 description={`Check out this episode of the Urantia Book Podcast: ${episode.title}`}
               />
