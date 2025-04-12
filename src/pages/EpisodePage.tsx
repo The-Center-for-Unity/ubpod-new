@@ -12,6 +12,7 @@ import { mapLegacyUrl, getPlatformSeriesForPaper } from '../utils/urlUtils';
 import { formatTitleWithoutNumber } from '../utils/formatTitle';
 import { fadeIn } from '../constants/animations';
 import { useAudioPlayer } from '../hooks/useAudioPlayer';
+import SocialShareMenu from '../components/ui/SocialShareMenu';
 
 export default function EpisodePage() {
   // Support both old format (/listen/:series/:id) and new format (/series/:seriesId/:episodeId)
@@ -552,57 +553,6 @@ export default function EpisodePage() {
     setPdfError(true);
   };
 
-  const handleShare = async () => {
-    if (!episode) return;
-    
-    const shareUrl = `${window.location.origin}/listen/${series}/${episode.id}`;
-    const shareTitle = `Listen to ${episode.title} | Urantia Book Podcast`;
-    const shareText = `Check out this episode of the Urantia Book Podcast: ${episode.title}`;
-    
-    // Try to use the Web Share API if available
-    if (navigator.share) {
-      try {
-        await navigator.share({
-          title: shareTitle,
-          text: shareText,
-          url: shareUrl,
-        });
-      } catch (error) {
-        console.error('Error sharing:', error);
-        // Fall back to clipboard copy
-        copyToClipboard(shareUrl);
-        setShareNotification('Link copied to clipboard!');
-      }
-    } else {
-      // Fall back to clipboard copy
-      copyToClipboard(shareUrl);
-      setShareNotification('Link copied to clipboard!');
-    }
-    
-    // Clear notification after 3 seconds
-    setTimeout(() => {
-      setShareNotification(null);
-    }, 3000);
-  };
-  
-  const copyToClipboard = (text: string) => {
-    navigator.clipboard.writeText(text)
-      .then(() => {
-        setShareNotification('Link copied to clipboard!');
-      })
-      .catch(() => {
-        setShareNotification('Failed to copy link');
-      });
-  };
-  
-  // Add this new function to handle viewing the audio URL
-  const handleViewAudioUrl = () => {
-    if (episode) {
-      alert(`Audio URL: ${episode.audioUrl}`);
-      console.log('Audio URL:', episode.audioUrl);
-    }
-  };
-
   // Handle playback speed change
   const handleSpeedChange = (speed: number) => {
     if (audioRef.current) {
@@ -987,13 +937,11 @@ export default function EpisodePage() {
                 <span>Download Audio</span>
               </a>
               
-              <button 
-                onClick={handleShare}
-                className="flex items-center gap-2 px-4 py-2 bg-navy-light/70 text-white/90 hover:bg-navy transition-colors"
-              >
-                <Share2 size={18} />
-                <span>Share</span>
-              </button>
+              <SocialShareMenu 
+                url={`${window.location.origin}/series/${episode.series}/${episode.id}`}
+                title={`Listen to ${episode.title} | Urantia Book Podcast`}
+                description={`Check out this episode of the Urantia Book Podcast: ${episode.title}`}
+              />
             </div>
           </div>
         </motion.div>
@@ -1214,18 +1162,6 @@ export default function EpisodePage() {
             <ChevronRight size={20} />
           </button>
         </div>
-        
-        {/* Share Notification */}
-        {shareNotification && (
-          <motion.div 
-            className="fixed bottom-4 right-4 bg-navy-light text-white px-4 py-3 rounded-lg shadow-lg"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 20 }}
-          >
-            {shareNotification}
-          </motion.div>
-        )}
       </main>
     </Layout>
   );
