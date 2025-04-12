@@ -193,20 +193,54 @@ export default function SeriesPage() {
                     </button>
                   </div>
                 ) : viewMode === 'grid' ? (
-                  <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
-                    {filteredSeries.map(series => (
-                      <Link 
-                        key={series.id}
-                        to={`/series/${series.id}`}
-                        className="block bg-navy-light/20 rounded-lg overflow-hidden border border-white/10 transition-all hover:scale-[1.02] hover:border-primary/30"
-                      >
-                        <div className="p-4">
-                          <h3 className="text-lg font-bold text-white mb-2 line-clamp-2">{series.title}</h3>
-                          <p className="text-white/70 text-sm mb-3 line-clamp-2">{series.description}</p>
-                          <div className="text-white/50 text-xs">5 episodes</div>
+                  <div className="space-y-8">
+                    {jesusSeries.length > 0 && (
+                      <div>
+                        <div className="flex items-center mb-4">
+                          <Users className="w-5 h-5 text-rose-400/70 mr-2" />
+                          <h2 className="text-xl font-bold text-rose-400">The Life and Teachings of Jesus</h2>
                         </div>
-                      </Link>
-                    ))}
+                        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+                          {jesusSeries.map(series => (
+                            <Link 
+                              key={series.id}
+                              to={`/series/${series.id}`}
+                              className="block bg-navy-light/20 rounded-lg overflow-hidden border border-white/10 transition-all hover:scale-[1.02] hover:border-primary/30"
+                            >
+                              <div className="p-4">
+                                <h3 className="text-lg font-bold text-white mb-2 line-clamp-2">{series.title}</h3>
+                                <p className="text-white/70 text-sm mb-3 line-clamp-2">{series.description}</p>
+                                <div className="text-white/50 text-xs">5 episodes</div>
+                              </div>
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                    
+                    {cosmicSeries.length > 0 && (
+                      <div>
+                        <div className="flex items-center mb-4">
+                          <Globe className="w-5 h-5 text-blue-400/70 mr-2" />
+                          <h2 className="text-xl font-bold text-blue-400">Cosmic Series</h2>
+                        </div>
+                        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+                          {cosmicSeries.map(series => (
+                            <Link 
+                              key={series.id}
+                              to={`/series/${series.id}`}
+                              className="block bg-navy-light/20 rounded-lg overflow-hidden border border-white/10 transition-all hover:scale-[1.02] hover:border-primary/30"
+                            >
+                              <div className="p-4">
+                                <h3 className="text-lg font-bold text-white mb-2 line-clamp-2">{series.title}</h3>
+                                <p className="text-white/70 text-sm mb-3 line-clamp-2">{series.description}</p>
+                                <div className="text-white/50 text-xs">5 episodes</div>
+                              </div>
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                   </div>
                 ) : (
                   <div className="space-y-8">
