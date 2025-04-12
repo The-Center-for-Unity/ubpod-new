@@ -70,7 +70,7 @@ export default function ListenPage() {
       <main className="min-h-screen bg-navy-dark pt-24 pb-20">
         {/* Series header */}
         {seriesInfo && (
-          <div className="bg-navy py-8 mb-12">
+          <div className="bg-navy py-8 mb-8 sm:mb-12">
             <div className="container mx-auto px-4">
               <div className="flex flex-col">
                 {/* Info - now full width without the image */}
@@ -102,8 +102,8 @@ export default function ListenPage() {
         )}
         
         <div className="container mx-auto px-4">
-          {/* Section Titles Row - Added to align titles */}
-          <div className="flex mb-6">
+          {/* Section Titles Row - Desktop only */}
+          <div className="hidden lg:flex mb-6">
             <div className="lg:w-1/4 xl:w-1/5">
               <h2 className="title-subtitle text-xl tracking-[0.15em] text-gold">
                 PODCAST SERIES
@@ -116,9 +116,16 @@ export default function ListenPage() {
             </div>
           </div>
           
-          <div className="flex flex-col lg:flex-row gap-8">
+          <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
             {/* Left sidebar for series navigation */}
-            <div className="lg:w-1/4 xl:w-1/5">
+            <div className="w-full lg:w-1/4 xl:w-1/5">
+              {/* Mobile Series Title - Only shown on mobile */}
+              <div className="mb-3 lg:hidden">
+                <h2 className="title-subtitle text-lg tracking-[0.15em] text-gold">
+                  SELECT SERIES
+                </h2>
+              </div>
+              
               <SeriesNavigation 
                 currentSeries={seriesId as SeriesType} 
                 hideTitle={true} 
@@ -126,9 +133,16 @@ export default function ListenPage() {
             </div>
             
             {/* Main content */}
-            <div className="lg:w-3/4 xl:w-4/5">
+            <div className="lg:w-3/4 xl:w-4/5 mt-8 lg:mt-0">
+              {/* Mobile Episodes Title - Only shown on mobile */}
+              <div className="mb-4 lg:hidden">
+                <h2 className="title-subtitle text-xl tracking-[0.15em] text-gold">
+                  EPISODES
+                </h2>
+              </div>
+              
               {loading ? (
-                <div className="flex justify-center items-center min-h-[400px]">
+                <div className="flex justify-center items-center min-h-[300px]">
                   <div className="w-12 h-12 border-4 border-gold border-t-transparent rounded-full animate-spin"></div>
                 </div>
               ) : error ? (
@@ -144,17 +158,15 @@ export default function ListenPage() {
                   </p>
                 </div>
               ) : (
-                <>
-                  <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
-                    {episodes.map((episode) => (
-                      <EpisodeCard
-                        key={episode.id}
-                        episode={episode}
-                        onPlay={() => handlePlay(episode)}
-                      />
-                    ))}
-                  </div>
-                </>
+                <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6">
+                  {episodes.map((episode) => (
+                    <EpisodeCard
+                      key={episode.id}
+                      episode={episode}
+                      onPlay={() => handlePlay(episode)}
+                    />
+                  ))}
+                </div>
               )}
             </div>
           </div>
