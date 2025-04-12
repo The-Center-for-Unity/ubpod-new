@@ -103,17 +103,17 @@ export default function SeriesPage() {
         {/* Main Content Section with integrated controls */}
         <section className="pb-20">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
+            <div className="w-full max-w-4xl mx-auto px-0 sm:px-4">
               {/* Section Heading */}
               <div className="text-center mb-6">
                 <h2 className="text-2xl font-bold text-white mb-2">Explore All Series Collections</h2>
-                <p className="text-white/70 max-w-xl mx-auto">
+                <p className="text-white/70 max-w-xl mx-auto px-4 sm:px-0">
                   Browse our complete library of audio teachings or search for specific topics
                 </p>
               </div>
             
               {/* Content Controls - Directly above the content they affect */}
-              <div className="bg-navy-light/20 rounded-t-xl border-t border-x border-white/10 p-4">
+              <div className="bg-navy-light/20 rounded-t-xl border-t border-x border-white/10 p-4 sm:p-5">
                 <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
                   {/* Category Pills */}
                   <div className="flex gap-2 flex-wrap w-full sm:w-auto">
@@ -193,7 +193,7 @@ export default function SeriesPage() {
               </div>
               
               {/* Series Content */}
-              <div className="bg-navy-dark border-x border-b border-white/10 rounded-b-xl p-4">
+              <div className="bg-navy-dark border-x border-b border-white/10 rounded-b-xl p-4 sm:p-5">
                 {filteredSeries.length === 0 ? (
                   <div className="text-center py-12">
                     <p className="text-white/70">No series found matching your search. Try adjusting your filters.</p>
