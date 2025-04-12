@@ -163,14 +163,26 @@ export default function SeriesPage() {
                 {/* Search - Right above results */}
                 <div className="mt-4">
                   <div className="relative">
-                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white/50" size={16} />
+                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white/50" size={18} />
                     <input
                       type="text"
                       placeholder="Search series by title or description..."
-                      className="w-full py-2 pl-10 pr-4 bg-navy-light/30 border border-white/10 rounded-md text-white placeholder:text-white/50 text-sm focus:outline-none focus:border-primary/50"
+                      className="w-full py-3 pl-10 pr-4 bg-navy-light/30 border border-white/10 rounded-md text-white placeholder:text-white/50 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent"
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
+                      aria-label="Search series"
                     />
+                    {searchQuery && (
+                      <button
+                        onClick={() => setSearchQuery('')}
+                        className="absolute right-3 top-1/2 transform -translate-y-1/2 text-white/50 hover:text-white/70"
+                        aria-label="Clear search"
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                      </button>
+                    )}
                   </div>
                   {searchQuery && (
                     <div className="mt-2 text-sm text-white/70">
