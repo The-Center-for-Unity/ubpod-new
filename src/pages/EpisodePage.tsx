@@ -13,6 +13,7 @@ import { formatTitleWithoutNumber } from '../utils/formatTitle';
 import { fadeIn } from '../constants/animations';
 import { useAudioPlayer } from '../hooks/useAudioPlayer';
 import SocialShareMenu from '../components/ui/SocialShareMenu';
+import MetaTags from '../components/layout/MetaTags';
 
 export default function EpisodePage() {
   // Support both old format (/listen/:series/:id) and new format (/series/:seriesId/:episodeId)
@@ -807,6 +808,15 @@ export default function EpisodePage() {
 
   return (
     <Layout>
+      {episode && (
+        <MetaTags 
+          title={`${episode.title} | Urantia Book Podcast`}
+          description={`Listen to ${episode.title} from the Urantia Book Podcast: ${episode.description?.substring(0, 150)}...`}
+          url={window.location.href}
+          imageUrl={episode.imageUrl || "https://www.urantiabookpod.com/og-image.png"}
+          type="article"
+        />
+      )}
       <main className="container mx-auto px-4 py-8 max-w-6xl" key={location.pathname}>
         {/* Back Button */}
         <button 
@@ -938,7 +948,7 @@ export default function EpisodePage() {
               </a>
               
               <SocialShareMenu 
-                url={`${window.location.origin}/series/${episode.series}/${episode.id}`}
+                url={window.location.href}
                 title={`Listen to ${episode.title} | Urantia Book Podcast`}
                 description={`Check out this episode of the Urantia Book Podcast: ${episode.title}`}
               />

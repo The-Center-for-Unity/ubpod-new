@@ -1,6 +1,26 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Share2, Copy, X as XIcon, Facebook, Linkedin, Mail, MessageCircle } from 'lucide-react';
 
+// Add FB interface to the global Window type
+declare global {
+  interface Window {
+    fbAsyncInit?: () => void;
+    FB?: {
+      init: (params: {
+        appId: string;
+        autoLogAppEvents: boolean;
+        xfbml: boolean;
+        version: string;
+      }) => void;
+      ui: (params: {
+        method: string;
+        href: string;
+        quote?: string;
+      }) => void;
+    };
+  }
+}
+
 interface SocialShareMenuProps {
   url: string;
   title: string;
@@ -25,22 +45,35 @@ export default function SocialShareMenu({ url, title, description = '' }: Social
     };
   }, []);
 
-  // Use Web Share API if available (which will use native share options)
-  const handleNativeShare = async () => {
-    if (navigator.share) {
-      try {
-        await navigator.share({
-          title,
-          text: description,
-          url,
-        });
-        setNotification('Shared successfully!');
-      } catch (error) {
-        console.error('Error sharing:', error);
-        // User likely canceled - no need for notification
-      }
+  // Check if we're on mobile or desktop
+  const isMobile = () => {
+    // Simple check for mobile devices
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  };
+
+  // Handles the share button click
+  const handleShareClick = () => {
+    // Only use Web Share API on mobile
+    if (typeof navigator.share !== 'undefined' && isMobile()) {
+      shareViaNative();
     } else {
-      setIsOpen(true);
+      // On desktop, always show our custom menu
+      setIsOpen(!isOpen);
+    }
+  };
+
+  // Use Web Share API (only on mobile)
+  const shareViaNative = async () => {
+    try {
+      await navigator.share({
+        title,
+        text: description,
+        url,
+      });
+      setNotification('Shared successfully!');
+    } catch (error) {
+      console.error('Error sharing:', error);
+      // User likely canceled - no need for notification
     }
   };
 
@@ -69,7 +102,21 @@ export default function SocialShareMenu({ url, title, description = '' }: Social
 
   // Share to Facebook
   const shareToFacebook = () => {
-    window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank');
+    // Use FB.ui dialog approach when possible as it provides better previews
+    if (typeof window.FB !== 'undefined') {
+      window.FB.ui({
+        method: 'share',
+        href: url,
+        quote: `${title}\n\n${description}`,
+      });
+    } else {
+      // Fallback to the standard sharer URL but with quote parameter
+      window.open(
+        `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}&quote=${encodeURIComponent(`${title}\n\n${description}`)}`,
+        '_blank',
+        'width=600,height=400'
+      );
+    }
     setIsOpen(false);
   };
 
@@ -100,7 +147,7 @@ export default function SocialShareMenu({ url, title, description = '' }: Social
   return (
     <div className="relative" ref={menuRef}>
       <button 
-        onClick={handleNativeShare}
+        onClick={handleShareClick}
         className="flex items-center gap-2 px-4 py-2 bg-navy-light/70 text-white/90 hover:bg-navy transition-colors rounded-md"
         aria-label="Share"
       >
@@ -109,14 +156,14 @@ export default function SocialShareMenu({ url, title, description = '' }: Social
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-navy-dark border border-white/10 z-50">
+        <div className="absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-navy/95 backdrop-blur-md border border-white/10 z-50">
           <div className="py-2 px-3 border-b border-white/10">
             <h3 className="text-white text-sm font-medium">Share this content</h3>
           </div>
           <div className="py-2">
             <button 
               onClick={copyToClipboard}
-              className="w-full flex items-center px-4 py-2 text-white/90 hover:bg-navy-light/50 text-left text-sm"
+              className="w-full flex items-center px-4 py-2 text-white/90 hover:bg-navy-light/80 text-left text-sm"
             >
               <Copy size={16} className="mr-3" />
               Copy link
@@ -124,7 +171,7 @@ export default function SocialShareMenu({ url, title, description = '' }: Social
             
             <button 
               onClick={shareToX}
-              className="w-full flex items-center px-4 py-2 text-white/90 hover:bg-navy-light/50 text-left text-sm"
+              className="w-full flex items-center px-4 py-2 text-white/90 hover:bg-navy-light/80 text-left text-sm"
             >
               <XIcon size={16} className="mr-3" />
               Share to X
@@ -132,7 +179,7 @@ export default function SocialShareMenu({ url, title, description = '' }: Social
             
             <button 
               onClick={shareToFacebook}
-              className="w-full flex items-center px-4 py-2 text-white/90 hover:bg-navy-light/50 text-left text-sm"
+              className="w-full flex items-center px-4 py-2 text-white/90 hover:bg-navy-light/80 text-left text-sm"
             >
               <Facebook size={16} className="mr-3" />
               Share to Facebook
@@ -140,7 +187,7 @@ export default function SocialShareMenu({ url, title, description = '' }: Social
             
             <button 
               onClick={shareToLinkedIn}
-              className="w-full flex items-center px-4 py-2 text-white/90 hover:bg-navy-light/50 text-left text-sm"
+              className="w-full flex items-center px-4 py-2 text-white/90 hover:bg-navy-light/80 text-left text-sm"
             >
               <Linkedin size={16} className="mr-3" />
               Share to LinkedIn
@@ -148,7 +195,7 @@ export default function SocialShareMenu({ url, title, description = '' }: Social
             
             <button 
               onClick={shareViaEmail}
-              className="w-full flex items-center px-4 py-2 text-white/90 hover:bg-navy-light/50 text-left text-sm"
+              className="w-full flex items-center px-4 py-2 text-white/90 hover:bg-navy-light/80 text-left text-sm"
             >
               <Mail size={16} className="mr-3" />
               Share via email
@@ -156,7 +203,7 @@ export default function SocialShareMenu({ url, title, description = '' }: Social
             
             <button 
               onClick={shareViaSMS}
-              className="w-full flex items-center px-4 py-2 text-white/90 hover:bg-navy-light/50 text-left text-sm"
+              className="w-full flex items-center px-4 py-2 text-white/90 hover:bg-navy-light/80 text-left text-sm"
             >
               <MessageCircle size={16} className="mr-3" />
               Share via text
