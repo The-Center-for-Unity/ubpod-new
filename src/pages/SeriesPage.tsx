@@ -220,12 +220,17 @@ export default function SeriesPage() {
                               className="block bg-navy-light/20 rounded-lg overflow-hidden border border-white/10 transition-all hover:scale-[1.02] hover:border-primary/30 hover:shadow-lg"
                             >
                               <div className="p-4 sm:p-5">
+                                <div className="flex flex-wrap items-center gap-2 mb-3">
+                                  <span className={`text-xs px-2 py-0.5 rounded-full ${series.category === 'jesus-focused' ? 'bg-rose-400/20 text-rose-400' : 'bg-blue-400/20 text-blue-400'}`}>
+                                    {series.category === 'jesus-focused' ? 'Jesus' : 'Cosmic'}
+                                  </span>
+                                  <span className="text-white/30 text-xs">•</span>
+                                  <span className="text-white/50 text-xs">5 episodes</span>
+                                </div>
                                 <h3 className="text-lg font-bold text-white mb-2 line-clamp-2">{series.title}</h3>
                                 <p className="text-white/70 text-sm mb-3 line-clamp-2">{series.description}</p>
-                                <div className="flex items-center text-white/50 text-xs">
-                                  <span>{series.totalEpisodes || 5} episodes</span>
-                                  <span className="mx-1.5">•</span>
-                                  <span>~1 hour</span>
+                                <div className="flex items-center justify-end">
+                                  <span className="text-primary text-sm font-medium group-hover:underline">View Details →</span>
                                 </div>
                               </div>
                             </Link>
@@ -248,12 +253,17 @@ export default function SeriesPage() {
                               className="block bg-navy-light/20 rounded-lg overflow-hidden border border-white/10 transition-all hover:scale-[1.02] hover:border-primary/30 hover:shadow-lg"
                             >
                               <div className="p-4 sm:p-5">
+                                <div className="flex flex-wrap items-center gap-2 mb-3">
+                                  <span className={`text-xs px-2 py-0.5 rounded-full ${series.category === 'jesus-focused' ? 'bg-rose-400/20 text-rose-400' : 'bg-blue-400/20 text-blue-400'}`}>
+                                    {series.category === 'jesus-focused' ? 'Jesus' : 'Cosmic'}
+                                  </span>
+                                  <span className="text-white/30 text-xs">•</span>
+                                  <span className="text-white/50 text-xs">5 episodes</span>
+                                </div>
                                 <h3 className="text-lg font-bold text-white mb-2 line-clamp-2">{series.title}</h3>
                                 <p className="text-white/70 text-sm mb-3 line-clamp-2">{series.description}</p>
-                                <div className="flex items-center text-white/50 text-xs">
-                                  <span>{series.totalEpisodes || 5} episodes</span>
-                                  <span className="mx-1.5">•</span>
-                                  <span>~1 hour</span>
+                                <div className="flex items-center justify-end">
+                                  <span className="text-primary text-sm font-medium group-hover:underline">View Details →</span>
                                 </div>
                               </div>
                             </Link>
@@ -278,12 +288,17 @@ export default function SeriesPage() {
                               className="block bg-navy-light/20 rounded-lg overflow-hidden border border-white/10 transition-all hover:scale-[1.02] hover:border-primary/30 hover:shadow-lg"
                             >
                               <div className="p-4 sm:p-5">
+                                <div className="flex flex-wrap items-center gap-2 mb-3">
+                                  <span className={`text-xs px-2 py-0.5 rounded-full ${series.category === 'jesus-focused' ? 'bg-rose-400/20 text-rose-400' : 'bg-blue-400/20 text-blue-400'}`}>
+                                    {series.category === 'jesus-focused' ? 'Jesus' : 'Cosmic'}
+                                  </span>
+                                  <span className="text-white/30 text-xs">•</span>
+                                  <span className="text-white/50 text-xs">5 episodes</span>
+                                </div>
                                 <h3 className="text-lg font-bold text-white mb-2 line-clamp-2">{series.title}</h3>
                                 <p className="text-white/70 text-sm mb-3 line-clamp-2">{series.description}</p>
-                                <div className="flex items-center text-white/50 text-xs">
-                                  <span>{series.totalEpisodes || 5} episodes</span>
-                                  <span className="mx-1.5">•</span>
-                                  <span>~1 hour</span>
+                                <div className="flex items-center justify-end">
+                                  <span className="text-primary text-sm font-medium group-hover:underline">View Details →</span>
                                 </div>
                               </div>
                             </Link>
@@ -306,12 +321,17 @@ export default function SeriesPage() {
                               className="block bg-navy-light/20 rounded-lg overflow-hidden border border-white/10 transition-all hover:scale-[1.02] hover:border-primary/30 hover:shadow-lg"
                             >
                               <div className="p-4 sm:p-5">
+                                <div className="flex flex-wrap items-center gap-2 mb-3">
+                                  <span className={`text-xs px-2 py-0.5 rounded-full ${series.category === 'jesus-focused' ? 'bg-rose-400/20 text-rose-400' : 'bg-blue-400/20 text-blue-400'}`}>
+                                    {series.category === 'jesus-focused' ? 'Jesus' : 'Cosmic'}
+                                  </span>
+                                  <span className="text-white/30 text-xs">•</span>
+                                  <span className="text-white/50 text-xs">5 episodes</span>
+                                </div>
                                 <h3 className="text-lg font-bold text-white mb-2 line-clamp-2">{series.title}</h3>
                                 <p className="text-white/70 text-sm mb-3 line-clamp-2">{series.description}</p>
-                                <div className="flex items-center text-white/50 text-xs">
-                                  <span>{series.totalEpisodes || 5} episodes</span>
-                                  <span className="mx-1.5">•</span>
-                                  <span>~1 hour</span>
+                                <div className="flex items-center justify-end">
+                                  <span className="text-primary text-sm font-medium group-hover:underline">View Details →</span>
                                 </div>
                               </div>
                             </Link>
