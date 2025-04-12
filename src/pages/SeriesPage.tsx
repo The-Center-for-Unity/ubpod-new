@@ -116,22 +116,22 @@ export default function SeriesPage() {
               <div className="bg-navy-light/20 rounded-t-xl border-t border-x border-white/10 p-4">
                 <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
                   {/* Category Pills */}
-                  <div className="flex gap-2 flex-wrap">
+                  <div className="flex gap-2 flex-wrap w-full sm:w-auto">
                     <button
-                      className={`px-3 py-1.5 rounded-md text-sm ${activeCategory === null ? 'bg-primary text-white' : 'bg-navy-light/30 text-white/70 hover:bg-navy-light/50'}`}
+                      className={`px-3 py-2 rounded-md text-sm ${activeCategory === null ? 'bg-primary text-white' : 'bg-navy-light/30 text-white/70 hover:bg-navy-light/50'}`}
                       onClick={() => setActiveCategory(null)}
                     >
                       All Series ({allSeries.length})
                     </button>
                     <button
-                      className={`flex items-center px-3 py-1.5 rounded-md text-sm ${activeCategory === 'jesus' ? 'bg-primary text-white' : 'bg-navy-light/30 text-white/70 hover:bg-navy-light/50'}`}
+                      className={`flex items-center px-3 py-2 rounded-md text-sm ${activeCategory === 'jesus' ? 'bg-primary text-white' : 'bg-navy-light/30 text-white/70 hover:bg-navy-light/50'}`}
                       onClick={() => setActiveCategory(activeCategory === 'jesus' ? null : 'jesus')}
                     >
                       <Users className="w-3.5 h-3.5 mr-1.5" />
                       Jesus ({jesusSeriesCount})
                     </button>
                     <button
-                      className={`flex items-center px-3 py-1.5 rounded-md text-sm ${activeCategory === 'cosmic' ? 'bg-primary text-white' : 'bg-navy-light/30 text-white/70 hover:bg-navy-light/50'}`}
+                      className={`flex items-center px-3 py-2 rounded-md text-sm ${activeCategory === 'cosmic' ? 'bg-primary text-white' : 'bg-navy-light/30 text-white/70 hover:bg-navy-light/50'}`}
                       onClick={() => setActiveCategory(activeCategory === 'cosmic' ? null : 'cosmic')}
                     >
                       <Globe className="w-3.5 h-3.5 mr-1.5" />
@@ -140,22 +140,22 @@ export default function SeriesPage() {
                   </div>
                   
                   {/* View Toggle */}
-                  <div className="flex gap-2">
+                  <div className="flex gap-2 self-end sm:self-auto">
                     <button
-                      className={`p-1.5 rounded ${viewMode === 'structured' ? 'bg-primary text-white' : 'bg-navy-light/30 text-white/70'}`}
+                      className={`p-2 rounded ${viewMode === 'structured' ? 'bg-primary text-white' : 'bg-navy-light/30 text-white/70'}`}
                       onClick={() => setViewMode('structured')}
                       aria-label="Structured View"
                       title="Structured View"
                     >
-                      <ListIcon size={18} />
+                      <ListIcon size={20} />
                     </button>
                     <button
-                      className={`p-1.5 rounded ${viewMode === 'grid' ? 'bg-primary text-white' : 'bg-navy-light/30 text-white/70'}`}
+                      className={`p-2 rounded ${viewMode === 'grid' ? 'bg-primary text-white' : 'bg-navy-light/30 text-white/70'}`}
                       onClick={() => setViewMode('grid')}
                       aria-label="Grid View"
                       title="Grid View"
                     >
-                      <GridIcon size={18} />
+                      <GridIcon size={20} />
                     </button>
                   </div>
                 </div>
