@@ -114,9 +114,9 @@ export default function SeriesPage() {
             
               {/* Content Controls - Directly above the content they affect */}
               <div className="bg-navy-light/20 rounded-t-xl border-t border-x border-white/10 p-4 sm:p-5">
-                <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
-                  {/* Category Pills */}
-                  <div className="flex gap-2 flex-wrap w-full sm:w-auto">
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-start sm:items-center justify-between">
+                  {/* Category Pills - Desktop */}
+                  <div className="hidden sm:flex gap-2 flex-wrap w-auto">
                     <button
                       className={`px-3 py-2 rounded-md text-sm ${activeCategory === null ? 'bg-primary text-white' : 'bg-navy-light/30 text-white/70 hover:bg-navy-light/50'}`}
                       onClick={() => setActiveCategory(null)}
@@ -139,8 +139,49 @@ export default function SeriesPage() {
                     </button>
                   </div>
                   
-                  {/* View Toggle */}
-                  <div className="flex gap-2 self-end sm:self-auto">
+                  {/* Mobile Controls Container */}
+                  <div className="flex sm:hidden gap-2 w-full">
+                    {/* Category Dropdown - Mobile */}
+                    <div className="flex-grow">
+                      <select
+                        className="w-full px-3 py-1.5 bg-navy-light/30 border border-white/10 rounded-md text-white text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
+                        value={activeCategory === 'jesus' ? 'jesus' : activeCategory === 'cosmic' ? 'cosmic' : 'all'}
+                        onChange={(e) => {
+                          const value = e.target.value;
+                          if (value === 'all') setActiveCategory(null);
+                          else setActiveCategory(value);
+                        }}
+                        aria-label="Filter series by category"
+                      >
+                        <option value="all">All Series ({allSeries.length})</option>
+                        <option value="jesus">Jesus Series ({jesusSeriesCount})</option>
+                        <option value="cosmic">Cosmic Series ({cosmicSeriesCount})</option>
+                      </select>
+                    </div>
+                    
+                    {/* View Toggle - Mobile */}
+                    <div className="flex gap-1">
+                      <button
+                        className={`p-1.5 rounded ${viewMode === 'structured' ? 'bg-primary text-white' : 'bg-navy-light/30 text-white/70'}`}
+                        onClick={() => setViewMode('structured')}
+                        aria-label="Structured View"
+                        title="Structured View"
+                      >
+                        <ListIcon size={18} />
+                      </button>
+                      <button
+                        className={`p-1.5 rounded ${viewMode === 'grid' ? 'bg-primary text-white' : 'bg-navy-light/30 text-white/70'}`}
+                        onClick={() => setViewMode('grid')}
+                        aria-label="Grid View"
+                        title="Grid View"
+                      >
+                        <GridIcon size={18} />
+                      </button>
+                    </div>
+                  </div>
+                  
+                  {/* View Toggle - Desktop */}
+                  <div className="hidden sm:flex gap-2 self-auto">
                     <button
                       className={`p-2 rounded ${viewMode === 'structured' ? 'bg-primary text-white' : 'bg-navy-light/30 text-white/70'}`}
                       onClick={() => setViewMode('structured')}
@@ -161,13 +202,13 @@ export default function SeriesPage() {
                 </div>
                 
                 {/* Search - Right above results */}
-                <div className="mt-4">
+                <div className="mt-3 sm:mt-4">
                   <div className="relative">
-                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white/50" size={18} />
+                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white/50" size={16} />
                     <input
                       type="text"
                       placeholder="Search series by title or description..."
-                      className="w-full py-3 pl-10 pr-4 bg-navy-light/30 border border-white/10 rounded-md text-white placeholder:text-white/50 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent"
+                      className="w-full py-1.5 sm:py-3 pl-9 pr-4 bg-navy-light/30 border border-white/10 rounded-md text-white placeholder:text-white/50 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent"
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
                       aria-label="Search series"
