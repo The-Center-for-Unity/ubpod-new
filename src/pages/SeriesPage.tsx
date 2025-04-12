@@ -200,7 +200,7 @@ export default function SeriesPage() {
                           <Users className="w-5 h-5 text-rose-400/70 mr-2" />
                           <h2 className="text-xl font-bold text-rose-400">The Life and Teachings of Jesus</h2>
                         </div>
-                        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
                           {jesusSeries.map(series => (
                             <Link 
                               key={series.id}
@@ -224,7 +224,7 @@ export default function SeriesPage() {
                           <Globe className="w-5 h-5 text-blue-400/70 mr-2" />
                           <h2 className="text-xl font-bold text-blue-400">Cosmic Series</h2>
                         </div>
-                        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
                           {cosmicSeries.map(series => (
                             <Link 
                               key={series.id}
