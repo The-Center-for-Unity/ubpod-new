@@ -7,6 +7,7 @@ dist-ssr/
 .env
 .env.*
 !.env.example
+!.env.sample
 
 # Logs
 logs

@@ -1,23 +1,30 @@
 #!/bin/bash
 
 # Cloudflare R2 Configuration
-# Replace these values with your actual credentials
-ACCOUNT_ID="9ff67f45aeca1e6dece597d4e01c13fa"              # Your Cloudflare account ID
-BUCKET_NAME="discover-jesus-audio-discussions"            # Your R2 bucket name
-ACCESS_KEY="6e9e430fb45886cbf094b30b1475b628"            # Your R2 access key
-SECRET_KEY="66700ca47d923de06b36fd13c77992b51a10fdb68a3efbeef82593db2b9c048f"            # Your R2 secret key
+# Load from environment variables instead of hardcoded values
+ACCOUNT_ID=${R2_ACCOUNT_ID:-""}              # Your Cloudflare account ID
+BUCKET_NAME=${R2_BUCKET_NAME:-""}            # Your R2 bucket name
+ACCESS_KEY=${R2_ACCESS_KEY:-""}              # Your R2 access key
+SECRET_KEY=${R2_SECRET_KEY:-""}              # Your R2 secret key
 
 # Get the directory where the script is located
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # Validate required variables
 if [ -z "$ACCOUNT_ID" ] || [ -z "$BUCKET_NAME" ] || [ -z "$ACCESS_KEY" ] || [ -z "$SECRET_KEY" ]; then
-    echo "Error: Please set all required variables in the script"
+    echo "Error: Missing required environment variables"
     echo "Required variables:"
-    echo "  ACCOUNT_ID  - Your Cloudflare account ID"
-    echo "  BUCKET_NAME - Your R2 bucket name"
-    echo "  ACCESS_KEY  - Your R2 access key"
-    echo "  SECRET_KEY  - Your R2 secret key"
+    echo "  R2_ACCOUNT_ID  - Your Cloudflare account ID"
+    echo "  R2_BUCKET_NAME - Your R2 bucket name"
+    echo "  R2_ACCESS_KEY  - Your R2 access key"
+    echo "  R2_SECRET_KEY  - Your R2 secret key"
+    echo ""
+    echo "Please set them in your environment or .env file before running this script."
+    echo "Example:"
+    echo "  export R2_ACCOUNT_ID=your_account_id"
+    echo "  export R2_BUCKET_NAME=your_bucket_name"
+    echo "  export R2_ACCESS_KEY=your_access_key"
+    echo "  export R2_SECRET_KEY=your_secret_key"
     exit 1
 fi
 

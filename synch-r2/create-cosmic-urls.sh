@@ -1,7 +1,15 @@
 #!/bin/bash
 
 # R2 Configuration
-BUCKET_ID="111d6f5663274cc5aefdcc72206eec40"
+# Load from environment variables
+BUCKET_ID=${R2_BUCKET_ID:-""}
+if [ -z "$BUCKET_ID" ]; then
+    echo "Error: Missing required environment variable R2_BUCKET_ID"
+    echo "Please set it in your environment or .env file before running this script."
+    echo "Example: export R2_BUCKET_ID=your_bucket_id"
+    exit 1
+fi
+
 BASE_URL="https://pub-${BUCKET_ID}.r2.dev"
 
 # Create the mapping file
