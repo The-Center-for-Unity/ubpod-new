@@ -1,0 +1,2974 @@
+{
+  "jesus-1": {
+    "seriesTitle": "The Divine and Human Jesus",
+    "seriesDescription": "Explore the profound dual nature of Jesus as both human and divine.",
+    "episodes": [
+      {
+        "id": 1,
+        "title": "The Personality of God",
+        "audioUrl": "Topic - The Personality of God.mp3",
+        "pdfUrl": "/pdfs/jesus-1/1.pdf",
+        "summaryKey": "topic/the-personality-of-god",
+        "imageUrl": "/images/jesus-1/card-1.jpg"
+      },
+      {
+        "id": 2,
+        "title": "Sojourn in Alexandria",
+        "audioUrl": "Event - Sojourn in Alexandria.mp3",
+        "pdfUrl": "/pdfs/jesus-1/2.pdf",
+        "summaryKey": "event/sojourn-in-alexandria",
+        "imageUrl": "/images/jesus-1/card-2.jpg"
+      },
+      {
+        "id": 3,
+        "title": "Birth and Infancy of Jesus",
+        "audioUrl": "Event - Birth and Infancy of Jesus.mp3",
+        "pdfUrl": "/pdfs/jesus-1/3.pdf",
+        "summaryKey": "event/birth-and-infancy-of-jesus",
+        "imageUrl": "/images/jesus-1/card-3.jpg"
+      },
+      {
+        "id": 4,
+        "title": "Jesus' First Passover (Age 13)",
+        "audioUrl": "Event - Jesus_ First Passover - Age 13.mp3",
+        "pdfUrl": "/pdfs/jesus-1/4.pdf",
+        "summaryKey": "event/jesus-first-passover-age-13",
+        "imageUrl": "/images/jesus-1/card-4.jpg"
+      },
+      {
+        "id": 5,
+        "title": "The Great Temptation",
+        "audioUrl": "Event - The Great Temptation.mp3",
+        "pdfUrl": "/pdfs/jesus-1/5.pdf",
+        "summaryKey": "event/the-great-temptation",
+        "imageUrl": "/images/jesus-1/card-5.jpg"
+      }
+    ]
+  },
+  "jesus-2": {
+    "seriesTitle": "Jesus' Journey Around the Mediterranean",
+    "seriesDescription": "Follow Jesus on his travels and experiences throughout the Mediterranean region.",
+    "episodes": [
+      {
+        "id": 1,
+        "title": "Sojourn in Alexandria",
+        "audioUrl": "Event - Sojourn in Alexandria.mp3",
+        "pdfUrl": "/pdfs/jesus-2/1.pdf",
+        "summaryKey": "event/sojourn-in-alexandria",
+        "imageUrl": "/images/jesus-2/card-1.jpg"
+      },
+      {
+        "id": 2,
+        "title": "Tour of the Mediterranean World",
+        "audioUrl": "Topic - Jesus_ Tour of the Mediterranean World.mp3",
+        "pdfUrl": "/pdfs/jesus-2/2.pdf",
+        "summaryKey": "topic/jesus-tour-of-the-mediterranean-world",
+        "imageUrl": "/images/jesus-2/card-2.jpg"
+      },
+      {
+        "id": 3,
+        "title": "Jesus - The Son of God",
+        "audioUrl": "Topic - Jesus Combined Nature.mp3",
+        "pdfUrl": "/pdfs/jesus-2/3.pdf",
+        "summaryKey": "person/jesus",
+        "imageUrl": "/images/jesus-2/card-3.jpg"
+      },
+      {
+        "id": 4,
+        "title": "Star of Bethlehem",
+        "audioUrl": "Topic - Star of Bethlehem.mp3",
+        "pdfUrl": "/pdfs/jesus-2/4.pdf",
+        "summaryKey": "topic/star-of-bethlehem",
+        "imageUrl": "/images/jesus-2/card-4.jpg"
+      },
+      {
+        "id": 5,
+        "title": "Jesus' Harp",
+        "audioUrl": "Topic - Jesus Harp.mp3",
+        "pdfUrl": "/pdfs/jesus-2/5.pdf",
+        "summaryKey": "topic/jesus-harp",
+        "imageUrl": "/images/jesus-2/card-5.jpg"
+      }
+    ]
+  },
+  "jesus-3": {
+    "seriesTitle": "The Spirit of Truth",
+    "seriesDescription": "Discover the meaning and significance of the spirit of truth in Jesus' teachings.",
+    "episodes": [
+      {
+        "id": 1,
+        "title": "Indwelling Spirit of God",
+        "audioUrl": "Topic - Indwelling Spirit of God.mp3",
+        "pdfUrl": "/pdfs/jesus-3/1.pdf",
+        "summaryKey": "topic/indwelling-spirit-of-god",
+        "imageUrl": "/images/jesus-3/card-1.jpg"
+      },
+      {
+        "id": 2,
+        "title": "Spirit of Truth - The Comforter",
+        "audioUrl": "Topic - Spirit of Truth - _The Comforter_.mp3",
+        "pdfUrl": "/pdfs/jesus-3/2.pdf",
+        "summaryKey": "topic/spirit-of-truth-the-comforter",
+        "imageUrl": "/images/jesus-3/card-2.jpg"
+      },
+      {
+        "id": 3,
+        "title": "Jesus' Personalized Indwelling Spirit",
+        "audioUrl": "Topic - Jesus Personalized Indwelling Spirit.mp3",
+        "pdfUrl": "/pdfs/jesus-3/3.pdf",
+        "summaryKey": "topic/jesus-personalized-indwelling-spirit",
+        "imageUrl": "/images/jesus-3/card-3.jpg"
+      },
+      {
+        "id": 4,
+        "title": "Personal Religion of Jesus",
+        "audioUrl": "Topic - Personal Religion of Jesus.mp3",
+        "pdfUrl": "/pdfs/jesus-3/4.pdf",
+        "summaryKey": "topic/personal-religion-of-jesus",
+        "imageUrl": "/images/jesus-3/card-4.jpg"
+      },
+      {
+        "id": 5,
+        "title": "Sonship with God",
+        "audioUrl": "Topic - Sonship with God.mp3",
+        "pdfUrl": "/pdfs/jesus-3/5.pdf",
+        "summaryKey": "topic/sonship-with-god",
+        "imageUrl": "/images/jesus-3/card-5.jpg"
+      }
+    ]
+  },
+  "jesus-4": {
+    "seriesTitle": "Death and Resurrection",
+    "seriesDescription": "Explore the profound meanings behind Jesus' death and resurrection.",
+    "episodes": [
+      {
+        "id": 1,
+        "title": "What Happens When We Die",
+        "audioUrl": "Topic - What Happens When We Die.mp3",
+        "pdfUrl": "/pdfs/jesus-4/1.pdf",
+        "summaryKey": "topic/what-happens-when-we-die",
+        "imageUrl": "/images/jesus-4/card-1.jpg"
+      },
+      {
+        "id": 2,
+        "title": "What is the Soul",
+        "audioUrl": "Topic - What Is the Soul.mp3",
+        "pdfUrl": "/pdfs/jesus-4/2.pdf",
+        "summaryKey": "topic/what-is-the-soul",
+        "imageUrl": "/images/jesus-4/card-2.jpg"
+      },
+      {
+        "id": 3,
+        "title": "Jesus' Resurrection Experience",
+        "audioUrl": "Topic - Jesus_ Resurrection Experience.mp3",
+        "pdfUrl": "/pdfs/jesus-4/3.pdf",
+        "summaryKey": "topic/jesus-resurrection-experience",
+        "imageUrl": "/images/jesus-4/card-3.jpg"
+      },
+      {
+        "id": 4,
+        "title": "Jesus' Resurrected Morontia Body",
+        "audioUrl": "Topic - Jesus_ Resurrected Morontia Body.mp3",
+        "pdfUrl": "/pdfs/jesus-4/4.pdf",
+        "summaryKey": "topic/jesus-resurrected-morontia-body",
+        "imageUrl": "/images/jesus-4/card-4.jpg"
+      },
+      {
+        "id": 5,
+        "title": "The Resurrection of Jesus",
+        "audioUrl": "Event - The Resurrection of Jesus.mp3",
+        "pdfUrl": "/pdfs/jesus-4/5.pdf",
+        "summaryKey": "event/the-resurrection-of-jesus",
+        "imageUrl": "/images/jesus-4/card-5.jpg"
+      }
+    ]
+  },
+  "jesus-5": {
+    "seriesTitle": "Women in Spiritual Leadership: A New Perspective",
+    "seriesDescription": "Comparing historical religious views of women with Jesus' revolutionary approach",
+    "episodes": [
+      {
+        "id": 1,
+        "title": "Jesus Establishes the Women's Corps",
+        "audioUrl": "Event - Jesus Establishes the Women_s Corps.mp3",
+        "pdfUrl": null,
+        "summaryKey": "event/jesus-establishes-the-womens-corps",
+        "imageUrl": "/images/jesus-5/card-1.jpg"
+      },
+      {
+        "id": 2,
+        "title": "Women's Evangelistic Corps",
+        "audioUrl": "Group - Women_s Evangelistic Corps.mp3",
+        "pdfUrl": null,
+        "summaryKey": "group/womens-evangelistic-corps",
+        "imageUrl": "/images/jesus-5/card-2.jpg"
+      },
+      {
+        "id": 3,
+        "title": "Mary Magdalene",
+        "audioUrl": "Person - Mary Magdalene.mp3",
+        "pdfUrl": null,
+        "summaryKey": "person/mary-magdalene",
+        "imageUrl": "/images/jesus-5/card-3.jpg"
+      },
+      {
+        "id": 4,
+        "title": "How Did Jesus Treat Women",
+        "audioUrl": "Topic - How Did Jesus Treat Women.mp3",
+        "pdfUrl": null,
+        "summaryKey": "topic/how-did-jesus-treat-women",
+        "imageUrl": "/images/jesus-5/card-4.jpg"
+      },
+      {
+        "id": 5,
+        "title": "Mary, Mother of Jesus",
+        "audioUrl": "Person - Mary - mother of Jesus.mp3",
+        "pdfUrl": null,
+        "summaryKey": "person/mary-mother-of-jesus",
+        "imageUrl": "/images/jesus-5/card-5.jpg"
+      }
+    ]
+  },
+  "jesus-6": {
+    "seriesTitle": "Good & Evil Reconsidered: Beyond Traditional Theology",
+    "seriesDescription": "Reframing traditional concepts of sin and evil through Urantia teachings",
+    "episodes": [
+      {
+        "id": 1,
+        "title": "Good and Evil",
+        "audioUrl": "Topic - Good and Evil.mp3",
+        "pdfUrl": null,
+        "summaryKey": "topic/good-and-evil",
+        "imageUrl": "/images/jesus-6/card-1.jpg"
+      },
+      {
+        "id": 2,
+        "title": "Why Are We Confronted With Unfair Life Situations",
+        "audioUrl": "Topic - Why Are We Confronted With Unfair Life Situations.mp3",
+        "pdfUrl": null,
+        "summaryKey": "topic/why-are-we-confronted-with-unfair-life-situations",
+        "imageUrl": "/images/jesus-6/card-2.jpg"
+      },
+      {
+        "id": 3,
+        "title": "Why Do We Suffer from Affliction",
+        "audioUrl": "Topic - Why Do We Suffer from Affliction.mp3",
+        "pdfUrl": null,
+        "summaryKey": "topic/why-do-we-suffer-from-affliction",
+        "imageUrl": "/images/jesus-6/card-3.jpg"
+      },
+      {
+        "id": 4,
+        "title": "Accidents and Divine Intervention",
+        "audioUrl": "Topic - Accidents and Divine Intervention.mp3",
+        "pdfUrl": null,
+        "summaryKey": "topic/accidents-and-divine-intervention",
+        "imageUrl": "/images/jesus-6/card-4.jpg"
+      },
+      {
+        "id": 5,
+        "title": "Anger - The Lack of Understanding",
+        "audioUrl": "Topic - Anger - The Lack of Understanding.mp3",
+        "pdfUrl": null,
+        "summaryKey": "topic/anger-the-lack-of-understanding",
+        "imageUrl": "/images/jesus-6/card-5.jpg"
+      }
+    ]
+  },
+  "jesus-7": {
+    "seriesTitle": "Prayer & Worship: Enhanced Understanding",
+    "seriesDescription": "Expanding traditional views of communication with the Divine",
+    "episodes": [
+      {
+        "id": 1,
+        "title": "Worship and Prayer",
+        "audioUrl": "Topic - Worship and Prayer.mp3",
+        "pdfUrl": null,
+        "summaryKey": "topic/worship-and-prayer",
+        "imageUrl": "/images/jesus-7/card-1.jpg"
+      },
+      {
+        "id": 2,
+        "title": "Divine Forgiveness",
+        "audioUrl": "Topic - Divine Forgiveness.mp3",
+        "pdfUrl": null,
+        "summaryKey": "topic/divine-forgiveness",
+        "imageUrl": "/images/jesus-7/card-2.jpg"
+      },
+      {
+        "id": 3,
+        "title": "Jesus' Discourse on True Religion",
+        "audioUrl": "Event - Jesus_ Discourse on True Religion.mp3",
+        "pdfUrl": null,
+        "summaryKey": "event/jesus-discourse-on-true-religion",
+        "imageUrl": "/images/jesus-7/card-3.jpg"
+      },
+      {
+        "id": 4,
+        "title": "Personal Religion of Jesus",
+        "audioUrl": "Topic - Personal Religion of Jesus.mp3",
+        "pdfUrl": null,
+        "summaryKey": "topic/personal-religion-of-jesus",
+        "imageUrl": "/images/jesus-7/card-4.jpg"
+      },
+      {
+        "id": 5,
+        "title": "Acme of Religious Living",
+        "audioUrl": "Topic - Acme of Religious Living.mp3",
+        "pdfUrl": null,
+        "summaryKey": "topic/acme-of-religious-living",
+        "imageUrl": "/images/jesus-7/card-5.jpg"
+      }
+    ]
+  },
+  "jesus-8": {
+    "seriesTitle": "Angels & Celestial Beings: The Cosmic Hierarchy",
+    "seriesDescription": "Comparing traditional angelic concepts with the expanded Urantia cosmology",
+    "episodes": [
+      {
+        "id": 1,
+        "title": "Angels - the Daughters of God",
+        "audioUrl": "Topic - Angels - the Daughters of God.mp3",
+        "pdfUrl": null,
+        "summaryKey": "topic/angels-the-daughters-of-god",
+        "imageUrl": "/images/jesus-8/card-1.jpg"
+      },
+      {
+        "id": 2,
+        "title": "Jesus - Celestial Visitations",
+        "audioUrl": "Topic - Jesus - Celestial Visitations.mp3",
+        "pdfUrl": null,
+        "summaryKey": "topic/jesus-celestial-visitations",
+        "imageUrl": "/images/jesus-8/card-2.jpg"
+      },
+      {
+        "id": 3,
+        "title": "Gabriel",
+        "audioUrl": "Person - Gabriel.mp3",
+        "pdfUrl": null,
+        "summaryKey": "person/gabriel",
+        "imageUrl": "/images/jesus-8/card-3.jpg"
+      },
+      {
+        "id": 4,
+        "title": "Satan",
+        "audioUrl": "Person - Satan.mp3",
+        "pdfUrl": null,
+        "summaryKey": "person/satan",
+        "imageUrl": "/images/jesus-8/card-4.jpg"
+      },
+      {
+        "id": 5,
+        "title": "Machiventa Melchizedek",
+        "audioUrl": "Person - Machiventa Melchizedek.mp3",
+        "pdfUrl": null,
+        "summaryKey": "person/machiventa-melchizedek",
+        "imageUrl": "/images/jesus-8/card-5.jpg"
+      }
+    ]
+  },
+  "jesus-9": {
+    "seriesTitle": "The Kingdom of Heaven: Spiritual Reality vs. Religious Concept",
+    "seriesDescription": "Contrasting traditional religious concepts with Jesus' actual teachings",
+    "episodes": [
+      {
+        "id": 1,
+        "title": "The Kingdom of Heaven",
+        "audioUrl": "Topic - The Kingdom of Heaven.mp3",
+        "pdfUrl": null,
+        "summaryKey": "topic/the-kingdom-of-heaven",
+        "imageUrl": "/images/jesus-9/card-1.jpg"
+      },
+      {
+        "id": 2,
+        "title": "Overview of Jesus Teachings",
+        "audioUrl": "Topic - Overview of Jesus Teachings.mp3",
+        "pdfUrl": null,
+        "summaryKey": "topic/overview-of-jesus-teachings",
+        "imageUrl": "/images/jesus-9/card-2.jpg"
+      },
+      {
+        "id": 3,
+        "title": "Jesus Personal Ministry as He Passed By",
+        "audioUrl": "Topic - Jesus Personal Ministry as He Passed By.mp3",
+        "pdfUrl": null,
+        "summaryKey": "topic/jesus-ministry-as-he-passed-by",
+        "imageUrl": "/images/jesus-9/card-3.jpg"
+      },
+      {
+        "id": 4,
+        "title": "Training the Kingdom's Messengers",
+        "audioUrl": "Topic - Training the Kingdom_s Messengers.mp3",
+        "pdfUrl": null,
+        "summaryKey": "topic/training-the-kingdoms-messengers",
+        "imageUrl": "/images/jesus-9/card-4.jpg"
+      },
+      {
+        "id": 5,
+        "title": "Profound Quotes to Live By",
+        "audioUrl": "Topic - Profound Quotes to Live By.mp3",
+        "pdfUrl": null,
+        "summaryKey": "topic/profound-quotes-to-live-by",
+        "imageUrl": "/images/jesus-9/card-5.jpg"
+      }
+    ]
+  },
+  "jesus-10": {
+    "seriesTitle": "Jesus' Transformative Moments: Behind the Familiar Stories",
+    "seriesDescription": "Providing deeper context for familiar Biblical events",
+    "episodes": [
+      {
+        "id": 1,
+        "title": "Baptism of Jesus in the Jordan",
+        "audioUrl": "Event - Baptism of Jesus in the Jordan.mp3",
+        "pdfUrl": null,
+        "summaryKey": "event/baptism-of-jesus-in-the-jordan",
+        "imageUrl": "/images/jesus-10/card-1.jpg"
+      },
+      {
+        "id": 2,
+        "title": "Jesus Feeds the Five Thousand",
+        "audioUrl": "Event - Jesus Feeds the Five Thousand.mp3",
+        "pdfUrl": null,
+        "summaryKey": "event/jesus-feeds-the-five-thousand",
+        "imageUrl": "/images/jesus-10/card-2.jpg"
+      },
+      {
+        "id": 3,
+        "title": "The Transfiguration",
+        "audioUrl": "Event - The Transfiguration.mp3",
+        "pdfUrl": null,
+        "summaryKey": "event/the-transfiguration",
+        "imageUrl": "/images/jesus-10/card-3.jpg"
+      },
+      {
+        "id": 4,
+        "title": "Resurrection of Lazarus",
+        "audioUrl": "Event - Resurrection of Lazarus.mp3",
+        "pdfUrl": null,
+        "summaryKey": "event/resurrection-of-lazarus",
+        "imageUrl": "/images/jesus-10/card-4.jpg"
+      },
+      {
+        "id": 5,
+        "title": "The Last Supper",
+        "audioUrl": "Event - The Last Supper.mp3",
+        "pdfUrl": null,
+        "summaryKey": "event/the-last-supper",
+        "imageUrl": "/images/jesus-10/card-5.jpg"
+      }
+    ]
+  },
+  "jesus-11": {
+    "seriesTitle": "The Human Experience: Divine Insights on Daily Challenges",
+    "seriesDescription": "Addressing universal human concerns through Urantia wisdom",
+    "episodes": [
+      {
+        "id": 1,
+        "title": "Art of Living",
+        "audioUrl": "Topic - Art of Living.mp3",
+        "pdfUrl": null,
+        "summaryKey": "topic/art-of-living",
+        "imageUrl": "/images/jesus-11/card-1.jpg"
+      },
+      {
+        "id": 2,
+        "title": "Marriage, Divorce, and Children",
+        "audioUrl": "Topic - Marriage, Divorce, and Children.mp3",
+        "pdfUrl": null,
+        "summaryKey": "topic/marriage-divorce-and-children",
+        "imageUrl": "/images/jesus-11/card-2.jpg"
+      },
+      {
+        "id": 3,
+        "title": "Balance and Lures of Maturity",
+        "audioUrl": "Topic - Balance and Lures of Maturity.mp3",
+        "pdfUrl": null,
+        "summaryKey": "topic/balance-and-lures-of-maturity",
+        "imageUrl": "/images/jesus-11/card-3.jpg"
+      },
+      {
+        "id": 4,
+        "title": "True Values",
+        "audioUrl": "Topic - True Values.mp3",
+        "pdfUrl": null,
+        "summaryKey": "topic/true-values",
+        "imageUrl": "/images/jesus-11/card-4.jpg"
+      },
+      {
+        "id": 5,
+        "title": "Why Are Some People Happier than Others",
+        "audioUrl": "Topic - Why Are Some People Happier than Others.mp3",
+        "pdfUrl": null,
+        "summaryKey": "topic/why-are-some-people-happier-than-others",
+        "imageUrl": "/images/jesus-11/card-5.jpg"
+      }
+    ]
+  },
+  "cosmic-1": {
+    "seriesTitle": "Cosmic Origins: Understanding Universe Creation",
+    "seriesDescription": "Introducing the fundamental cosmology of the Urantia revelation",
+    "episodes": [
+      {
+        "id": 1,
+        "title": "The Universal Father",
+        "audioUrl": "cosmic-1-1.mp3",
+        "pdfUrl": "/pdfs/cosmic-1/1.pdf",
+        "summaryKey": "paper_1",
+        "imageUrl": "/images/cosmic-1/card-1.jpg"
+      },
+      {
+        "id": 2,
+        "title": "The Universe of Universes",
+        "audioUrl": "cosmic-1-2.mp3",
+        "pdfUrl": "/pdfs/cosmic-1/2.pdf",
+        "summaryKey": "paper_12",
+        "imageUrl": "/images/cosmic-1/card-2.jpg"
+      },
+      {
+        "id": 3,
+        "title": "The Sacred Spheres of Paradise",
+        "audioUrl": "cosmic-1-3.mp3",
+        "pdfUrl": "/pdfs/cosmic-1/3.pdf",
+        "summaryKey": "paper_13",
+        "imageUrl": "/images/cosmic-1/card-3.jpg"
+      },
+      {
+        "id": 4,
+        "title": "The Seven Superuniverses",
+        "audioUrl": "cosmic-1-4.mp3",
+        "pdfUrl": "/pdfs/cosmic-1/4.pdf",
+        "summaryKey": "paper_15",
+        "imageUrl": "/images/cosmic-1/card-4.jpg"
+      },
+      {
+        "id": 5,
+        "title": "Energy—Mind and Matter",
+        "audioUrl": "cosmic-1-5.mp3",
+        "pdfUrl": "/pdfs/cosmic-1/5.pdf",
+        "summaryKey": "paper_42",
+        "imageUrl": "/images/cosmic-1/card-5.jpg"
+      }
+    ]
+  },
+  "cosmic-2": {
+    "seriesTitle": "Divine Personalities: The Beings Beyond Traditional Religion",
+    "seriesDescription": "Introducing celestial personalities and hierarchy",
+    "episodes": [
+      {
+        "id": 1,
+        "title": "The Eternal Son",
+        "audioUrl": "cosmic-2-1.mp3",
+        "pdfUrl": "/pdfs/cosmic-2/1.pdf",
+        "summaryKey": "paper_6",
+        "imageUrl": "/images/cosmic-2/card-1.jpg"
+      },
+      {
+        "id": 2,
+        "title": "The Infinite Spirit",
+        "audioUrl": "cosmic-2-2.mp3",
+        "pdfUrl": "/pdfs/cosmic-2/2.pdf",
+        "summaryKey": "paper_8",
+        "imageUrl": "/images/cosmic-2/card-2.jpg"
+      },
+      {
+        "id": 3,
+        "title": "The Paradise Trinity",
+        "audioUrl": "cosmic-2-3.mp3",
+        "pdfUrl": "/pdfs/cosmic-2/3.pdf",
+        "summaryKey": "paper_10",
+        "imageUrl": "/images/cosmic-2/card-3.jpg"
+      },
+      {
+        "id": 4,
+        "title": "The Paradise Sons of God",
+        "audioUrl": "cosmic-2-4.mp3",
+        "pdfUrl": "/pdfs/cosmic-2/4.pdf",
+        "summaryKey": "paper_20",
+        "imageUrl": "/images/cosmic-2/card-4.jpg"
+      },
+      {
+        "id": 5,
+        "title": "Ministering Spirits of Space",
+        "audioUrl": "cosmic-2-5.mp3",
+        "pdfUrl": "/pdfs/cosmic-2/5.pdf",
+        "summaryKey": "paper_16",
+        "imageUrl": "/images/cosmic-2/card-5.jpg"
+      }
+    ]
+  },
+  "cosmic-3": {
+    "seriesTitle": "The Thought Adjuster: Your Inner Divine Compass",
+    "seriesDescription": "Understanding the indwelling presence of God",
+    "episodes": [
+      {
+        "id": 1,
+        "title": "Origin and Nature of Thought Adjusters",
+        "audioUrl": "cosmic-3-1.mp3",
+        "pdfUrl": "/pdfs/cosmic-3/1.pdf",
+        "summaryKey": "paper_107",
+        "imageUrl": "/images/cosmic-3/card-1.jpg"
+      },
+      {
+        "id": 2,
+        "title": "Mission and Ministry of Thought Adjusters",
+        "audioUrl": "cosmic-3-2.mp3",
+        "pdfUrl": "/pdfs/cosmic-3/2.pdf",
+        "summaryKey": "paper_108",
+        "imageUrl": "/images/cosmic-3/card-2.jpg"
+      },
+      {
+        "id": 3,
+        "title": "Relation of Adjusters to Individual Mortals",
+        "audioUrl": "cosmic-3-3.mp3",
+        "pdfUrl": "/pdfs/cosmic-3/3.pdf",
+        "summaryKey": "paper_110",
+        "imageUrl": "/images/cosmic-3/card-3.jpg"
+      },
+      {
+        "id": 4,
+        "title": "The Adjuster and the Soul",
+        "audioUrl": "cosmic-3-4.mp3",
+        "pdfUrl": "/pdfs/cosmic-3/4.pdf",
+        "summaryKey": "paper_111",
+        "imageUrl": "/images/cosmic-3/card-4.jpg"
+      },
+      {
+        "id": 5,
+        "title": "Personality Survival",
+        "audioUrl": "cosmic-3-5.mp3",
+        "pdfUrl": "/pdfs/cosmic-3/5.pdf",
+        "summaryKey": "paper_112",
+        "imageUrl": "/images/cosmic-3/card-5.jpg"
+      }
+    ]
+  },
+  "cosmic-4": {
+    "seriesTitle": "Our Local Universe: Nebadon's Organization",
+    "seriesDescription": "Understanding our cosmic neighborhood",
+    "episodes": [
+      {
+        "id": 1,
+        "title": "The Evolution of Local Universes",
+        "audioUrl": "cosmic-4-1.mp3",
+        "pdfUrl": "/pdfs/cosmic-4/1.pdf",
+        "summaryKey": "paper_32",
+        "imageUrl": "/images/cosmic-4/card-1.jpg"
+      },
+      {
+        "id": 2,
+        "title": "Administration of the Local Universe",
+        "audioUrl": "cosmic-4-2.mp3",
+        "pdfUrl": "/pdfs/cosmic-4/2.pdf",
+        "summaryKey": "paper_33",
+        "imageUrl": "/images/cosmic-4/card-2.jpg"
+      },
+      {
+        "id": 3,
+        "title": "The Local Universe Mother Spirit",
+        "audioUrl": "cosmic-4-3.mp3",
+        "pdfUrl": "/pdfs/cosmic-4/3.pdf",
+        "summaryKey": "paper_34",
+        "imageUrl": "/images/cosmic-4/card-3.jpg"
+      },
+      {
+        "id": 4,
+        "title": "The Local Universe Sons of God",
+        "audioUrl": "cosmic-4-4.mp3",
+        "pdfUrl": "/pdfs/cosmic-4/4.pdf",
+        "summaryKey": "paper_35",
+        "imageUrl": "/images/cosmic-4/card-4.jpg"
+      },
+      {
+        "id": 5,
+        "title": "Physical Aspects of the Local Universe",
+        "audioUrl": "cosmic-4-5.mp3",
+        "pdfUrl": "/pdfs/cosmic-4/5.pdf",
+        "summaryKey": "paper_41",
+        "imageUrl": "/images/cosmic-4/card-5.jpg"
+      }
+    ]
+  },
+  "cosmic-5": {
+    "seriesTitle": "Angels Among Us: The Seraphic Hosts",
+    "seriesDescription": "Understanding angelic ministries",
+    "episodes": [
+      {
+        "id": 1,
+        "title": "Ministering Spirits of the Local Universe",
+        "audioUrl": "cosmic-5-1.mp3",
+        "pdfUrl": "/pdfs/cosmic-5/1.pdf",
+        "summaryKey": "paper_38",
+        "imageUrl": "/images/cosmic-5/card-1.jpg"
+      },
+      {
+        "id": 2,
+        "title": "The Seraphic Hosts",
+        "audioUrl": "cosmic-5-2.mp3",
+        "pdfUrl": "/pdfs/cosmic-5/2.pdf",
+        "summaryKey": "paper_39",
+        "imageUrl": "/images/cosmic-5/card-2.jpg"
+      },
+      {
+        "id": 3,
+        "title": "Seraphic Guardians of Destiny",
+        "audioUrl": "cosmic-5-3.mp3",
+        "pdfUrl": "/pdfs/cosmic-5/3.pdf",
+        "summaryKey": "paper_113",
+        "imageUrl": "/images/cosmic-5/card-3.jpg"
+      },
+      {
+        "id": 4,
+        "title": "Seraphic Planetary Government",
+        "audioUrl": "cosmic-5-4.mp3",
+        "pdfUrl": "/pdfs/cosmic-5/4.pdf",
+        "summaryKey": "paper_114",
+        "imageUrl": "/images/cosmic-5/card-4.jpg"
+      },
+      {
+        "id": 5,
+        "title": "The Midway Creatures",
+        "audioUrl": "cosmic-5-5.mp3",
+        "pdfUrl": "/pdfs/cosmic-5/5.pdf",
+        "summaryKey": "paper_77",
+        "imageUrl": "/images/cosmic-5/card-5.jpg"
+      }
+    ]
+  },
+  "cosmic-6": {
+    "seriesTitle": "Life After Death: The Ascension Career",
+    "seriesDescription": "Understanding the progressive journey after mortal life",
+    "episodes": [
+      {
+        "id": 1,
+        "title": "The Ascending Sons of God",
+        "audioUrl": "cosmic-6-1.mp3",
+        "pdfUrl": "/pdfs/cosmic-6/1.pdf",
+        "summaryKey": "paper_40",
+        "imageUrl": "/images/cosmic-6/card-1.jpg"
+      },
+      {
+        "id": 2,
+        "title": "The Seven Mansion Worlds",
+        "audioUrl": "cosmic-6-2.mp3",
+        "pdfUrl": "/pdfs/cosmic-6/2.pdf",
+        "summaryKey": "paper_47",
+        "imageUrl": "/images/cosmic-6/card-2.jpg"
+      },
+      {
+        "id": 3,
+        "title": "The Morontia Life",
+        "audioUrl": "cosmic-6-3.mp3",
+        "pdfUrl": "/pdfs/cosmic-6/3.pdf",
+        "summaryKey": "paper_48",
+        "imageUrl": "/images/cosmic-6/card-3.jpg"
+      },
+      {
+        "id": 4,
+        "title": "The Corps of the Finality",
+        "audioUrl": "cosmic-6-4.mp3",
+        "pdfUrl": "/pdfs/cosmic-6/4.pdf",
+        "summaryKey": "paper_31",
+        "imageUrl": "/images/cosmic-6/card-4.jpg"
+      },
+      {
+        "id": 5,
+        "title": "Universal Unity",
+        "audioUrl": "cosmic-6-5.mp3",
+        "pdfUrl": "/pdfs/cosmic-6/5.pdf",
+        "summaryKey": "paper_56",
+        "imageUrl": "/images/cosmic-6/card-5.jpg"
+      }
+    ]
+  },
+  "cosmic-7": {
+    "seriesTitle": "Urantia's Remarkable History",
+    "seriesDescription": "Understanding Earth's unique planetary development",
+    "episodes": [
+      {
+        "id": 1,
+        "title": "The Origin of Urantia",
+        "audioUrl": "cosmic-7-1.mp3",
+        "pdfUrl": "/pdfs/cosmic-7/1.pdf",
+        "summaryKey": "paper_57",
+        "imageUrl": "/images/cosmic-7/card-1.jpg"
+      },
+      {
+        "id": 2,
+        "title": "Life Establishment on Urantia",
+        "audioUrl": "cosmic-7-2.mp3",
+        "pdfUrl": "/pdfs/cosmic-7/2.pdf",
+        "summaryKey": "paper_58",
+        "imageUrl": "/images/cosmic-7/card-2.jpg"
+      },
+      {
+        "id": 3,
+        "title": "The Dawn Races of Early Man",
+        "audioUrl": "cosmic-7-3.mp3",
+        "pdfUrl": "/pdfs/cosmic-7/3.pdf",
+        "summaryKey": "paper_62",
+        "imageUrl": "/images/cosmic-7/card-3.jpg"
+      },
+      {
+        "id": 4,
+        "title": "The Evolutionary Races of Color",
+        "audioUrl": "cosmic-7-4.mp3",
+        "pdfUrl": "/pdfs/cosmic-7/4.pdf",
+        "summaryKey": "paper_64",
+        "imageUrl": "/images/cosmic-7/card-4.jpg"
+      },
+      {
+        "id": 5,
+        "title": "The Planetary Prince of Urantia",
+        "audioUrl": "cosmic-7-5.mp3",
+        "pdfUrl": "/pdfs/cosmic-7/5.pdf",
+        "summaryKey": "paper_66",
+        "imageUrl": "/images/cosmic-7/card-5.jpg"
+      }
+    ]
+  },
+  "cosmic-8": {
+    "seriesTitle": "The Lucifer Rebellion: Cosmic Crisis",
+    "seriesDescription": "Understanding the rebellion's impact on Earth's spiritual development",
+    "episodes": [
+      {
+        "id": 1,
+        "title": "The Lucifer Rebellion",
+        "audioUrl": "cosmic-8-1.mp3",
+        "pdfUrl": "/pdfs/cosmic-8/1.pdf",
+        "summaryKey": "paper_53",
+        "imageUrl": "/images/cosmic-8/card-1.jpg"
+      },
+      {
+        "id": 2,
+        "title": "Problems of the Lucifer Rebellion",
+        "audioUrl": "cosmic-8-2.mp3",
+        "pdfUrl": "/pdfs/cosmic-8/2.pdf",
+        "summaryKey": "paper_54",
+        "imageUrl": "/images/cosmic-8/card-2.jpg"
+      },
+      {
+        "id": 3,
+        "title": "The Planetary Rebellion",
+        "audioUrl": "cosmic-8-3.mp3",
+        "pdfUrl": "/pdfs/cosmic-8/3.pdf",
+        "summaryKey": "paper_67",
+        "imageUrl": "/images/cosmic-8/card-3.jpg"
+      },
+      {
+        "id": 4,
+        "title": "The Default of Adam and Eve",
+        "audioUrl": "cosmic-8-4.mp3",
+        "pdfUrl": "/pdfs/cosmic-8/4.pdf",
+        "summaryKey": "paper_75",
+        "imageUrl": "/images/cosmic-8/card-4.jpg"
+      },
+      {
+        "id": 5,
+        "title": "The Caligastia Betrayal",
+        "audioUrl": "cosmic-8-5.mp3",
+        "pdfUrl": "/pdfs/cosmic-8/5.pdf",
+        "summaryKey": "paper_66",
+        "imageUrl": "/images/cosmic-8/card-5.jpg"
+      }
+    ]
+  },
+  "cosmic-9": {
+    "seriesTitle": "Adam & Eve: The True Story",
+    "seriesDescription": "Revealing the actual mission and impact of Adam and Eve",
+    "episodes": [
+      {
+        "id": 1,
+        "title": "The Garden of Eden",
+        "audioUrl": "cosmic-9-1.mp3",
+        "pdfUrl": "/pdfs/cosmic-9/1.pdf",
+        "summaryKey": "paper_73",
+        "imageUrl": "/images/cosmic-9/card-1.jpg"
+      },
+      {
+        "id": 2,
+        "title": "Adam and Eve",
+        "audioUrl": "cosmic-9-2.mp3",
+        "pdfUrl": "/pdfs/cosmic-9/2.pdf",
+        "summaryKey": "paper_74",
+        "imageUrl": "/images/cosmic-9/card-2.jpg"
+      },
+      {
+        "id": 3,
+        "title": "The Second Garden",
+        "audioUrl": "cosmic-9-3.mp3",
+        "pdfUrl": "/pdfs/cosmic-9/3.pdf",
+        "summaryKey": "paper_76",
+        "imageUrl": "/images/cosmic-9/card-3.jpg"
+      },
+      {
+        "id": 4,
+        "title": "The Violet Race After the Days of Adam",
+        "audioUrl": "cosmic-9-4.mp3",
+        "pdfUrl": "/pdfs/cosmic-9/4.pdf",
+        "summaryKey": "paper_78",
+        "imageUrl": "/images/cosmic-9/card-4.jpg"
+      },
+      {
+        "id": 5,
+        "title": "The Default of Adam and Eve",
+        "audioUrl": "cosmic-9-5.mp3",
+        "pdfUrl": "/pdfs/cosmic-9/5.pdf",
+        "summaryKey": "paper_75",
+        "imageUrl": "/images/cosmic-9/card-5.jpg"
+      }
+    ]
+  },
+  "cosmic-10": {
+    "seriesTitle": "Machiventa Melchizedek",
+    "seriesDescription": "Understanding the emergency mission of Machiventa Melchizedek",
+    "episodes": [
+      {
+        "id": 1,
+        "title": "Machiventa Melchizedek",
+        "audioUrl": "cosmic-10-1.mp3",
+        "pdfUrl": "/pdfs/cosmic-10/1.pdf",
+        "summaryKey": "paper_93",
+        "imageUrl": "/images/cosmic-10/card-1.jpg"
+      },
+      {
+        "id": 2,
+        "title": "The Melchizedek Teachings in the Orient",
+        "audioUrl": "cosmic-10-2.mp3",
+        "pdfUrl": "/pdfs/cosmic-10/2.pdf",
+        "summaryKey": "paper_94",
+        "imageUrl": "/images/cosmic-10/card-2.jpg"
+      },
+      {
+        "id": 3,
+        "title": "The Melchizedek Teachings in the Levant",
+        "audioUrl": "cosmic-10-3.mp3",
+        "pdfUrl": "/pdfs/cosmic-10/3.pdf",
+        "summaryKey": "paper_95",
+        "imageUrl": "/images/cosmic-10/card-3.jpg"
+      },
+      {
+        "id": 4,
+        "title": "Yahweh—God of the Hebrews",
+        "audioUrl": "cosmic-10-4.mp3",
+        "pdfUrl": "/pdfs/cosmic-10/4.pdf",
+        "summaryKey": "paper_96",
+        "imageUrl": "/images/cosmic-10/card-4.jpg"
+      },
+      {
+        "id": 5,
+        "title": "The Melchizedek Teachings in the Occident",
+        "audioUrl": "cosmic-10-5.mp3",
+        "pdfUrl": "/pdfs/cosmic-10/5.pdf",
+        "summaryKey": "paper_98",
+        "imageUrl": "/images/cosmic-10/card-5.jpg"
+      }
+    ]
+  },
+  "cosmic-11": {
+    "seriesTitle": "Evolution of Religion",
+    "seriesDescription": "Understanding the development of religious thought through human history",
+    "episodes": [
+      {
+        "id": 1,
+        "title": "The Origins of Worship",
+        "audioUrl": "cosmic-11-1.mp3",
+        "pdfUrl": "/pdfs/cosmic-11/1.pdf",
+        "summaryKey": "paper_85",
+        "imageUrl": "/images/cosmic-11/card-1.jpg"
+      },
+      {
+        "id": 2,
+        "title": "Early Evolution of Religion",
+        "audioUrl": "cosmic-11-2.mp3",
+        "pdfUrl": "/pdfs/cosmic-11/2.pdf",
+        "summaryKey": "paper_86",
+        "imageUrl": "/images/cosmic-11/card-2.jpg"
+      },
+      {
+        "id": 3,
+        "title": "The Ghost Cults",
+        "audioUrl": "cosmic-11-3.mp3",
+        "pdfUrl": "/pdfs/cosmic-11/3.pdf",
+        "summaryKey": "paper_87",
+        "imageUrl": "/images/cosmic-11/card-3.jpg"
+      },
+      {
+        "id": 4,
+        "title": "Sin, Sacrifice, and Atonement",
+        "audioUrl": "cosmic-11-4.mp3",
+        "pdfUrl": "/pdfs/cosmic-11/4.pdf",
+        "summaryKey": "paper_89",
+        "imageUrl": "/images/cosmic-11/card-4.jpg"
+      },
+      {
+        "id": 5,
+        "title": "The Later Evolution of Religion",
+        "audioUrl": "cosmic-11-5.mp3",
+        "pdfUrl": "/pdfs/cosmic-11/5.pdf",
+        "summaryKey": "paper_92",
+        "imageUrl": "/images/cosmic-11/card-5.jpg"
+      }
+    ]
+  },
+  "cosmic-12": {
+    "seriesTitle": "Religion in Human Experience",
+    "seriesDescription": "Exploring the personal dimension of religious faith and experience",
+    "episodes": [
+      {
+        "id": 1,
+        "title": "Religion in Human Experience",
+        "audioUrl": "cosmic-12-1.mp3",
+        "pdfUrl": "/pdfs/cosmic-12/1.pdf",
+        "summaryKey": "paper_100",
+        "imageUrl": "/images/cosmic-12/card-1.jpg"
+      },
+      {
+        "id": 2,
+        "title": "The Real Nature of Religion",
+        "audioUrl": "cosmic-12-2.mp3",
+        "pdfUrl": "/pdfs/cosmic-12/2.pdf",
+        "summaryKey": "paper_101",
+        "imageUrl": "/images/cosmic-12/card-2.jpg"
+      },
+      {
+        "id": 3,
+        "title": "The Foundations of Religious Faith",
+        "audioUrl": "cosmic-12-3.mp3",
+        "pdfUrl": "/pdfs/cosmic-12/3.pdf",
+        "summaryKey": "paper_102",
+        "imageUrl": "/images/cosmic-12/card-3.jpg"
+      },
+      {
+        "id": 4,
+        "title": "The Reality of Religious Experience",
+        "audioUrl": "cosmic-12-4.mp3",
+        "pdfUrl": "/pdfs/cosmic-12/4.pdf",
+        "summaryKey": "paper_103",
+        "imageUrl": "/images/cosmic-12/card-4.jpg"
+      },
+      {
+        "id": 5,
+        "title": "The Faith of Jesus",
+        "audioUrl": "cosmic-12-5.mp3",
+        "pdfUrl": "/pdfs/cosmic-12/5.pdf",
+        "summaryKey": "paper_196",
+        "imageUrl": "/images/cosmic-12/card-5.jpg"
+      }
+    ]
+  },
+  "cosmic-13": {
+    "seriesTitle": "The Supreme Being: Evolving Deity",
+    "seriesDescription": "Understanding the concept of experiential Deity",
+    "episodes": [
+      {
+        "id": 1,
+        "title": "Deity and Reality",
+        "audioUrl": "cosmic-13-1.mp3",
+        "pdfUrl": "/pdfs/cosmic-13/1.pdf",
+        "summaryKey": "paper_0",
+        "imageUrl": "/images/cosmic-13/card-1.jpg"
+      },
+      {
+        "id": 2,
+        "title": "Universe Levels of Reality",
+        "audioUrl": "cosmic-13-2.mp3",
+        "pdfUrl": "/pdfs/cosmic-13/2.pdf",
+        "summaryKey": "paper_105",
+        "imageUrl": "/images/cosmic-13/card-2.jpg"
+      },
+      {
+        "id": 3,
+        "title": "The Supreme Being",
+        "audioUrl": "cosmic-13-3.mp3",
+        "pdfUrl": "/pdfs/cosmic-13/3.pdf",
+        "summaryKey": "paper_115",
+        "imageUrl": "/images/cosmic-13/card-3.jpg"
+      },
+      {
+        "id": 4,
+        "title": "The Almighty Supreme",
+        "audioUrl": "cosmic-13-4.mp3",
+        "pdfUrl": "/pdfs/cosmic-13/4.pdf",
+        "summaryKey": "paper_116",
+        "imageUrl": "/images/cosmic-13/card-4.jpg"
+      },
+      {
+        "id": 5,
+        "title": "God the Supreme",
+        "audioUrl": "cosmic-13-5.mp3",
+        "pdfUrl": "/pdfs/cosmic-13/5.pdf",
+        "summaryKey": "paper_117",
+        "imageUrl": "/images/cosmic-13/card-5.jpg"
+      }
+    ]
+  },
+  "cosmic-14": {
+    "seriesTitle": "Trinity Relations of Deity",
+    "seriesDescription": "Exploring the relationships between the Trinity members and the universe",
+    "episodes": [
+      {
+        "id": 1,
+        "title": "God's Relation to the Universe",
+        "audioUrl": "cosmic-14-1.mp3",
+        "pdfUrl": "/pdfs/cosmic-14/1.pdf",
+        "summaryKey": "paper_4",
+        "imageUrl": "/images/cosmic-14/card-1.jpg"
+      },
+      {
+        "id": 2,
+        "title": "God's Relation to the Individual",
+        "audioUrl": "cosmic-14-2.mp3",
+        "pdfUrl": "/pdfs/cosmic-14/2.pdf",
+        "summaryKey": "paper_5",
+        "imageUrl": "/images/cosmic-14/card-2.jpg"
+      },
+      {
+        "id": 3,
+        "title": "Relation of the Eternal Son to the Universe",
+        "audioUrl": "cosmic-14-3.mp3",
+        "pdfUrl": "/pdfs/cosmic-14/3.pdf",
+        "summaryKey": "paper_7",
+        "imageUrl": "/images/cosmic-14/card-3.jpg"
+      },
+      {
+        "id": 4,
+        "title": "Relation of the Infinite Spirit to the Universe",
+        "audioUrl": "cosmic-14-4.mp3",
+        "pdfUrl": "/pdfs/cosmic-14/4.pdf",
+        "summaryKey": "paper_9",
+        "imageUrl": "/images/cosmic-14/card-4.jpg"
+      },
+      {
+        "id": 5,
+        "title": "The Trinity Union of Deity",
+        "audioUrl": "cosmic-14-5.mp3",
+        "pdfUrl": "/pdfs/cosmic-14/5.pdf",
+        "summaryKey": "paper_10",
+        "imageUrl": "/images/cosmic-14/card-5.jpg"
+      }
+    ]
+  },
+  "series-platform-1": {
+    "seriesTitle": "The Urantia Papers - Part I",
+    "seriesDescription": "Papers 1-31: The Central and Superuniverses",
+    "episodes": [
+      {
+        "id": 1,
+        "title": "Paper 1: The Universal Father",
+        "audioUrl": "paper-1.mp3",
+        "pdfUrl": "paper-1.pdf",
+        "summaryKey": "paper_1",
+        "imageUrl": "/images/urantia-papers/card-1.jpg"
+      },
+      {
+        "id": 2,
+        "title": "Paper 2: The Nature of God",
+        "audioUrl": "paper-2.mp3",
+        "pdfUrl": "paper-2.pdf",
+        "summaryKey": "paper_2",
+        "imageUrl": "/images/urantia-papers/card-2.jpg"
+      },
+      {
+        "id": 3,
+        "title": "Paper 3: The Attributes of God",
+        "audioUrl": "paper-3.mp3",
+        "pdfUrl": "paper-3.pdf",
+        "summaryKey": "paper_3",
+        "imageUrl": "/images/urantia-papers/card-3.jpg"
+      },
+      {
+        "id": 4,
+        "title": "Paper 4: God's Relation to the Universe",
+        "audioUrl": "paper-4.mp3",
+        "pdfUrl": "paper-4.pdf",
+        "summaryKey": "paper_4",
+        "imageUrl": "/images/urantia-papers/card-4.jpg"
+      },
+      {
+        "id": 5,
+        "title": "Paper 5: God's Relation to the Individual",
+        "audioUrl": "paper-5.mp3",
+        "pdfUrl": "paper-5.pdf",
+        "summaryKey": "paper_5",
+        "imageUrl": "/images/urantia-papers/card-5.jpg"
+      },
+      {
+        "id": 6,
+        "title": "Paper 6: The Eternal Son",
+        "audioUrl": "paper-6.mp3",
+        "pdfUrl": "paper-6.pdf",
+        "summaryKey": "paper_6",
+        "imageUrl": "/images/urantia-papers/card-6.jpg"
+      },
+      {
+        "id": 7,
+        "title": "Paper 7: Relation of the Eternal Son to the Universe",
+        "audioUrl": "paper-7.mp3",
+        "pdfUrl": "paper-7.pdf",
+        "summaryKey": "paper_7",
+        "imageUrl": "/images/urantia-papers/card-7.jpg"
+      },
+      {
+        "id": 8,
+        "title": "Paper 8: The Infinite Spirit",
+        "audioUrl": "paper-8.mp3",
+        "pdfUrl": "paper-8.pdf",
+        "summaryKey": "paper_8",
+        "imageUrl": "/images/urantia-papers/card-8.jpg"
+      },
+      {
+        "id": 9,
+        "title": "Paper 9: Relation of the Infinite Spirit to the Universe",
+        "audioUrl": "paper-9.mp3",
+        "pdfUrl": "paper-9.pdf",
+        "summaryKey": "paper_9",
+        "imageUrl": "/images/urantia-papers/card-9.jpg"
+      },
+      {
+        "id": 10,
+        "title": "Paper 10: The Paradise Trinity",
+        "audioUrl": "paper-10.mp3",
+        "pdfUrl": "paper-10.pdf",
+        "summaryKey": "paper_10",
+        "imageUrl": "/images/urantia-papers/card-10.jpg"
+      },
+      {
+        "id": 11,
+        "title": "Paper 11: The Eternal Isle of Paradise",
+        "audioUrl": "paper-11.mp3",
+        "pdfUrl": "paper-11.pdf",
+        "summaryKey": "paper_11",
+        "imageUrl": "/images/urantia-papers/card-11.jpg"
+      },
+      {
+        "id": 12,
+        "title": "Paper 12: The Universe of Universes",
+        "audioUrl": "paper-12.mp3",
+        "pdfUrl": "paper-12.pdf",
+        "summaryKey": "paper_12",
+        "imageUrl": "/images/urantia-papers/card-12.jpg"
+      },
+      {
+        "id": 13,
+        "title": "Paper 13: The Sacred Spheres of Paradise",
+        "audioUrl": "paper-13.mp3",
+        "pdfUrl": "paper-13.pdf",
+        "summaryKey": "paper_13",
+        "imageUrl": "/images/urantia-papers/card-13.jpg"
+      },
+      {
+        "id": 14,
+        "title": "Paper 14: The Central and Divine Universe",
+        "audioUrl": "paper-14.mp3",
+        "pdfUrl": "paper-14.pdf",
+        "summaryKey": "paper_14",
+        "imageUrl": "/images/urantia-papers/card-14.jpg"
+      },
+      {
+        "id": 15,
+        "title": "Paper 15: The Seven Superuniverses",
+        "audioUrl": "paper-15.mp3",
+        "pdfUrl": "paper-15.pdf",
+        "summaryKey": "paper_15",
+        "imageUrl": "/images/urantia-papers/card-15.jpg"
+      },
+      {
+        "id": 16,
+        "title": "Paper 16: The Seven Master Spirits",
+        "audioUrl": "paper-16.mp3",
+        "pdfUrl": "paper-16.pdf",
+        "summaryKey": "paper_16",
+        "imageUrl": "/images/urantia-papers/card-16.jpg"
+      },
+      {
+        "id": 17,
+        "title": "Paper 17: The Seven Supreme Spirit Groups",
+        "audioUrl": "paper-17.mp3",
+        "pdfUrl": "paper-17.pdf",
+        "summaryKey": "paper_17",
+        "imageUrl": "/images/urantia-papers/card-17.jpg"
+      },
+      {
+        "id": 18,
+        "title": "Paper 18: The Supreme Trinity Personalities",
+        "audioUrl": "paper-18.mp3",
+        "pdfUrl": "paper-18.pdf",
+        "summaryKey": "paper_18",
+        "imageUrl": "/images/urantia-papers/card-18.jpg"
+      },
+      {
+        "id": 19,
+        "title": "Paper 19: The Co-ordinate Trinity-Origin Beings",
+        "audioUrl": "paper-19.mp3",
+        "pdfUrl": "paper-19.pdf",
+        "summaryKey": "paper_19",
+        "imageUrl": "/images/urantia-papers/card-19.jpg"
+      },
+      {
+        "id": 20,
+        "title": "Paper 20: The Paradise Sons of God",
+        "audioUrl": "paper-20.mp3",
+        "pdfUrl": "paper-20.pdf",
+        "summaryKey": "paper_20",
+        "imageUrl": "/images/urantia-papers/card-20.jpg"
+      },
+      {
+        "id": 21,
+        "title": "Paper 21: The Paradise Creator Sons",
+        "audioUrl": "paper-21.mp3",
+        "pdfUrl": "paper-21.pdf",
+        "summaryKey": "paper_21",
+        "imageUrl": "/images/urantia-papers/card-21.jpg"
+      },
+      {
+        "id": 22,
+        "title": "Paper 22: The Trinitized Sons of God",
+        "audioUrl": "paper-22.mp3",
+        "pdfUrl": "paper-22.pdf",
+        "summaryKey": "paper_22",
+        "imageUrl": "/images/urantia-papers/card-22.jpg"
+      },
+      {
+        "id": 23,
+        "title": "Paper 23: The Solitary Messengers",
+        "audioUrl": "paper-23.mp3",
+        "pdfUrl": "paper-23.pdf",
+        "summaryKey": "paper_23",
+        "imageUrl": "/images/urantia-papers/card-23.jpg"
+      },
+      {
+        "id": 24,
+        "title": "Paper 24: Higher Personalities of the Infinite Spirit",
+        "audioUrl": "paper-24.mp3",
+        "pdfUrl": "paper-24.pdf",
+        "summaryKey": "paper_24",
+        "imageUrl": "/images/urantia-papers/card-24.jpg"
+      },
+      {
+        "id": 25,
+        "title": "Paper 25: The Messenger Hosts of Space",
+        "audioUrl": "paper-25.mp3",
+        "pdfUrl": "paper-25.pdf",
+        "summaryKey": "paper_25",
+        "imageUrl": "/images/urantia-papers/card-25.jpg"
+      },
+      {
+        "id": 26,
+        "title": "Paper 26: Ministering Spirits of the Central Universe",
+        "audioUrl": "paper-26.mp3",
+        "pdfUrl": "paper-26.pdf",
+        "summaryKey": "paper_26",
+        "imageUrl": "/images/urantia-papers/card-26.jpg"
+      },
+      {
+        "id": 27,
+        "title": "Paper 27: Ministry of the Primary Supernaphim",
+        "audioUrl": "paper-27.mp3",
+        "pdfUrl": "paper-27.pdf",
+        "summaryKey": "paper_27",
+        "imageUrl": "/images/urantia-papers/card-27.jpg"
+      },
+      {
+        "id": 28,
+        "title": "Paper 28: Ministering Spirits of the Superuniverses",
+        "audioUrl": "paper-28.mp3",
+        "pdfUrl": "paper-28.pdf",
+        "summaryKey": "paper_28",
+        "imageUrl": "/images/urantia-papers/card-28.jpg"
+      },
+      {
+        "id": 29,
+        "title": "Paper 29: The Universe Power Directors",
+        "audioUrl": "paper-29.mp3",
+        "pdfUrl": "paper-29.pdf",
+        "summaryKey": "paper_29",
+        "imageUrl": "/images/urantia-papers/card-29.jpg"
+      },
+      {
+        "id": 30,
+        "title": "Paper 30: Personalities of the Grand Universe",
+        "audioUrl": "paper-30.mp3",
+        "pdfUrl": "paper-30.pdf",
+        "summaryKey": "paper_30",
+        "imageUrl": "/images/urantia-papers/card-30.jpg"
+      },
+      {
+        "id": 31,
+        "title": "Paper 31: The Corps of the Finality",
+        "audioUrl": "paper-31.mp3",
+        "pdfUrl": "paper-31.pdf",
+        "summaryKey": "paper_31",
+        "imageUrl": "/images/urantia-papers/card-31.jpg"
+      }
+    ]
+  },
+  "series-platform-2": {
+    "seriesTitle": "The Urantia Papers - Part II",
+    "seriesDescription": "Papers 32-56: The Local Universe",
+    "episodes": [
+      {
+        "id": 1,
+        "title": "Paper 32: The Evolution of Local Universes",
+        "audioUrl": "paper-32.mp3",
+        "pdfUrl": "paper-32.pdf",
+        "summaryKey": "paper_32",
+        "imageUrl": "/images/urantia-papers/card-32.jpg"
+      },
+      {
+        "id": 2,
+        "title": "Paper 33: Administration of the Local Universe",
+        "audioUrl": "paper-33.mp3",
+        "pdfUrl": "paper-33.pdf",
+        "summaryKey": "paper_33",
+        "imageUrl": "/images/urantia-papers/card-33.jpg"
+      },
+      {
+        "id": 3,
+        "title": "Paper 34: The Local Universe Mother Spirit",
+        "audioUrl": "paper-34.mp3",
+        "pdfUrl": "paper-34.pdf",
+        "summaryKey": "paper_34",
+        "imageUrl": "/images/urantia-papers/card-34.jpg"
+      },
+      {
+        "id": 4,
+        "title": "Paper 35: The Local Universe Sons of God",
+        "audioUrl": "paper-35.mp3",
+        "pdfUrl": "paper-35.pdf",
+        "summaryKey": "paper_35",
+        "imageUrl": "/images/urantia-papers/card-35.jpg"
+      },
+      {
+        "id": 5,
+        "title": "Paper 36: The Life Carriers",
+        "audioUrl": "paper-36.mp3",
+        "pdfUrl": "paper-36.pdf",
+        "summaryKey": "paper_36",
+        "imageUrl": "/images/urantia-papers/card-36.jpg"
+      },
+      {
+        "id": 6,
+        "title": "Paper 37: Personalities of the Local Universe",
+        "audioUrl": "paper-37.mp3",
+        "pdfUrl": "paper-37.pdf",
+        "summaryKey": "paper_37",
+        "imageUrl": "/images/urantia-papers/card-37.jpg"
+      },
+      {
+        "id": 7,
+        "title": "Paper 38: Ministering Spirits of the Local Universe",
+        "audioUrl": "paper-38.mp3",
+        "pdfUrl": "paper-38.pdf",
+        "summaryKey": "paper_38",
+        "imageUrl": "/images/urantia-papers/card-38.jpg"
+      },
+      {
+        "id": 8,
+        "title": "Paper 39: The Seraphic Hosts",
+        "audioUrl": "paper-39.mp3",
+        "pdfUrl": "paper-39.pdf",
+        "summaryKey": "paper_39",
+        "imageUrl": "/images/urantia-papers/card-39.jpg"
+      },
+      {
+        "id": 9,
+        "title": "Paper 40: The Ascending Sons of God",
+        "audioUrl": "paper-40.mp3",
+        "pdfUrl": "paper-40.pdf",
+        "summaryKey": "paper_40",
+        "imageUrl": "/images/urantia-papers/card-40.jpg"
+      },
+      {
+        "id": 10,
+        "title": "Paper 41: Physical Aspects of the Local Universe",
+        "audioUrl": "paper-41.mp3",
+        "pdfUrl": "paper-41.pdf",
+        "summaryKey": "paper_41",
+        "imageUrl": "/images/urantia-papers/card-41.jpg"
+      },
+      {
+        "id": 11,
+        "title": "Paper 42: Energy—Mind and Matter",
+        "audioUrl": "paper-42.mp3",
+        "pdfUrl": "paper-42.pdf",
+        "summaryKey": "paper_42",
+        "imageUrl": "/images/urantia-papers/card-42.jpg"
+      },
+      {
+        "id": 12,
+        "title": "Paper 43: The Constellations",
+        "audioUrl": "paper-43.mp3",
+        "pdfUrl": "paper-43.pdf",
+        "summaryKey": "paper_43",
+        "imageUrl": "/images/urantia-papers/card-43.jpg"
+      },
+      {
+        "id": 13,
+        "title": "Paper 44: The Celestial Artisans",
+        "audioUrl": "paper-44.mp3",
+        "pdfUrl": "paper-44.pdf",
+        "summaryKey": "paper_44",
+        "imageUrl": "/images/urantia-papers/card-44.jpg"
+      },
+      {
+        "id": 14,
+        "title": "Paper 45: The Local System Administration",
+        "audioUrl": "paper-45.mp3",
+        "pdfUrl": "paper-45.pdf",
+        "summaryKey": "paper_45",
+        "imageUrl": "/images/urantia-papers/card-45.jpg"
+      },
+      {
+        "id": 15,
+        "title": "Paper 46: The Local System Headquarters",
+        "audioUrl": "paper-46.mp3",
+        "pdfUrl": "paper-46.pdf",
+        "summaryKey": "paper_46",
+        "imageUrl": "/images/urantia-papers/card-46.jpg"
+      },
+      {
+        "id": 16,
+        "title": "Paper 47: The Seven Mansion Worlds",
+        "audioUrl": "paper-47.mp3",
+        "pdfUrl": "paper-47.pdf",
+        "summaryKey": "paper_47",
+        "imageUrl": "/images/urantia-papers/card-47.jpg"
+      },
+      {
+        "id": 17,
+        "title": "Paper 48: The Morontia Life",
+        "audioUrl": "paper-48.mp3",
+        "pdfUrl": "paper-48.pdf",
+        "summaryKey": "paper_48",
+        "imageUrl": "/images/urantia-papers/card-48.jpg"
+      },
+      {
+        "id": 18,
+        "title": "Paper 49: The Inhabited Worlds",
+        "audioUrl": "paper-49.mp3",
+        "pdfUrl": "paper-49.pdf",
+        "summaryKey": "paper_49",
+        "imageUrl": "/images/urantia-papers/card-49.jpg"
+      },
+      {
+        "id": 19,
+        "title": "Paper 50: The Planetary Princes",
+        "audioUrl": "paper-50.mp3",
+        "pdfUrl": "paper-50.pdf",
+        "summaryKey": "paper_50",
+        "imageUrl": "/images/urantia-papers/card-50.jpg"
+      },
+      {
+        "id": 20,
+        "title": "Paper 51: The Planetary Adams",
+        "audioUrl": "paper-51.mp3",
+        "pdfUrl": "paper-51.pdf",
+        "summaryKey": "paper_51",
+        "imageUrl": "/images/urantia-papers/card-51.jpg"
+      },
+      {
+        "id": 21,
+        "title": "Paper 52: Planetary Mortal Epochs",
+        "audioUrl": "paper-52.mp3",
+        "pdfUrl": "paper-52.pdf",
+        "summaryKey": "paper_52",
+        "imageUrl": "/images/urantia-papers/card-52.jpg"
+      },
+      {
+        "id": 22,
+        "title": "Paper 53: The Lucifer Rebellion",
+        "audioUrl": "paper-53.mp3",
+        "pdfUrl": "paper-53.pdf",
+        "summaryKey": "paper_53",
+        "imageUrl": "/images/urantia-papers/card-53.jpg"
+      },
+      {
+        "id": 23,
+        "title": "Paper 54: Problems of the Lucifer Rebellion",
+        "audioUrl": "paper-54.mp3",
+        "pdfUrl": "paper-54.pdf",
+        "summaryKey": "paper_54",
+        "imageUrl": "/images/urantia-papers/card-54.jpg"
+      },
+      {
+        "id": 24,
+        "title": "Paper 55: The Spheres of Light and Life",
+        "audioUrl": "paper-55.mp3",
+        "pdfUrl": "paper-55.pdf",
+        "summaryKey": "paper_55",
+        "imageUrl": "/images/urantia-papers/card-55.jpg"
+      },
+      {
+        "id": 25,
+        "title": "Paper 56: Universal Unity",
+        "audioUrl": "paper-56.mp3",
+        "pdfUrl": "paper-56.pdf",
+        "summaryKey": "paper_56",
+        "imageUrl": "/images/urantia-papers/card-56.jpg"
+      }
+    ]
+  },
+  "series-platform-3": {
+    "seriesTitle": "The Urantia Papers - Part III",
+    "seriesDescription": "Papers 57-119: The History of Urantia",
+    "episodes": [
+      {
+        "id": 1,
+        "title": "Paper 57: The Origin of Urantia",
+        "audioUrl": "paper-57.mp3",
+        "pdfUrl": "paper-57.pdf",
+        "summaryKey": "paper_57",
+        "imageUrl": "/images/urantia-papers/card-57.jpg"
+      },
+      {
+        "id": 2,
+        "title": "Paper 58: Life Establishment on Urantia",
+        "audioUrl": "paper-58.mp3",
+        "pdfUrl": "paper-58.pdf",
+        "summaryKey": "paper_58",
+        "imageUrl": "/images/urantia-papers/card-58.jpg"
+      },
+      {
+        "id": 3,
+        "title": "Paper 59: The Marine-Life Era on Urantia",
+        "audioUrl": "paper-59.mp3",
+        "pdfUrl": "paper-59.pdf",
+        "summaryKey": "paper_59",
+        "imageUrl": "/images/urantia-papers/card-59.jpg"
+      },
+      {
+        "id": 4,
+        "title": "Paper 60: Urantia During the Early Land-Life Era",
+        "audioUrl": "paper-60.mp3",
+        "pdfUrl": "paper-60.pdf",
+        "summaryKey": "paper_60",
+        "imageUrl": "/images/urantia-papers/card-60.jpg"
+      },
+      {
+        "id": 5,
+        "title": "Paper 61: The Mammalian Era on Urantia",
+        "audioUrl": "paper-61.mp3",
+        "pdfUrl": "paper-61.pdf",
+        "summaryKey": "paper_61",
+        "imageUrl": "/images/urantia-papers/card-61.jpg"
+      },
+      {
+        "id": 6,
+        "title": "Paper 62: The Dawn Races of Early Man",
+        "audioUrl": "paper-62.mp3",
+        "pdfUrl": "paper-62.pdf",
+        "summaryKey": "paper_62",
+        "imageUrl": "/images/urantia-papers/card-62.jpg"
+      },
+      {
+        "id": 7,
+        "title": "Paper 63: The First Human Family",
+        "audioUrl": "paper-63.mp3",
+        "pdfUrl": "paper-63.pdf",
+        "summaryKey": "paper_63",
+        "imageUrl": "/images/urantia-papers/card-63.jpg"
+      },
+      {
+        "id": 8,
+        "title": "Paper 64: The Evolutionary Races of Color",
+        "audioUrl": "paper-64.mp3",
+        "pdfUrl": "paper-64.pdf",
+        "summaryKey": "paper_64",
+        "imageUrl": "/images/urantia-papers/card-64.jpg"
+      },
+      {
+        "id": 9,
+        "title": "Paper 65: The Overcontrol of Evolution",
+        "audioUrl": "paper-65.mp3",
+        "pdfUrl": "paper-65.pdf",
+        "summaryKey": "paper_65",
+        "imageUrl": "/images/urantia-papers/card-65.jpg"
+      },
+      {
+        "id": 10,
+        "title": "Paper 66: The Planetary Prince of Urantia",
+        "audioUrl": "paper-66.mp3",
+        "pdfUrl": "paper-66.pdf",
+        "summaryKey": "paper_66",
+        "imageUrl": "/images/urantia-papers/card-66.jpg"
+      },
+      {
+        "id": 11,
+        "title": "Paper 67: The Planetary Rebellion",
+        "audioUrl": "paper-67.mp3",
+        "pdfUrl": "paper-67.pdf",
+        "summaryKey": "paper_67",
+        "imageUrl": "/images/urantia-papers/card-67.jpg"
+      },
+      {
+        "id": 12,
+        "title": "Paper 68: The Dawn of Civilization",
+        "audioUrl": "paper-68.mp3",
+        "pdfUrl": "paper-68.pdf",
+        "summaryKey": "paper_68",
+        "imageUrl": "/images/urantia-papers/card-68.jpg"
+      },
+      {
+        "id": 13,
+        "title": "Paper 69: Primitive Human Institutions",
+        "audioUrl": "paper-69.mp3",
+        "pdfUrl": "paper-69.pdf",
+        "summaryKey": "paper_69",
+        "imageUrl": "/images/urantia-papers/card-69.jpg"
+      },
+      {
+        "id": 14,
+        "title": "Paper 70: The Evolution of Human Government",
+        "audioUrl": "paper-70.mp3",
+        "pdfUrl": "paper-70.pdf",
+        "summaryKey": "paper_70",
+        "imageUrl": "/images/urantia-papers/card-70.jpg"
+      },
+      {
+        "id": 15,
+        "title": "Paper 71: Development of the State",
+        "audioUrl": "paper-71.mp3",
+        "pdfUrl": "paper-71.pdf",
+        "summaryKey": "paper_71",
+        "imageUrl": "/images/urantia-papers/card-71.jpg"
+      },
+      {
+        "id": 16,
+        "title": "Paper 72: Government on a Neighboring Planet",
+        "audioUrl": "paper-72.mp3",
+        "pdfUrl": "paper-72.pdf",
+        "summaryKey": "paper_72",
+        "imageUrl": "/images/urantia-papers/card-72.jpg"
+      },
+      {
+        "id": 17,
+        "title": "Paper 73: The Garden of Eden",
+        "audioUrl": "paper-73.mp3",
+        "pdfUrl": "paper-73.pdf",
+        "summaryKey": "paper_73",
+        "imageUrl": "/images/urantia-papers/card-73.jpg"
+      },
+      {
+        "id": 18,
+        "title": "Paper 74: Adam and Eve",
+        "audioUrl": "paper-74.mp3",
+        "pdfUrl": "paper-74.pdf",
+        "summaryKey": "paper_74",
+        "imageUrl": "/images/urantia-papers/card-74.jpg"
+      },
+      {
+        "id": 19,
+        "title": "Paper 75: The Default of Adam and Eve",
+        "audioUrl": "paper-75.mp3",
+        "pdfUrl": "paper-75.pdf",
+        "summaryKey": "paper_75",
+        "imageUrl": "/images/urantia-papers/card-75.jpg"
+      },
+      {
+        "id": 20,
+        "title": "Paper 76: The Second Garden",
+        "audioUrl": "paper-76.mp3",
+        "pdfUrl": "paper-76.pdf",
+        "summaryKey": "paper_76",
+        "imageUrl": "/images/urantia-papers/card-76.jpg"
+      },
+      {
+        "id": 21,
+        "title": "Paper 77: The Violet Race After the Days of Adam",
+        "audioUrl": "paper-77.mp3",
+        "pdfUrl": "paper-77.pdf",
+        "summaryKey": "paper_77",
+        "imageUrl": "/images/urantia-papers/card-77.jpg"
+      },
+      {
+        "id": 22,
+        "title": "Paper 78: The Default of Adam and Eve",
+        "audioUrl": "paper-78.mp3",
+        "pdfUrl": "paper-78.pdf",
+        "summaryKey": "paper_78",
+        "imageUrl": "/images/urantia-papers/card-78.jpg"
+      },
+      {
+        "id": 23,
+        "title": "Paper 79: The Second Garden",
+        "audioUrl": "paper-79.mp3",
+        "pdfUrl": "paper-79.pdf",
+        "summaryKey": "paper_79",
+        "imageUrl": "/images/urantia-papers/card-79.jpg"
+      },
+      {
+        "id": 24,
+        "title": "Paper 80: The Overcontrol of Evolution",
+        "audioUrl": "paper-80.mp3",
+        "pdfUrl": "paper-80.pdf",
+        "summaryKey": "paper_80",
+        "imageUrl": "/images/urantia-papers/card-80.jpg"
+      },
+      {
+        "id": 25,
+        "title": "Paper 81: The Planetary Prince of Urantia",
+        "audioUrl": "paper-81.mp3",
+        "pdfUrl": "paper-81.pdf",
+        "summaryKey": "paper_81",
+        "imageUrl": "/images/urantia-papers/card-81.jpg"
+      },
+      {
+        "id": 26,
+        "title": "Paper 82: The Planetary Rebellion",
+        "audioUrl": "paper-82.mp3",
+        "pdfUrl": "paper-82.pdf",
+        "summaryKey": "paper_82",
+        "imageUrl": "/images/urantia-papers/card-82.jpg"
+      },
+      {
+        "id": 27,
+        "title": "Paper 83: The Dawn of Civilization",
+        "audioUrl": "paper-83.mp3",
+        "pdfUrl": "paper-83.pdf",
+        "summaryKey": "paper_83",
+        "imageUrl": "/images/urantia-papers/card-83.jpg"
+      },
+      {
+        "id": 28,
+        "title": "Paper 84: Primitive Human Institutions",
+        "audioUrl": "paper-84.mp3",
+        "pdfUrl": "paper-84.pdf",
+        "summaryKey": "paper_84",
+        "imageUrl": "/images/urantia-papers/card-84.jpg"
+      },
+      {
+        "id": 29,
+        "title": "Paper 85: The Evolution of Human Government",
+        "audioUrl": "paper-85.mp3",
+        "pdfUrl": "paper-85.pdf",
+        "summaryKey": "paper_85",
+        "imageUrl": "/images/urantia-papers/card-85.jpg"
+      },
+      {
+        "id": 30,
+        "title": "Paper 86: Development of the State",
+        "audioUrl": "paper-86.mp3",
+        "pdfUrl": "paper-86.pdf",
+        "summaryKey": "paper_86",
+        "imageUrl": "/images/urantia-papers/card-86.jpg"
+      },
+      {
+        "id": 31,
+        "title": "Paper 87: Government on a Neighboring Planet",
+        "audioUrl": "paper-87.mp3",
+        "pdfUrl": "paper-87.pdf",
+        "summaryKey": "paper_87",
+        "imageUrl": "/images/urantia-papers/card-87.jpg"
+      },
+      {
+        "id": 32,
+        "title": "Paper 88: The Garden of Eden",
+        "audioUrl": "paper-88.mp3",
+        "pdfUrl": "paper-88.pdf",
+        "summaryKey": "paper_88",
+        "imageUrl": "/images/urantia-papers/card-88.jpg"
+      },
+      {
+        "id": 33,
+        "title": "Paper 89: Adam and Eve",
+        "audioUrl": "paper-89.mp3",
+        "pdfUrl": "paper-89.pdf",
+        "summaryKey": "paper_89",
+        "imageUrl": "/images/urantia-papers/card-89.jpg"
+      },
+      {
+        "id": 34,
+        "title": "Paper 90: The Default of Adam and Eve",
+        "audioUrl": "paper-90.mp3",
+        "pdfUrl": "paper-90.pdf",
+        "summaryKey": "paper_90",
+        "imageUrl": "/images/urantia-papers/card-90.jpg"
+      },
+      {
+        "id": 35,
+        "title": "Paper 91: The Second Garden",
+        "audioUrl": "paper-91.mp3",
+        "pdfUrl": "paper-91.pdf",
+        "summaryKey": "paper_91",
+        "imageUrl": "/images/urantia-papers/card-91.jpg"
+      },
+      {
+        "id": 36,
+        "title": "Paper 92: The Overcontrol of Evolution",
+        "audioUrl": "paper-92.mp3",
+        "pdfUrl": "paper-92.pdf",
+        "summaryKey": "paper_92",
+        "imageUrl": "/images/urantia-papers/card-92.jpg"
+      },
+      {
+        "id": 37,
+        "title": "Paper 93: The Planetary Prince of Urantia",
+        "audioUrl": "paper-93.mp3",
+        "pdfUrl": "paper-93.pdf",
+        "summaryKey": "paper_93",
+        "imageUrl": "/images/urantia-papers/card-93.jpg"
+      },
+      {
+        "id": 38,
+        "title": "Paper 94: The Planetary Rebellion",
+        "audioUrl": "paper-94.mp3",
+        "pdfUrl": "paper-94.pdf",
+        "summaryKey": "paper_94",
+        "imageUrl": "/images/urantia-papers/card-94.jpg"
+      },
+      {
+        "id": 39,
+        "title": "Paper 95: The Dawn of Civilization",
+        "audioUrl": "paper-95.mp3",
+        "pdfUrl": "paper-95.pdf",
+        "summaryKey": "paper_95",
+        "imageUrl": "/images/urantia-papers/card-95.jpg"
+      },
+      {
+        "id": 40,
+        "title": "Paper 96: Primitive Human Institutions",
+        "audioUrl": "paper-96.mp3",
+        "pdfUrl": "paper-96.pdf",
+        "summaryKey": "paper_96",
+        "imageUrl": "/images/urantia-papers/card-96.jpg"
+      },
+      {
+        "id": 41,
+        "title": "Paper 97: The Evolution of Human Government",
+        "audioUrl": "paper-97.mp3",
+        "pdfUrl": "paper-97.pdf",
+        "summaryKey": "paper_97",
+        "imageUrl": "/images/urantia-papers/card-97.jpg"
+      },
+      {
+        "id": 42,
+        "title": "Paper 98: Development of the State",
+        "audioUrl": "paper-98.mp3",
+        "pdfUrl": "paper-98.pdf",
+        "summaryKey": "paper_98",
+        "imageUrl": "/images/urantia-papers/card-98.jpg"
+      },
+      {
+        "id": 43,
+        "title": "Paper 99: Government on a Neighboring Planet",
+        "audioUrl": "paper-99.mp3",
+        "pdfUrl": "paper-99.pdf",
+        "summaryKey": "paper_99",
+        "imageUrl": "/images/urantia-papers/card-99.jpg"
+      },
+      {
+        "id": 44,
+        "title": "Paper 100: The Garden of Eden",
+        "audioUrl": "paper-100.mp3",
+        "pdfUrl": "paper-100.pdf",
+        "summaryKey": "paper_100",
+        "imageUrl": "/images/urantia-papers/card-100.jpg"
+      },
+      {
+        "id": 45,
+        "title": "Paper 101: Adam and Eve",
+        "audioUrl": "paper-101.mp3",
+        "pdfUrl": "paper-101.pdf",
+        "summaryKey": "paper_101",
+        "imageUrl": "/images/urantia-papers/card-101.jpg"
+      },
+      {
+        "id": 46,
+        "title": "Paper 102: The Default of Adam and Eve",
+        "audioUrl": "paper-102.mp3",
+        "pdfUrl": "paper-102.pdf",
+        "summaryKey": "paper_102",
+        "imageUrl": "/images/urantia-papers/card-102.jpg"
+      },
+      {
+        "id": 47,
+        "title": "Paper 103: The Second Garden",
+        "audioUrl": "paper-103.mp3",
+        "pdfUrl": "paper-103.pdf",
+        "summaryKey": "paper_103",
+        "imageUrl": "/images/urantia-papers/card-103.jpg"
+      },
+      {
+        "id": 48,
+        "title": "Paper 104: The Overcontrol of Evolution",
+        "audioUrl": "paper-104.mp3",
+        "pdfUrl": "paper-104.pdf",
+        "summaryKey": "paper_104",
+        "imageUrl": "/images/urantia-papers/card-104.jpg"
+      },
+      {
+        "id": 49,
+        "title": "Paper 105: The Planetary Prince of Urantia",
+        "audioUrl": "paper-105.mp3",
+        "pdfUrl": "paper-105.pdf",
+        "summaryKey": "paper_105",
+        "imageUrl": "/images/urantia-papers/card-105.jpg"
+      },
+      {
+        "id": 50,
+        "title": "Paper 106: The Planetary Rebellion",
+        "audioUrl": "paper-106.mp3",
+        "pdfUrl": "paper-106.pdf",
+        "summaryKey": "paper_106",
+        "imageUrl": "/images/urantia-papers/card-106.jpg"
+      },
+      {
+        "id": 51,
+        "title": "Paper 107: The Dawn of Civilization",
+        "audioUrl": "paper-107.mp3",
+        "pdfUrl": "paper-107.pdf",
+        "summaryKey": "paper_107",
+        "imageUrl": "/images/urantia-papers/card-107.jpg"
+      },
+      {
+        "id": 52,
+        "title": "Paper 108: Primitive Human Institutions",
+        "audioUrl": "paper-108.mp3",
+        "pdfUrl": "paper-108.pdf",
+        "summaryKey": "paper_108",
+        "imageUrl": "/images/urantia-papers/card-108.jpg"
+      },
+      {
+        "id": 53,
+        "title": "Paper 109: The Evolution of Human Government",
+        "audioUrl": "paper-109.mp3",
+        "pdfUrl": "paper-109.pdf",
+        "summaryKey": "paper_109",
+        "imageUrl": "/images/urantia-papers/card-109.jpg"
+      },
+      {
+        "id": 54,
+        "title": "Paper 110: Development of the State",
+        "audioUrl": "paper-110.mp3",
+        "pdfUrl": "paper-110.pdf",
+        "summaryKey": "paper_110",
+        "imageUrl": "/images/urantia-papers/card-110.jpg"
+      },
+      {
+        "id": 55,
+        "title": "Paper 111: Government on a Neighboring Planet",
+        "audioUrl": "paper-111.mp3",
+        "pdfUrl": "paper-111.pdf",
+        "summaryKey": "paper_111",
+        "imageUrl": "/images/urantia-papers/card-111.jpg"
+      },
+      {
+        "id": 56,
+        "title": "Paper 112: The Ascending Sons of God",
+        "audioUrl": "paper-112.mp3",
+        "pdfUrl": "paper-112.pdf",
+        "summaryKey": "paper_112",
+        "imageUrl": "/images/urantia-papers/card-112.jpg"
+      },
+      {
+        "id": 57,
+        "title": "Paper 113: The Seven Mansion Worlds",
+        "audioUrl": "paper-113.mp3",
+        "pdfUrl": "paper-113.pdf",
+        "summaryKey": "paper_113",
+        "imageUrl": "/images/urantia-papers/card-113.jpg"
+      },
+      {
+        "id": 58,
+        "title": "Paper 114: The Morontia Life",
+        "audioUrl": "paper-114.mp3",
+        "pdfUrl": "paper-114.pdf",
+        "summaryKey": "paper_114",
+        "imageUrl": "/images/urantia-papers/card-114.jpg"
+      },
+      {
+        "id": 59,
+        "title": "Paper 115: The Inhabited Worlds",
+        "audioUrl": "paper-115.mp3",
+        "pdfUrl": "paper-115.pdf",
+        "summaryKey": "paper_115",
+        "imageUrl": "/images/urantia-papers/card-115.jpg"
+      },
+      {
+        "id": 60,
+        "title": "Paper 116: The Planetary Princes",
+        "audioUrl": "paper-116.mp3",
+        "pdfUrl": "paper-116.pdf",
+        "summaryKey": "paper_116",
+        "imageUrl": "/images/urantia-papers/card-116.jpg"
+      },
+      {
+        "id": 61,
+        "title": "Paper 117: The Planetary Adams",
+        "audioUrl": "paper-117.mp3",
+        "pdfUrl": "paper-117.pdf",
+        "summaryKey": "paper_117",
+        "imageUrl": "/images/urantia-papers/card-117.jpg"
+      },
+      {
+        "id": 62,
+        "title": "Paper 118: Supreme and Ultimate—Time and Space",
+        "audioUrl": "paper-118.mp3",
+        "pdfUrl": "paper-118.pdf",
+        "summaryKey": "paper_118",
+        "imageUrl": "/images/urantia-papers/card-118.jpg"
+      },
+      {
+        "id": 63,
+        "title": "Paper 119: The Bestowals of Christ Michael",
+        "audioUrl": "paper-119.mp3",
+        "pdfUrl": "paper-119.pdf",
+        "summaryKey": "paper_119",
+        "imageUrl": "/images/urantia-papers/card-119.jpg"
+      }
+    ]
+  },
+  "series-platform-4": {
+    "seriesTitle": "The Urantia Papers - Part IV",
+    "seriesDescription": "Papers 120-196: The Life and Teachings of Jesus",
+    "episodes": [
+      {
+        "id": 1,
+        "title": "Paper 120: The Bestowal of Michael on Urantia",
+        "audioUrl": "paper-120.mp3",
+        "pdfUrl": "paper-120.pdf",
+        "summaryKey": "paper_120",
+        "imageUrl": "/images/urantia-papers/card-120.jpg"
+      },
+      {
+        "id": 2,
+        "title": "Paper 121: The Times of Michael's Bestowal",
+        "audioUrl": "paper-121.mp3",
+        "pdfUrl": "paper-121.pdf",
+        "summaryKey": "paper_121",
+        "imageUrl": "/images/urantia-papers/card-121.jpg"
+      },
+      {
+        "id": 3,
+        "title": "Paper 122: Birth and Infancy of Jesus",
+        "audioUrl": "paper-122.mp3",
+        "pdfUrl": "paper-122.pdf",
+        "summaryKey": "paper_122",
+        "imageUrl": "/images/urantia-papers/card-122.jpg"
+      },
+      {
+        "id": 4,
+        "title": "Paper 123: The Early Childhood of Jesus",
+        "audioUrl": "paper-123.mp3",
+        "pdfUrl": "paper-123.pdf",
+        "summaryKey": "paper_123",
+        "imageUrl": "/images/urantia-papers/card-123.jpg"
+      },
+      {
+        "id": 5,
+        "title": "Paper 124: The Later Childhood of Jesus",
+        "audioUrl": "paper-124.mp3",
+        "pdfUrl": "paper-124.pdf",
+        "summaryKey": "paper_124",
+        "imageUrl": "/images/urantia-papers/card-124.jpg"
+      },
+      {
+        "id": 6,
+        "title": "Paper 125: Jesus at Jerusalem",
+        "audioUrl": "paper-125.mp3",
+        "pdfUrl": "paper-125.pdf",
+        "summaryKey": "paper_125",
+        "imageUrl": "/images/urantia-papers/card-125.jpg"
+      },
+      {
+        "id": 7,
+        "title": "Paper 126: The Two Crucial Years",
+        "audioUrl": "paper-126.mp3",
+        "pdfUrl": "paper-126.pdf",
+        "summaryKey": "paper_126",
+        "imageUrl": "/images/urantia-papers/card-126.jpg"
+      },
+      {
+        "id": 8,
+        "title": "Paper 127: The Adolescent Years",
+        "audioUrl": "paper-127.mp3",
+        "pdfUrl": "paper-127.pdf",
+        "summaryKey": "paper_127",
+        "imageUrl": "/images/urantia-papers/card-127.jpg"
+      },
+      {
+        "id": 9,
+        "title": "Paper 128: Jesus' Early Manhood",
+        "audioUrl": "paper-128.mp3",
+        "pdfUrl": "paper-128.pdf",
+        "summaryKey": "paper_128",
+        "imageUrl": "/images/urantia-papers/card-128.jpg"
+      },
+      {
+        "id": 10,
+        "title": "Paper 129: The Later Adult Life of Jesus",
+        "audioUrl": "paper-129.mp3",
+        "pdfUrl": "paper-129.pdf",
+        "summaryKey": "paper_129",
+        "imageUrl": "/images/urantia-papers/card-129.jpg"
+      },
+      {
+        "id": 11,
+        "title": "Paper 130: On the Way to Rome",
+        "audioUrl": "paper-130.mp3",
+        "pdfUrl": "paper-130.pdf",
+        "summaryKey": "paper_130",
+        "imageUrl": "/images/urantia-papers/card-130.jpg"
+      },
+      {
+        "id": 12,
+        "title": "Paper 131: The World's Religions",
+        "audioUrl": "paper-131.mp3",
+        "pdfUrl": "paper-131.pdf",
+        "summaryKey": "paper_131",
+        "imageUrl": "/images/urantia-papers/card-131.jpg"
+      },
+      {
+        "id": 13,
+        "title": "Paper 132: The Sojourn at Rome",
+        "audioUrl": "paper-132.mp3",
+        "pdfUrl": "paper-132.pdf",
+        "summaryKey": "paper_132",
+        "imageUrl": "/images/urantia-papers/card-132.jpg"
+      },
+      {
+        "id": 14,
+        "title": "Paper 133: The Return from Rome",
+        "audioUrl": "paper-133.mp3",
+        "pdfUrl": "paper-133.pdf",
+        "summaryKey": "paper_133",
+        "imageUrl": "/images/urantia-papers/card-133.jpg"
+      },
+      {
+        "id": 15,
+        "title": "Paper 134: The Transition Years",
+        "audioUrl": "paper-134.mp3",
+        "pdfUrl": "paper-134.pdf",
+        "summaryKey": "paper_134",
+        "imageUrl": "/images/urantia-papers/card-134.jpg"
+      },
+      {
+        "id": 16,
+        "title": "Paper 135: John the Baptist",
+        "audioUrl": "paper-135.mp3",
+        "pdfUrl": "paper-135.pdf",
+        "summaryKey": "paper_135",
+        "imageUrl": "/images/urantia-papers/card-135.jpg"
+      },
+      {
+        "id": 17,
+        "title": "Paper 136: Baptism and the Forty Days",
+        "audioUrl": "paper-136.mp3",
+        "pdfUrl": "paper-136.pdf",
+        "summaryKey": "paper_136",
+        "imageUrl": "/images/urantia-papers/card-136.jpg"
+      },
+      {
+        "id": 18,
+        "title": "Paper 137: Tarrying Time in Galilee",
+        "audioUrl": "paper-137.mp3",
+        "pdfUrl": "paper-137.pdf",
+        "summaryKey": "paper_137",
+        "imageUrl": "/images/urantia-papers/card-137.jpg"
+      },
+      {
+        "id": 19,
+        "title": "Paper 138: Training the Kingdom's Messengers",
+        "audioUrl": "paper-138.mp3",
+        "pdfUrl": "paper-138.pdf",
+        "summaryKey": "paper_138",
+        "imageUrl": "/images/urantia-papers/card-138.jpg"
+      },
+      {
+        "id": 20,
+        "title": "Paper 139: The Twelve Apostles",
+        "audioUrl": "paper-139.mp3",
+        "pdfUrl": "paper-139.pdf",
+        "summaryKey": "paper_139",
+        "imageUrl": "/images/urantia-papers/card-139.jpg"
+      },
+      {
+        "id": 21,
+        "title": "Paper 140: The Ordination of the Twelve",
+        "audioUrl": "paper-140.mp3",
+        "pdfUrl": "paper-140.pdf",
+        "summaryKey": "paper_140",
+        "imageUrl": "/images/urantia-papers/card-140.jpg"
+      },
+      {
+        "id": 22,
+        "title": "Paper 141: Beginning the Public Work",
+        "audioUrl": "paper-141.mp3",
+        "pdfUrl": "paper-141.pdf",
+        "summaryKey": "paper_141",
+        "imageUrl": "/images/urantia-papers/card-141.jpg"
+      },
+      {
+        "id": 23,
+        "title": "Paper 142: The Passover at Jerusalem",
+        "audioUrl": "paper-142.mp3",
+        "pdfUrl": "paper-142.pdf",
+        "summaryKey": "paper_142",
+        "imageUrl": "/images/urantia-papers/card-142.jpg"
+      },
+      {
+        "id": 24,
+        "title": "Paper 143: Going Through Samaria",
+        "audioUrl": "paper-143.mp3",
+        "pdfUrl": "paper-143.pdf",
+        "summaryKey": "paper_143",
+        "imageUrl": "/images/urantia-papers/card-143.jpg"
+      },
+      {
+        "id": 25,
+        "title": "Paper 144: At Gilboa and in the Decapolis",
+        "audioUrl": "paper-144.mp3",
+        "pdfUrl": "paper-144.pdf",
+        "summaryKey": "paper_144",
+        "imageUrl": "/images/urantia-papers/card-144.jpg"
+      },
+      {
+        "id": 26,
+        "title": "Paper 145: Four Eventful Days at Capernaum",
+        "audioUrl": "paper-145.mp3",
+        "pdfUrl": "paper-145.pdf",
+        "summaryKey": "paper_145",
+        "imageUrl": "/images/urantia-papers/card-145.jpg"
+      },
+      {
+        "id": 27,
+        "title": "Paper 146: First Preaching Tour of Galilee",
+        "audioUrl": "paper-146.mp3",
+        "pdfUrl": "paper-146.pdf",
+        "summaryKey": "paper_146",
+        "imageUrl": "/images/urantia-papers/card-146.jpg"
+      },
+      {
+        "id": 28,
+        "title": "Paper 147: The Interlude Visit to Jerusalem",
+        "audioUrl": "paper-147.mp3",
+        "pdfUrl": "paper-147.pdf",
+        "summaryKey": "paper_147",
+        "imageUrl": "/images/urantia-papers/card-147.jpg"
+      },
+      {
+        "id": 29,
+        "title": "Paper 148: Training Evangelists at Bethsaida",
+        "audioUrl": "paper-148.mp3",
+        "pdfUrl": "paper-148.pdf",
+        "summaryKey": "paper_148",
+        "imageUrl": "/images/urantia-papers/card-148.jpg"
+      },
+      {
+        "id": 30,
+        "title": "Paper 149: The Second Preaching Tour",
+        "audioUrl": "paper-149.mp3",
+        "pdfUrl": "paper-149.pdf",
+        "summaryKey": "paper_149",
+        "imageUrl": "/images/urantia-papers/card-149.jpg"
+      },
+      {
+        "id": 31,
+        "title": "Paper 150: The Third Preaching Tour",
+        "audioUrl": "paper-150.mp3",
+        "pdfUrl": "paper-150.pdf",
+        "summaryKey": "paper_150",
+        "imageUrl": "/images/urantia-papers/card-150.jpg"
+      },
+      {
+        "id": 32,
+        "title": "Paper 151: Tarrying and Teaching by the Seaside",
+        "audioUrl": "paper-151.mp3",
+        "pdfUrl": "paper-151.pdf",
+        "summaryKey": "paper_151",
+        "imageUrl": "/images/urantia-papers/card-151.jpg"
+      },
+      {
+        "id": 33,
+        "title": "Paper 152: Events Leading up to the Capernaum Crisis",
+        "audioUrl": "paper-152.mp3",
+        "pdfUrl": "paper-152.pdf",
+        "summaryKey": "paper_152",
+        "imageUrl": "/images/urantia-papers/card-152.jpg"
+      },
+      {
+        "id": 34,
+        "title": "Paper 153: The Crisis at Capernaum",
+        "audioUrl": "paper-153.mp3",
+        "pdfUrl": "paper-153.pdf",
+        "summaryKey": "paper_153",
+        "imageUrl": "/images/urantia-papers/card-153.jpg"
+      },
+      {
+        "id": 35,
+        "title": "Paper 154: Last Days at Capernaum",
+        "audioUrl": "paper-154.mp3",
+        "pdfUrl": "paper-154.pdf",
+        "summaryKey": "paper_154",
+        "imageUrl": "/images/urantia-papers/card-154.jpg"
+      },
+      {
+        "id": 36,
+        "title": "Paper 155: Fleeing Through Northern Galilee",
+        "audioUrl": "paper-155.mp3",
+        "pdfUrl": "paper-155.pdf",
+        "summaryKey": "paper_155",
+        "imageUrl": "/images/urantia-papers/card-155.jpg"
+      },
+      {
+        "id": 37,
+        "title": "Paper 156: The Sojourn at Tyre and Sidon",
+        "audioUrl": "paper-156.mp3",
+        "pdfUrl": "paper-156.pdf",
+        "summaryKey": "paper_156",
+        "imageUrl": "/images/urantia-papers/card-156.jpg"
+      },
+      {
+        "id": 38,
+        "title": "Paper 157: At Caesarea-Philippi",
+        "audioUrl": "paper-157.mp3",
+        "pdfUrl": "paper-157.pdf",
+        "summaryKey": "paper_157",
+        "imageUrl": "/images/urantia-papers/card-157.jpg"
+      },
+      {
+        "id": 39,
+        "title": "Paper 158: The Mount of Transfiguration",
+        "audioUrl": "paper-158.mp3",
+        "pdfUrl": "paper-158.pdf",
+        "summaryKey": "paper_158",
+        "imageUrl": "/images/urantia-papers/card-158.jpg"
+      },
+      {
+        "id": 40,
+        "title": "Paper 159: The Decapolis Tour",
+        "audioUrl": "paper-159.mp3",
+        "pdfUrl": "paper-159.pdf",
+        "summaryKey": "paper_159",
+        "imageUrl": "/images/urantia-papers/card-159.jpg"
+      },
+      {
+        "id": 41,
+        "title": "Paper 160: Rodan of Alexandria",
+        "audioUrl": "paper-160.mp3",
+        "pdfUrl": "paper-160.pdf",
+        "summaryKey": "paper_160",
+        "imageUrl": "/images/urantia-papers/card-160.jpg"
+      },
+      {
+        "id": 42,
+        "title": "Paper 161: Further Discussions with Rodan",
+        "audioUrl": "paper-161.mp3",
+        "pdfUrl": "paper-161.pdf",
+        "summaryKey": "paper_161",
+        "imageUrl": "/images/urantia-papers/card-161.jpg"
+      },
+      {
+        "id": 43,
+        "title": "Paper 162: At the Feast of Tabernacles",
+        "audioUrl": "paper-162.mp3",
+        "pdfUrl": "paper-162.pdf",
+        "summaryKey": "paper_162",
+        "imageUrl": "/images/urantia-papers/card-162.jpg"
+      },
+      {
+        "id": 44,
+        "title": "Paper 163: Ordination of the Seventy at Magadan",
+        "audioUrl": "paper-163.mp3",
+        "pdfUrl": "paper-163.pdf",
+        "summaryKey": "paper_163",
+        "imageUrl": "/images/urantia-papers/card-163.jpg"
+      },
+      {
+        "id": 45,
+        "title": "Paper 164: At the Feast of Dedication",
+        "audioUrl": "paper-164.mp3",
+        "pdfUrl": "paper-164.pdf",
+        "summaryKey": "paper_164",
+        "imageUrl": "/images/urantia-papers/card-164.jpg"
+      },
+      {
+        "id": 46,
+        "title": "Paper 165: The Perean Mission Begins",
+        "audioUrl": "paper-165.mp3",
+        "pdfUrl": "paper-165.pdf",
+        "summaryKey": "paper_165",
+        "imageUrl": "/images/urantia-papers/card-165.jpg"
+      },
+      {
+        "id": 47,
+        "title": "Paper 166: Last Visit to Northern Perea",
+        "audioUrl": "paper-166.mp3",
+        "pdfUrl": "paper-166.pdf",
+        "summaryKey": "paper_166",
+        "imageUrl": "/images/urantia-papers/card-166.jpg"
+      },
+      {
+        "id": 48,
+        "title": "Paper 167: The Visit to Philadelphia",
+        "audioUrl": "paper-167.mp3",
+        "pdfUrl": "paper-167.pdf",
+        "summaryKey": "paper_167",
+        "imageUrl": "/images/urantia-papers/card-167.jpg"
+      },
+      {
+        "id": 49,
+        "title": "Paper 168: The Resurrection of Lazarus",
+        "audioUrl": "paper-168.mp3",
+        "pdfUrl": "paper-168.pdf",
+        "summaryKey": "paper_168",
+        "imageUrl": "/images/urantia-papers/card-168.jpg"
+      },
+      {
+        "id": 50,
+        "title": "Paper 169: Last Teaching at Pella",
+        "audioUrl": "paper-169.mp3",
+        "pdfUrl": "paper-169.pdf",
+        "summaryKey": "paper_169",
+        "imageUrl": "/images/urantia-papers/card-169.jpg"
+      },
+      {
+        "id": 51,
+        "title": "Paper 170: The Kingdom of Heaven",
+        "audioUrl": "paper-170.mp3",
+        "pdfUrl": "paper-170.pdf",
+        "summaryKey": "paper_170",
+        "imageUrl": "/images/urantia-papers/card-170.jpg"
+      },
+      {
+        "id": 52,
+        "title": "Paper 171: On the Way to Jerusalem",
+        "audioUrl": "paper-171.mp3",
+        "pdfUrl": "paper-171.pdf",
+        "summaryKey": "paper_171",
+        "imageUrl": "/images/urantia-papers/card-171.jpg"
+      },
+      {
+        "id": 53,
+        "title": "Paper 172: Going into Jerusalem",
+        "audioUrl": "paper-172.mp3",
+        "pdfUrl": "paper-172.pdf",
+        "summaryKey": "paper_172",
+        "imageUrl": "/images/urantia-papers/card-172.jpg"
+      },
+      {
+        "id": 54,
+        "title": "Paper 173: Monday in Jerusalem",
+        "audioUrl": "paper-173.mp3",
+        "pdfUrl": "paper-173.pdf",
+        "summaryKey": "paper_173",
+        "imageUrl": "/images/urantia-papers/card-173.jpg"
+      },
+      {
+        "id": 55,
+        "title": "Paper 174: Tuesday Morning in the Temple",
+        "audioUrl": "paper-174.mp3",
+        "pdfUrl": "paper-174.pdf",
+        "summaryKey": "paper_174",
+        "imageUrl": "/images/urantia-papers/card-174.jpg"
+      },
+      {
+        "id": 56,
+        "title": "Paper 175: The Last Temple Discourse",
+        "audioUrl": "paper-175.mp3",
+        "pdfUrl": "paper-175.pdf",
+        "summaryKey": "paper_175",
+        "imageUrl": "/images/urantia-papers/card-175.jpg"
+      },
+      {
+        "id": 57,
+        "title": "Paper 176: Tuesday Evening on Mount Olivet",
+        "audioUrl": "paper-176.mp3",
+        "pdfUrl": "paper-176.pdf",
+        "summaryKey": "paper_176",
+        "imageUrl": "/images/urantia-papers/card-176.jpg"
+      },
+      {
+        "id": 58,
+        "title": "Paper 177: Wednesday, the Rest Day",
+        "audioUrl": "paper-177.mp3",
+        "pdfUrl": "paper-177.pdf",
+        "summaryKey": "paper_177",
+        "imageUrl": "/images/urantia-papers/card-177.jpg"
+      },
+      {
+        "id": 59,
+        "title": "Paper 178: Last Day at the Camp",
+        "audioUrl": "paper-178.mp3",
+        "pdfUrl": "paper-178.pdf",
+        "summaryKey": "paper_178",
+        "imageUrl": "/images/urantia-papers/card-178.jpg"
+      },
+      {
+        "id": 60,
+        "title": "Paper 179: The Last Supper",
+        "audioUrl": "paper-179.mp3",
+        "pdfUrl": "paper-179.pdf",
+        "summaryKey": "paper_179",
+        "imageUrl": "/images/urantia-papers/card-179.jpg"
+      },
+      {
+        "id": 61,
+        "title": "Paper 180: The Farewell Discourse",
+        "audioUrl": "paper-180.mp3",
+        "pdfUrl": "paper-180.pdf",
+        "summaryKey": "paper_180",
+        "imageUrl": "/images/urantia-papers/card-180.jpg"
+      },
+      {
+        "id": 62,
+        "title": "Paper 181: Final Admonitions and Warnings",
+        "audioUrl": "paper-181.mp3",
+        "pdfUrl": "paper-181.pdf",
+        "summaryKey": "paper_181",
+        "imageUrl": "/images/urantia-papers/card-181.jpg"
+      },
+      {
+        "id": 63,
+        "title": "Paper 182: In Gethsemane",
+        "audioUrl": "paper-182.mp3",
+        "pdfUrl": "paper-182.pdf",
+        "summaryKey": "paper_182",
+        "imageUrl": "/images/urantia-papers/card-182.jpg"
+      },
+      {
+        "id": 64,
+        "title": "Paper 183: The Betrayal and Arrest of Jesus",
+        "audioUrl": "paper-183.mp3",
+        "pdfUrl": "paper-183.pdf",
+        "summaryKey": "paper_183",
+        "imageUrl": "/images/urantia-papers/card-183.jpg"
+      },
+      {
+        "id": 65,
+        "title": "Paper 184: Before the Sanhedrin Court",
+        "audioUrl": "paper-184.mp3",
+        "pdfUrl": "paper-184.pdf",
+        "summaryKey": "paper_184",
+        "imageUrl": "/images/urantia-papers/card-184.jpg"
+      },
+      {
+        "id": 66,
+        "title": "Paper 185: The Trial Before Pilate",
+        "audioUrl": "paper-185.mp3",
+        "pdfUrl": "paper-185.pdf",
+        "summaryKey": "paper_185",
+        "imageUrl": "/images/urantia-papers/card-185.jpg"
+      },
+      {
+        "id": 67,
+        "title": "Paper 186: Just Before the Crucifixion",
+        "audioUrl": "paper-186.mp3",
+        "pdfUrl": "paper-186.pdf",
+        "summaryKey": "paper_186",
+        "imageUrl": "/images/urantia-papers/card-186.jpg"
+      },
+      {
+        "id": 68,
+        "title": "Paper 187: The Crucifixion",
+        "audioUrl": "paper-187.mp3",
+        "pdfUrl": "paper-187.pdf",
+        "summaryKey": "paper_187",
+        "imageUrl": "/images/urantia-papers/card-187.jpg"
+      },
+      {
+        "id": 69,
+        "title": "Paper 188: The Time of the Tomb",
+        "audioUrl": "paper-188.mp3",
+        "pdfUrl": "paper-188.pdf",
+        "summaryKey": "paper_188",
+        "imageUrl": "/images/urantia-papers/card-188.jpg"
+      },
+      {
+        "id": 70,
+        "title": "Paper 189: The Resurrection",
+        "audioUrl": "paper-189.mp3",
+        "pdfUrl": "paper-189.pdf",
+        "summaryKey": "paper_189",
+        "imageUrl": "/images/urantia-papers/card-189.jpg"
+      },
+      {
+        "id": 71,
+        "title": "Paper 190: Morontia Appearances of Jesus",
+        "audioUrl": "paper-190.mp3",
+        "pdfUrl": "paper-190.pdf",
+        "summaryKey": "paper_190",
+        "imageUrl": "/images/urantia-papers/card-190.jpg"
+      },
+      {
+        "id": 72,
+        "title": "Paper 191: Appearances to the Apostles and Other Leaders",
+        "audioUrl": "paper-191.mp3",
+        "pdfUrl": "paper-191.pdf",
+        "summaryKey": "paper_191",
+        "imageUrl": "/images/urantia-papers/card-191.jpg"
+      },
+      {
+        "id": 73,
+        "title": "Paper 192: Appearances in Galilee",
+        "audioUrl": "paper-192.mp3",
+        "pdfUrl": "paper-192.pdf",
+        "summaryKey": "paper_192",
+        "imageUrl": "/images/urantia-papers/card-192.jpg"
+      },
+      {
+        "id": 74,
+        "title": "Paper 193: Final Appearances and Ascension",
+        "audioUrl": "paper-193.mp3",
+        "pdfUrl": "paper-193.pdf",
+        "summaryKey": "paper_193",
+        "imageUrl": "/images/urantia-papers/card-193.jpg"
+      },
+      {
+        "id": 75,
+        "title": "Paper 194: Bestowal of the Spirit of Truth",
+        "audioUrl": "paper-194.mp3",
+        "pdfUrl": "paper-194.pdf",
+        "summaryKey": "paper_194",
+        "imageUrl": "/images/urantia-papers/card-194.jpg"
+      },
+      {
+        "id": 76,
+        "title": "Paper 195: After Pentecost",
+        "audioUrl": "paper-195.mp3",
+        "pdfUrl": "paper-195.pdf",
+        "summaryKey": "paper_195",
+        "imageUrl": "/images/urantia-papers/card-195.jpg"
+      },
+      {
+        "id": 77,
+        "title": "Paper 196: The Faith of Jesus",
+        "audioUrl": "paper-196.mp3",
+        "pdfUrl": "paper-196.pdf",
+        "summaryKey": "paper_196",
+        "imageUrl": "/images/urantia-papers/card-196.jpg"
+      }
+    ]
+  },
+  "urantia-papers": {
+    "seriesTitle": "The Urantia Papers Podcast",
+    "seriesDescription": "Enjoy a narrative journey through the Urantia Book, one paper at a time.",
+    "episodes": [
+      {
+        "id": 1,
+        "title": "Paper 1: The Universal Father",
+        "audioUrl": "paper-1.mp3",
+        "pdfUrl": "paper-1.pdf",
+        "summaryKey": "paper_1",
+        "imageUrl": "/images/urantia-papers/card-1.jpg"
+      },
+      {
+        "id": 2,
+        "title": "Paper 2: The Nature of God",
+        "audioUrl": "paper-2.mp3",
+        "pdfUrl": "paper-2.pdf",
+        "summaryKey": null,
+        "imageUrl": "/images/urantia-papers/card-2.jpg"
+      },
+      {
+        "id": 3,
+        "title": "Paper 3: The Attributes of God",
+        "audioUrl": "paper-3.mp3",
+        "pdfUrl": "paper-3.pdf",
+        "summaryKey": null,
+        "imageUrl": "/images/urantia-papers/card-3.jpg"
+      },
+      {
+        "id": 4,
+        "title": "Paper 4: God's Relation to the Universe",
+        "audioUrl": "paper-4.mp3",
+        "pdfUrl": "paper-4.pdf",
+        "summaryKey": null,
+        "imageUrl": "/images/urantia-papers/card-4.jpg"
+      },
+      {
+        "id": 5,
+        "title": "Paper 5: God's Relation to the Individual",
+        "audioUrl": "paper-5.mp3",
+        "pdfUrl": "paper-5.pdf",
+        "summaryKey": null,
+        "imageUrl": "/images/urantia-papers/card-5.jpg"
+      }
+    ]
+  },
+  "history": {
+    "seriesTitle": "History of the Urantia Papers",
+    "seriesDescription": "The fascinating story behind the Urantia Papers and how they came to be.",
+    "episodes": [
+      {
+        "id": 1,
+        "title": "The Sleeping Subject",
+        "audioUrl": "history-1.mp3",
+        "pdfUrl": null,
+        "summaryKey": null,
+        "imageUrl": "/images/history/card-1.jpg"
+      },
+      {
+        "id": 2,
+        "title": "The Contact Commission",
+        "audioUrl": "history-2.mp3",
+        "pdfUrl": null,
+        "summaryKey": null,
+        "imageUrl": "/images/history/card-2.jpg"
+      },
+      {
+        "id": 3,
+        "title": "The Forum",
+        "audioUrl": "history-3.mp3",
+        "pdfUrl": null,
+        "summaryKey": null,
+        "imageUrl": "/images/history/card-3.jpg"
+      },
+      {
+        "id": 4,
+        "title": "The Seventy",
+        "audioUrl": "history-4.mp3",
+        "pdfUrl": null,
+        "summaryKey": null,
+        "imageUrl": "/images/history/card-4.jpg"
+      },
+      {
+        "id": 5,
+        "title": "Publication and the Urantia Foundation",
+        "audioUrl": "history-5.mp3",
+        "pdfUrl": null,
+        "summaryKey": null,
+        "imageUrl": "/images/history/card-5.jpg"
+      }
+    ]
+  },
+  "jesus-12": {
+    "seriesTitle": "Jesus' Death & Resurrection: The Expanded Narrative",
+    "seriesDescription": "Offering revelatory details beyond traditional accounts",
+    "episodes": [
+      {
+        "id": 1,
+        "title": "Betrayal and Arrest of Jesus",
+        "audioUrl": "Event - Betrayal and Arrest of Jesus.mp3",
+        "pdfUrl": null,
+        "summaryKey": "event/betrayal-and-arrest-of-jesus",
+        "imageUrl": "/images/jesus-12/card-1.jpg"
+      },
+      {
+        "id": 2,
+        "title": "Pilate's Last Appeal and Surrender",
+        "audioUrl": "Event - Pilate_s Last Appeal and Surrender.mp3",
+        "pdfUrl": null,
+        "summaryKey": "event/pilates-last-appeal-and-surrender",
+        "imageUrl": "/images/jesus-12/card-2.jpg"
+      },
+      {
+        "id": 3,
+        "title": "The Meaning of Jesus' Death on the Cross",
+        "audioUrl": "Topic - Meaning of Jesus Death on the Cross.mp3",
+        "pdfUrl": null,
+        "summaryKey": "topic/meaning-of-jesus-death-on-the-cross",
+        "imageUrl": "/images/jesus-12/card-3.jpg"
+      },
+      {
+        "id": 4,
+        "title": "The Two Thieves",
+        "audioUrl": "Topic - The Two Thieves on the Cross.mp3",
+        "pdfUrl": null,
+        "summaryKey": "topic/the-two-thieves-on-the-cross",
+        "imageUrl": "/images/jesus-12/card-4.jpg"
+      },
+      {
+        "id": 5,
+        "title": "Post-Resurrection Appearances",
+        "audioUrl": "Topic - Jesus_ Post-Resurrection Appearances.mp3",
+        "pdfUrl": null,
+        "summaryKey": "topic/jesus-post-resurrection-appearances",
+        "imageUrl": "/images/jesus-12/card-5.jpg"
+      }
+    ]
+  },
+  "jesus-13": {
+    "seriesTitle": "Evolving Faith: From Traditional Religion to Cosmic Truth",
+    "seriesDescription": "Bridging conventional religious concepts with expanded spiritual understanding",
+    "episodes": [
+      {
+        "id": 1,
+        "title": "Evolution of the Atonement Doctrine",
+        "audioUrl": "Topic - Evolution of the Atonement Doctrine.mp3",
+        "pdfUrl": null,
+        "summaryKey": "topic/evolution-of-the-atonement-doctrine",
+        "imageUrl": "/images/jesus-13/card-1.jpg"
+      },
+      {
+        "id": 2,
+        "title": "Concepts of the Expected Messiah",
+        "audioUrl": "Topic - Concepts of the Expected Messiah.mp3",
+        "pdfUrl": null,
+        "summaryKey": "topic/concepts-of-the-expected-messiah",
+        "imageUrl": "/images/jesus-13/card-2.jpg"
+      },
+      {
+        "id": 3,
+        "title": "Mistakes of Jesus' Early Followers",
+        "audioUrl": "Topic - Mistakes of Jesus_ Early Followers.mp3",
+        "pdfUrl": null,
+        "summaryKey": "topic/mistakes-of-jesus-early-followers",
+        "imageUrl": "/images/jesus-13/card-3.jpg"
+      },
+      {
+        "id": 4,
+        "title": "After Pentecost: Peter, Paul, and Christianity",
+        "audioUrl": "Topic - After Pentecost - Peter, Paul, and Christianity.mp3",
+        "pdfUrl": null,
+        "summaryKey": "topic/after-pentecost-peter-paul-and-christianity",
+        "imageUrl": "/images/jesus-13/card-4.jpg"
+      },
+      {
+        "id": 5,
+        "title": "Was Jesus Really Born of a Virgin?",
+        "audioUrl": "Topic - Was Jesus Really Born of a Virgin.mp3",
+        "pdfUrl": null,
+        "summaryKey": "topic/was-jesus-really-born-of-a-virgin",
+        "imageUrl": "/images/jesus-13/card-5.jpg"
+      }
+    ]
+  },
+  "jesus-14": {
+    "seriesTitle": "The Human Jesus: Beyond the Divine Image",
+    "seriesDescription": "Humanizing Jesus beyond traditional religious portrayals",
+    "episodes": [
+      {
+        "id": 1,
+        "title": "Hobbies and Interests Jesus Enjoyed",
+        "audioUrl": "Topic - Hobbies and Interests Jesus Enjoyed.mp3",
+        "pdfUrl": null,
+        "summaryKey": "topic/hobbies-and-interests-jesus-enjoyed",
+        "imageUrl": "/images/jesus-14/card-1.jpg"
+      },
+      {
+        "id": 2,
+        "title": "Did Jesus Ever Feel Sad?",
+        "audioUrl": "Topic - Did Jesus Ever Feel Sad.mp3",
+        "pdfUrl": null,
+        "summaryKey": "topic/did-jesus-ever-feel-sad",
+        "imageUrl": "/images/jesus-14/card-2.jpg"
+      },
+      {
+        "id": 3,
+        "title": "Did Jesus Ever Marry Anyone?",
+        "audioUrl": "Topic - Did Jesus Ever Marry Anyone.mp3",
+        "pdfUrl": null,
+        "summaryKey": "topic/did-jesus-marry-anyone",
+        "imageUrl": "/images/jesus-14/card-3.jpg"
+      },
+      {
+        "id": 4,
+        "title": "Importance of the Early Home Life",
+        "audioUrl": "Topic - Importance of the Early Home Life.mp3",
+        "pdfUrl": null,
+        "summaryKey": "topic/importance-of-the-early-home-life",
+        "imageUrl": "/images/jesus-14/card-4.jpg"
+      },
+      {
+        "id": 5,
+        "title": "The Complete Personality of Jesus",
+        "audioUrl": "Person - Jesus.mp3",
+        "pdfUrl": null,
+        "summaryKey": "person/jesus",
+        "imageUrl": "/images/jesus-14/card-5.jpg"
+      }
+    ]
+  }
+} 

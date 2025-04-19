@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, BookOpen, Library } from 'lucide-react';
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // Simplified to only include The Urantia Papers
+  // Main navigation items
   const navigationItems = [
-    { path: '/urantia-papers', label: 'The Urantia Papers' },
+    { path: '/urantia-papers', label: 'The Urantia Papers', icon: <BookOpen className="h-4 w-4 mr-2" /> },
+    { path: '/series', label: 'Series Collections', icon: <Library className="h-4 w-4 mr-2" /> },
+    { path: '/contact', label: 'Contact' },
   ];
 
   return (
@@ -17,6 +19,11 @@ export default function Header() {
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <Link to="/" className="flex items-center space-x-3">
+              <img 
+                src="/logo.png" 
+                alt="UrantiaBookPod Logo" 
+                className="h-8 w-auto" 
+              />
               <span className="title-subtitle text-sm tracking-[0.15em]">
                 Urantia Book Podcast
               </span>
@@ -24,15 +31,18 @@ export default function Header() {
 
             {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center space-x-8">
+              {/* Main navigation items */}
               {navigationItems.map((item) => (
                 <Link
                   key={item.path}
                   to={item.path}
-                  className="body-lg text-sm text-white/70 hover:text-white/90 transition-colors tracking-wider"
+                  className="body-lg flex items-center text-sm text-white/70 hover:text-white/90 transition-colors tracking-wider"
                 >
+                  {item.icon}
                   {item.label}
                 </Link>
               ))}
+
               <Link
                 to="/disclaimer"
                 target="_blank"
@@ -91,16 +101,28 @@ export default function Header() {
             </button>
             
             <nav className="flex flex-col space-y-8 mt-8">
+              {/* Logo in mobile menu */}
+              <div className="flex items-center space-x-3 mb-4">
+                <img 
+                  src="/logo.png" 
+                  alt="UrantiaBookPod Logo" 
+                  className="h-10 w-auto" 
+                />
+              </div>
+              
+              {/* Main navigation items in mobile menu */}
               {navigationItems.map((item) => (
                 <Link
                   key={item.path}
                   to={item.path}
-                  className="text-2xl font-semibold text-white hover:text-gold transition-colors"
+                  className="flex items-center text-2xl font-semibold text-white hover:text-gold transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
+                  {item.icon}
                   {item.label}
                 </Link>
               ))}
+              
               <Link
                 to="/disclaimer"
                 target="_blank"

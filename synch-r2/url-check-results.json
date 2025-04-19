@@ -1,0 +1,214 @@
+{
+  "faultyUrls": {
+    "cosmic-1-1": {
+      "type": "missing_in_r2"
+    },
+    "cosmic-1-2": {
+      "type": "missing_in_r2"
+    },
+    "cosmic-1-3": {
+      "type": "missing_in_r2"
+    },
+    "cosmic-1-4": {
+      "type": "missing_in_r2"
+    },
+    "cosmic-1-5": {
+      "type": "missing_in_r2"
+    },
+    "cosmic-2-1": {
+      "type": "missing_in_r2"
+    },
+    "cosmic-2-2": {
+      "type": "missing_in_r2"
+    },
+    "cosmic-2-3": {
+      "type": "missing_in_r2"
+    },
+    "cosmic-2-4": {
+      "type": "missing_in_r2"
+    },
+    "cosmic-2-5": {
+      "type": "missing_in_r2"
+    },
+    "cosmic-3-1": {
+      "type": "missing_in_r2"
+    },
+    "cosmic-3-2": {
+      "type": "missing_in_r2"
+    },
+    "cosmic-3-3": {
+      "type": "missing_in_r2"
+    },
+    "cosmic-3-4": {
+      "type": "missing_in_r2"
+    },
+    "cosmic-3-5": {
+      "type": "missing_in_r2"
+    },
+    "cosmic-4-1": {
+      "type": "missing_in_r2"
+    },
+    "cosmic-4-2": {
+      "type": "missing_in_r2"
+    },
+    "cosmic-4-3": {
+      "type": "missing_in_r2"
+    },
+    "cosmic-4-4": {
+      "type": "missing_in_r2"
+    },
+    "cosmic-4-5": {
+      "type": "missing_in_r2"
+    },
+    "cosmic-5-1": {
+      "type": "missing_in_r2"
+    },
+    "cosmic-5-2": {
+      "type": "missing_in_r2"
+    },
+    "cosmic-5-3": {
+      "type": "missing_in_r2"
+    },
+    "cosmic-5-4": {
+      "type": "missing_in_r2"
+    },
+    "cosmic-5-5": {
+      "type": "missing_in_r2"
+    },
+    "cosmic-6-1": {
+      "type": "missing_in_r2"
+    },
+    "cosmic-6-2": {
+      "type": "missing_in_r2"
+    },
+    "cosmic-6-3": {
+      "type": "missing_in_r2"
+    },
+    "cosmic-6-4": {
+      "type": "missing_in_r2"
+    },
+    "cosmic-6-5": {
+      "type": "missing_in_r2"
+    },
+    "cosmic-7-1": {
+      "type": "missing_in_r2"
+    },
+    "cosmic-7-2": {
+      "type": "missing_in_r2"
+    },
+    "cosmic-7-3": {
+      "type": "missing_in_r2"
+    },
+    "cosmic-7-4": {
+      "type": "missing_in_r2"
+    },
+    "cosmic-7-5": {
+      "type": "missing_in_r2"
+    },
+    "cosmic-8-1": {
+      "type": "missing_in_r2"
+    },
+    "cosmic-8-2": {
+      "type": "missing_in_r2"
+    },
+    "cosmic-8-3": {
+      "type": "missing_in_r2"
+    },
+    "cosmic-8-4": {
+      "type": "missing_in_r2"
+    },
+    "cosmic-8-5": {
+      "type": "missing_in_r2"
+    },
+    "cosmic-9-1": {
+      "type": "missing_in_r2"
+    },
+    "cosmic-9-2": {
+      "type": "missing_in_r2"
+    },
+    "cosmic-9-3": {
+      "type": "missing_in_r2"
+    },
+    "cosmic-9-4": {
+      "type": "missing_in_r2"
+    },
+    "cosmic-9-5": {
+      "type": "missing_in_r2"
+    },
+    "cosmic-10-1": {
+      "type": "missing_in_r2"
+    },
+    "cosmic-10-2": {
+      "type": "missing_in_r2"
+    },
+    "cosmic-10-3": {
+      "type": "missing_in_r2"
+    },
+    "cosmic-10-4": {
+      "type": "missing_in_r2"
+    },
+    "cosmic-10-5": {
+      "type": "missing_in_r2"
+    },
+    "cosmic-11-1": {
+      "type": "missing_in_r2"
+    },
+    "cosmic-11-2": {
+      "type": "missing_in_r2"
+    },
+    "cosmic-11-3": {
+      "type": "missing_in_r2"
+    },
+    "cosmic-11-4": {
+      "type": "missing_in_r2"
+    },
+    "cosmic-11-5": {
+      "type": "missing_in_r2"
+    },
+    "cosmic-12-1": {
+      "type": "missing_in_r2"
+    },
+    "cosmic-12-2": {
+      "type": "missing_in_r2"
+    },
+    "cosmic-12-3": {
+      "type": "missing_in_r2"
+    },
+    "cosmic-12-4": {
+      "type": "missing_in_r2"
+    },
+    "cosmic-12-5": {
+      "type": "missing_in_r2"
+    },
+    "cosmic-13-1": {
+      "type": "missing_in_r2"
+    },
+    "cosmic-13-2": {
+      "type": "missing_in_r2"
+    },
+    "cosmic-13-3": {
+      "type": "missing_in_r2"
+    },
+    "cosmic-13-4": {
+      "type": "missing_in_r2"
+    },
+    "cosmic-13-5": {
+      "type": "missing_in_r2"
+    },
+    "cosmic-14-1": {
+      "type": "missing_in_r2"
+    },
+    "cosmic-14-2": {
+      "type": "missing_in_r2"
+    },
+    "cosmic-14-3": {
+      "type": "missing_in_r2"
+    },
+    "cosmic-14-4": {
+      "type": "missing_in_r2"
+    },
+    "cosmic-14-5": {
+      "type": "missing_in_r2"
+    }
+  }
+}

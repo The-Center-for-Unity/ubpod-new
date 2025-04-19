@@ -1,0 +1,23 @@
+{
+  "rewrites": [
+    { "source": "/api/:path*", "destination": "/api/:path*" }
+  ],
+  "functions": {
+    "api/**/*.js": {
+      "memory": 1024,
+      "maxDuration": 10
+    }
+  },
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "framework": "vite",
+  "env": {
+    "RESEND_API_KEY": "re_ityMsfsR_ECThPJriMWf8NTCgnDy1MC7b",
+    "VITE_EMAIL_DOMAIN": "thecenterforunity.org",
+    "VITE_EMAIL_FROM": "contact@thecenterforunity.org",
+    "VITE_EMAIL_TO": "contact@thecenterforunity.org",
+    "VITE_SITE_NAME": "Remembrance Supper",
+    "VITE_EVENT_DATE": "2025-04-06T19:07:00+03:00",
+    "VITE_EVENT_LOCATION": "Israel"
+  }
+} 
