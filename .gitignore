@@ -109,3 +109,8 @@ coverage.xml
 
 # Ignore the root level scraper directory with Python environment
 /scraper/
+
+# AI Digest related files
+ai-digest.log
+.aidigestignore
+codebase.md
