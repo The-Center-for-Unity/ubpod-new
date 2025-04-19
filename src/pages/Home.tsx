@@ -3,7 +3,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Layout from '../components/layout/Layout';
 import { PlayCircle, Headphones, MessageCircle, Download, Sparkles } from 'lucide-react';
-import SeriesCardGrid from '../components/ui/SeriesCardGrid';
 
 export default function HomePage() {
   return (
@@ -48,39 +47,19 @@ export default function HomePage() {
                   </span>
                 </Link>
                 <a 
-                  href="#series"
+                  href="#features"
                   className="inline-flex items-center px-8 py-4 bg-white/15 backdrop-blur-sm border-2 border-white/40 
                             text-white rounded-full hover:bg-white/25 transition-all duration-300 font-bold text-lg shadow-xl"
                 >
-                  Browse Series
+                  Learn More
                 </a>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Series Section */}
-        <section id="series" className="py-20 bg-navy">
-          <div className="max-w-6xl mx-auto px-4">
-            <div className="text-center mb-12">
-              <h2 className="title-subtitle text-xl tracking-[0.15em] text-gold mb-3">
-                PODCAST SERIES
-              </h2>
-              <h3 className="title-main text-3xl md:text-4xl tracking-[0.1em] mb-6">
-                Explore Our Collections
-              </h3>
-              <p className="body-lg text-white/80 max-w-2xl mx-auto mb-10">
-                Choose from our growing library of thematic series, each exploring a unique facet of 
-                the Urantia Book's cosmic teachings.
-              </p>
-            </div>
-
-            <SeriesCardGrid />
-          </div>
-        </section>
-
         {/* Features Section */}
-        <section id="features" className="py-20 bg-navy-dark">
+        <section id="features" className="py-20 bg-navy">
           <div className="max-w-6xl mx-auto px-4">
             <div className="text-center mb-16">
               <h2 className="title-subtitle text-xl tracking-[0.15em] text-gold mb-3">

@@ -33,7 +33,7 @@ const PaperCard: React.FC<PaperCardProps> = ({ paper }) => {
   };
 
   // Determine which summary to display, with fallbacks
-  const displaySummary = paper.cardSummary || paper.summary || paper.description || '';
+  const displaySummary = paper.cardSummary || paper.summary || paper.description;
 
   // Debug: Log summary info for the first few papers
   if (paper.id < 5) {
@@ -118,7 +118,7 @@ export default function UrantiaPapersPage() {
     const query = searchQuery.toLowerCase();
     const filtered = papers.filter(paper => 
       paper.title.toLowerCase().includes(query) || 
-      (paper.description && paper.description.toLowerCase().includes(query)) ||
+      paper.description.toLowerCase().includes(query) ||
       paper.id.toString() === query
     );
     
@@ -152,7 +152,7 @@ export default function UrantiaPapersPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h1 className="title-main text-xl md:text-2xl lg:text-3xl mb-4">The Urantia Papers</h1>
+          <h1 className="title-main mb-4">The Urantia Papers</h1>
           <p className="body-lg max-w-3xl">
             Immerse yourself in cosmic wisdom through AI-crafted audio journeys of the Urantia Book.
             Experience profound teachings in a new, accessible format.
@@ -271,7 +271,7 @@ export default function UrantiaPapersPage() {
 // Paper List Item Component
 const PaperListItem: React.FC<PaperCardProps> = ({ paper }) => {
   // Determine which summary to display, with fallbacks
-  const displaySummary = paper.cardSummary || paper.summary || paper.description || '';
+  const displaySummary = paper.cardSummary || paper.summary || paper.description;
   
   return (
     <motion.div

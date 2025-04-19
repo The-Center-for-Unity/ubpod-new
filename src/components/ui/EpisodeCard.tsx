@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Play, FileText, Download, Music } from 'lucide-react';
+import { Play, FileText, Download } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Episode } from '../../types/index';
 
@@ -40,75 +40,52 @@ export default function EpisodeCard({ episode, onPlay }: EpisodeCardProps) {
     willDisplaySummary: !!displaySummary
   });
 
-  // Determine read link properties based on series type
-  const getReadLink = () => {
-    // For Jesus-related series, link to DiscoverJesus.com
-    if (series.startsWith('jesus-')) {
-      return {
-        url: 'https://discoverjesus.com',
-        target: '_blank',
-        rel: 'noopener noreferrer'
-      };
-    }
-    
-    // For Urantia Papers, link to the PDF if available
-    if (series === 'urantia-papers' && pdfUrl) {
-      return {
-        url: pdfUrl,
-        target: '_blank',
-        rel: 'noopener noreferrer'
-      };
-    }
-    
-    // For other series, only show Read button if there's a PDF
-    if (pdfUrl) {
-      return {
-        url: pdfUrl,
-        target: '_blank',
-        rel: 'noopener noreferrer'
-      };
-    }
-    
-    // Return null if no link should be shown
-    return null;
-  };
-  
-  // Get read link info
-  const readLink = getReadLink();
-
   return (
-    <div className="bg-navy-light/20 rounded-lg overflow-hidden border border-white/5 hover:border-white/20 transition-all shadow-md hover:shadow-lg h-full flex flex-col">
-      {/* Content Section */}
-      <div className="p-5 flex-grow flex flex-col">
-        <h3 className="text-xl font-semibold mb-3 text-white line-clamp-2 min-h-[3.5rem]">
-          Episode {id}: {title}
-        </h3>
+    <div className="bg-white rounded-lg shadow-md overflow-hidden transition-all hover:shadow-lg">
+      {imageUrl && (
+        <div className="relative h-48 overflow-hidden">
+          <img 
+            src={imageUrl} 
+            alt={title} 
+            className="w-full h-full object-cover transition-transform hover:scale-105"
+          />
+        </div>
+      )}
+      
+      <div className="p-4">
+        <h3 className="text-xl font-semibold mb-2 line-clamp-2">{title}</h3>
         
-        <div className="mb-4 flex-grow">
+        <div className="mb-4">
           {displaySummary ? (
-            <p className="text-white/80 line-clamp-3 min-h-[4.5rem]">{displaySummary}</p>
+            <>
+              <p className="text-gray-700 font-medium line-clamp-3">{displaySummary}</p>
+              {summary && summary !== displaySummary && (
+                <div className="mt-1 flex items-center">
+                  <span className="text-xs text-primary font-medium">Full summary available</span>
+                </div>
+              )}
+            </>
           ) : (
-            <p className="text-white/70 line-clamp-3 min-h-[4.5rem]">{description}</p>
+            <p className="text-gray-600 line-clamp-3">{description}</p>
           )}
         </div>
         
-        {/* Action Buttons */}
         <div className="flex flex-wrap gap-2 mt-auto">
           <Link 
             to={`/listen/${series}/${id}`}
-            className="flex items-center gap-1 px-4 py-2 bg-gold text-navy-dark rounded-md hover:bg-gold/90 transition-colors font-medium"
+            className="flex items-center gap-1 px-3 py-2 bg-primary text-white rounded-md hover:bg-primary-dark transition-colors"
             onClick={onPlay}
           >
             <Play size={16} />
             <span>Listen</span>
           </Link>
           
-          {readLink && (
+          {pdfUrl && (
             <a 
-              href={readLink.url} 
-              target={readLink.target} 
-              rel={readLink.rel}
-              className="flex items-center gap-1 px-3 py-2 bg-navy/50 text-white/90 rounded-md hover:bg-navy/70 transition-colors"
+              href={pdfUrl} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex items-center gap-1 px-3 py-2 bg-gray-100 text-gray-800 rounded-md hover:bg-gray-200 transition-colors"
             >
               <FileText size={16} />
               <span>Read</span>
@@ -118,7 +95,7 @@ export default function EpisodeCard({ episode, onPlay }: EpisodeCardProps) {
           <a 
             href={audioUrl} 
             download
-            className="flex items-center gap-1 px-3 py-2 bg-navy/50 text-white/90 rounded-md hover:bg-navy/70 transition-colors"
+            className="flex items-center gap-1 px-3 py-2 bg-gray-100 text-gray-800 rounded-md hover:bg-gray-200 transition-colors"
           >
             <Download size={16} />
             <span>Download</span>

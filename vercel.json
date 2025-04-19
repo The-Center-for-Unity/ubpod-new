@@ -1,28 +1,8 @@
 {
   "rewrites": [
     {
-      "source": "/api/:path*",
-      "destination": "/api/:path*"
-    },
-    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
-  ],
-  "functions": {
-    "api/**/*.{js,ts}": {
-      "memory": 1024,
-      "maxDuration": 10
-    }
-  },
-  "buildCommand": "npm run build",
-  "outputDirectory": "dist",
-  "framework": "vite",
-  "env": {
-    "RESEND_API_KEY": "re_ityMsfsR_ECThPJriMWf8NTCgnDy1MC7b",
-    "VITE_EMAIL_DOMAIN": "thecenterforunity.org",
-    "VITE_EMAIL_FROM": "contact@thecenterforunity.org",
-    "VITE_EMAIL_TO": "contact@thecenterforunity.org",
-    "VITE_SITE_NAME": "Urantia Book Podcast"
-  }
+  ]
 } 

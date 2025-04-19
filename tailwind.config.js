@@ -9,12 +9,10 @@ module.exports = {
         navy: {
           DEFAULT: '#0c1631',
           light: '#132048',
-          dark: '#080f24',
         },
         gold: {
           DEFAULT: '#d4af37',
           light: '#e6c458',
-          dark: '#b39424',
         },
         primary: {
           DEFAULT: '#00aeef',
@@ -23,8 +21,11 @@ module.exports = {
         }
       },
       fontFamily: {
+        trajan: ['"trajan-pro-3"', 'serif'],
+        cinzel: ['Cinzel', 'serif'],
         sans: ['Montserrat', 'sans-serif'],
         'pt-serif': ['"PT Serif"', 'serif'],
+        'fira-sans': ['"Fira Sans"', 'sans-serif'],
       },
       animation: {
         'slow-spin': 'spin 3s linear infinite',

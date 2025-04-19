@@ -20,7 +20,7 @@ body {
 /* Base Typography Classes */
 .title-main {
   font-family: var(--font-trajan);
-  @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-normal text-white;
+  @apply text-2xl sm:text-3xl md:text-5xl lg:text-[5.5rem] font-normal text-white;
   line-height: 1.1;
   letter-spacing: 0.05em;
   @apply sm:tracking-[0.08em] md:tracking-[0.12em];
