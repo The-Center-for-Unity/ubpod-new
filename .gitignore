@@ -114,3 +114,4 @@ coverage.xml
 ai-digest.log
 .aidigestignore
 codebase.md
+codebase-src.md
