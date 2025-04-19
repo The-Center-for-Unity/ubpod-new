@@ -22,6 +22,20 @@ UrantiaBookPod offers an immersive way to engage with the Urantia Book, combinin
 - **Animation**: Framer Motion
 - **UI Icons**: Lucide React
 - **Analytics**: Vercel Analytics
+- **Content Storage**: Cloudflare R2 for audio files, images, and PDFs
+
+## Content Delivery
+
+All media assets including audio narrations, images, and PDF documents are stored on Cloudflare R2 buckets:
+- **Audio Files**: High-quality AI-generated narrations in MP3 format
+- **Images**: UI assets, series thumbnails, and other visual elements
+- **PDFs**: Downloadable content and supplementary reading materials
+
+This approach ensures:
+- Fast global content delivery
+- Reliable asset availability
+- Cost-effective storage solution
+- Scalable infrastructure for growing content library
 
 ## Getting Started
 

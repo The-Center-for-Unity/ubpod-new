@@ -1,6 +1,16 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 
+/**
+ * Props interface for the MetaTags component
+ * 
+ * @interface MetaTagsProps
+ * @property {string} title - The title for the page (also used in meta tags)
+ * @property {string} description - The description for the page (used in meta tags)
+ * @property {string} [imageUrl] - Optional image URL for social sharing (OpenGraph/Twitter)
+ * @property {string} [url] - Optional canonical URL for the page
+ * @property {'website' | 'article'} [type] - Content type for OpenGraph tags
+ */
 interface MetaTagsProps {
   title: string;
   description: string;
@@ -9,6 +19,34 @@ interface MetaTagsProps {
   type?: 'website' | 'article';
 }
 
+/**
+ * MetaTags Component
+ * 
+ * A component that manages all meta tags for SEO and social sharing.
+ * Uses react-helmet-async to inject tags into the document head.
+ * Includes OpenGraph tags for Facebook and Twitter card tags.
+ * 
+ * @component
+ * @param {MetaTagsProps} props - Component props
+ * @returns {JSX.Element} Helmet component with all meta tags
+ * 
+ * @example
+ * // Basic usage
+ * <MetaTags
+ *   title="Episode 42 - The Universe of Universes"
+ *   description="Explore the cosmic structure in this episode of UrantiaBookPod"
+ * />
+ * 
+ * @example
+ * // With custom image and URL
+ * <MetaTags
+ *   title="Home | UrantiaBookPod"
+ *   description="Audio podcast experience for exploring the Urantia Book"
+ *   imageUrl="https://example.com/custom-image.jpg"
+ *   url="https://urantiabookpod.com"
+ *   type="website"
+ * />
+ */
 export default function MetaTags({ 
   title, 
   description, 

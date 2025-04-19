@@ -3,6 +3,16 @@ import { Play, Pause, Volume2, VolumeX, SkipBack, SkipForward, Clock } from 'luc
 import { AudioPlayerState } from '../../types/index';
 import { useAudioAnalytics } from '../../hooks/useAudioAnalytics';
 
+/**
+ * Props interface for the AudioPlayer component
+ * 
+ * @interface AudioPlayerProps
+ * @property {string} audioUrl - URL to the audio file to be played
+ * @property {string} title - Title of the audio for display and analytics
+ * @property {string|number} [episodeId] - Optional unique identifier for the episode
+ * @property {Function} [onEnded] - Optional callback function to execute when audio playback ends
+ * @property {Function} [onError] - Optional callback function to execute when an error occurs during playback
+ */
 interface AudioPlayerProps {
   audioUrl: string;
   title: string;
@@ -11,6 +21,17 @@ interface AudioPlayerProps {
   onError?: (error: string) => void;
 }
 
+/**
+ * AudioPlayer Component
+ * 
+ * A comprehensive audio player with controls for playback, volume, and playback speed.
+ * Features include play/pause, volume control, seeking, speed control and error handling.
+ * The player saves user preferences like volume and playback speed to localStorage.
+ * 
+ * @component
+ * @param {AudioPlayerProps} props - Component props
+ * @returns {JSX.Element} Audio player component with controls
+ */
 export default function AudioPlayer({ audioUrl, title, episodeId, onEnded, onError }: AudioPlayerProps) {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [playerState, setPlayerState] = useState<AudioPlayerState>({
@@ -27,7 +48,10 @@ export default function AudioPlayer({ audioUrl, title, episodeId, onEnded, onErr
 
   const { isPlaying, currentTime, duration, volume, loading, error, playbackSpeed } = playerState;
 
-  // Log audio URL for debugging
+  /**
+   * Validates the audio URL and checks its accessibility
+   * Logs errors and updates player state if URL is invalid or inaccessible
+   */
   useEffect(() => {
     // Check if audioUrl is valid
     if (!audioUrl) {
@@ -74,14 +98,22 @@ export default function AudioPlayer({ audioUrl, title, episodeId, onEnded, onErr
     id: episodeId
   });
 
-  // Format time in MM:SS format
+  /**
+   * Formats time in MM:SS format
+   * 
+   * @param {number} time - Time in seconds
+   * @returns {string} Formatted time string (MM:SS)
+   */
   const formatTime = (time: number): string => {
     const minutes = Math.floor(time / 60);
     const seconds = Math.floor(time % 60);
     return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
   };
 
-  // Toggle play/pause
+  /**
+   * Toggles play/pause state of the audio
+   * Handles errors during playback and updates player state
+   */
   const togglePlayPause = () => {
     if (audioRef.current) {
       if (isPlaying) {
@@ -98,7 +130,11 @@ export default function AudioPlayer({ audioUrl, title, episodeId, onEnded, onErr
     }
   };
 
-  // Handle volume change
+  /**
+   * Handles volume change from the volume slider
+   * 
+   * @param {React.ChangeEvent<HTMLInputElement>} e - Change event from slider
+   */
   const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newVolume = parseFloat(e.target.value);
     if (audioRef.current) {
@@ -107,7 +143,10 @@ export default function AudioPlayer({ audioUrl, title, episodeId, onEnded, onErr
     setPlayerState((prev: AudioPlayerState) => ({ ...prev, volume: newVolume }));
   };
 
-  // Toggle mute
+  /**
+   * Toggles mute/unmute state of the audio
+   * Sets volume to 0 when muting, and restores to 1 when unmuting
+   */
   const toggleMute = () => {
     if (audioRef.current) {
       const newVolume = volume === 0 ? 1 : 0;
@@ -116,12 +155,18 @@ export default function AudioPlayer({ audioUrl, title, episodeId, onEnded, onErr
     }
   };
 
-  // Toggle volume slider visibility
+  /**
+   * Toggles the visibility of the volume slider
+   */
   const toggleVolumeSlider = () => {
     setShowVolumeSlider(!showVolumeSlider);
   };
 
-  // Handle seeking
+  /**
+   * Handles seeking to a specific position in the audio
+   * 
+   * @param {React.ChangeEvent<HTMLInputElement>} e - Change event from progress slider
+   */
   const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newTime = parseFloat(e.target.value);
     if (audioRef.current) {
@@ -130,7 +175,10 @@ export default function AudioPlayer({ audioUrl, title, episodeId, onEnded, onErr
     }
   };
 
-  // Skip forward 10 seconds
+  /**
+   * Skips forward 10 seconds in the audio
+   * Ensures the new time doesn't exceed the audio duration
+   */
   const skipForward = () => {
     if (audioRef.current) {
       const newTime = Math.min(audioRef.current.currentTime + 10, duration);
@@ -139,7 +187,10 @@ export default function AudioPlayer({ audioUrl, title, episodeId, onEnded, onErr
     }
   };
 
-  // Skip backward 10 seconds
+  /**
+   * Skips backward 10 seconds in the audio
+   * Ensures the new time doesn't go below 0
+   */
   const skipBackward = () => {
     if (audioRef.current) {
       const newTime = Math.max(audioRef.current.currentTime - 10, 0);
@@ -148,7 +199,12 @@ export default function AudioPlayer({ audioUrl, title, episodeId, onEnded, onErr
     }
   };
 
-  // Handle playback speed change
+  /**
+   * Changes the playback speed of the audio
+   * Saves the selected speed to localStorage for persistence
+   * 
+   * @param {number} newSpeed - New playback speed (e.g., 0.75, 1.0, 1.25)
+   */
   const handleSpeedChange = (newSpeed: number) => {
     if (audioRef.current) {
       audioRef.current.playbackRate = newSpeed;
@@ -157,12 +213,17 @@ export default function AudioPlayer({ audioUrl, title, episodeId, onEnded, onErr
     }
   };
 
-  // Toggle speed controls visibility
+  /**
+   * Toggles the visibility of the playback speed controls
+   */
   const toggleSpeedControls = () => {
     setShowSpeedControls(!showSpeedControls);
   };
 
-  // Set up event listeners
+  /**
+   * Sets up event listeners for the audio element
+   * Handles time updates, metadata loading, playback end, errors, and rate changes
+   */
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
@@ -223,7 +284,10 @@ export default function AudioPlayer({ audioUrl, title, episodeId, onEnded, onErr
     };
   }, [onEnded, onError, playerState.playbackSpeed]);
 
-  // Close volume and speed sliders when clicking outside
+  /**
+   * Handles closing the volume and speed controls when clicking outside
+   * Uses event listeners for both mouse and touch interactions
+   */
   useEffect(() => {
     const handleClickOutside = (event: Event) => {
       const target = event.target as HTMLElement;
@@ -244,7 +308,10 @@ export default function AudioPlayer({ audioUrl, title, episodeId, onEnded, onErr
     };
   }, [showVolumeSlider, showSpeedControls]);
 
-  // Update audio source when audioUrl changes
+  /**
+   * Updates the audio source when the audioUrl changes
+   * Resets loading and error states
+   */
   useEffect(() => {
     console.log('[AudioPlayer] Audio URL changed:', audioUrl);
     setPlayerState((prev: AudioPlayerState) => ({ ...prev, loading: true, error: null }));
