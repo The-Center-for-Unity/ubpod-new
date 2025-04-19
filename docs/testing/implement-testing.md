@@ -159,22 +159,26 @@ describe('Test setup verification', () => {
 
 ## Next Steps
 
-### Phase 2: Component Testing
+### Framework Migration: Vite to Next.js
 
-Now that the testing infrastructure is set up, the next phase will focus on:
+Based on strategic recommendations, we'll be migrating the application from Vite to Next.js before proceeding with Phases 2-5 of the testing implementation. This decision is based on the following considerations:
 
-1. Creating tests for critical UI components:
-   - Audio player components
-   - Navigation components
-   - Page components
+1. **Testing Efficiency**: Next.js provides a more integrated testing experience with its framework
+2. **Avoid Redundant Work**: Implementing extensive tests before migration would require significant rework
+3. **Improved Testing Tools**: Next.js offers built-in testing utilities that will enhance our testing capabilities
 
-2. Testing user interactions:
-   - Audio playback controls
-   - Navigation between routes
-   - Responsive UI elements
+#### Migration Plan
 
-3. Implementing snapshot tests for UI stability
-   
+1. Complete the framework migration from Vite to Next.js
+2. Adapt the existing testing infrastructure to work with Next.js
+3. Resume the testing implementation with Phase 2 once the migration is complete
+
+The testing foundation established in Phase 1 will still be valuable, though some adjustments will be needed to align with Next.js conventions.
+
+### Phase 2: Component Testing (On Hold)
+
+*This phase will commence after the Next.js migration is complete*
+
 ### Phase 3: Integration Testing
 
 After component testing, we'll implement integration tests focusing on:

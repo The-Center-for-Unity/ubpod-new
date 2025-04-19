@@ -1,5 +1,7 @@
 # Automated Testing Implementation Plan
 
+> **Important Update**: Based on strategic recommendations, we will be migrating from Vite to Next.js before implementing Phases 2-5 of this plan. Phase 1 (Foundation and Infrastructure) has been completed, and the remaining phases will be adapted for Next.js after the migration.
+
 ## Overview
 
 This document outlines a careful, methodical approach to adding automated testing to the UrantiaBookPod codebase without disrupting the existing application functionality. The goal is to enhance stability and maintainability while ensuring that the implementation of tests does not introduce changes to the application's behavior.
@@ -623,13 +625,16 @@ This document outlines a careful, methodical approach to adding automated testin
 
 ## Implementation Timeline
 
-| Phase | Duration | Key Deliverables |
-|-------|----------|------------------|
-| Foundation | 2 weeks | Testing framework setup, initial configuration |
-| Snapshot Testing | 2 weeks | Basic rendering tests for key components |
-| Functional Testing | 3 weeks | Component interaction tests |
-| Integration Testing | 3 weeks | End-to-end flow tests |
-| CI Setup | 2 weeks | Automated test running in GitHub Actions |
+| Phase | Duration | Key Deliverables | Status |
+|-------|----------|------------------|--------|
+| Foundation | 2 weeks | Testing framework setup, initial configuration | ✅ Completed |
+| **Framework Migration** | 4-6 weeks | Migration from Vite to Next.js | 🔄 Planned |
+| Snapshot Testing | 2 weeks | Basic rendering tests for key components | ⏸️ On Hold |
+| Functional Testing | 3 weeks | Component interaction tests | ⏸️ On Hold |
+| Integration Testing | 3 weeks | End-to-end flow tests | ⏸️ On Hold |
+| CI Setup | 2 weeks | Automated test running in GitHub Actions | ⏸️ On Hold |
+
+> Note: All phases after Foundation are pending the completion of the Vite to Next.js migration.
 
 ## Success Metrics
 
@@ -645,7 +650,9 @@ This phased approach to implementing automated testing is designed to enhance th
 
 ## Appendix: Testing Checklist
 
-- [ ] Set up testing framework and configuration
+- [x] Set up testing framework and configuration
+- [ ] **Complete Vite to Next.js migration**
+- [ ] Adapt testing infrastructure for Next.js
 - [ ] Create initial snapshot tests
 - [ ] Implement component unit tests
 - [ ] Test integration between components
@@ -653,3 +660,47 @@ This phased approach to implementing automated testing is designed to enhance th
 - [ ] Set up automated testing in CI
 - [ ] Document testing approach and patterns
 - [ ] Train team on testing best practices 
+
+## Steps for Option 1
+
+1. **Merge the testing branch into main**:
+   ```bash
+   # Switch to main branch
+   git checkout main
+   
+   # Make sure main is up to date
+   git pull origin main
+   
+   # Merge the implement-testing branch
+   git merge implement-testing
+   
+   # Push the changes to remote
+   git push origin main
+   ```
+
+2. **Create a new migration branch from main**:
+   ```bash
+   # Create and switch to a new branch for migration
+   git checkout -b migrate-to-nextjs
+   
+   # Push the new branch to remote (optional but recommended)
+   git push --set-upstream origin migrate-to-nextjs
+   ```
+
+3. **Optional: Clean up the implement-testing branch**:
+   ```bash
+   # Delete the local branch
+   git branch -d implement-testing
+   
+   # Delete the remote branch
+   git push origin --delete implement-testing
+   ```
+
+This approach gives you several benefits:
+
+- Your main branch now includes the completed testing infrastructure
+- Your migration branch starts with a clean slate that includes testing
+- You can work on migration without affecting the main branch
+- Anyone else on the team can see and use the testing infrastructure immediately
+
+Is there anything specific about these steps you'd like me to clarify? 
