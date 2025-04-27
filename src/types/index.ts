@@ -69,6 +69,7 @@ export interface Episode {
   series: SeriesType;
   sourceUrl?: string;
   imageUrl?: string;
+  transcriptUrl?: string;
 }
 
 export interface AnimationVariants {
