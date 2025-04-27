@@ -211,3 +211,35 @@ When adding new dependencies:
    ```
 
 Remember that this Vite implementation aims to preserve all functionality from the original Next.js app while improving the design system and component structure.
+
+## Change Management Guidelines
+
+1. **Making Changes**
+   - Make minimal, targeted changes to accomplish specific tasks
+   - Never modify existing functions unless explicitly instructed
+   - Never remove or replace imports unless explicitly instructed
+   - Never refactor code structures or architecture without approval
+   - Do not create new files or components unless specified in requirements
+
+2. **Implementation Principles**
+   - Always examine existing code patterns before implementing new features
+   - Use the same naming conventions, structure, and styling as existing code
+   - For new functionality, follow the pattern of similar existing functionality
+   - Look for existing utilities rather than creating new ones
+
+3. **Before Submitting Changes**
+   - Ensure changes are directly related to the requested feature
+   - Verify that no existing functionality is broken
+   - Test any new functionality with actual data paths and formats
+   - Document what was changed and why
+
+4. **When Adding UI Elements**
+   - Match the exact styling of similar UI elements
+   - Follow the project's button styling and layout patterns
+   - Reuse existing component patterns
+   - Place new UI elements in logically consistent positions
+
+5. **Media and Data Handling**
+   - Use the existing utilities for generating URLs and handling data
+   - Don't change how data is loaded or structured
+   - Verify URLs match the expected format in the rest of the codebase
