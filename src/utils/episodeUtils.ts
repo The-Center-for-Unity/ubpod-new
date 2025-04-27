@@ -8,6 +8,7 @@ import { getAudioUrl, getPdfUrl, JESUS_AUDIO_BASE_URL, URANTIA_AUDIO_BASE_URL } 
 import { discoverJesusSummaries } from '../data/discoverJesusSummaries';
 import episodesData from '../data/json/episodes.json';
 import urantiaSummariesData from '../data/json/urantia_summaries.json';
+import { getTranscriptUrl } from './mediaUtils';
 
 // Define the cosmic audio URL - use the same R2 backend that other audio files use
 // This should be updated to the actual URL when cosmic audio files are available
@@ -633,7 +634,7 @@ export function getEpisodesForSeries(seriesId: string): Episode[] {
     }
     
     // Build the complete Episode object
-    return {
+    const episode = {
       id: episodeData.id,
       title: episodeData.title,
       audioUrl: audioUrl,
@@ -643,8 +644,16 @@ export function getEpisodesForSeries(seriesId: string): Episode[] {
       description: `${seriesData.seriesTitle} - ${episodeData.title}`,
       summary: summary || seriesData.seriesDescription || '',
       cardSummary: cardSummary || seriesData.seriesDescription || '',
-      imageUrl: episodeData.imageUrl
+      imageUrl: episodeData.imageUrl,
+      // Direct URL generation for transcripts
+      transcriptUrl: seriesId === 'urantia-papers' 
+        ? `${URANTIA_AUDIO_BASE_URL}/${episodeData.id === 0 ? 'foreword' : `paper-${episodeData.id}`}-transcript.pdf`
+        : getTranscriptUrl(seriesId, episodeData.id) || undefined
     };
+    
+    console.log(`[getEpisodesForSeries] Created episode: ${episode.id}, series: ${seriesId}, transcriptUrl: ${episode.transcriptUrl || 'none'}`);
+    
+    return episode;
   });
 }
 
@@ -652,7 +661,7 @@ export function getEpisodesForSeries(seriesId: string): Episode[] {
  * Get a specific episode by series and id
  */
 export function getEpisode(seriesId: string, episodeId: number): Episode | undefined {
-  console.log(`Getting episode: ${seriesId}/${episodeId}`);
+  console.log(`Getting episode: ${seriesId}/${episodeId}, type of episodeId: ${typeof episodeId}`);
   
   // Get all episodes for the series
   const episodes = getEpisodesForSeries(seriesId);
@@ -664,6 +673,17 @@ export function getEpisode(seriesId: string, episodeId: number): Episode | undef
     console.log(`Episode not found: ${seriesId}/${episodeId}`);
   } else {
     console.log(`Found episode: ${episode.title}`);
+    
+    // Ensure transcriptUrl is set
+    if (!episode.transcriptUrl) {
+      // Debug the type being passed to getTranscriptUrl
+      console.log(`Setting transcript URL for ${seriesId}/${episodeId}, episodeId type: ${typeof episodeId}`);
+      
+      episode.transcriptUrl = getTranscriptUrl(seriesId, episodeId) || undefined;
+      
+      // Debug the result
+      console.log(`Transcript URL result: ${episode.transcriptUrl || 'none'}`);
+    }
   }
   
   return episode;

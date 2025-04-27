@@ -8,6 +8,7 @@ UrantiaBookPod offers an immersive way to engage with the Urantia Book, combinin
 
 - **Audio Playback**: Listen to high-quality AI-generated narrations of Urantia Book papers
 - **Text Sync**: Read along with the narration
+- **Transcript Access**: View PDF transcripts of all papers directly from the episode page
 - **Series Organization**: Content organized into thematic series for focused study
 - **Responsive Design**: Optimized for both desktop and mobile devices
 - **Offline Support**: Download audio for offline listening
@@ -22,20 +23,33 @@ UrantiaBookPod offers an immersive way to engage with the Urantia Book, combinin
 - **Animation**: Framer Motion
 - **UI Icons**: Lucide React
 - **Analytics**: Vercel Analytics
-- **Content Storage**: Cloudflare R2 for audio files, images, and PDFs
+- **Content Storage**: Cloudflare R2 for audio files, images, PDFs, and transcripts
 
 ## Content Delivery
 
-All media assets including audio narrations, images, and PDF documents are stored on Cloudflare R2 buckets:
+All media assets including audio narrations, images, PDF documents, and transcripts are stored on Cloudflare R2 buckets:
 - **Audio Files**: High-quality AI-generated narrations in MP3 format
 - **Images**: UI assets, series thumbnails, and other visual elements
 - **PDFs**: Downloadable content and supplementary reading materials
+- **Transcripts**: Complete PDF transcripts for all Urantia papers
 
 This approach ensures:
 - Fast global content delivery
 - Reliable asset availability
 - Cost-effective storage solution
 - Scalable infrastructure for growing content library
+
+## Resource Naming Conventions
+
+### Media Resource Patterns
+- **Audio files**: `paper-{number}.mp3` or `foreword.mp3`
+- **PDF documents**: `paper-{number}.pdf` or `foreword.pdf`
+- **Transcripts**: `paper-{number}-transcript.pdf` or `foreword-transcript.pdf`
+
+For example:
+- Paper 1 audio: `paper-1.mp3`
+- Paper 1 PDF: `paper-1.pdf`
+- Paper 1 transcript: `paper-1-transcript.pdf`
 
 ## Getting Started
 

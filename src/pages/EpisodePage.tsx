@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate, Navigate, Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Play, Pause, SkipBack, SkipForward, Volume2, VolumeX, Download, ChevronLeft, BookOpen, Share2, AlertTriangle, ExternalLink, Clock, ChevronDown, ChevronUp, ChevronRight } from 'lucide-react';
+import { Play, Pause, SkipBack, SkipForward, Volume2, VolumeX, Download, ChevronLeft, BookOpen, Share2, AlertTriangle, ExternalLink, Clock, ChevronDown, ChevronUp, ChevronRight, FileText } from 'lucide-react';
 import Layout from '../components/layout/Layout';
 import { getEpisodeById, getUrantiaPaperPart, discoverJesusLinks } from '../data/episodes';
 import { Episode, SeriesType } from '../types/index';
@@ -67,6 +67,18 @@ export default function EpisodePage() {
     if (seriesId && episodeId) {
       try {
         let episodeData = getEpisodeUtils(seriesId, parseInt(episodeId, 10));
+        
+        // Debug transcript URL - use console.log that will show in browser
+        console.log("DEBUG - Episode data:", { 
+          id: episodeData?.id,
+          title: episodeData?.title,
+          episodeIdParam: episodeId,
+          episodeIdType: typeof episodeId,
+          parsedEpisodeId: parseInt(episodeId, 10),
+          parsedEpisodeIdType: typeof parseInt(episodeId, 10),
+          transcriptUrl: episodeData?.transcriptUrl,
+          hasTranscript: !!(episodeData?.transcriptUrl && episodeData?.transcriptUrl.trim() !== '')
+        });
         
         // Special handling for cosmic series - make them mirror the Urantia Papers exactly
         if (seriesId.startsWith('cosmic-')) {
@@ -935,6 +947,25 @@ export default function EpisodePage() {
                   <span>Read PDF</span>
                 </a>
               )}
+              
+              {/* Show Transcript button for Urantia Papers - direct URL generation */}
+              {episode.series === 'urantia-papers' && (() => {
+                // Log the transcript URL for debugging
+                const transcriptUrl = `https://pub-69ae36e16d64438e9bb56350459d5c7d.r2.dev/${episode.id === 0 ? 'foreword' : `paper-${episode.id}`}-transcript.pdf`;
+                console.log(`Generating transcript URL for paper ${episode.id}: ${transcriptUrl}`);
+                
+                return (
+                  <a
+                    href={transcriptUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 px-4 py-2 bg-navy-light/70 text-white/90 hover:bg-navy transition-colors"
+                  >
+                    <FileText size={18} />
+                    <span>Read Transcript</span>
+                  </a>
+                );
+              })()}
               
               <a
                 href={episode.audioUrl}

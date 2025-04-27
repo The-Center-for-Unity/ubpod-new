@@ -144,6 +144,108 @@ export function getMediaUrl(
 }
 
 /**
+ * Get transcript URL for any episode type
+ * @param seriesId The series identifier (e.g., 'urantia-papers', 'jesus-1', 'cosmic-2')
+ * @param episodeNumber The episode number within the series
+ * @returns The complete URL to the transcript file, or null if not available
+ */
+export function getTranscriptUrl(
+  seriesId: string, 
+  episodeNumber: number | string
+): string | null {
+  try {
+    // Ensure episodeNumber is a number
+    const episodeNum = typeof episodeNumber === 'string' ? parseInt(episodeNumber, 10) : episodeNumber;
+    
+    console.log(`[getTranscriptUrl] Looking for transcript: ${seriesId}/${episodeNum}, original type: ${typeof episodeNumber}, converted type: ${typeof episodeNum}`);
+    
+    // For Urantia Papers (correct pattern with PDFs)
+    if (seriesId === 'urantia-papers' || seriesId.startsWith('FER')) {
+      // All papers have transcripts, so generate URLs for all
+      const filename = episodeNum === 0 
+        ? `foreword-transcript.pdf`
+        : `paper-${episodeNum}-transcript.pdf`;
+      const url = `${URANTIA_BUCKET_URL}/${filename}`;
+      console.log(`[getTranscriptUrl] Generated Urantia URL: ${url}`);
+      return url;
+    }
+    
+    // For discover-jesus series
+    if (seriesId === 'discover-jesus') {
+      // Use PDF format instead of TXT and proper path
+      const url = `${JESUS_BUCKET_URL}/discover-jesus-episode-${episodeNum}-transcript.pdf`;
+      console.log(`[getTranscriptUrl] Generated discover-jesus URL: ${url}`);
+      return url;
+    }
+    
+    // For history series
+    if (seriesId === 'history') {
+      // Use PDF format instead of TXT and proper path
+      const url = `${JESUS_BUCKET_URL}/history-episode-${episodeNum}-transcript.pdf`;
+      console.log(`[getTranscriptUrl] Generated history URL: ${url}`);
+      return url;
+    }
+    
+    // For sadler-workbooks series
+    if (seriesId === 'sadler-workbooks') {
+      // Use PDF format instead of TXT and proper path
+      const url = `${JESUS_BUCKET_URL}/sadler-workbooks-episode-${episodeNum}-transcript.pdf`;
+      console.log(`[getTranscriptUrl] Generated sadler-workbooks URL: ${url}`);
+      return url;
+    }
+    
+    // For Jesus Series (direct mapping)
+    if (seriesId.startsWith('jesus-')) {
+      const mappingKey = `${seriesId}-${episodeNum}`;
+      const mapping = jesusSeriesMapping[mappingKey];
+      
+      if (mapping && mapping.filename) {
+        // Use filename without .mp3 extension and add -transcript.pdf
+        const transcriptFilename = mapping.filename.replace(/\.mp3$/, '-transcript.pdf');
+        const url = `${JESUS_BUCKET_URL}/${encodeURIComponent(transcriptFilename)}`;
+        console.log(`[getTranscriptUrl] Generated Jesus Series URL: ${url} from mapping: ${mapping.filename}`);
+        return url;
+      }
+      
+      console.error(`[MediaUtils] No mapping found for Jesus Series transcript: ${mappingKey}`);
+      return null;
+    }
+    
+    // For Cosmic Series
+    if (seriesId.startsWith('cosmic-')) {
+      const mappingKey = `${seriesId}-${episodeNum}`;
+      const mapping = cosmicSeriesMapping[mappingKey];
+      
+      if (mapping && mapping.filename) {
+        // Extract paper number if available, then use proper format
+        const paperNumberMatch = mapping.filename.match(/paper-(\d+)\.mp3/);
+        if (paperNumberMatch && paperNumberMatch[1]) {
+          const paperNumber = paperNumberMatch[1];
+          const url = `${URANTIA_BUCKET_URL}/paper-${paperNumber}-transcript.pdf`;
+          console.log(`[getTranscriptUrl] Generated Cosmic Series URL: ${url} from mapping: ${mapping.filename}`);
+          return url;
+        } else {
+          // Fallback to using the filename directly
+          const transcriptFilename = mapping.filename.replace(/\.mp3$/, '-transcript.pdf');
+          const url = `${URANTIA_BUCKET_URL}/${transcriptFilename}`;
+          console.log(`[getTranscriptUrl] Generated Cosmic Series URL (fallback): ${url}`);
+          return url;
+        }
+      }
+      
+      console.error(`[MediaUtils] No mapping found for Cosmic Series transcript: ${mappingKey}`);
+      return null;
+    }
+    
+    console.error(`[MediaUtils] Unknown series type for transcript: ${seriesId}`);
+    return null;
+  } catch (error) {
+    console.error(`[MediaUtils] Error generating transcript URL:`, error);
+    return null;
+  }
+}
+
+/**
  * Check if media file exists for an episode
  * @param seriesId The series identifier
  * @param episodeNumber The episode number
