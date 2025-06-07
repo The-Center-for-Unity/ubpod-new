@@ -1,0 +1,20 @@
+{
+  "player": {
+    "play": "Play",
+    "pause": "Pause",
+    "mute": "Mute",
+    "unmute": "Unmute",
+    "download": "Download Audio",
+    "transcript": "View Transcript"
+  },
+  "related": {
+    "title": "Related Episodes",
+    "viewAll": "View All Episodes"
+  },
+  "share": {
+    "title": "Share",
+    "facebook": "Share on Facebook",
+    "twitter": "Share on Twitter",
+    "email": "Share via Email"
+  }
+}

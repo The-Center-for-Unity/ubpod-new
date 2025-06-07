@@ -1,0 +1,13 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "episodes": "Episodios",
+    "about": "Acerca de",
+    "contact": "Contacto"
+  },
+  "footer": {
+    "copyright": "© 2023 UBPod. Todos los derechos reservados.",
+    "terms": "Términos de Servicio",
+    "privacy": "Política de Privacidad"
+  }
+}

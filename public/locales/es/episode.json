@@ -1,0 +1,20 @@
+{
+  "player": {
+    "play": "Reproducir",
+    "pause": "Pausar",
+    "mute": "Silenciar",
+    "unmute": "Activar sonido",
+    "download": "Descargar Audio",
+    "transcript": "Ver Transcripción"
+  },
+  "related": {
+    "title": "Episodios Relacionados",
+    "viewAll": "Ver Todos los Episodios"
+  },
+  "share": {
+    "title": "Compartir",
+    "facebook": "Compartir en Facebook",
+    "twitter": "Compartir en Twitter",
+    "email": "Compartir por Correo Electrónico"
+  }
+}
