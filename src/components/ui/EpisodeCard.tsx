@@ -9,7 +9,7 @@ interface EpisodeCardProps {
 }
 
 export default function EpisodeCard({ episode, onPlay }: EpisodeCardProps) {
-  const { id, title, description, summary, cardSummary, audioUrl, pdfUrl, series, imageUrl } = episode;
+  const { id, title, description, summary, cardSummary, audioUrl, pdfUrl, series, imageUrl, sourceUrl } = episode;
 
   // Determine which summary to display, with fallbacks
   const displaySummary = cardSummary || summary;
@@ -42,10 +42,10 @@ export default function EpisodeCard({ episode, onPlay }: EpisodeCardProps) {
 
   // Determine read link properties based on series type
   const getReadLink = () => {
-    // For Jesus-related series, link to DiscoverJesus.com
-    if (series.startsWith('jesus-')) {
+    // For Jesus-related series, link to specific page on DiscoverJesus.com if sourceUrl is available
+    if (series.startsWith('jesus-') && sourceUrl) {
       return {
-        url: 'https://discoverjesus.com',
+        url: sourceUrl,
         target: '_blank',
         rel: 'noopener noreferrer'
       };

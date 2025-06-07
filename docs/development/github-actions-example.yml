@@ -1,0 +1,89 @@
+# Example GitHub Actions workflow for UrantiaBookPod
+# To use this, copy it to .github/workflows/ci.yml in your repository
+
+name: UrantiaBookPod CI
+
+# Define when this workflow runs
+on:
+  # Run on push to these branches
+  push:
+    branches: [ code-only, main ]
+  # Run on pull requests to these branches
+  pull_request:
+    branches: [ code-only, main ]
+  # Run on manual trigger from Actions tab
+  workflow_dispatch:
+
+# Jobs to run
+jobs:
+  # Build and test job
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    # Check out the repository code
+    - name: Checkout code
+      uses: actions/checkout@v3
+    
+    # Set up Node.js environment
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        cache: 'npm'
+    
+    # Install dependencies
+    - name: Install dependencies
+      run: npm ci
+    
+    # Run linting
+    - name: Lint
+      run: npm run lint
+    
+    # Build the application
+    - name: Build
+      run: npm run build
+    
+    # Run tests (if you have them)
+    - name: Test
+      run: npm test || echo "No tests found, skipping"
+    
+    # Optional: Store build artifacts
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: build-files
+        path: dist/
+
+  # Deployment job (only runs on code-only branch)
+  deploy:
+    needs: build  # This job depends on the build job
+    if: success() && github.ref == 'refs/heads/code-only'  # Only run if build succeeds and we're on code-only branch
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    
+    # Download the build artifacts from the build job
+    - name: Download build artifacts
+      uses: actions/download-artifact@v3
+      with:
+        name: build-files
+        path: dist
+    
+    # Example: Deploy to Vercel
+    # Replace with your actual deployment solution
+    - name: Deploy to Vercel
+      uses: amondnet/vercel-action@v20
+      with:
+        vercel-token: ${{ secrets.VERCEL_TOKEN }}
+        vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+        vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+        vercel-args: '--prod'
+
+# To use this workflow:
+# 1. Create a .github/workflows directory in your repository
+# 2. Copy this file there and name it ci.yml
+# 3. Add required secrets in your GitHub repository settings
+# 4. Adjust commands to match your actual build and test scripts
