@@ -1,5 +1,8 @@
 # UrantiaBookPod Codebase Cleanup Plan
 
+
+## NOTE: I actually cleaned up in the cleanup branch, use claude code.
+
 ## Overview
 
 The UrantiaBookPod codebase has evolved through migration from Next.js to Vite and contains numerous unused components, pages, and directories that can be safely removed. This document outlines a comprehensive cleanup plan to streamline the codebase for future book2podcast projects.
