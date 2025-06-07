@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transcript URL Test</title>
+  <style>
+    body { font-family: sans-serif; margin: 20px; line-height: 1.6; }
+    .url { margin-bottom: 20px; padding: 10px; border: 1px solid #ddd; }
+    .success { color: green; }
+    .error { color: red; }
+  </style>
+</head>
+<body>
+  <h1>Transcript URL Testing</h1>
+  <div id="results"></div>
+
+  <script>
+    const urls = [
+      // Urantia Papers (Correct PDF transcript URLs)
+      "https://pub-69ae36e16d64438e9bb56350459d5c7d.r2.dev/foreword-transcript.pdf",
+      "https://pub-69ae36e16d64438e9bb56350459d5c7d.r2.dev/paper-1-transcript.pdf",
+      "https://pub-69ae36e16d64438e9bb56350459d5c7d.r2.dev/paper-42-transcript.pdf",
+      // Jesus Series (potential format?)
+      "https://pub-111d6f5663274cc5aefdcc72206eec40.r2.dev/Topic - The Personality of God-transcript.pdf"
+    ];
+
+    const resultsDiv = document.getElementById('results');
+
+    async function checkUrl(url) {
+      const div = document.createElement('div');
+      div.className = 'url';
+      div.innerHTML = `<strong>Testing:</strong> ${url}<br><span class="status">Status: Checking...</span>`;
+      resultsDiv.appendChild(div);
+
+      try {
+        const response = await fetch(url, { method: 'HEAD' });
+        const statusClass = response.ok ? 'success' : 'error';
+        div.querySelector('.status').className = `status ${statusClass}`;
+        div.querySelector('.status').textContent = `Status: ${response.ok ? 'SUCCESS' : 'FAILED'} (${response.status})`;
+      } catch (error) {
+        div.querySelector('.status').className = 'status error';
+        div.querySelector('.status').textContent = `Status: ERROR (${error.message})`;
+      }
+    }
+
+    // Test all URLs
+    urls.forEach(checkUrl);
+  </script>
+</body>
+</html> 
