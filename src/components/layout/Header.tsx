@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X, BookOpen, Library } from 'lucide-react';
+import { LanguageSwitcher } from '../../i18n/LanguageSwitcher';
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -60,6 +61,10 @@ export default function Header() {
               >
                 Pay It Forward
               </a>
+              
+              <div className="ml-4">
+                <LanguageSwitcher />
+              </div>
             </nav>
 
             {/* Mobile Menu Button - Only show when menu is closed */}
@@ -142,6 +147,10 @@ export default function Header() {
               >
                 Pay It Forward
               </a>
+              
+              <div className="mt-6">
+                <LanguageSwitcher />
+              </div>
             </nav>
           </div>
         </div>

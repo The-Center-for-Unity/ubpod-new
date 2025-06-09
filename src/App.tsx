@@ -5,6 +5,8 @@ import './index.css';
 import ScrollToTopOnNavigate from './components/utils/ScrollToTopOnNavigate';
 import HotjarAnalytics from './components/analytics/HotjarAnalytics';
 import OptinMonster from './components/analytics/OptinMonster';
+import { LanguageProvider } from './i18n/LanguageContext';
+import './i18n/i18n'; // Import i18n configuration
 
 // Lazy load pages for better performance
 const HomePage = React.lazy(() => import('./pages/Home'));
@@ -43,11 +45,13 @@ const LoadingSpinner = () => (
 function App() {
   return (
     <BrowserRouter>
-      <ScrollToTopOnNavigate />
-      <Suspense fallback={<LoadingSpinner />}>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/urantia-papers" element={<UrantiaPapersPage />} />
+      <LanguageProvider>
+        <ScrollToTopOnNavigate />
+        <Suspense fallback={<LoadingSpinner />}>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/es/*" element={<HomePage />} /> {/* Spanish routes */}
+            <Route path="/urantia-papers" element={<UrantiaPapersPage />} />
           <Route path="/episode/:id" element={<EpisodePage />} />
           
           {/* Series routes - both old and new formats */}
@@ -69,6 +73,7 @@ function App() {
       <Analytics />
       <HotjarAnalytics HOTJAR_ID={HOTJAR_ID} />
       <OptinMonster userId={OPTINMONSTER_USER_ID} accountId={OPTINMONSTER_ACCOUNT_ID} />
+      </LanguageProvider>
     </BrowserRouter>
   );
 }
