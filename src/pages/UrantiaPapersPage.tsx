@@ -5,6 +5,7 @@ import { Search, Book, Headphones, Download, ChevronDown, ChevronUp, Play, Pause
 import { Episode } from '../types/index';
 import { getUrantiaPapers, getUrantiaPaperPart } from '../data/episodes';
 import Layout from '../components/layout/Layout';
+import { LocalizedLink } from '../components/shared/LocalizedLink';
 
 // Define the parts of the Urantia Book
 const URANTIA_PARTS = [
@@ -59,13 +60,13 @@ const PaperCard: React.FC<PaperCardProps> = ({ paper }) => {
         <p className="text-white/70 text-sm mb-4 line-clamp-2">{displaySummary}</p>
         
         <div className="flex space-x-3 mt-auto">
-          <Link
-            to={`/listen/urantia-papers/${paper.id}`}
+          <LocalizedLink
+            to={`/series/urantia-papers/${paper.id}`}
             className="flex items-center gap-1.5 px-3 py-1.5 bg-primary text-white rounded-md hover:bg-primary-dark transition-colors text-sm"
           >
             <Play size={14} />
             <span>Listen</span>
-          </Link>
+          </LocalizedLink>
           
           {paper.pdfUrl && (
             <a
@@ -270,57 +271,48 @@ export default function UrantiaPapersPage() {
 
 // Paper List Item Component
 const PaperListItem: React.FC<PaperCardProps> = ({ paper }) => {
-  // Determine which summary to display, with fallbacks
-  const displaySummary = paper.cardSummary || paper.summary || paper.description || '';
-  
+  const displaySummary = paper.summary || paper.description || '';
+
   return (
-    <motion.div
-      className="bg-navy-light/30 rounded-lg overflow-hidden border border-white/5 hover:border-primary/30 transition-all"
-      whileHover={{ x: 5, boxShadow: '0 4px 20px -10px rgba(0, 174, 239, 0.2)' }}
-    >
-      <div className="p-4 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
-        <div className="flex items-start space-x-4 flex-1">
-          <span className="text-primary font-bold w-8 mt-0.5">{paper.id}</span>
-          <div className="flex-1">
-            <h3 className="text-white font-medium mb-1">{paper.title}</h3>
-            <p className="text-white/70 text-sm line-clamp-2">
-              {displaySummary.substring(0, 150)}
-              {displaySummary.length > 150 && '...'}
-            </p>
-          </div>
+    <div className="flex flex-col md:flex-row items-center justify-between p-3 bg-navy-light/20 rounded-lg border border-transparent hover:border-primary/30 transition-all">
+      <div className="flex-1 mb-3 md:mb-0">
+        <div className="flex items-center space-x-3">
+          <span className="text-primary font-bold text-lg">{paper.id}</span>
+          <h3 className="text-md font-semibold text-white">{paper.title}</h3>
         </div>
+        <p className="text-white/60 text-sm mt-1 ml-8 line-clamp-1">{displaySummary}</p>
+      </div>
+      
+      <div className="flex items-center space-x-2 ml-12 md:ml-0">
+        <LocalizedLink
+          to={`/series/urantia-papers/${paper.id}`}
+          className="flex items-center gap-1 px-2 py-1 bg-primary text-white rounded hover:bg-primary-dark transition-colors text-sm"
+        >
+          <Play size={14} />
+          <span className="hidden md:inline">Listen</span>
+        </LocalizedLink>
         
-        <div className="flex space-x-2 ml-12 md:ml-0">
-          <Link
-            to={`/listen/urantia-papers/${paper.id}`}
-            className="flex items-center gap-1 px-2 py-1 bg-primary text-white rounded hover:bg-primary-dark transition-colors text-sm"
-          >
-            <Play size={14} />
-            <span className="hidden md:inline">Listen</span>
-          </Link>
-          
-          {paper.pdfUrl && (
-            <a
-              href={paper.pdfUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1 px-2 py-1 bg-navy-light text-white/80 rounded hover:bg-navy transition-colors text-sm"
-            >
-              <Book size={14} />
-              <span className="hidden md:inline">Read</span>
-            </a>
-          )}
-          
+        {paper.pdfUrl && (
           <a
-            href={paper.audioUrl}
-            download
+            href={paper.pdfUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             className="flex items-center gap-1 px-2 py-1 bg-navy-light text-white/80 rounded hover:bg-navy transition-colors text-sm"
           >
-            <Download size={14} />
-            <span className="hidden md:inline">Download</span>
+            <Book size={14} />
+            <span className="hidden md:inline">Read</span>
           </a>
-        </div>
+        )}
+        
+        <a
+          href={paper.audioUrl}
+          download
+          className="flex items-center gap-1 px-2 py-1 bg-navy-light text-white/80 rounded hover:bg-navy transition-colors text-sm"
+        >
+          <Download size={14} />
+          <span className="hidden md:inline">Download</span>
+        </a>
       </div>
-    </motion.div>
+    </div>
   );
 }; 

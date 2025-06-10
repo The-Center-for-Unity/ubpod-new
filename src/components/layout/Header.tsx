@@ -4,6 +4,7 @@ import { Menu, X, BookOpen, Library } from 'lucide-react';
 import { LanguageSwitcher } from '../../i18n/LanguageSwitcher';
 import { useTranslation } from 'react-i18next';
 import { useLanguage } from '../../i18n/LanguageContext';
+import { LocalizedLink } from '../shared/LocalizedLink';
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -41,7 +42,7 @@ export default function Header() {
           <div className="flex items-center justify-between h-16">
             {/* Logo and Language Switcher (Left Side) */}
             <div className="flex items-center space-x-4">
-              <Link to={getLocalizedPath("/")} className="flex items-center space-x-2">
+              <LocalizedLink to="/" className="flex items-center space-x-2">
                 <img 
                   src="/logo.png" 
                   alt={t('site.logo_alt')} 
@@ -55,7 +56,7 @@ export default function Header() {
                     {language === 'es' ? 'LIBRO DE URANTIA' : 'BOOK PODCAST'}
                   </span>
                 </div>
-              </Link>
+              </LocalizedLink>
               
               {/* Language Switcher next to logo on mobile, hidden on desktop */}
               <div className="md:hidden">

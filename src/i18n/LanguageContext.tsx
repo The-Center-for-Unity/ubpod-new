@@ -4,11 +4,13 @@ import i18n from './i18n';
 
 type LanguageContextType = {
   language: string;
+  isInitialized: boolean;
   changeLanguage: (lang: string) => void;
 };
 
 const LanguageContext = createContext<LanguageContextType>({
   language: 'en',
+  isInitialized: false,
   changeLanguage: () => {}
 });
 
@@ -16,42 +18,46 @@ export const LanguageProvider: React.FC<{children: React.ReactNode}> = ({ childr
   const navigate = useNavigate();
   const location = useLocation();
   const [language, setLanguage] = useState('en');
+  const [isInitialized, setIsInitialized] = useState(false);
 
-  // Initialize from URL
+  // Initialize from URL on first load
   useEffect(() => {
     const path = location.pathname;
     const langMatch = path.match(/^\/([a-z]{2})\//); 
+    
+    let initialLanguage = 'en';
     if (langMatch && ['es', 'fr', 'pt'].includes(langMatch[1])) {
-      setLanguage(langMatch[1]);
-      i18n.changeLanguage(langMatch[1]);
+      initialLanguage = langMatch[1];
     }
-  }, [location]);
+    
+    setLanguage(initialLanguage);
+    i18n.changeLanguage(initialLanguage);
+    setIsInitialized(true);
+    
+  }, []); // Run only once on initial mount
 
   const changeLanguage = (lang: string) => {
+    if (lang === language) return;
+
+    const currentPath = location.pathname;
+    
+    // Strip the current language prefix to get the base path
+    const basePath = currentPath.startsWith(`/${language}/`) 
+      ? currentPath.substring(`/${language}`.length) 
+      : currentPath;
+  
+    // Prepend the new language prefix. Ensure the base path starts with a /
+    const newPath = lang === 'en' 
+      ? basePath 
+      : `/${lang}${basePath.startsWith('/') ? basePath : '/' + basePath}`;
+  
     setLanguage(lang);
     i18n.changeLanguage(lang);
-    
-    // Update URL to reflect language change
-    const path = location.pathname;
-    const currentLangMatch = path.match(/^\/([a-z]{2})\//); 
-    
-    if (lang === 'en') {
-      // Remove language prefix for English
-      if (currentLangMatch) {
-        navigate(path.replace(/^\/[a-z]{2}\//, '/'));
-      }
-    } else {
-      // Add or replace language prefix
-      if (currentLangMatch) {
-        navigate(path.replace(/^\/[a-z]{2}\//, `/${lang}/`));
-      } else {
-        navigate(`/${lang}${path}`);
-      }
-    }
+    navigate(newPath, { replace: true });
   };
 
   return (
-    <LanguageContext.Provider value={{ language, changeLanguage }}>
+    <LanguageContext.Provider value={{ language, isInitialized, changeLanguage }}>
       {children}
     </LanguageContext.Provider>
   );

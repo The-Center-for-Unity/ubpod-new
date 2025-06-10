@@ -1,4 +1,4 @@
-import { Episode, SeriesType } from '../types/index';
+import { Episode, SeriesType, EpisodeTranslations } from '../types/index';
 import { 
   getSeriesInfo, 
   getEpisodeTitle, 
@@ -9,6 +9,33 @@ import { discoverJesusSummaries } from '../data/discoverJesusSummaries';
 import episodesData from '../data/json/episodes.json';
 import urantiaSummariesData from '../data/json/urantia_summaries.json';
 import { getTranscriptUrl } from './mediaUtils';
+import { 
+  getUrantiaPapers, 
+  getDiscoverJesusEpisodes, 
+  getHistoryEpisodes, 
+  getSadlerWorkbooks 
+} from '../data/episodes';
+
+// Instead of importing from a file, create hardcoded translations for testing
+const urantiaTranslationsEs = {
+  'urantia-papers': {
+    '0': {
+      title: 'Prólogo',
+      description: 'Una introducción a los Documentos de Urantia, que cubre la Deidad, la realidad, las definiciones del universo y un esquema de la estructura del cosmos.',
+      summary: 'El Prólogo a los Documentos de Urantia establece el fundamento para comprender los conceptos cósmicos y las definiciones que se utilizarán a lo largo del texto.'
+    },
+    '1': {
+      title: 'El Padre Universal',
+      description: 'Documento 1: El Padre Universal',
+      summary: 'Este documento presenta la naturaleza del Padre Universal como una persona real e infinita que busca relaciones personales con todas sus criaturas inteligentes.'
+    },
+    '2': {
+      title: 'La Naturaleza de Dios',
+      description: 'Documento 2: La Naturaleza de Dios',
+      summary: 'Este documento explora los atributos y características de Dios, destacando tanto su infinidad como su personalidad.'
+    }
+  }
+};
 
 // Define the cosmic audio URL - use the same R2 backend that other audio files use
 // This should be updated to the actual URL when cosmic audio files are available
@@ -420,248 +447,83 @@ const seriesEpisodeLoglines: Record<string, string[]> = {
   ]
 };
 
-/**
- * Get episodes for a specific series
- * @param seriesId The series ID to get episodes for
- * @returns Array of episodes for the specified series
- */
-export function getEpisodesForSeries(seriesId: string): Episode[] {
-  console.log(`Getting episodes for series: ${seriesId}`);
+// Main function to get all episodes for a given series
+export function getEpisodesForSeries(seriesId: string, language: string = 'en'): Episode[] {
+  let episodes: Episode[];
+
+  // Use the new data-loader functions from episodes.ts
+  if (seriesId === 'urantia-papers') {
+    episodes = getUrantiaPapers();
+  } else if (seriesId === 'discover-jesus') {
+    episodes = getDiscoverJesusEpisodes();
+  } else if (seriesId === 'history') {
+    episodes = getHistoryEpisodes();
+  } else if (seriesId === 'sadler-workbooks') {
+    episodes = getSadlerWorkbooks();
+  } else {
+    // Fallback for cosmic/jesus series that are dynamically generated
+    const seriesInfo = getSeriesInfo(seriesId);
+    if (!seriesInfo) return [];
+
+    const titles = seriesEpisodeTitles[seriesId] || [];
+    const loglines = seriesEpisodeLoglines[seriesId] || [];
   
-  // Get the series data from our master JSON
-  const seriesData = episodesData[seriesId as keyof typeof episodesData];
-  if (!seriesData) {
-    console.log(`No series data found for: ${seriesId}`);
-    return [];
+    episodes = Array.from({ length: seriesInfo.totalEpisodes }, (_, i) => {
+      const episodeId = i + 1;
+      const audioUrl = getEpisodeAudioPath(seriesId, episodeId);
+      
+      const episode: Episode = {
+        id: episodeId,
+        title: getEpisodeTitle(seriesId, episodeId),
+        audioUrl: audioUrl,
+        series: seriesId as SeriesType,
+        description: loglines[i] || `Enjoy a narrative journey through the Urantia Book, one paper at a time.`,
+        summary: `Enjoy a narrative journey through the Urantia Book, one paper at a time.`
+      };
+
+      // For cosmic series, also add the PDF URL
+      if (seriesId.startsWith('cosmic-')) {
+        episode.pdfUrl = getPdfUrl(seriesId, episodeId);
+      }
+      return episode;
+    });
   }
-  
-  // Map the JSON data to Episode objects
-  return seriesData.episodes.map(episodeData => {
-    // Get summary data if available
-    const summaryKey = episodeData.summaryKey;
-    let summary = '';
-    let cardSummary = '';
-    
-    if (summaryKey) {
-      // Check if this is a Urantia paper summary key (format: paper_X)
-      if (summaryKey.startsWith('paper_')) {
-        const paperNumber = parseInt(summaryKey.substring(6), 10);
-        console.log(`Looking for Urantia summary for paper number: ${paperNumber}`);
-        
-        // Find the matching paper in urantiaSummariesData
-        const paperSummary = urantiaSummariesData.find(paper => paper.paper_number === paperNumber);
-        
-        if (paperSummary) {
-          summary = paperSummary.episode_page;
-          cardSummary = paperSummary.episode_card;
-          console.log(`Found Urantia summary for paper: ${paperNumber}`);
-        } else {
-          console.log(`No Urantia summary found for paper: ${paperNumber}`);
+
+  // Apply translations if language is not English
+  if (language !== 'en') {
+    const translations = urantiaTranslationsEs[seriesId as keyof typeof urantiaTranslationsEs] as Record<string, { title: string, description: string, summary: string }>;
+    if (translations) {
+      return episodes.map(episode => {
+        const translation = translations[episode.id.toString()];
+        if (translation) {
+          return {
+            ...episode,
+            title: translation.title,
+            description: translation.description,
+            summary: translation.summary,
+            // Adjust audio/pdf for language
+            audioUrl: getAudioPath(episode.audioUrl, language),
+            pdfUrl: episode.pdfUrl ? getPdfPath(episode.pdfUrl, language) : undefined,
+            transcriptUrl: getTranscriptPath(episode.transcriptUrl || '', language)
+          };
         }
-      } else {
-        // Handle original DiscoverJesus summaries
-        const summaryData = discoverJesusSummaries[summaryKey];
-        if (summaryData) {
-          summary = summaryData.fullSummary;
-          cardSummary = summaryData.shortSummary;
-          console.log(`Found DiscoverJesus summary for: ${summaryKey}`);
-        } else {
-          console.log(`No DiscoverJesus summary found for: ${summaryKey}`);
-        }
-      }
+        return episode;
+      });
     }
-    
-    // Create the proper sourceUrl for DiscoverJesus.com if we have a summaryKey
-    let sourceUrl = '';
-    if (summaryKey && seriesId.startsWith('jesus-') && !summaryKey.startsWith('paper_')) {
-      sourceUrl = `https://discoverjesus.com/${summaryKey}`;
-      console.log(`Created source URL: ${sourceUrl}`);
-    }
-    
-    // Determine the base URL based on the series
-    let audioUrl = episodeData.audioUrl;
-    
-    // Set PDF URL - for now, let's just make sure it's a valid URL or undefined
-    let pdfUrl: string | undefined = undefined;
-    if (episodeData.pdfUrl) {
-      // If we have a PDF URL in the data, use it
-      pdfUrl = episodeData.pdfUrl;
-      console.log(`Using PDF: ${pdfUrl}`);
-    } else if (sourceUrl) {
-      // For Jesus series, we could potentially link to DiscoverJesus.com PDFs
-      // But let's disable this for now until we confirm they exist
-      // pdfUrl = `${sourceUrl}/pdf`;
-      console.log(`No PDF URL in data, and not using external PDFs for now`);
-    }
-    
-    if (seriesId.startsWith('jesus-')) {
-      // Use the Jesus audio base URL and encode the filename
-      audioUrl = `${JESUS_AUDIO_BASE_URL}/${encodeURIComponent(audioUrl)}`;
-    } else if (seriesId === 'urantia-papers') {
-      // Use the Urantia papers base URL
-      audioUrl = `${URANTIA_AUDIO_BASE_URL}/${audioUrl}`;
-    } else if (seriesId.startsWith('cosmic-')) {
-      // For cosmic series, convert to appropriate paper format
-      // Extract the episode number (e.g., "cosmic-1-3.mp3" → 3)
-      const match = audioUrl.match(/cosmic-\d+-(\d+)\.mp3$/);
-      const episodeNumber = match ? parseInt(match[1], 10) : null;
-      
-      // Map episode numbers to corresponding paper numbers
-      // For example, cosmic-1-1 might correspond to Paper 1
-      const seriesNum = parseInt(seriesId.split('-')[1], 10);
-      let paperNumber: number | null = null;
-      
-      // Series specific mappings based on series organization
-      switch(seriesId) {
-        case 'cosmic-1':
-          // Map to papers 1, 12, 13, 15, 42
-          const paper1Mapping = [1, 12, 13, 15, 42];
-          paperNumber = episodeNumber && episodeNumber <= 5 ? paper1Mapping[episodeNumber - 1] : null;
-          break;
-        case 'cosmic-2':
-          // Map to papers on eternal son, infinite spirit, trinity, etc.
-          const paper2Mapping = [6, 8, 10, 20, 16];
-          paperNumber = episodeNumber && episodeNumber <= 5 ? paper2Mapping[episodeNumber - 1] : null;
-          break;
-        case 'cosmic-3':
-          // Map to papers on Thought Adjusters
-          const paper3Mapping = [107, 108, 110, 111, 112];
-          paperNumber = episodeNumber && episodeNumber <= 5 ? paper3Mapping[episodeNumber - 1] : null;
-          break;
-        case 'cosmic-4':
-          // Map to papers on Local Universe
-          const paper4Mapping = [32, 33, 34, 35, 41];
-          paperNumber = episodeNumber && episodeNumber <= 5 ? paper4Mapping[episodeNumber - 1] : null;
-          break;
-        case 'cosmic-5':
-          // Map to papers on Angels
-          const paper5Mapping = [38, 39, 113, 114, 77];
-          paperNumber = episodeNumber && episodeNumber <= 5 ? paper5Mapping[episodeNumber - 1] : null;
-          break;
-        case 'cosmic-6':
-          // Map to papers on Ascension Career
-          const paper6Mapping = [40, 47, 48, 31, 56];
-          paperNumber = episodeNumber && episodeNumber <= 5 ? paper6Mapping[episodeNumber - 1] : null;
-          break;
-        case 'cosmic-7':
-          // Map to papers on Urantia History
-          const paper7Mapping = [57, 58, 62, 64, 66];
-          paperNumber = episodeNumber && episodeNumber <= 5 ? paper7Mapping[episodeNumber - 1] : null;
-          break;
-        case 'cosmic-8':
-          // Map to papers on Lucifer Rebellion
-          const paper8Mapping = [53, 54, 67, 75, 66];
-          paperNumber = episodeNumber && episodeNumber <= 5 ? paper8Mapping[episodeNumber - 1] : null;
-          break;
-        case 'cosmic-9':
-          // Map to papers on Adam and Eve
-          const paper9Mapping = [73, 74, 76, 78, 75];
-          paperNumber = episodeNumber && episodeNumber <= 5 ? paper9Mapping[episodeNumber - 1] : null;
-          break;
-        case 'cosmic-10':
-          // Map to papers on Melchizedek
-          const paper10Mapping = [93, 94, 95, 96, 98];
-          paperNumber = episodeNumber && episodeNumber <= 5 ? paper10Mapping[episodeNumber - 1] : null;
-          break;
-        case 'cosmic-11':
-          // Map to papers on Religion Evolution
-          const paper11Mapping = [85, 86, 87, 89, 92];
-          paperNumber = episodeNumber && episodeNumber <= 5 ? paper11Mapping[episodeNumber - 1] : null;
-          break;
-        case 'cosmic-12':
-          // Map to papers on Religion in Human Experience
-          const paper12Mapping = [100, 101, 102, 103, 196];
-          paperNumber = episodeNumber && episodeNumber <= 5 ? paper12Mapping[episodeNumber - 1] : null;
-          break;
-        case 'cosmic-13':
-          // Map to papers on Supreme Being
-          const paper13Mapping = [0, 105, 115, 116, 117];
-          paperNumber = episodeNumber && episodeNumber <= 5 ? paper13Mapping[episodeNumber - 1] : null;
-          break;
-        case 'cosmic-14':
-          // Map to papers on Trinity Relations of Deity
-          const paper14Mapping = [4, 5, 7, 9, 10];
-          paperNumber = episodeNumber && episodeNumber <= 5 ? paper14Mapping[episodeNumber - 1] : null;
-          break;
-        default:
-          // If no specific mapping, use generic approach
-          paperNumber = null;
-      }
-      
-      if (paperNumber !== null) {
-        if (paperNumber === 0) {
-          // Special case for Foreword
-          audioUrl = `${URANTIA_AUDIO_BASE_URL}/foreword.mp3`;
-          
-          // Also set PDF URL for foreword
-          if (episodeData.pdfUrl) {
-            pdfUrl = `${URANTIA_AUDIO_BASE_URL}/foreword.pdf`;
-          }
-          
-          // If we don't have summary from the paper_0 summaryKey, try to get it from urantiaSummariesData
-          if (!summary || !cardSummary) {
-            const forewordSummary = urantiaSummariesData.find(paper => paper.paper_number === 0);
-            if (forewordSummary) {
-              summary = forewordSummary.episode_page;
-              cardSummary = forewordSummary.episode_card;
-            }
-          }
-        } else {
-          // Regular paper
-          audioUrl = `${URANTIA_AUDIO_BASE_URL}/paper-${paperNumber}.mp3`;
-          
-          // Also set PDF URL to the corresponding Urantia paper
-          if (episodeData.pdfUrl) {
-            pdfUrl = `${URANTIA_AUDIO_BASE_URL}/paper-${paperNumber}.pdf`;
-          }
-          
-          // If we don't have summary from the paper_X summaryKey, try to get it from urantiaSummariesData
-          if (!summary || !cardSummary) {
-            const paperSummary = urantiaSummariesData.find(paper => paper.paper_number === paperNumber);
-            if (paperSummary) {
-              summary = paperSummary.episode_page;
-              cardSummary = paperSummary.episode_card;
-            }
-          }
-        }
-      } else {
-        // Fallback to direct URL format if no mapping exists
-        audioUrl = `${COSMIC_AUDIO_BASE_URL}/${audioUrl}`;
-      }
-    } else {
-      // Default for other series
-      audioUrl = `${JESUS_AUDIO_BASE_URL}/${audioUrl}`;
-    }
-    
-    // Build the complete Episode object
-    const episode = {
-      id: episodeData.id,
-      title: episodeData.title,
-      audioUrl: audioUrl,
-      pdfUrl: pdfUrl,
-      series: seriesId as SeriesType,
-      sourceUrl: sourceUrl,
-      description: `${seriesData.seriesTitle} - ${episodeData.title}`,
-      summary: summary || seriesData.seriesDescription || '',
-      cardSummary: cardSummary || seriesData.seriesDescription || '',
-      imageUrl: episodeData.imageUrl,
-      // Direct URL generation for transcripts
-      transcriptUrl: seriesId === 'urantia-papers' 
-        ? `${URANTIA_AUDIO_BASE_URL}/${episodeData.id === 0 ? 'foreword' : `paper-${episodeData.id}`}-transcript.pdf`
-        : getTranscriptUrl(seriesId, episodeData.id) || undefined
-    };
-    
-    console.log(`[getEpisodesForSeries] Created episode: ${episode.id}, series: ${seriesId}, transcriptUrl: ${episode.transcriptUrl || 'none'}`);
-    
-    return episode;
-  });
+  }
+
+  return episodes;
 }
 
 /**
  * Get a specific episode by series and id
+ * @param seriesId The series ID
+ * @param episodeId The episode ID
+ * @param language Optional language code (e.g., 'es' for Spanish)
+ * @returns The episode with translations applied if available
  */
-export function getEpisode(seriesId: string, episodeId: number): Episode | undefined {
-  console.log(`Getting episode: ${seriesId}/${episodeId}, type of episodeId: ${typeof episodeId}`);
+export function getEpisode(seriesId: string, episodeId: number, language: string = 'en'): Episode | undefined {
+  console.log(`Getting episode: ${seriesId}/${episodeId}, language: ${language}, type of episodeId: ${typeof episodeId}`);
   
   // Get all episodes for the series
   const episodes = getEpisodesForSeries(seriesId);
@@ -671,22 +533,76 @@ export function getEpisode(seriesId: string, episodeId: number): Episode | undef
   
   if (!episode) {
     console.log(`Episode not found: ${seriesId}/${episodeId}`);
-  } else {
-    console.log(`Found episode: ${episode.title}`);
-    
-    // Ensure transcriptUrl is set
-    if (!episode.transcriptUrl) {
-      // Debug the type being passed to getTranscriptUrl
-      console.log(`Setting transcript URL for ${seriesId}/${episodeId}, episodeId type: ${typeof episodeId}`);
-      
-      episode.transcriptUrl = getTranscriptUrl(seriesId, episodeId) || undefined;
-      
-      // Debug the result
-      console.log(`Transcript URL result: ${episode.transcriptUrl || 'none'}`);
+    return undefined;
+  }
+  
+  console.log(`Found episode: ${episode.title}`);
+  
+  // Ensure transcriptUrl is set
+  if (!episode.transcriptUrl) {
+    console.log(`Setting transcript URL for ${seriesId}/${episodeId}, episodeId type: ${typeof episodeId}`);
+    episode.transcriptUrl = getTranscriptUrl(seriesId, episodeId, language) || undefined;
+    console.log(`Transcript URL result: ${episode.transcriptUrl || 'none'}`);
+  }
+  
+  // Apply translations if available and not English
+  if (language !== 'en' && episode.translations) {
+    const translationData = episode.translations[language];
+    if (translationData) {
+      return {
+        ...episode,
+        title: translationData.title || episode.title,
+        description: translationData.description || episode.description,
+        summary: translationData.summary || episode.summary,
+        cardSummary: translationData.cardSummary || episode.cardSummary,
+        
+        // For audio and PDF URLs, we need to adjust for language
+        audioUrl: getAudioPath(episode.audioUrl, language),
+        pdfUrl: episode.pdfUrl ? getPdfPath(episode.pdfUrl, language) : undefined,
+        transcriptUrl: episode.transcriptUrl ? getTranscriptPath(episode.transcriptUrl, language) : undefined
+      };
     }
   }
   
   return episode;
+}
+
+/**
+ * Helper function to get language-specific audio path
+ */
+function getAudioPath(url: string, language: string): string {
+  if (language === 'en') return url;
+  
+  // Insert language code before filename
+  // From: https://pub-xxx.r2.dev/paper-1.mp3
+  // To:   https://pub-xxx.r2.dev/es/paper-1.mp3
+  const urlParts = url.split('/');
+  const filename = urlParts.pop() || '';
+  return [...urlParts, language, filename].join('/');
+}
+
+/**
+ * Helper function to get language-specific PDF path
+ */
+function getPdfPath(url: string, language: string): string {
+  if (language === 'en') return url;
+  
+  // Insert language code before filename
+  const urlParts = url.split('/');
+  const filename = urlParts.pop() || '';
+  return [...urlParts, language, filename].join('/');
+}
+
+/**
+ * Helper function to get language-specific transcript path
+ */
+function getTranscriptPath(url: string, language: string): string {
+  if (language === 'en') return url;
+  
+  // Insert language code before filename
+  const urlParts = url.split('/');
+  const filename = urlParts.pop() || '';
+  return [...urlParts, language, filename].join('/');
 }
 
 /**

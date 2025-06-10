@@ -1,5 +1,6 @@
 import { Episode } from '../types/index';
 import urantiaSummaries from './json/urantia_summaries.json';
+import urantiaSummariesEs from './json/urantia_summaries_es.json';
 import scraperSummaries from './json/summaries.json';  // Import the scraped summaries
 import { getAudioUrl, getPdfUrl } from '../config/audio';
 import { getEpisode as getEpisodeUtil, getDiscoverJesusSummary } from '../utils/episodeUtils';
@@ -46,10 +47,8 @@ console.log('Raw summary data (first 5 entries):',
   }))
 );
 
-// Create a map of summaries for quick lookup
+// Create a map of English summaries for quick lookup
 const summaryMap = new Map<number, { episodeCard: string, episodePage: string }>();
-
-// Process the summaries from the JSON file
 (urantiaSummaries as UrantiaSummary[]).forEach((summary) => {
   summaryMap.set(summary.paper_number, {
     episodeCard: summary.episode_card,
@@ -57,17 +56,18 @@ const summaryMap = new Map<number, { episodeCard: string, episodePage: string }>
   });
 });
 
+// Create a map of Spanish summaries for quick lookup
+const summaryMapEs = new Map<number, { title: string, episodeCard: string, episodePage: string }>();
+(urantiaSummariesEs as UrantiaSummary[]).forEach((summary) => {
+  summaryMapEs.set(summary.paper_number, {
+    title: summary.title,
+    episodeCard: summary.episode_card,
+    episodePage: summary.episode_page
+  });
+});
+
 // Debug: Check how many summaries were loaded
-console.log(`Loaded ${summaryMap.size} summaries from JSON file`);
-console.log(`First few summaries in map:`, 
-  Array.from(summaryMap.entries())
-    .slice(0, 5)
-    .map(([id, summary]) => ({ 
-      id, 
-      episodeCard: summary.episodeCard.substring(0, 30) + '...',
-      episodePage: summary.episodePage.substring(0, 30) + '...'
-    }))
-);
+console.log(`Loaded ${summaryMap.size} English summaries and ${summaryMapEs.size} Spanish summaries from JSON files`);
 
 // Helper function to get summary for a paper
 function getSummaryForPaper(paperId: number): { episodeCard: string, episodePage: string } | undefined {
@@ -84,6 +84,7 @@ function getSummaryForPaper(paperId: number): { episodeCard: string, episodePage
 // Helper function to create an episode with summaries automatically applied
 function createUrantiaPaper(id: number, title: string): Episode {
   const paperSummary = getSummaryForPaper(id);
+  const paperSummaryEs = summaryMapEs.get(id);
   
   // Format the title with "Paper X:" prefix for all papers except the Foreword
   const formattedTitle = id === 0 ? "Foreword" : `Paper ${id}: ${title}`;
@@ -95,7 +96,25 @@ function createUrantiaPaper(id: number, title: string): Episode {
     audioUrl: getAudioUrl('urantia-papers', id),
     pdfUrl: getPdfUrl('urantia-papers', id),
     series: "urantia-papers",
-    description: id === 0 ? "An introduction to the Urantia Papers, covering Deity, reality, universe definitions, and an outline of the structure of the cosmos." : `Paper ${id}: ${title}`,
+    // The main description should be the shorter card summary (logline)
+    description: paperSummary?.episodeCard, 
+    // The collapsible summary should be the longer page summary
+    summary: paperSummary?.episodePage,
+    cardSummary: paperSummary?.episodeCard, // Keep for other uses
+    translations: {
+      en: {
+        title: formattedTitle,
+        description: paperSummary?.episodeCard, // Short logline
+        summary: paperSummary?.episodePage,     // Long description
+        cardSummary: paperSummary?.episodeCard
+      },
+      es: {
+        title: paperSummaryEs?.title ? `Documento ${id}: ${paperSummaryEs.title}` : formattedTitle,
+        description: paperSummaryEs?.episodeCard || paperSummary?.episodeCard,
+        summary: paperSummaryEs?.episodePage || paperSummary?.episodePage,
+        cardSummary: paperSummaryEs?.episodeCard || paperSummary?.episodeCard,
+      },
+    }
   };
   
   // Add summaries if available
@@ -476,19 +495,21 @@ export function getSadlerWorkbooks(): Episode[] {
  * Get an episode by ID and series
  * @param id The episode ID
  * @param series The series ID
+ * @param language Optional language code (e.g., 'es' for Spanish)
  * @returns The episode or undefined if not found
  */
-export function getEpisodeById(id: number, series: string): Episode | undefined {
+export function getEpisodeById(id: number, series: string, language: string = 'en'): Episode | undefined {
   // Debug for the specific series we're working with
-  console.log('DEBUG getEpisodeById:', { id, series, isJesusSeries: series.startsWith('jesus-') });
+  console.log('DEBUG getEpisodeById:', { id, series, language, isJesusSeries: series.startsWith('jesus-') });
   
   // Check for new series IDs (jesus-1, jesus-2, cosmic-1, etc.)
   if (series.startsWith('jesus-') || series.startsWith('cosmic-') || series.startsWith('series-platform-')) {
     try {
-      // For new series IDs, use the utility function from episodeUtils
-      const episodeData = getEpisodeUtil(series, id);
+      // For new series IDs, use the utility function from episodeUtils with language support
+      const episodeData = getEpisodeUtil(series, id, language);
       console.log('DEBUG jesus series episode:', { 
         episodeFound: !!episodeData,
+        language,
         hasSummary: episodeData?.summary ? true : false,
         hasCardSummary: episodeData?.cardSummary ? true : false,
         cardSummary: episodeData?.cardSummary?.substring(0, 50),
@@ -496,14 +517,38 @@ export function getEpisodeById(id: number, series: string): Episode | undefined 
       });
       return episodeData;
     } catch (err) {
-      console.error(`Error getting episode for ${series}:${id}`, err);
+      console.error(`Error getting episode for ${series}:${id} in language ${language}`, err);
       return undefined;
     }
   }
   
   // Handle Urantia Papers specifically
   if (series === 'urantia-papers') {
-    return urantiaEpisodes.find(ep => ep.id === id);
+    const episode = urantiaEpisodes.find(ep => ep.id === id);
+    
+    // If we found the episode and language is not English, apply language-specific adjustments
+    if (episode && language !== 'en') {
+      const translatedEpisode: Episode = {
+        ...episode,
+        // Apply language-specific paths to URLs
+        audioUrl: language === 'en' ? episode.audioUrl : episode.audioUrl.replace(/\/([^/]+)$/, `/${language}/$1`),
+        pdfUrl: episode.pdfUrl ? (language === 'en' ? episode.pdfUrl : episode.pdfUrl.replace(/\/([^/]+)$/, `/${language}/$1`)) : undefined,
+        transcriptUrl: episode.transcriptUrl ? (language === 'en' ? episode.transcriptUrl : episode.transcriptUrl.replace(/\/([^/]+)$/, `/${language}/$1`)) : undefined,
+        
+        // Apply translations if available
+        ...(episode.translations && episode.translations[language] ? {
+          title: episode.translations[language].title || episode.title,
+          description: episode.translations[language].description || episode.description,
+          summary: episode.translations[language].summary || episode.summary,
+          cardSummary: episode.translations[language].cardSummary || episode.cardSummary,
+          shortSummary: episode.translations[language].shortSummary || episode.shortSummary,
+        } : {})
+      };
+      
+      return translatedEpisode;
+    }
+    
+    return episode;
   }
   
   // Handle discover-jesus episodes
@@ -514,6 +559,7 @@ export function getEpisodeById(id: number, series: string): Episode | undefined 
     console.log('DEBUG GET_EPISODE_BY_ID:', {
       requestedId: id,
       requestedSeries: series,
+      language,
       episodeFound: !!episode,
       episodeDetails: episode ? {
         id: episode.id,
@@ -523,9 +569,11 @@ export function getEpisodeById(id: number, series: string): Episode | undefined 
       } : null
     });
     
+    if (!episode) return undefined;
+    
     // If the episode exists but doesn't have summaries (cardSummary/summary), 
     // try to add them directly from the JSON
-    if (episode && episode.sourceUrl && (!episode.cardSummary || !episode.summary)) {
+    if (episode.sourceUrl && (!episode.cardSummary || !episode.summary)) {
       // Extract the path part from the URL (everything after discoverjesus.com/)
       const urlPath = episode.sourceUrl.split('discoverjesus.com/')[1];
       
@@ -540,19 +588,61 @@ export function getEpisodeById(id: number, series: string): Episode | undefined 
       const summaryData = discoverJesusSummaries[urlPath];
       
       if (summaryData) {
-        return {
-          ...episode,
-          cardSummary: episode.cardSummary || summaryData.shortSummary,
-          summary: episode.summary || summaryData.fullSummary
-        };
+        episode.cardSummary = episode.cardSummary || summaryData.shortSummary;
+        episode.summary = episode.summary || summaryData.fullSummary;
       }
+    }
+    
+    // If language is not English, apply language-specific adjustments
+    if (language !== 'en') {
+      const translatedEpisode: Episode = {
+        ...episode,
+        // Apply language-specific paths to URLs
+        audioUrl: language === 'en' ? episode.audioUrl : episode.audioUrl.replace(/\/([^/]+)$/, `/${language}/$1`),
+        
+        // Apply translations if available
+        ...(episode.translations && episode.translations[language] ? {
+          title: episode.translations[language].title || episode.title,
+          description: episode.translations[language].description || episode.description,
+          summary: episode.translations[language].summary || episode.summary,
+          cardSummary: episode.translations[language].cardSummary || episode.cardSummary,
+          shortSummary: episode.translations[language].shortSummary || episode.shortSummary,
+        } : {})
+      };
+      
+      return translatedEpisode;
     }
     
     return episode;
   }
   
-  // For other legacy series types
-  // (Implementation would depend on what other legacy series are available)
+  // For other legacy series types (history, sadler-workbooks)
+  if (series === 'history' || series === 'sadler-workbooks') {
+    const seriesData = series === 'history' ? historyEpisodes : sadlerWorkbooksEpisodes;
+    const episode = seriesData.find(ep => ep.id === id);
+    
+    if (episode && language !== 'en') {
+      // Apply language-specific adjustments
+      const translatedEpisode: Episode = {
+        ...episode,
+        // Apply language-specific paths to URLs
+        audioUrl: language === 'en' ? episode.audioUrl : episode.audioUrl.replace(/\/([^/]+)$/, `/${language}/$1`),
+        
+        // Apply translations if available
+        ...(episode.translations && episode.translations[language] ? {
+          title: episode.translations[language].title || episode.title,
+          description: episode.translations[language].description || episode.description,
+          summary: episode.translations[language].summary || episode.summary,
+          cardSummary: episode.translations[language].cardSummary || episode.cardSummary,
+          shortSummary: episode.translations[language].shortSummary || episode.shortSummary,
+        } : {})
+      };
+      
+      return translatedEpisode;
+    }
+    
+    return episode;
+  }
   
   // If we get here, we couldn't find the episode
   return undefined;

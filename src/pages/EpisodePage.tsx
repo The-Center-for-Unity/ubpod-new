@@ -11,12 +11,11 @@ import { useAudioAnalytics } from '../hooks/useAudioAnalytics';
 import { getEpisode as getEpisodeUtils } from '../utils/episodeUtils';
 import { getSeriesInfo } from '../utils/seriesUtils';
 import { mapLegacyUrl, getPlatformSeriesForPaper } from '../utils/urlUtils';
-import { formatTitleWithoutNumber } from '../utils/formatTitle';
-import { fadeIn } from '../constants/animations';
-import { useAudioPlayer } from '../hooks/useAudioPlayer';
+import { fadeInVariants } from '../constants/animations';
 import SocialShareMenu from '../components/ui/SocialShareMenu';
 import MetaTags from '../components/layout/MetaTags';
 import { LocalizedLink } from '../components/shared/LocalizedLink';
+import { getLocalizedPath } from '../utils/i18nRouteUtils';
 
 export default function EpisodePage() {
   // Support both old format (/listen/:series/:id) and new format (/series/:seriesId/:episodeId)
@@ -35,7 +34,8 @@ export default function EpisodePage() {
   const location = useLocation();
   const navigate = useNavigate();
   const { t } = useTranslation('episode');
-  const { language } = useLanguage();
+  const { language, isInitialized } = useLanguage();
+  
   const [episode, setEpisode] = useState<Episode | null>(null);
   const [shouldRedirect, setShouldRedirect] = useState<boolean>(false);
   const [redirectUrl, setRedirectUrl] = useState<string>("");
@@ -68,15 +68,22 @@ export default function EpisodePage() {
 
   // Load episode data
   useEffect(() => {
+    // Wait for language context to be initialized to prevent race conditions
+    if (!isInitialized) {
+      return;
+    }
+
     // Case 1: New URL format (/series/:seriesId/:episodeId)
     if (seriesId && episodeId) {
       try {
-        let episodeData = getEpisodeUtils(seriesId, parseInt(episodeId, 10));
+        // Use language from the language context
+        let episodeData = getEpisodeUtils(seriesId, parseInt(episodeId, 10), language);
         
         // Debug transcript URL - use console.log that will show in browser
         console.log("DEBUG - Episode data:", { 
           id: episodeData?.id,
           title: episodeData?.title,
+          language,
           episodeIdParam: episodeId,
           episodeIdType: typeof episodeId,
           parsedEpisodeId: parseInt(episodeId, 10),
@@ -236,8 +243,8 @@ export default function EpisodePage() {
           return;
         }
         
-        // First, try to load the episode from the old data source
-        const oldEpisodeData = getEpisodeById(parseInt(id), series as string);
+        // First, try to load the episode from the old data source with language support
+        const oldEpisodeData = getEpisodeById(parseInt(id, 10), series as string, language);
         
         if (oldEpisodeData) {
           setEpisode(oldEpisodeData);
@@ -250,11 +257,7 @@ export default function EpisodePage() {
           }
           
           // Set up redirection to new URL format for other series
-          const { seriesId: newSeriesId, episodeId: newEpisodeId } = mapLegacyUrl(
-            series as string, 
-            id as string
-          );
-          const newUrl = `/series/${newSeriesId}/${newEpisodeId}`;
+          const newUrl = `/series/${series}/${id}`;
           setRedirectUrl(newUrl);
           
           // Allow content to render first, then redirect
@@ -336,7 +339,7 @@ export default function EpisodePage() {
       setError('Invalid episode URL');
       setIsLoading(false);
     }
-  }, [id, series, seriesId, episodeId]);
+  }, [isInitialized, language, seriesId, episodeId, series, id]);
 
   // Perform redirection if needed
   useEffect(() => {
@@ -515,21 +518,19 @@ export default function EpisodePage() {
     if (seriesId && episodeId) {
       // New URL format (/series/:seriesId/:episodeId)
       const currentEpisodeNumber = parseInt(episodeId, 10);
-      const targetEpisodeNumber = direction === 'prev' 
-        ? currentEpisodeNumber - 1 
-        : currentEpisodeNumber + 1;
+      const totalEpisodes = getSeriesInfo(seriesId)?.totalEpisodes || 0;
       
-      const seriesInfo = getSeriesInfo(seriesId);
+      let nextEpisodeId;
+      if (direction === 'next') {
+        nextEpisodeId = currentEpisodeNumber < totalEpisodes ? currentEpisodeNumber + 1 : null;
+      } else {
+        nextEpisodeId = currentEpisodeNumber > 1 ? currentEpisodeNumber - 1 : null;
+      }
       
-      // Validate episode number is in range
-      if (direction === 'prev' && targetEpisodeNumber < 1) return;
-      if (direction === 'next' && seriesInfo && targetEpisodeNumber > seriesInfo.totalEpisodes) return;
-      
-      // Navigate to the new episode
-      const targetUrl = `/series/${seriesId}/${targetEpisodeNumber}`;
-      
-      // Force a hard navigation by not using React Router
-      window.location.href = targetUrl;
+      if (nextEpisodeId) {
+        const newUrl = `/series/${seriesId}/${nextEpisodeId}`;
+        navigate(getLocalizedPath(newUrl, language));
+      }
     } 
     else if (series && episode) {
       // Old URL format (/listen/:series/:id)
@@ -617,9 +618,21 @@ export default function EpisodePage() {
     
     const currentEpisodeNumber = parseInt(episodeId, 10);
     const seriesInfo = getSeriesInfo(seriesId);
-    
-    if (!seriesInfo || currentEpisodeNumber >= seriesInfo.totalEpisodes) {
-      return '';
+    const isUrantiaPapers = seriesId === 'urantia-papers';
+
+    let totalEpisodes = seriesInfo?.totalEpisodes;
+    if (isUrantiaPapers && !totalEpisodes) {
+        totalEpisodes = 197; // Papers 0-196
+    }
+
+    if (!totalEpisodes) return '';
+
+    if (isUrantiaPapers) {
+        // 0-indexed
+        if (currentEpisodeNumber >= totalEpisodes - 1) return '';
+    } else {
+        // 1-indexed
+        if (currentEpisodeNumber >= totalEpisodes) return '';
     }
     
     return `/series/${seriesId}/${currentEpisodeNumber + 1}`;
@@ -629,9 +642,12 @@ export default function EpisodePage() {
     if (!episodeId || !seriesId) return '';
     
     const currentEpisodeNumber = parseInt(episodeId, 10);
+    const isUrantiaPapers = seriesId === 'urantia-papers';
     
-    if (currentEpisodeNumber <= 1) {
-      return '';
+    if (isUrantiaPapers) {
+      if (currentEpisodeNumber <= 0) return '';
+    } else {
+      if (currentEpisodeNumber <= 1) return '';
     }
     
     return `/series/${seriesId}/${currentEpisodeNumber - 1}`;
@@ -642,18 +658,13 @@ export default function EpisodePage() {
 
   // Get the appropriate back link based on series type
   const getBackLink = () => {
-    if (!series && !seriesId) return '/series';
-    
-    if (series === 'urantia-papers') {
+    const seriesType = seriesId || series;
+    if (!seriesType) return '/series';
+
+    if (seriesType === 'urantia-papers') {
       return '/urantia-papers';
-    } else if (series && series.startsWith('jesus-')) {
-      return `/series/${series}`;
-    } else if (seriesId && seriesId.startsWith('jesus-')) {
-      return `/series/${seriesId}`;
-    } else if (series && series.startsWith('cosmic-')) {
-      return `/series/${series}`;
-    } else if (seriesId && seriesId.startsWith('cosmic-')) {
-      return `/series/${seriesId}`;
+    } else if (seriesType.startsWith('jesus-') || seriesType.startsWith('cosmic-')) {
+      return `/series/${seriesType}`;
     } else {
       return '/series';
     }
@@ -661,14 +672,11 @@ export default function EpisodePage() {
   
   // Get back button text based on series type
   const getBackButtonText = () => {
-    if (series === 'urantia-papers') {
+    const seriesType = seriesId || series;
+    if (seriesType === 'urantia-papers') {
       return t('navigation.back_to_papers');
-    } else if ((series && series.startsWith('jesus-')) || (seriesId && seriesId.startsWith('jesus-')) ||
-              (series && series.startsWith('cosmic-')) || (seriesId && seriesId.startsWith('cosmic-'))) {
-      return t('navigation.back_to_episodes');
-    } else {
-      return t('navigation.back_to_series');
     }
+    return t('navigation.back_to_series');
   };
 
   const decodeAudioUrl = (url: string): string => {
@@ -708,90 +716,6 @@ export default function EpisodePage() {
     setSummaryExpanded(!summaryExpanded);
   };
 
-  // Near the top of the component, add a function to format the title:
-  const formatTitle = (title: string, seriesId: string | undefined, episodeId: string | number | undefined) => {
-    // For cosmic series, ensure we show the "PAPER X:" prefix if it's not already there
-    if (seriesId?.startsWith('cosmic-')) {
-      // Extract the mapped paper number
-      const seriesNum = parseInt(seriesId.split('-')[1], 10);
-      const episodeNum = parseInt(String(episodeId), 10);
-      let mappedPaperNumber: number | null = null;
-      
-      // Same mapping logic as above
-      switch(seriesId) {
-        case 'cosmic-1':
-          const paper1Mapping = [1, 12, 13, 15, 42];
-          mappedPaperNumber = episodeNum && episodeNum <= 5 ? paper1Mapping[episodeNum - 1] : null;
-          break;
-        case 'cosmic-2':
-          const paper2Mapping = [6, 8, 10, 20, 16];
-          mappedPaperNumber = episodeNum && episodeNum <= 5 ? paper2Mapping[episodeNum - 1] : null;
-          break;
-        case 'cosmic-3':
-          const paper3Mapping = [107, 108, 110, 111, 112];
-          mappedPaperNumber = episodeNum && episodeNum <= 5 ? paper3Mapping[episodeNum - 1] : null;
-          break;
-        case 'cosmic-4':
-          const paper4Mapping = [32, 33, 34, 35, 41];
-          mappedPaperNumber = episodeNum && episodeNum <= 5 ? paper4Mapping[episodeNum - 1] : null;
-          break;
-        case 'cosmic-5':
-          const paper5Mapping = [38, 39, 113, 114, 77];
-          mappedPaperNumber = episodeNum && episodeNum <= 5 ? paper5Mapping[episodeNum - 1] : null;
-          break;
-        case 'cosmic-6':
-          const paper6Mapping = [40, 47, 48, 31, 56];
-          mappedPaperNumber = episodeNum && episodeNum <= 5 ? paper6Mapping[episodeNum - 1] : null;
-          break;
-        case 'cosmic-7':
-          const paper7Mapping = [57, 58, 62, 64, 66];
-          mappedPaperNumber = episodeNum && episodeNum <= 5 ? paper7Mapping[episodeNum - 1] : null;
-          break;
-        case 'cosmic-8':
-          const paper8Mapping = [53, 54, 67, 75, 66];
-          mappedPaperNumber = episodeNum && episodeNum <= 5 ? paper8Mapping[episodeNum - 1] : null;
-          break;
-        case 'cosmic-9':
-          const paper9Mapping = [73, 74, 76, 78, 75];
-          mappedPaperNumber = episodeNum && episodeNum <= 5 ? paper9Mapping[episodeNum - 1] : null;
-          break;
-        case 'cosmic-10':
-          const paper10Mapping = [93, 94, 95, 96, 98];
-          mappedPaperNumber = episodeNum && episodeNum <= 5 ? paper10Mapping[episodeNum - 1] : null;
-          break;
-        case 'cosmic-11':
-          const paper11Mapping = [85, 86, 87, 89, 92];
-          mappedPaperNumber = episodeNum && episodeNum <= 5 ? paper11Mapping[episodeNum - 1] : null;
-          break;
-        case 'cosmic-12':
-          const paper12Mapping = [100, 101, 102, 103, 196];
-          mappedPaperNumber = episodeNum && episodeNum <= 5 ? paper12Mapping[episodeNum - 1] : null;
-          break;
-        case 'cosmic-13':
-          const paper13Mapping = [0, 105, 115, 116, 117];
-          mappedPaperNumber = episodeNum && episodeNum <= 5 ? paper13Mapping[episodeNum - 1] : null;
-          break;
-        case 'cosmic-14':
-          const paper14Mapping = [4, 5, 7, 9, 10];
-          mappedPaperNumber = episodeNum && episodeNum <= 5 ? paper14Mapping[episodeNum - 1] : null;
-          break;
-      }
-      
-      if (mappedPaperNumber) {
-        // Special case for foreword
-        if (mappedPaperNumber === 0) {
-          return "FOREWORD";
-        }
-        
-        // Check if title already has "PAPER X:" prefix
-        if (!title.toUpperCase().includes('PAPER')) {
-          return `PAPER ${mappedPaperNumber}: ${title}`;
-        }
-      }
-    }
-    return title;
-  };
-
   // Show error if any
   if (error && !episode) {
     return (
@@ -826,177 +750,106 @@ export default function EpisodePage() {
 
   return (
     <Layout>
-      {episode && (
-        <MetaTags 
-          title={t('meta.title', { title: episode.title })}
-          description={t('meta.description', { 
-            title: episode.title, 
-            description: episode.description?.substring(0, 150) || ''
-          })}
-          url={window.location.href}
-          imageUrl={episode.imageUrl || "https://www.urantiabookpod.com/og-image.png"}
-          type="article"
-        />
-      )}
-      <main className="container mx-auto px-4 py-8 max-w-6xl" key={location.pathname}>
-        {/* Back Button */}
-        <button 
-          onClick={() => navigate(getBackLink())}
-          className="flex items-center text-white/70 hover:text-white mb-6"
-        >
-          <ChevronLeft size={20} className="mr-1" />
-          <span>
-            {getBackButtonText()}
-          </span>
-        </button>
+      <MetaTags 
+        title={t('meta.title', { title: episode.title })}
+        description={t('meta.description', { description: episode.summary || episode.description || '' })}
+        url={window.location.href}
+        imageUrl={episode.imageUrl || "https://www.urantiabookpod.com/og-image.png"}
+      />
+      <motion.div 
+        className="max-w-4xl mx-auto px-4 py-8"
+        initial="hidden"
+        animate="visible"
+        variants={fadeInVariants}
+      >
+        <div className="mb-6">
+          <LocalizedLink 
+            to={getBackLink()}
+            className="flex items-center text-white/70 hover:text-white mb-6"
+          >
+            <ChevronLeft size={20} className="mr-1" />
+            <span>
+              {getBackButtonText()}
+            </span>
+          </LocalizedLink>
+        </div>
         
-        {/* Episode Header */}
+        {/* Main Content Block */}
         <motion.div 
-          className={`rounded-xl p-8 mb-8 bg-gradient-to-r ${getPartColor(episode.id, episode.series)} to-transparent border border-white/10`}
+          className={`rounded-xl p-6 md:p-8 mb-8 bg-gradient-to-r ${getPartColor(episode.id, episode.series)} to-transparent border border-white/10`}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
           <div className="flex flex-col md:flex-row md:items-start md:justify-between">
-            <div>
-              <div className="flex items-center">
-                <span className="text-primary text-2xl font-bold mr-3">{episode.id}</span>
+            {/* Left Side: Title and Description */}
+            <div className="flex-1">
+              <div className="flex items-center mb-4">
+                <span className="text-primary text-4xl font-bold mr-4">{episode.id}</span>
                 <h1 className="title-main text-xl md:text-2xl lg:text-3xl">
-                  {formatTitle(episode.title, episode.series, episode.id)}
+                  {episode.title}
                 </h1>
               </div>
-              
-              {/* Add logline here */}
-              {episode.cardSummary && (
-                <p className="mt-4 text-lg text-white/80 italic leading-relaxed max-w-3xl">
-                  {episode.cardSummary}
-                </p>
-              )}
-              
-              {/* Only show description if it's not just repeating the title */}
-              {episode.description && !episode.description.includes(episode.title) && (
-                <p className="body-lg mt-2 max-w-3xl">{episode.description}</p>
-              )}
-              
-              {episode.summary && (
-                <div className="mt-4 p-4 bg-white/5 rounded-lg border border-white/10">
-                  <div className="flex justify-between items-center">
-                    <h3 className="text-lg font-semibold text-primary mb-2">{t('summary.title')}</h3>
-                    <button 
-                      onClick={toggleSummary}
-                      className="text-white/70 hover:text-white flex items-center gap-1 text-sm"
-                      aria-label={summaryExpanded ? t('summary.read_less') : t('summary.read_more')}
-                    >
-                      {summaryExpanded ? (
-                        <>
-                          <span>{t('summary.read_less')}</span>
-                          <ChevronUp size={16} />
-                        </>
-                      ) : (
-                        <>
-                          <span>{t('summary.read_more')}</span>
-                          <ChevronDown size={16} />
-                        </>
-                      )}
-                    </button>
-                  </div>
-                  
-                  <AnimatePresence initial={false}>
-                    {summaryExpanded ? (
-                      <motion.div
-                        key="full-summary"
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        <p className="text-white/90 leading-relaxed">{episode.summary}</p>
-                      </motion.div>
-                    ) : (
-                      <motion.div
-                        key="summary-preview"
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        <p className="text-white/90 leading-relaxed line-clamp-3">
-                          {episode.summary}
-                        </p>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
+              {episode.description && (
+                <p className="body-lg mt-4 max-w-3xl italic text-white/80">{episode.description}</p>
               )}
             </div>
-            
-            <div className="mt-4 md:mt-0 flex flex-wrap gap-3">
-              {/* For Jesus series: Show "Read on DiscoverJesus.com" button */}
-              {episode.sourceUrl && episode.series.startsWith('jesus-') && (
-                <a
-                  href={episode.sourceUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-4 py-2 bg-gold text-navy-dark rounded-md hover:bg-gold-light transition-colors font-medium"
-                >
-                  <ExternalLink size={18} />
-                  <span>{t('external.read_on_dj')}</span>
-                </a>
-              )}
-              
-              {/* For other series: Show PDF button if available */}
-              {episode.pdfUrl && episode.pdfUrl.trim() !== '' && !episode.series.startsWith('jesus-') && (
-                <a
-                  href={episode.pdfUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-4 py-2 bg-navy-light/70 text-white/90 hover:bg-navy transition-colors"
-                >
-                  <BookOpen size={18} />
-                  <span>{t('player.read_pdf')}</span>
-                </a>
-              )}
-              
-              {/* Show Transcript button for Urantia Papers - direct URL generation */}
-              {episode.series === 'urantia-papers' && (() => {
-                // Log the transcript URL for debugging
-                const transcriptUrl = `https://pub-69ae36e16d64438e9bb56350459d5c7d.r2.dev/${episode.id === 0 ? 'foreword' : `paper-${episode.id}`}-transcript.pdf`;
-                console.log(`Generating transcript URL for paper ${episode.id}: ${transcriptUrl}`);
-                
-                return (
-                  <a
-                    href={transcriptUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2 bg-navy-light/70 text-white/90 hover:bg-navy transition-colors"
-                  >
-                    <FileText size={18} />
-                    <span>{t('player.transcript')}</span>
+
+            {/* Right Side: Action Buttons */}
+            <div className="flex-shrink-0 mt-4 md:mt-0 md:ml-6">
+              <div className="flex flex-col space-y-3">
+                {episode.pdfUrl && (
+                  <a href={episode.pdfUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 bg-navy-light/70 text-white/90 hover:bg-navy transition-colors rounded-lg">
+                    <BookOpen size={18} />
+                    <span>{t('player.read_pdf')}</span>
                   </a>
-                );
-              })()}
-              
-              <a
-                href={episode.audioUrl}
-                download
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 px-4 py-2 bg-navy-light/70 text-white/90 hover:bg-navy transition-colors"
-              >
-                <Download size={18} />
-                <span>{t('player.download')}</span>
-              </a>
-              
-              <SocialShareMenu 
-                url={window.location.href}
-                title={`Listen to ${episode.title} | Urantia Book Podcast`}
-                description={`Check out this episode of the Urantia Book Podcast: ${episode.title}`}
-              />
+                )}
+                <a href={`https://pub-69ae36e16d64438e9bb56350459d5c7d.r2.dev/${episode.id === 0 ? 'foreword' : `paper-${episode.id}`}-transcript.pdf`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 bg-navy-light/70 text-white/90 hover:bg-navy transition-colors rounded-lg">
+                  <FileText size={18} />
+                  <span>{t('player.transcript')}</span>
+                </a>
+                <a href={episode.audioUrl} download target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 bg-navy-light/70 text-white/90 hover:bg-navy transition-colors rounded-lg">
+                  <Download size={18} />
+                  <span>{t('player.download')}</span>
+                </a>
+                <SocialShareMenu 
+                  url={window.location.href}
+                  title={`Listen to ${episode.title} | Urantia Book Podcast`}
+                  description={`Check out this episode of the Urantia Book Podcast: ${episode.title}`}
+                />
+              </div>
             </div>
           </div>
+
+          {/* Summary Box (inside main content block) */}
+          {episode.summary && (
+            <div className="mt-6 p-4 bg-black/20 rounded-lg border border-white/10">
+              <div className="flex justify-between items-center cursor-pointer" onClick={toggleSummary}>
+                <h3 className="text-lg font-semibold text-primary">{t('summary.title')}</h3>
+                <button className="text-white/70 hover:text-white flex items-center gap-1 text-sm" aria-label={summaryExpanded ? t('summary.read_less') : t('summary.read_more')}>
+                  {summaryExpanded ? (
+                    <><span>{t('summary.read_less')}</span><ChevronUp size={16} /></>
+                  ) : (
+                    <><span>{t('summary.read_more')}</span><ChevronDown size={16} /></>
+                  )}
+                </button>
+              </div>
+              <AnimatePresence initial={false}>
+                {summaryExpanded ? (
+                  <motion.div key="full-summary" initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1, marginTop: '1rem' }} exit={{ height: 0, opacity: 0, marginTop: 0 }} transition={{ duration: 0.3 }}>
+                    <p className="text-white/90 leading-relaxed">{episode.summary}</p>
+                  </motion.div>
+                ) : (
+                  <motion.div key="summary-preview" initial={false} animate={{ height: "auto", opacity: 1, marginTop: '1rem' }} exit={{ height: 0, opacity: 0, marginTop: 0 }} transition={{ duration: 0.3 }}>
+                    <p className="text-white/90 leading-relaxed line-clamp-3">{episode.summary}</p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          )}
         </motion.div>
         
-        {/* Audio Player */}
+        {/* Audio Player (outside main content block) */}
         <div className="bg-navy-light/30 rounded-xl border border-white/10 p-6 mb-8">
           {audioError ? (
             <div className="bg-orange-50 border border-orange-200 rounded-lg p-4 text-orange-800 mb-6">
@@ -1168,53 +1021,37 @@ export default function EpisodePage() {
         
         {/* Episode Navigation */}
         <div className="flex justify-between items-center mb-12">
-          <button 
-            onClick={() => navigateToEpisode('prev')}
-            disabled={
-              seriesId && episodeId
-                ? parseInt(episodeId, 10) <= 1
-                : episode?.id <= 1
-            }
-            className={`flex items-center gap-2 px-5 py-3 rounded-lg font-medium transition
-              ${(seriesId && episodeId
-                  ? parseInt(episodeId, 10) <= 1
-                  : episode?.id <= 1)
-                ? 'bg-navy-light/30 text-white/30 cursor-not-allowed' 
-                : 'bg-navy-light hover:bg-navy text-white/90 hover:text-white'}`}
-          >
-            <ChevronLeft size={20} />
-            <span>{t('navigation.previous_episode')}</span>
-          </button>
+          {prevUrl ? (
+            <LocalizedLink
+              to={prevUrl}
+              className="flex items-center gap-2 px-5 py-3 rounded-lg font-medium transition bg-navy-light hover:bg-navy text-white/90 hover:text-white"
+            >
+              <ChevronLeft size={20} />
+              <span>{t('navigation.previous_episode')}</span>
+            </LocalizedLink>
+          ) : (
+            <span className="flex items-center gap-2 px-5 py-3 rounded-lg font-medium transition bg-navy-light/30 text-white/30 cursor-not-allowed">
+              <ChevronLeft size={20} />
+              <span>{t('navigation.previous_episode')}</span>
+            </span>
+          )}
           
-          <button 
-            onClick={() => navigateToEpisode('next')}
-            disabled={
-              seriesId && episodeId
-                ? !getNextEpisodeUrl()
-                : episode?.id >= (
-                    episode?.series === 'urantia-papers' ? 196 : 
-                    episode?.series?.startsWith('jesus-') ? 5 : 
-                    episode?.series?.startsWith('cosmic-') ? 5 :
-                    5 // Default max for most series is 5 episodes
-                  )
-            }
-            className={`flex items-center gap-2 px-5 py-3 rounded-lg font-medium transition
-              ${(seriesId && episodeId
-                  ? !getNextEpisodeUrl()
-                  : episode?.id >= (
-                      episode?.series === 'urantia-papers' ? 196 : 
-                      episode?.series?.startsWith('jesus-') ? 5 : 
-                      episode?.series?.startsWith('cosmic-') ? 5 :
-                      5 // Default max for most series is 5 episodes
-                    ))
-                ? 'bg-navy-light/30 text-white/30 cursor-not-allowed' 
-                : 'bg-navy-light hover:bg-navy text-white/90 hover:text-white'}`}
-          >
-            <span>{t('navigation.next_episode')}</span>
-            <ChevronRight size={20} />
-          </button>
+          {nextUrl ? (
+            <LocalizedLink
+              to={nextUrl}
+              className="flex items-center gap-2 px-5 py-3 rounded-lg font-medium transition bg-navy-light hover:bg-navy text-white/90 hover:text-white"
+            >
+              <span>{t('navigation.next_episode')}</span>
+              <ChevronRight size={20} />
+            </LocalizedLink>
+          ) : (
+            <span className="flex items-center gap-2 px-5 py-3 rounded-lg font-medium transition bg-navy-light/30 text-white/30 cursor-not-allowed">
+              <span>{t('navigation.next_episode')}</span>
+              <ChevronRight size={20} />
+            </span>
+          )}
         </div>
-      </main>
+      </motion.div>
     </Layout>
   );
 }

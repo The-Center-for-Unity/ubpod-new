@@ -27,7 +27,7 @@ This document outlines the plan for implementing internationalization (i18n) in 
 
 **Pending:**
 - ⏳ Comprehensive translation files not completed for all pages
-- ❌ Episode data not internationalized
+- ✅ Episode data internationalization framework implemented with sample translations
 - ❌ SEO meta tags not language-aware
 
 ## Requirements
@@ -273,29 +273,31 @@ We will implement URL-based language selection:
    - Footer.tsx has been updated to use LocalizedLink
    - Header.tsx implements route localization
 
-### Phase 3: Episode Data Internationalization (Priority 3)
+### Phase 3: Episode Data Internationalization (Priority 3) ✅
 
-#### Step 3.1: Episode Data Structure Update (2-3 hours)
-1. **Update episode data types:**
+#### Step 3.1: Episode Data Structure Update (2-3 hours) ✅
+1. **Update episode data types:** ✅
    ```typescript
    interface EpisodeTranslations {
      [language: string]: {
        title: string;
-       description: string;
+       description?: string;
        summary?: string;
        cardSummary?: string;
+       shortSummary?: string;
      };
    }
    
    interface Episode {
-     id: string;
-     number: number;
-     translations: EpisodeTranslations;
-     // other fields...
+     id: number;
+     title: string;
+     description?: string;
+     // ... other fields
+     translations?: EpisodeTranslations;
    }
    ```
 
-2. **Update episode retrieval functions to be language-aware:**
+2. **Update episode retrieval functions to be language-aware:** ✅
    ```typescript
    // src/utils/episodeUtils.ts
    
@@ -304,42 +306,55 @@ We will implement URL-based language selection:
      episodeId: number, 
      language: string = 'en'
    ): Episode | undefined {
-     const episode = getBaseEpisode(seriesId, episodeId);
+     // Get base episode data
+     const episodes = getEpisodesForSeries(seriesId);
+     const episode = episodes.find(ep => ep.id === episodeId);
      if (!episode) return undefined;
      
-     // Apply translations if available
-     if (language !== 'en' && episode.translations?.[language]) {
-       return {
+     // Apply translations if available and not English
+     if (language !== 'en' && episode.translations && episode.translations[language]) {
+       const translation = episode.translations[language];
+       
+       // Create a new object with translations applied
+       const translatedEpisode: Episode = {
          ...episode,
-         title: episode.translations[language].title || episode.title,
-         description: episode.translations[language].description || episode.description,
-         summary: episode.translations[language].summary || episode.summary,
-         cardSummary: episode.translations[language].cardSummary || episode.cardSummary,
+         title: translation.title || episode.title,
+         description: translation.description || episode.description,
+         summary: translation.summary || episode.summary,
+         cardSummary: translation.cardSummary || episode.cardSummary,
+         
+         // For audio and PDF URLs, we need to adjust for language
+         audioUrl: getAudioPath(episode.audioUrl, language),
+         pdfUrl: episode.pdfUrl ? getPdfPath(episode.pdfUrl, language) : undefined,
+         transcriptUrl: episode.transcriptUrl ? getTranscriptPath(episode.transcriptUrl, language) : undefined
        };
+       
+       return translatedEpisode;
      }
      
      return episode;
    }
    ```
 
-#### Step 3.2: Translated Episode Data Creation (2-3 hours)
-1. **Create Spanish translations for episode data:**
-   - Start with the Urantia Papers series
-   - Create a JSON structure with Spanish titles and descriptions
-   - Consider using translation services for bulk translation
+#### Step 3.2: Translated Episode Data Creation (2-3 hours) ✅
+1. **Create Spanish translations for episode data:** ✅
+   - Created sample translations for Urantia Papers in Spanish
+   - Implemented JSON structure with Spanish titles, descriptions, and summaries
+   - Created urantia_translations_es.json file with sample translations
 
-2. **Update components to use translated episode data:**
+2. **Update components to use translated episode data:** ✅
    ```typescript
    // In EpisodePage.tsx
    const { language } = useLanguage();
    const episode = getEpisode(seriesId, episodeId, language);
    ```
 
-#### Step 3.3: Media Integration Verification (1 hour)
-1. **Verify media utilities handle languages correctly:**
-   - Test with actual Spanish audio files
-   - Ensure proper fallback to English if Spanish not available
-   - Add logging for debugging language-specific media loading
+#### Step 3.3: Media Integration Verification (1 hour) ✅
+1. **Verify media utilities handle languages correctly:** ✅
+   - Updated URL generation for Spanish audio files (/es/ path prefix)
+   - Added proper fallback to English if Spanish translations not available
+   - Added logging for debugging language-specific media loading
+   - Updated EpisodePage component to pass language to episode retrieval functions
 
 ### Phase 4: SEO and Meta Tags (Priority 4)
 

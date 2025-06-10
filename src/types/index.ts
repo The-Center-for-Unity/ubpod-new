@@ -57,6 +57,16 @@ export type SeriesType =
 
 export type EpisodeSeries = SeriesType;
 
+export interface EpisodeTranslations {
+  [language: string]: {
+    title: string;
+    description?: string;
+    summary?: string;
+    cardSummary?: string;
+    shortSummary?: string;
+  };
+}
+
 export interface Episode {
   id: number;
   title: string;
@@ -70,6 +80,7 @@ export interface Episode {
   sourceUrl?: string;
   imageUrl?: string;
   transcriptUrl?: string;
+  translations?: EpisodeTranslations; // Added translations support
 }
 
 export interface AnimationVariants {
