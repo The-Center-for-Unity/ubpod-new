@@ -14,7 +14,7 @@ const languages: Language[] = [
   { code: 'pt', name: 'Português', flag: '🇵🇹' },
 ];
 
-export const LanguageSwitcher: React.FC = () => {
+export const LanguageSwitcher: React.FC<{compact?: boolean}> = ({ compact = false }) => {
   const { language, changeLanguage } = useLanguage();
 
   return (
@@ -22,11 +22,12 @@ export const LanguageSwitcher: React.FC = () => {
       <select 
         value={language} 
         onChange={(e) => changeLanguage(e.target.value)}
-        className="border rounded-md py-1 px-2 bg-white"
+        className={`border rounded-md ${compact ? 'py-1 px-1 text-xs' : 'py-1 px-2'} bg-white text-navy-dark`}
+        aria-label="Select language"
       >
         {languages.map((lang) => (
           <option key={lang.code} value={lang.code}>
-            {lang.flag} {lang.name}
+            {lang.flag} {compact ? '' : lang.name}
           </option>
         ))}
       </select>

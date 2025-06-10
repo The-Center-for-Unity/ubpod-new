@@ -3,11 +3,57 @@
     "home": "Home",
     "episodes": "Episodes",
     "about": "About",
-    "contact": "Contact"
+    "contact": "Contact",
+    "urantia_papers": "The Urantia Papers",
+    "series_collections": "Series Collections",
+    "disclaimer": "Disclaimer",
+    "pay_it_forward": "Pay It Forward"
   },
   "footer": {
-    "copyright": "© 2023 UBPod. All rights reserved.",
+    "copyright": "© {{year}} The Center for Unity. All rights reserved.",
     "terms": "Terms of Service",
-    "privacy": "Privacy Policy"
+    "privacy": "Privacy Policy",
+    "quick_links": "Quick Links",
+    "resources": "Resources",
+    "description": "AI-crafted audio companions for exploring cosmic truth",
+    "also_available": "Also available on",
+    "copy_rss": "Copy RSS Feed",
+    "rss_copied": "RSS feed URL copied to clipboard!",
+    "rss_copy_failed": "Failed to copy RSS feed URL",
+    "external_links": {
+      "urantia_foundation": "Urantia Foundation",
+      "center_for_unity": "The Center for Unity"
+    }
+  },
+  "site": {
+    "name": "Urantia Book Podcast",
+    "logo_alt": "UrantiaBookPod Logo"
+  },
+  "actions": {
+    "back": "Back",
+    "learn_more": "Learn More",
+    "listen_now": "Listen Now",
+    "view_all": "View All",
+    "return_home": "Return Home"
+  },
+  "platforms": {
+    "youtube": "YouTube",
+    "apple_podcasts": "Apple Podcasts",
+    "spotify": "Spotify",
+    "amazon_music": "Amazon Music"
+  },
+  "share": {
+    "button": "Share",
+    "title": "Share this content",
+    "copy_link": "Copy link",
+    "share_to_x": "Share to X",
+    "share_to_facebook": "Share to Facebook",
+    "share_to_linkedin": "Share to LinkedIn",
+    "share_via_email": "Share via email",
+    "share_via_text": "Share via text",
+    "link_copied": "Link copied to clipboard!",
+    "content_copied": "Content copied to clipboard! Paste into Facebook post.",
+    "shared_success": "Shared successfully!",
+    "rss_copy_failed": "Failed to copy link"
   }
 }

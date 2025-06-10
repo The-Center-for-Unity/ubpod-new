@@ -3,11 +3,57 @@
     "home": "Inicio",
     "episodes": "Episodios",
     "about": "Acerca de",
-    "contact": "Contacto"
+    "contact": "Contacto",
+    "urantia_papers": "Los Documentos de Urantia",
+    "series_collections": "Colecciones de Series",
+    "disclaimer": "Aviso Legal",
+    "pay_it_forward": "Contribuir"
   },
   "footer": {
-    "copyright": "© 2023 UBPod. Todos los derechos reservados.",
+    "copyright": "© {{year}} The Center for Unity. Todos los derechos reservados.",
     "terms": "Términos de Servicio",
-    "privacy": "Política de Privacidad"
+    "privacy": "Política de Privacidad",
+    "quick_links": "Enlaces Rápidos",
+    "resources": "Recursos",
+    "description": "Compañeros de audio creados con IA para explorar la verdad cósmica",
+    "also_available": "También disponible en",
+    "copy_rss": "Copiar Feed RSS",
+    "rss_copied": "¡URL del feed RSS copiada al portapapeles!",
+    "rss_copy_failed": "Error al copiar la URL del feed RSS",
+    "external_links": {
+      "urantia_foundation": "Fundación Urantia",
+      "center_for_unity": "The Center for Unity"
+    }
+  },
+  "site": {
+    "name": "Podcast del Libro de Urantia",
+    "logo_alt": "Logo de UrantiaBookPod"
+  },
+  "actions": {
+    "back": "Volver",
+    "learn_more": "Más Información",
+    "listen_now": "Escuchar Ahora",
+    "view_all": "Ver Todo",
+    "return_home": "Volver a Inicio"
+  },
+  "platforms": {
+    "youtube": "YouTube",
+    "apple_podcasts": "Apple Podcasts",
+    "spotify": "Spotify",
+    "amazon_music": "Amazon Music"
+  },
+  "share": {
+    "button": "Compartir",
+    "title": "Compartir este contenido",
+    "copy_link": "Copiar enlace",
+    "share_to_x": "Compartir en X",
+    "share_to_facebook": "Compartir en Facebook",
+    "share_to_linkedin": "Compartir en LinkedIn",
+    "share_via_email": "Compartir por email",
+    "share_via_text": "Compartir por mensaje",
+    "link_copied": "¡Enlace copiado al portapapeles!",
+    "content_copied": "¡Contenido copiado al portapapeles! Pégalo en tu publicación de Facebook.",
+    "shared_success": "¡Compartido con éxito!",
+    "rss_copy_failed": "Error al copiar el enlace"
   }
 }

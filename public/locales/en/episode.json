@@ -5,16 +5,48 @@
     "mute": "Mute",
     "unmute": "Unmute",
     "download": "Download Audio",
-    "transcript": "View Transcript"
+    "transcript": "Read Transcript",
+    "read_pdf": "Read PDF",
+    "skipForward": "Fast forward 10 seconds",
+    "skipBackward": "Rewind 10 seconds",
+    "speed": "Playback Speed"
+  },
+  "navigation": {
+    "back_to_papers": "Back to Papers",
+    "back_to_episodes": "Back to Episodes",
+    "back_to_series": "Back to Series",
+    "previous_episode": "Previous Episode",
+    "next_episode": "Next Episode"
   },
   "related": {
     "title": "Related Episodes",
-    "viewAll": "View All Episodes"
+    "viewAll": "View All Episodes",
+    "related_content": "Related Content on DiscoverJesus.com"
   },
   "share": {
     "title": "Share",
     "facebook": "Share on Facebook",
     "twitter": "Share on Twitter",
     "email": "Share via Email"
-  }
+  },
+  "summary": {
+    "title": "Summary",
+    "read_more": "Read More",
+    "read_less": "Read Less"
+  },
+  "errors": {
+    "audio_not_available": "Audio Not Available",
+    "cosmic_unavailable": "The cosmic series audio files are still being created. You can continue exploring the text content below.",
+    "failed_to_load": "Failed to load episode",
+    "not_found": "Episode not found",
+    "invalid_url": "Invalid episode URL"
+  },
+  "meta": {
+    "title": "{{title}} | Urantia Book Podcast",
+    "description": "Listen to {{title}} from the Urantia Book Podcast: {{description}}..."
+  },
+  "external": {
+    "read_on_dj": "Read on DiscoverJesus.com"
+  },
+  "loading": "Loading episode..."
 }

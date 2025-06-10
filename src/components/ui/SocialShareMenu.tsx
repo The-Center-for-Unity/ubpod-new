@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Share2, Copy, X as XIcon, Facebook, Linkedin, Mail, MessageCircle } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 interface SocialShareMenuProps {
   url: string;
@@ -8,6 +9,8 @@ interface SocialShareMenuProps {
 }
 
 export default function SocialShareMenu({ url, title, description = '' }: SocialShareMenuProps) {
+  // Explicitly use the common namespace to avoid conflicts with episode.json's share section
+  const { t } = useTranslation('common', { nsMode: 'fallback' });
   const [isOpen, setIsOpen] = useState(false);
   const [notification, setNotification] = useState<string | null>(null);
   const menuRef = useRef<HTMLDivElement>(null);
@@ -50,7 +53,7 @@ export default function SocialShareMenu({ url, title, description = '' }: Social
         text: description,
         url,
       });
-      setNotification('Shared successfully!');
+      setNotification(t('share.shared_success'));
     } catch (error) {
       console.error('Error sharing:', error);
       // User likely canceled - no need for notification
@@ -60,11 +63,11 @@ export default function SocialShareMenu({ url, title, description = '' }: Social
   const copyToClipboard = () => {
     navigator.clipboard.writeText(url)
       .then(() => {
-        setNotification('Link copied to clipboard!');
+        setNotification(t('share.link_copied'));
         setIsOpen(false);
       })
       .catch(() => {
-        setNotification('Failed to copy link');
+        setNotification(t('share.rss_copy_failed'));
       });
     
     // Clear notification after 3 seconds
@@ -102,7 +105,7 @@ export default function SocialShareMenu({ url, title, description = '' }: Social
     navigator.clipboard.writeText(shareText)
       .then(() => {
         // Show a notification that text has been copied
-        setNotification('Content copied to clipboard! Paste into Facebook post.');
+        setNotification(t('share.content_copied'));
         
         // Use the simpler URL without the quote parameter since Facebook ignores it
         const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
@@ -179,13 +182,13 @@ export default function SocialShareMenu({ url, title, description = '' }: Social
         aria-label="Share"
       >
         <Share2 size={18} />
-        <span>Share</span>
+        <span>{t('share.button')}</span>
       </button>
 
       {isOpen && (
         <div className="absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-navy/95 backdrop-blur-md border border-white/10 z-50">
           <div className="py-2 px-3 border-b border-white/10">
-            <h3 className="text-white text-sm font-medium">Share this content</h3>
+            <h3 className="text-white text-sm font-medium">{t('share.title')}</h3>
           </div>
           <div className="py-2">
             <button 
@@ -193,7 +196,7 @@ export default function SocialShareMenu({ url, title, description = '' }: Social
               className="w-full flex items-center px-4 py-2 text-white/90 hover:bg-navy-light/80 text-left text-sm"
             >
               <Copy size={16} className="mr-3" />
-              Copy link
+              {t('share.copy_link')}
             </button>
             
             <button 
@@ -201,7 +204,7 @@ export default function SocialShareMenu({ url, title, description = '' }: Social
               className="w-full flex items-center px-4 py-2 text-white/90 hover:bg-navy-light/80 text-left text-sm"
             >
               <XIcon size={16} className="mr-3" />
-              Share to X
+              {t('share.share_to_x')}
             </button>
             
             <button 
@@ -209,7 +212,7 @@ export default function SocialShareMenu({ url, title, description = '' }: Social
               className="w-full flex items-center px-4 py-2 text-white/90 hover:bg-navy-light/80 text-left text-sm"
             >
               <Facebook size={16} className="mr-3" />
-              Share to Facebook
+              {t('share.share_to_facebook')}
             </button>
             
             <button 
@@ -217,7 +220,7 @@ export default function SocialShareMenu({ url, title, description = '' }: Social
               className="w-full flex items-center px-4 py-2 text-white/90 hover:bg-navy-light/80 text-left text-sm"
             >
               <Linkedin size={16} className="mr-3" />
-              Share to LinkedIn
+              {t('share.share_to_linkedin')}
             </button>
             
             <button 
@@ -225,7 +228,7 @@ export default function SocialShareMenu({ url, title, description = '' }: Social
               className="w-full flex items-center px-4 py-2 text-white/90 hover:bg-navy-light/80 text-left text-sm"
             >
               <Mail size={16} className="mr-3" />
-              Share via email
+              {t('share.share_via_email')}
             </button>
             
             <button 
@@ -233,7 +236,7 @@ export default function SocialShareMenu({ url, title, description = '' }: Social
               className="w-full flex items-center px-4 py-2 text-white/90 hover:bg-navy-light/80 text-left text-sm"
             >
               <MessageCircle size={16} className="mr-3" />
-              Share via text
+              {t('share.share_via_text')}
             </button>
           </div>
         </div>

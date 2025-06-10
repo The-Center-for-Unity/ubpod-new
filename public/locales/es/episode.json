@@ -5,16 +5,48 @@
     "mute": "Silenciar",
     "unmute": "Activar sonido",
     "download": "Descargar Audio",
-    "transcript": "Ver Transcripción"
+    "transcript": "Leer Transcripción",
+    "read_pdf": "Leer PDF",
+    "skipForward": "Avanzar 10 segundos",
+    "skipBackward": "Retroceder 10 segundos",
+    "speed": "Velocidad de Reproducción"
+  },
+  "navigation": {
+    "back_to_papers": "Volver a los Documentos",
+    "back_to_episodes": "Volver a los Episodios",
+    "back_to_series": "Volver a las Series",
+    "previous_episode": "Episodio Anterior",
+    "next_episode": "Episodio Siguiente"
   },
   "related": {
     "title": "Episodios Relacionados",
-    "viewAll": "Ver Todos los Episodios"
+    "viewAll": "Ver Todos los Episodios",
+    "related_content": "Contenido Relacionado en DiscoverJesus.com"
   },
   "share": {
     "title": "Compartir",
     "facebook": "Compartir en Facebook",
     "twitter": "Compartir en Twitter",
     "email": "Compartir por Correo Electrónico"
-  }
+  },
+  "summary": {
+    "title": "Resumen",
+    "read_more": "Leer Más",
+    "read_less": "Leer Menos"
+  },
+  "errors": {
+    "audio_not_available": "Audio No Disponible",
+    "cosmic_unavailable": "Los archivos de audio de la serie cósmica aún están siendo creados. Puedes seguir explorando el contenido del texto a continuación.",
+    "failed_to_load": "Error al cargar el episodio",
+    "not_found": "Episodio no encontrado",
+    "invalid_url": "URL de episodio inválida"
+  },
+  "meta": {
+    "title": "{{title}} | Podcast del Libro de Urantia",
+    "description": "Escucha {{title}} del Podcast del Libro de Urantia: {{description}}..."
+  },
+  "external": {
+    "read_on_dj": "Leer en DiscoverJesus.com"
+  },
+  "loading": "Cargando episodio..."
 }

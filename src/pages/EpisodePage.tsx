@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate, Navigate, Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Play, Pause, SkipBack, SkipForward, Volume2, VolumeX, Download, ChevronLeft, BookOpen, Share2, AlertTriangle, ExternalLink, Clock, ChevronDown, ChevronUp, ChevronRight, FileText } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+import { useLanguage } from '../i18n/LanguageContext';
 import Layout from '../components/layout/Layout';
 import { getEpisodeById, getUrantiaPaperPart, discoverJesusLinks } from '../data/episodes';
 import { Episode, SeriesType } from '../types/index';
@@ -14,6 +16,7 @@ import { fadeIn } from '../constants/animations';
 import { useAudioPlayer } from '../hooks/useAudioPlayer';
 import SocialShareMenu from '../components/ui/SocialShareMenu';
 import MetaTags from '../components/layout/MetaTags';
+import { LocalizedLink } from '../components/shared/LocalizedLink';
 
 export default function EpisodePage() {
   // Support both old format (/listen/:series/:id) and new format (/series/:seriesId/:episodeId)
@@ -31,6 +34,8 @@ export default function EpisodePage() {
   
   const location = useLocation();
   const navigate = useNavigate();
+  const { t } = useTranslation('episode');
+  const { language } = useLanguage();
   const [episode, setEpisode] = useState<Episode | null>(null);
   const [shouldRedirect, setShouldRedirect] = useState<boolean>(false);
   const [redirectUrl, setRedirectUrl] = useState<string>("");
@@ -657,12 +662,12 @@ export default function EpisodePage() {
   // Get back button text based on series type
   const getBackButtonText = () => {
     if (series === 'urantia-papers') {
-      return 'Back to Papers';
+      return t('navigation.back_to_papers');
     } else if ((series && series.startsWith('jesus-')) || (seriesId && seriesId.startsWith('jesus-')) ||
               (series && series.startsWith('cosmic-')) || (seriesId && seriesId.startsWith('cosmic-'))) {
-      return 'Back to Episodes';
+      return t('navigation.back_to_episodes');
     } else {
-      return 'Back to Series';
+      return t('navigation.back_to_series');
     }
   };
 
@@ -795,9 +800,9 @@ export default function EpisodePage() {
           <div className="bg-red-50 border border-red-200 rounded-lg p-4 text-red-800">
             <p className="font-medium">Error</p>
             <p>{error}</p>
-            <Link to="/" className="mt-4 inline-block bg-primary text-white px-4 py-2 rounded-lg">
-              Return Home
-            </Link>
+            <LocalizedLink to="/" className="mt-4 inline-block bg-primary text-white px-4 py-2 rounded-lg">
+              {t('actions.return_home', { ns: 'common' })}
+            </LocalizedLink>
           </div>
         </div>
       </Layout>
@@ -809,6 +814,7 @@ export default function EpisodePage() {
       <Layout>
         <div className="container mx-auto px-4 py-8 min-h-screen flex items-center justify-center">
           <div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+          <span className="sr-only">{t('loading')}</span>
         </div>
       </Layout>
     );
@@ -822,8 +828,11 @@ export default function EpisodePage() {
     <Layout>
       {episode && (
         <MetaTags 
-          title={`${episode.title} | Urantia Book Podcast`}
-          description={`Listen to ${episode.title} from the Urantia Book Podcast: ${episode.description?.substring(0, 150)}...`}
+          title={t('meta.title', { title: episode.title })}
+          description={t('meta.description', { 
+            title: episode.title, 
+            description: episode.description?.substring(0, 150) || ''
+          })}
           url={window.location.href}
           imageUrl={episode.imageUrl || "https://www.urantiabookpod.com/og-image.png"}
           type="article"
@@ -872,20 +881,20 @@ export default function EpisodePage() {
               {episode.summary && (
                 <div className="mt-4 p-4 bg-white/5 rounded-lg border border-white/10">
                   <div className="flex justify-between items-center">
-                    <h3 className="text-lg font-semibold text-primary mb-2">Summary</h3>
+                    <h3 className="text-lg font-semibold text-primary mb-2">{t('summary.title')}</h3>
                     <button 
                       onClick={toggleSummary}
                       className="text-white/70 hover:text-white flex items-center gap-1 text-sm"
-                      aria-label={summaryExpanded ? "Collapse summary" : "Expand summary"}
+                      aria-label={summaryExpanded ? t('summary.read_less') : t('summary.read_more')}
                     >
                       {summaryExpanded ? (
                         <>
-                          <span>Read Less</span>
+                          <span>{t('summary.read_less')}</span>
                           <ChevronUp size={16} />
                         </>
                       ) : (
                         <>
-                          <span>Read More</span>
+                          <span>{t('summary.read_more')}</span>
                           <ChevronDown size={16} />
                         </>
                       )}
@@ -931,7 +940,7 @@ export default function EpisodePage() {
                   className="flex items-center gap-2 px-4 py-2 bg-gold text-navy-dark rounded-md hover:bg-gold-light transition-colors font-medium"
                 >
                   <ExternalLink size={18} />
-                  <span>Read on DiscoverJesus.com</span>
+                  <span>{t('external.read_on_dj')}</span>
                 </a>
               )}
               
@@ -944,7 +953,7 @@ export default function EpisodePage() {
                   className="flex items-center gap-2 px-4 py-2 bg-navy-light/70 text-white/90 hover:bg-navy transition-colors"
                 >
                   <BookOpen size={18} />
-                  <span>Read PDF</span>
+                  <span>{t('player.read_pdf')}</span>
                 </a>
               )}
               
@@ -962,7 +971,7 @@ export default function EpisodePage() {
                     className="flex items-center gap-2 px-4 py-2 bg-navy-light/70 text-white/90 hover:bg-navy transition-colors"
                   >
                     <FileText size={18} />
-                    <span>Read Transcript</span>
+                    <span>{t('player.transcript')}</span>
                   </a>
                 );
               })()}
@@ -975,7 +984,7 @@ export default function EpisodePage() {
                 className="flex items-center gap-2 px-4 py-2 bg-navy-light/70 text-white/90 hover:bg-navy transition-colors"
               >
                 <Download size={18} />
-                <span>Download Audio</span>
+                <span>{t('player.download')}</span>
               </a>
               
               <SocialShareMenu 
@@ -994,11 +1003,11 @@ export default function EpisodePage() {
               <div className="flex items-start">
                 <AlertTriangle className="h-5 w-5 mr-2 flex-shrink-0 mt-0.5" />
                 <div>
-                  <p className="font-medium">Audio Not Available</p>
+                  <p className="font-medium">{t('errors.audio_not_available')}</p>
                   <p>{error}</p>
                   {episode?.series?.startsWith('cosmic-') && (
                     <p className="mt-2 text-sm">
-                      The cosmic series audio files are still being created. You can continue exploring the text content below.
+                      {t('errors.cosmic_unavailable')}
                     </p>
                   )}
                 </div>
@@ -1044,7 +1053,7 @@ export default function EpisodePage() {
                   <button 
                     onClick={skipBackward}
                     className="flex items-center justify-center w-10 h-10 bg-navy-light hover:bg-navy text-white/90 hover:text-white rounded-lg transition"
-                    aria-label="Rewind 10 seconds"
+                    aria-label={t('player.skipBackward')}
                   >
                     <SkipBack size={20} />
                   </button>
@@ -1052,6 +1061,7 @@ export default function EpisodePage() {
                   <button 
                     onClick={togglePlayPause}
                     className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white hover:bg-primary-dark transition-colors"
+                    aria-label={isPlaying ? t('player.pause') : t('player.play')}
                   >
                     {isPlaying ? <Pause size={24} /> : <Play size={24} className="ml-1" />}
                   </button>
@@ -1059,7 +1069,7 @@ export default function EpisodePage() {
                   <button 
                     onClick={skipForward}
                     className="flex items-center justify-center w-10 h-10 bg-navy-light hover:bg-navy text-white/90 hover:text-white rounded-lg transition"
-                    aria-label="Fast forward 10 seconds"
+                    aria-label={t('player.skipForward')}
                   >
                     <SkipForward size={20} />
                   </button>
@@ -1069,7 +1079,7 @@ export default function EpisodePage() {
                     <button
                       onClick={toggleSpeedControls}
                       className="px-2 py-1 bg-navy-light/50 text-white/70 hover:text-white rounded flex items-center"
-                      aria-label="Playback Speed"
+                      aria-label={t('player.speed')}
                     >
                       <Clock size={16} className="mr-1" />
                       <span className="text-xs">{playbackSpeed}x</span>
@@ -1102,6 +1112,7 @@ export default function EpisodePage() {
                   <button 
                     onClick={toggleMute}
                     className="text-white/70 hover:text-white p-2"
+                    aria-label={isMuted ? t('player.unmute') : t('player.mute')}
                   >
                     {isMuted ? <VolumeX size={20} /> : <Volume2 size={20} />}
                   </button>
@@ -1137,7 +1148,7 @@ export default function EpisodePage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
           >
-            <h3 className="text-xl font-bold mb-4">Related Content on DiscoverJesus.com</h3>
+            <h3 className="text-xl font-bold mb-4">{t('related.related_content')}</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {discoverJesusLinks[episode.id].map((link, index) => (
                 <a 
@@ -1172,7 +1183,7 @@ export default function EpisodePage() {
                 : 'bg-navy-light hover:bg-navy text-white/90 hover:text-white'}`}
           >
             <ChevronLeft size={20} />
-            <span>Previous Episode</span>
+            <span>{t('navigation.previous_episode')}</span>
           </button>
           
           <button 
@@ -1199,7 +1210,7 @@ export default function EpisodePage() {
                 ? 'bg-navy-light/30 text-white/30 cursor-not-allowed' 
                 : 'bg-navy-light hover:bg-navy text-white/90 hover:text-white'}`}
           >
-            <span>Next Episode</span>
+            <span>{t('navigation.next_episode')}</span>
             <ChevronRight size={20} />
           </button>
         </div>

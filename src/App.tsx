@@ -49,30 +49,38 @@ function App() {
         <ScrollToTopOnNavigate />
         <Suspense fallback={<LoadingSpinner />}>
           <Routes>
+            {/* English routes (default) */}
             <Route path="/" element={<HomePage />} />
-            <Route path="/es/*" element={<HomePage />} /> {/* Spanish routes */}
             <Route path="/urantia-papers" element={<UrantiaPapersPage />} />
-          <Route path="/episode/:id" element={<EpisodePage />} />
-          
-          {/* Series routes - both old and new formats */}
-          <Route path="/listen/:series/:id" element={<EpisodePage />} />
-          <Route path="/listen/:series" element={<ListenPage />} />
-          
-          {/* New series routes */}
-          <Route path="/series" element={<SeriesPage />} />
-          <Route path="/series/:seriesId" element={<ListenPage />} />
-          <Route path="/series/:seriesId/:episodeId" element={<EpisodePage />} />
-          
-          {/* Other pages */}
-          <Route path="/disclaimer" element={<DisclaimerPage />} />
-          <Route path="/contact" element={<ContactPage />} />
-          <Route path="/debug" element={<DebugPage />} />
-          <Route path="*" element={<NotFoundPage />} />
-        </Routes>
-      </Suspense>
-      <Analytics />
-      <HotjarAnalytics HOTJAR_ID={HOTJAR_ID} />
-      <OptinMonster userId={OPTINMONSTER_USER_ID} accountId={OPTINMONSTER_ACCOUNT_ID} />
+            <Route path="/episode/:id" element={<EpisodePage />} />
+            <Route path="/listen/:series/:id" element={<EpisodePage />} />
+            <Route path="/listen/:series" element={<ListenPage />} />
+            <Route path="/series" element={<SeriesPage />} />
+            <Route path="/series/:seriesId" element={<ListenPage />} />
+            <Route path="/series/:seriesId/:episodeId" element={<EpisodePage />} />
+            <Route path="/disclaimer" element={<DisclaimerPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/debug" element={<DebugPage />} />
+            
+            {/* Spanish routes */}
+            <Route path="/es" element={<HomePage />} />
+            <Route path="/es/urantia-papers" element={<UrantiaPapersPage />} />
+            <Route path="/es/episode/:id" element={<EpisodePage />} />
+            <Route path="/es/listen/:series/:id" element={<EpisodePage />} />
+            <Route path="/es/listen/:series" element={<ListenPage />} />
+            <Route path="/es/series" element={<SeriesPage />} />
+            <Route path="/es/series/:seriesId" element={<ListenPage />} />
+            <Route path="/es/series/:seriesId/:episodeId" element={<EpisodePage />} />
+            <Route path="/es/disclaimer" element={<DisclaimerPage />} />
+            <Route path="/es/contact" element={<ContactPage />} />
+            
+            {/* 404 route */}
+            <Route path="*" element={<NotFoundPage />} />
+          </Routes>
+        </Suspense>
+        <Analytics />
+        <HotjarAnalytics HOTJAR_ID={HOTJAR_ID} />
+        <OptinMonster userId={OPTINMONSTER_USER_ID} accountId={OPTINMONSTER_ACCOUNT_ID} />
       </LanguageProvider>
     </BrowserRouter>
   );

@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { ClipboardCopy, Rss } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+import { useLanguage } from '../../i18n/LanguageContext';
+import { LocalizedLink } from '../shared/LocalizedLink';
 
 export default function Footer() {
+  const { t } = useTranslation('common');
+  const { language } = useLanguage();
   const [rssNotification, setRssNotification] = useState<string | null>(null);
 
   const copyRssToClipboard = () => {
@@ -10,18 +14,20 @@ export default function Footer() {
     
     navigator.clipboard.writeText(rssUrl)
       .then(() => {
-        setRssNotification('RSS feed URL copied to clipboard!');
+        setRssNotification(t('footer.rss_copied'));
         setTimeout(() => {
           setRssNotification(null);
         }, 3000);
       })
       .catch(() => {
-        setRssNotification('Failed to copy RSS feed URL');
+        setRssNotification(t('footer.rss_copy_failed'));
         setTimeout(() => {
           setRssNotification(null);
         }, 3000);
       });
   };
+
+  const currentYear = new Date().getFullYear();
 
   return (
     <footer className="py-12 bg-navy-light/30 border-t border-white/5">
@@ -29,41 +35,41 @@ export default function Footer() {
         <div className="grid md:grid-cols-3 gap-8">
           {/* Logo and Description */}
           <div className="space-y-4">
-            <Link to="/" className="flex items-center space-x-3">
+            <LocalizedLink to="/" className="flex items-center space-x-3">
               <span className="title-subtitle text-sm tracking-[0.15em]">
-                Urantia Book Podcast
+                {t('site.name')}
               </span>
-            </Link>
+            </LocalizedLink>
             <p className="body-lg text-white/70">
-              AI-crafted audio companions for exploring cosmic truth
+              {t('footer.description')}
             </p>
           </div>
 
           {/* Quick Links */}
           <div className="space-y-4">
-            <h3 className="title-subtitle text-lg font-semibold text-white">Quick Links</h3>
+            <h3 className="title-subtitle text-lg font-semibold text-white">{t('footer.quick_links')}</h3>
             <ul className="space-y-2">
               <li>
-                <Link to="/urantia-papers" className="body-lg text-white/70 hover:text-white/90 transition-colors">
-                  The Urantia Papers
-                </Link>
+                <LocalizedLink to="/urantia-papers" className="body-lg text-white/70 hover:text-white/90 transition-colors">
+                  {t('nav.urantia_papers')}
+                </LocalizedLink>
               </li>
               <li>
-                <Link to="/series" className="body-lg text-white/70 hover:text-white/90 transition-colors">
-                  Series Collections
-                </Link>
+                <LocalizedLink to="/series" className="body-lg text-white/70 hover:text-white/90 transition-colors">
+                  {t('nav.series_collections')}
+                </LocalizedLink>
               </li>
               <li>
-                <Link to="/disclaimer" className="body-lg text-white/70 hover:text-white/90 transition-colors">
-                  Disclaimer
-                </Link>
+                <LocalizedLink to="/disclaimer" className="body-lg text-white/70 hover:text-white/90 transition-colors">
+                  {t('nav.disclaimer')}
+                </LocalizedLink>
               </li>
             </ul>
           </div>
 
           {/* External Links */}
           <div className="space-y-4">
-            <h3 className="title-subtitle text-lg font-semibold text-white">Resources</h3>
+            <h3 className="title-subtitle text-lg font-semibold text-white">{t('footer.resources')}</h3>
             <ul className="space-y-2">
               <li>
                 <a 
@@ -72,7 +78,7 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   className="body-lg text-white/70 hover:text-white/90 transition-colors"
                 >
-                  Urantia Foundation
+                  {t('footer.external_links.urantia_foundation')}
                 </a>
               </li>
               <li>
@@ -82,7 +88,7 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   className="body-lg text-white/70 hover:text-white/90 transition-colors"
                 >
-                  The Center for Unity
+                  {t('footer.external_links.center_for_unity')}
                 </a>
               </li>
               <li>
@@ -92,7 +98,7 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   className="body-lg text-white/70 hover:text-white/90 transition-colors"
                 >
-                  Pay It Forward
+                  {t('nav.pay_it_forward')}
                 </a>
               </li>
             </ul>
@@ -101,18 +107,18 @@ export default function Footer() {
 
         {/* Podcast Platforms */}
         <div className="mt-12 pt-8 border-t border-white/5 text-center">
-          <h3 className="title-subtitle text-lg font-semibold text-white mb-4">Also available on</h3>
+          <h3 className="title-subtitle text-lg font-semibold text-white mb-4">{t('footer.also_available')}</h3>
           <div className="flex flex-wrap justify-center gap-6">
             <a 
               href="https://www.youtube.com/playlist?list=PLgU-tjb05MakRB1XmcLKbshw5icSROylV" 
               target="_blank" 
               rel="noopener noreferrer"
               className="transition-opacity hover:opacity-80"
-              aria-label="YouTube"
+              aria-label={t('platforms.youtube')}
             >
               <img 
                 src="/images/platforms/youtube-button3.png" 
-                alt="YouTube" 
+                alt={t('platforms.youtube')} 
                 className="h-10 w-auto"
               />
             </a>
@@ -121,11 +127,11 @@ export default function Footer() {
               target="_blank" 
               rel="noopener noreferrer"
               className="transition-opacity hover:opacity-80"
-              aria-label="Apple Podcasts"
+              aria-label={t('platforms.apple_podcasts')}
             >
               <img 
                 src="/images/platforms/apple-podcast-button.png" 
-                alt="Apple Podcasts" 
+                alt={t('platforms.apple_podcasts')} 
                 className="h-10 w-auto"
               />
             </a>
@@ -134,11 +140,11 @@ export default function Footer() {
               target="_blank" 
               rel="noopener noreferrer"
               className="transition-opacity hover:opacity-80"
-              aria-label="Spotify"
+              aria-label={t('platforms.spotify')}
             >
               <img 
                 src="/images/platforms/spotify-button.png" 
-                alt="Spotify" 
+                alt={t('platforms.spotify')} 
                 className="h-10 w-auto"
               />
             </a>
@@ -147,22 +153,22 @@ export default function Footer() {
               target="_blank" 
               rel="noopener noreferrer"
               className="transition-opacity hover:opacity-80"
-              aria-label="Amazon Music"
+              aria-label={t('platforms.amazon_music')}
             >
               <img 
                 src="/images/platforms/amazon-music-button.png" 
-                alt="Amazon Music" 
+                alt={t('platforms.amazon_music')} 
                 className="h-10 w-auto"
               />
             </a>
             <button
               onClick={copyRssToClipboard}
               className="flex items-center gap-2 px-4 py-2 bg-navy-light/70 text-white/90 rounded-md hover:bg-navy transition-colors"
-              aria-label="Copy RSS Feed URL"
+              aria-label={t('footer.copy_rss')}
             >
               <Rss size={18} className="text-gold" />
               <ClipboardCopy size={16} />
-              <span>Copy RSS Feed</span>
+              <span>{t('footer.copy_rss')}</span>
             </button>
           </div>
         </div>
@@ -170,7 +176,7 @@ export default function Footer() {
         {/* Copyright */}
         <div className="mt-8 pt-8 border-t border-white/5 text-center">
           <p className="body-lg text-white/50 text-sm">
-            &copy; {new Date().getFullYear()} The Center for Unity. All rights reserved.
+            {t('footer.copyright', { year: currentYear })}
           </p>
         </div>
       </div>
