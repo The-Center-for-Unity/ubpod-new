@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useLanguage } from '../../i18n/LanguageContext';
 import { getAllSeries, getSeriesByCategory, SeriesInfo } from '../../utils/seriesUtils';
 import { filterSeriesByLanguage, getAvailableCategories } from '../../utils/seriesAvailabilityUtils';
-import { getSeriesCollectionsUILabels, getTranslatedSeriesData } from '../../utils/seriesCollectionsUtils';
+import { getSeriesCollectionsUILabels } from '../../utils/seriesCollectionsUtils';
 import SeriesCard from './SeriesCard';
 
 export default function SeriesCardGrid() {
   const { language } = useLanguage();
+  const { t } = useTranslation('series-collections');
   const [activeCategory, setActiveCategory] = useState<'all' | 'jesus-focused' | 'parts-i-iii'>('all');
   
   // Get translated UI labels
@@ -36,10 +38,11 @@ export default function SeriesCardGrid() {
     
          // Apply translations to each series
      const translatedSeries = allSeries.map((series: SeriesInfo) => {
-       const translatedData = getTranslatedSeriesData(series.id, language);
        return {
          ...series,
-         ...translatedData
+         title: t(`series.${series.id}.title`, { defaultValue: series.title }),
+         description: t(`series.${series.id}.description`, { defaultValue: series.description }),
+         logline: t(`series.${series.id}.logline`, { defaultValue: series.logline })
        };
      });
     

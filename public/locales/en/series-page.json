@@ -4,6 +4,11 @@
     "subtitle": "Immerse yourself in the Urantia Book's profound teachings through {{count}} expertly narrated audio series",
     "description": "From the life of Jesus to cosmic origins, each series transforms complex concepts into accessible insights for spiritual growth"
   },
+  "unavailableNotice": {
+    "title": "Series Not Available:",
+    "message": "The \"{{seriesId}}\" series is not yet available in {{language}}. Here are the series currently available in your selected language:",
+    "dismiss": "Dismiss notification"
+  },
   "featured": {
     "title": "Begin Your Cosmic Journey",
     "description": "Our most popular series offer perfect entry points to understanding the Urantia Book's transformative teachings:",

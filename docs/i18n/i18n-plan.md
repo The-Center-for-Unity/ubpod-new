@@ -516,16 +516,188 @@ A key challenge identified during i18n implementation is the need to dynamically
 
 ### Phase 7: Automated Content Translation (Future Priority)
 
-#### Step 7.1: Create Master Translation Script (2-3 hours)
-1. **Develop a Node.js script for automated translation:**
-   - Reads source JSON files (e.g., `urantia_summaries.json`).
-   - Iterates through each entry and specified text fields.
-   - Connects to a translation API (e.g., Google Translate, DeepL) to translate content.
-   - Writes the translated content to a new language-specific JSON file (e.g., `urantia_summaries_es.json`).
+#### Step 7.1: Comprehensive Content Audit for Translation ✅
 
-2. **Note on Timing:**
-   - This script will be developed towards the end of the i18n project.
-   - This ensures all content structures and translation requirements across the entire site are finalized before performing a bulk translation.
+**MAJOR FINDING**: The codebase contains extensive translatable content that should be moved to localization files before bulk translation. Here's the comprehensive audit:
+
+**📊 Content Translation Scope Analysis:**
+
+**1. Massive Data Files Requiring Translation:**
+- **`src/data/json/urantia_summaries.json` (151KB, 1,381 lines)**
+  - Contains ~196 papers with rich episode descriptions
+  - Each entry has: `episode_card` (short description) and `episode_page` (full description)  
+  - Example: "Discover the ultimate cosmic invitation: God's call for every being in the universe to achieve divine perfection"
+  - **Current Spanish Status**: Only 3 papers translated in `urantia_summaries_es.json` (23 lines)
+  - **Translation Need**: ~193 remaining papers = 386+ text blocks to translate
+
+- **`src/data/discoverJesusSummaries.ts` (228KB, 865 lines)**
+  - Contains detailed Jesus-related summaries for episodes
+  - Each entry has: `shortSummary` and `fullSummary`
+  - **Current Status**: No Spanish translations exist
+  - **Translation Need**: ~40+ summaries with extensive content
+
+- **`src/data/json/summaries.json` (253KB, 1,255 lines)**
+  - Additional episode summaries and metadata
+  - **Current Status**: Not examined for translation needs
+  - **Potential Impact**: Massive content volume
+
+**2. UI Components with Hardcoded Text:**
+
+**Immediate Translation Needed:**
+- **`src/pages/ContactPage.tsx`**
+  - Headers: "Connect With Us", "Get in Touch", "Frequently Asked Questions"
+  - Form labels: "Click to upload", "Start Your Journey"
+  - Action buttons and validation messages
+
+- **`src/pages/DisclaimerPage.tsx`** 
+  - **CRITICAL**: Legal content requiring professional translation
+  - Headers: "IMPORTANT DISCLAIMER", "PLEASE READ BEFORE LISTENING"
+  - Sections: "Copyright and Attribution", "Fair Use Statement", "User Responsibility"
+  - Legal text blocks with liability and AI limitations warnings
+
+- **`src/pages/Debug.tsx`**
+  - Headers: "Media URL Debugger"
+  - Form options and technical labels
+
+- **`src/components/shared/ErrorBoundary.tsx`**
+  - Error message: "Something went wrong"
+
+- **`src/components/audio/AudioPlayer.tsx`**
+  - Error messages: "Audio Error", "Please try again or download the audio file"
+  - Accessibility labels and controls
+
+**3. Data Arrays Still Hardcoded in Code:**
+
+**ARCHITECTURAL ISSUE IDENTIFIED**: 
+- **`src/utils/episodeUtils.ts`** contains massive hardcoded arrays:
+  - `seriesEpisodeTitles` (200+ lines) - All episode titles for 28 series
+  - `seriesEpisodeLoglines` (200+ lines) - All episode descriptions for 28 series
+  - **Problem**: Content mixed with business logic
+  - **Solution Required**: Move to localization files before bulk translation
+
+**4. Missing Translation Infrastructure:**
+
+**Files That Need Creation:**
+- `public/locales/en/contact.json` - Contact page content
+- `public/locales/en/disclaimer.json` - Legal disclaimer content  
+- `public/locales/en/errors.json` - Error messages and states
+- `public/locales/en/audio-player.json` - Audio player controls and labels
+- `public/locales/en/debug.json` - Debug page content
+- Spanish equivalents for all above files
+
+#### Step 7.2: Content Translation Strategy Update ✅
+
+**RECOMMENDED APPROACH:**
+
+**Phase 7A: Code Architecture Cleanup (Priority 1)**
+1. **Move hardcoded arrays from `episodeUtils.ts` to localization files**
+   - Extract `seriesEpisodeTitles` → `episodes-titles.json`
+   - Extract `seriesEpisodeLoglines` → `episodes-descriptions.json` 
+   - Update code to use translation hooks instead of hardcoded arrays
+
+2. **Complete UI text extraction**
+   - ContactPage, DisclaimerPage, ErrorBoundary components
+   - Audio player controls and error messages
+   - Debug and development tools text
+
+**Phase 7B: Bulk Content Translation (Priority 2)**  
+1. **Primary Content Files (Largest Impact)**
+   - `urantia_summaries.json` → `urantia_summaries_es.json` (193 papers remaining)
+   - `discoverJesusSummaries.ts` → `discoverJesusSummaries_es.ts` (40+ summaries)
+   - Episode titles and descriptions from episodeUtils arrays
+
+2. **UI Translation Files (Medium Impact)**
+   - All missing translation files for contact, disclaimer, errors, etc.
+   - Professional translation for legal disclaimer content
+
+#### Step 7.3: Translation Automation Script Development (2-3 hours)
+
+**Enhanced Script Requirements:**
+```typescript
+// Translation automation script structure
+interface TranslationTarget {
+  sourceFile: string;
+  targetFile: string; 
+  translationFields: string[];
+  contentType: 'legal' | 'ui' | 'episode-content' | 'technical';
+  requiresHumanReview: boolean;
+}
+
+const translationTargets: TranslationTarget[] = [
+  {
+    sourceFile: 'src/data/json/urantia_summaries.json',
+    targetFile: 'src/data/json/urantia_summaries_es.json', 
+    translationFields: ['episode_card', 'episode_page'],
+    contentType: 'episode-content',
+    requiresHumanReview: true
+  },
+  {
+    sourceFile: 'public/locales/en/disclaimer.json',
+    targetFile: 'public/locales/es/disclaimer.json',
+    translationFields: ['*'], // All fields
+    contentType: 'legal',
+    requiresHumanReview: true // Legal content must be reviewed
+  }
+  // ... more targets
+];
+```
+
+**Script Features:**
+- **Quality Tiers**: Different translation APIs for legal vs. general content
+- **Batch Processing**: Handle large files in chunks to avoid API limits  
+- **Human Review Flags**: Mark legal/critical content for professional review
+- **Resume Capability**: Handle partial failures and resume translation
+- **Validation**: Verify JSON structure and key consistency
+
+#### Step 7.4: Translation Priority Matrix ✅
+
+**IMMEDIATE (Week 1-2):**
+1. ✅ Series architecture (completed)
+2. ⏳ Move episodeUtils arrays to translation files
+3. ⏳ Extract UI text from ContactPage, DisclaimerPage, ErrorBoundary
+
+**HIGH PRIORITY (Week 3-4):**
+1. ⏳ Translate remaining `urantia_summaries.json` content (193 papers)
+2. ⏳ Professional translation of disclaimer/legal content
+3. ⏳ Audio player and error message translations
+
+**MEDIUM PRIORITY (Week 5-6):**
+1. ⏳ `discoverJesusSummaries.ts` translations
+2. ⏳ Debug and development tool translations  
+3. ⏳ Additional UI components not yet identified
+
+**ESTIMATED TRANSLATION VOLUME:**
+- **Text Blocks**: ~600+ individual translation units
+- **Content Size**: ~500KB of English content to translate
+- **Professional Review**: ~50KB of legal/critical content
+- **Timeline**: 4-6 weeks with automation + human review
+
+**COST ESTIMATION:**
+- **Automated Translation**: $200-400 (API costs for bulk content)
+- **Professional Review**: $1,000-2,000 (legal disclaimer, critical UI text)
+- **Development Time**: 40-60 hours (architecture + automation + QA)
+
+#### Step 7.5: Content Deferred Strategy ✅
+
+**CURRENT SOLUTION**: Continue with code development while deferring bulk translation
+
+**Why This Approach Works:**
+1. ✅ **Architecture Complete**: Translation infrastructure supports immediate content addition
+2. ✅ **Rich Descriptions Working**: English content displays properly from data sources  
+3. ✅ **Graceful Fallbacks**: Missing Spanish content falls back to English without errors
+4. ✅ **No User Impact**: Spanish users see functional experience (English descriptions vs. none)
+
+**Ready for Translation**: Once content translation is complete, Spanish users will immediately see:
+- Rich episode descriptions from `urantia_summaries_es.json`
+- Translated UI elements from updated translation files
+- Professional Spanish legal disclaimers and help content
+
+**Next Steps After Code Completion:**
+1. Execute Phase 7A (architecture cleanup) 
+2. Develop and run translation automation script
+3. Professional review of legal/critical content
+4. QA testing with translated content
+5. Launch complete Spanish experience
 
 ## Series Collections Internationalization Implementation ✅
 

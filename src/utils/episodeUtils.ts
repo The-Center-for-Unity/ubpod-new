@@ -8,6 +8,7 @@ import { getAudioUrl, getPdfUrl, JESUS_AUDIO_BASE_URL, URANTIA_AUDIO_BASE_URL } 
 import { discoverJesusSummaries } from '../data/discoverJesusSummaries';
 import episodesData from '../data/json/episodes.json';
 import urantiaSummariesData from '../data/json/urantia_summaries.json';
+import cosmicSeriesMappingsData from '../data/json/cosmic-series-mappings.json';
 import { getTranscriptUrl } from './mediaUtils';
 import { 
   getUrantiaPapers, 
@@ -322,7 +323,7 @@ const seriesEpisodeLoglines: Record<string, string[]> = {
     "Beyond the \"man of sorrows\" image—how Jesus experienced the full range of human emotions while maintaining spiritual stability.",
     "Addressing the speculation with revelatory insight—why Jesus remained single despite appreciating the value of marriage.",
     "How Jesus' family experiences shaped his character—the formative years that prepared him for cosmic mission.",
-    "The integrated portrait of Jesus as both perfectly human and divinely aware—the complete personality beyond religious portrayals."
+    "The complex blend of human personality and divine nature—understanding the mystery without diminishing either aspect."
   ],
   
   // Parts I-III series (Series 15-28)
@@ -426,6 +427,53 @@ const seriesEpisodeLoglines: Record<string, string[]> = {
   ]
 };
 
+
+
+/**
+ * Extract paper number from cosmic series mapping
+ */
+function getPaperNumberFromCosmicMapping(seriesId: string, episodeNumber: number): number | null {
+  const mappingKey = `${seriesId}-${episodeNumber}`;
+  console.log(`[DEBUG] Looking for mapping key: ${mappingKey}`);
+  
+  const cosmicMapping = (cosmicSeriesMappingsData as any).cosmicSeriesMapping;
+  console.log(`[DEBUG] Cosmic mapping loaded:`, cosmicMapping ? 'YES' : 'NO');
+  
+  const mapping = cosmicMapping?.[mappingKey];
+  console.log(`[DEBUG] Found mapping for ${mappingKey}:`, mapping);
+  
+  if (mapping?.filename) {
+    console.log(`[DEBUG] Filename from mapping: ${mapping.filename}`);
+    const paperNumberMatch = mapping.filename.match(/paper-(\d+)\.mp3/);
+    console.log(`[DEBUG] Paper number match:`, paperNumberMatch);
+    
+    if (paperNumberMatch && paperNumberMatch[1]) {
+      const paperNumber = parseInt(paperNumberMatch[1], 10);
+      console.log(`[DEBUG] Extracted paper number: ${paperNumber}`);
+      return paperNumber;
+    }
+  }
+  
+  console.log(`[DEBUG] No paper number found for ${mappingKey}`);
+  return null;
+}
+
+/**
+ * Get episode description from Urantia summaries based on paper number
+ */
+function getEpisodeDescriptionFromSummary(paperNumber: number): string {
+  console.log(`[DEBUG] Looking up summary for paper ${paperNumber}`);
+  const summary = urantiaSummariesData.find((s: any) => s.paper_number === paperNumber);
+  console.log(`[DEBUG] Found summary for paper ${paperNumber}:`, summary ? 'YES' : 'NO');
+  
+  if (summary) {
+    console.log(`[DEBUG] Episode card text:`, summary.episode_card);
+    return summary.episode_card || `Enjoy a narrative journey through the Urantia Book, one paper at a time.`;
+  }
+  
+  return `Enjoy a narrative journey through the Urantia Book, one paper at a time.`;
+}
+
 // Main function to get all episodes for a given series
 export function getEpisodesForSeries(seriesId: string, language: string = 'en'): Episode[] {
   let episodes: Episode[];
@@ -449,15 +497,37 @@ export function getEpisodesForSeries(seriesId: string, language: string = 'en'):
   
     episodes = Array.from({ length: seriesInfo.totalEpisodes }, (_, i) => {
       const episodeId = i + 1;
+      console.log(`[DEBUG] Creating episode ${episodeId} for series ${seriesId} (index ${i})`);
       const audioUrl = getEpisodeAudioPath(seriesId, episodeId);
+      
+      // For cosmic series, try to get description from Urantia summaries based on paper number
+      let description = loglines[i] || `Enjoy a narrative journey through the Urantia Book, one paper at a time.`;
+      let summary = `Enjoy a narrative journey through the Urantia Book, one paper at a time.`;
+      console.log(`[DEBUG] Episode generation - seriesId: ${seriesId}, episodeId: ${episodeId}, index: ${i}`);
+      
+      if (seriesId.startsWith('cosmic-')) {
+        console.log(`[DEBUG] Processing cosmic series: ${seriesId}`);
+        const paperNumber = getPaperNumberFromCosmicMapping(seriesId, episodeId);
+        console.log(`[DEBUG] Got paper number: ${paperNumber}`);
+        
+        if (paperNumber) {
+          const richDescription = getEpisodeDescriptionFromSummary(paperNumber);
+          console.log(`[DEBUG] Got rich description: ${richDescription}`);
+          // Set both description and summary to the rich text
+          description = richDescription;
+          summary = richDescription;
+        } else {
+          console.log(`[DEBUG] No paper number found, using fallback description`);
+        }
+      }
       
       const episode: Episode = {
         id: episodeId,
         title: getEpisodeTitle(seriesId, episodeId),
         audioUrl: audioUrl,
         series: seriesId as SeriesType,
-        description: loglines[i] || `Enjoy a narrative journey through the Urantia Book, one paper at a time.`,
-        summary: `Enjoy a narrative journey through the Urantia Book, one paper at a time.`
+        description: description,
+        summary: summary
       };
 
       // For cosmic series, also add the PDF URL

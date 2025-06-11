@@ -1,13 +1,18 @@
 {
   "hero": {
-    "title": "Descubre la Sabiduría Cósmica que Cambia Vidas",
-    "subtitle": "Sumérgete en las profundas enseñanzas del Libro de Urantia a través de {{count}} series de audio narradas expertamente",
-    "description": "Desde la vida de Jesús hasta los orígenes cósmicos, cada serie transforma conceptos complejos en ideas accesibles para el crecimiento espiritual"
+    "title": "Descubre Sabiduría Cósmica Transformadora",
+    "subtitle": "Sumérgete en las profundas enseñanzas del Libro de Urantia a través de {{count}} series de audio expertas",
+    "description": "Desde la vida de Jesús hasta los orígenes cósmicos, cada serie transforma conceptos complejos en conocimientos accesibles para el crecimiento espiritual"
+  },
+  "unavailableNotice": {
+    "title": "Serie No Disponible:",
+    "message": "La serie \"{{seriesId}}\" aún no está disponible en {{language}}. Aquí están las series actualmente disponibles en tu idioma seleccionado:",
+    "dismiss": "Cerrar notificación"
   },
   "featured": {
-    "title": "Comienza tu Viaje Cósmico",
+    "title": "Comienza Tu Viaje Cósmico",
     "description": "Nuestras series más populares ofrecen puntos de entrada perfectos para entender las enseñanzas transformadoras del Libro de Urantia:",
-    "badge": "Favorito de los Fanáticos",
+    "badge": "Favorito de los Fans",
     "episodeInfo": "5 episodios • ~1 hora total",
     "startJourney": "Comienza tu viaje →"
   },
@@ -20,7 +25,7 @@
     "jesusSeries": "Jesús ({{count}})",
     "cosmicSeries": "Cósmico ({{count}})",
     "searchPlaceholder": "Buscar series por título o descripción...",
-    "searchResults": "Se encontraron {{count}} resultados para \"{{query}}\"",
+    "searchResults": "{{count}} resultados encontrados para \"{{query}}\"",
     "clearSearch": "Limpiar búsqueda",
     "structuredView": "Vista Estructurada",
     "gridView": "Vista de Cuadrícula",

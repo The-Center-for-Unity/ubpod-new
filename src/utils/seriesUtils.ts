@@ -399,7 +399,23 @@ export function getEpisodeTitle(seriesId: string, episodeNumber: number): string
   const series = getSeriesInfo(seriesId);
   if (!series) return `Episode ${episodeNumber}`;
   
-  // Return a generic episode title
+  // First try to import the episode titles from episodeUtils
+  // For now, return the proper title format used in production
+  const episodeIndex = episodeNumber - 1;
+  
+  // Cosmic-1 specific titles (matching production)
+  if (seriesId === 'cosmic-1') {
+    const cosmic1Titles = [
+      "The Universal Father",
+      "The Universe of Universes", 
+      "The Sacred Spheres of Paradise",
+      "The Seven Superuniverses",
+      "Energy—Mind and Matter"
+    ];
+    return cosmic1Titles[episodeIndex] || `Episode ${episodeNumber}`;
+  }
+  
+  // Return a generic episode title for other series
   return `${series.title} - Episode ${episodeNumber}`;
 }
 

@@ -1,0 +1,41 @@
+{
+  "header": {
+    "badges": {
+      "jesusFocused": "Serie de Jesús",
+      "cosmicSeries": "Serie Cósmica"
+    },
+    "actions": {
+      "startListening": "Comenzar a Escuchar"
+    }
+  },
+  "navigation": {
+    "title": "SERIES DE PODCAST",
+    "mobileTitle": "SELECCIONAR SERIE",
+    "filters": {
+      "all": "Todas",
+      "jesus": "Jesús",
+      "cosmic": "Cósmico"
+    },
+    "noSeries": "No se encontraron series en esta categoría"
+  },
+  "episodes": {
+    "title": "EPISODIOS",
+    "loading": "Cargando episodios...",
+    "noEpisodes": {
+      "title": "No Hay Episodios Disponibles",
+      "message": "Esta serie aún no tiene episodios. Por favor, vuelve a verificar más tarde."
+    },
+    "error": {
+      "title": "Error",
+      "message": "Error al cargar episodios. Por favor, inténtalo de nuevo más tarde."
+    }
+  },
+  "episodeCard": {
+    "episodePrefix": "Episodio",
+    "actions": {
+      "listen": "Escuchar",
+      "read": "Leer", 
+      "download": "Descargar"
+    }
+  }
+} 

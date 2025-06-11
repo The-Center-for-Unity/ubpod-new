@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { Play, FileText, Download, Music } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { useLanguage } from '../../i18n/LanguageContext';
 import { Episode } from '../../types/index';
 
 interface EpisodeCardProps {
@@ -10,6 +12,8 @@ interface EpisodeCardProps {
 
 export default function EpisodeCard({ episode, onPlay }: EpisodeCardProps) {
   const { id, title, description, summary, cardSummary, audioUrl, pdfUrl, series, imageUrl, sourceUrl } = episode;
+  const { language } = useLanguage();
+  const { t } = useTranslation('series-detail');
 
   // Determine which summary to display, with fallbacks
   const displaySummary = cardSummary || summary;
@@ -81,7 +85,7 @@ export default function EpisodeCard({ episode, onPlay }: EpisodeCardProps) {
       {/* Content Section */}
       <div className="p-5 flex-grow flex flex-col">
         <h3 className="text-xl font-semibold mb-3 text-white line-clamp-2 min-h-[3.5rem]">
-          Episode {id}: {title}
+          {t('series-detail:episodeCard.episodePrefix')} {id}: {title}
         </h3>
         
         <div className="mb-4 flex-grow">
@@ -95,12 +99,12 @@ export default function EpisodeCard({ episode, onPlay }: EpisodeCardProps) {
         {/* Action Buttons */}
         <div className="flex flex-wrap gap-2 mt-auto">
           <Link 
-            to={`/listen/${series}/${id}`}
+            to={language === 'es' ? `/es/listen/${series}/${id}` : `/listen/${series}/${id}`}
             className="flex items-center gap-1 px-4 py-2 bg-gold text-navy-dark rounded-md hover:bg-gold/90 transition-colors font-medium"
             onClick={onPlay}
           >
             <Play size={16} />
-            <span>Listen</span>
+            <span>{t('series-detail:episodeCard.actions.listen')}</span>
           </Link>
           
           {readLink && (
@@ -111,7 +115,7 @@ export default function EpisodeCard({ episode, onPlay }: EpisodeCardProps) {
               className="flex items-center gap-1 px-3 py-2 bg-navy/50 text-white/90 rounded-md hover:bg-navy/70 transition-colors"
             >
               <FileText size={16} />
-              <span>Read</span>
+              <span>{t('series-detail:episodeCard.actions.read')}</span>
             </a>
           )}
           
@@ -121,7 +125,7 @@ export default function EpisodeCard({ episode, onPlay }: EpisodeCardProps) {
             className="flex items-center gap-1 px-3 py-2 bg-navy/50 text-white/90 rounded-md hover:bg-navy/70 transition-colors"
           >
             <Download size={16} />
-            <span>Download</span>
+            <span>{t('series-detail:episodeCard.actions.download')}</span>
           </a>
         </div>
       </div>

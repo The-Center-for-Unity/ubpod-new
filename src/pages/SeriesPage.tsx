@@ -1,31 +1,57 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Layout from '../components/layout/Layout';
 import SeriesCardGrid from '../components/ui/SeriesCardGrid';
 import { getAllSeries, SeriesInfo } from '../utils/seriesUtils';
 import { filterSeriesByLanguage } from '../utils/seriesAvailabilityUtils';
-import { getTranslatedSeriesData } from '../utils/seriesCollectionsUtils';
-import { Search, Users, Globe, BookOpen, GridIcon, ListIcon } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Search, Users, Globe, BookOpen, GridIcon, ListIcon, X, AlertCircle } from 'lucide-react';
+import { Link, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useLanguage } from '../i18n/LanguageContext';
 
 export default function SeriesPage() {
-  const { t } = useTranslation('series-page');
+  const { t } = useTranslation(['series-page', 'series-collections']);
   const { language } = useLanguage();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [viewMode, setViewMode] = useState<'grid' | 'structured'>('structured');
   const [searchQuery, setSearchQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
+  const [showUnavailableNotice, setShowUnavailableNotice] = useState(false);
+  const [unavailableSeries, setUnavailableSeries] = useState<string | null>(null);
   
+  // Check for unavailable series parameter
+  useEffect(() => {
+    const unavailableParam = searchParams.get('unavailable');
+    if (unavailableParam) {
+      setUnavailableSeries(unavailableParam);
+      setShowUnavailableNotice(true);
+      // Clean up the URL by removing the parameter
+      const newSearchParams = new URLSearchParams(searchParams);
+      newSearchParams.delete('unavailable');
+      setSearchParams(newSearchParams, { replace: true });
+    }
+  }, [searchParams, setSearchParams]);
+
+  const dismissUnavailableNotice = () => {
+    setShowUnavailableNotice(false);
+    setUnavailableSeries(null);
+  };
+
   // Get all series and filter by language availability
   const allSeriesData = getAllSeries();
   const languageFilteredSeries = filterSeriesByLanguage(allSeriesData, language);
   
-  // Apply translations to each series
+  // Apply translations to each series within the component
   const allSeries = languageFilteredSeries.map((series: SeriesInfo) => {
-    const translatedData = getTranslatedSeriesData(series.id, language);
+    // Get translations directly in the component
+    const translatedTitle = t(`series-collections:series.${series.id}.title`, { defaultValue: series.title });
+    const translatedDescription = t(`series-collections:series.${series.id}.description`, { defaultValue: series.description });
+    const translatedLogline = t(`series-collections:series.${series.id}.logline`, { defaultValue: series.logline });
+    
     return {
       ...series,
-      ...translatedData
+      title: translatedTitle || series.title,
+      description: translatedDescription || series.description,
+      logline: translatedLogline || series.logline
     };
   });
   
@@ -63,6 +89,34 @@ export default function SeriesPage() {
   return (
     <Layout>
       <main className="min-h-screen bg-navy-dark">
+        {/* Unavailable Series Notification */}
+        {showUnavailableNotice && unavailableSeries && (
+          <div className="bg-amber-600/90 border-b border-amber-500/30 px-4 py-3">
+            <div className="container mx-auto">
+              <div className="flex items-center justify-between max-w-4xl mx-auto">
+                <div className="flex items-center gap-3">
+                  <AlertCircle className="h-5 w-5 text-white flex-shrink-0" />
+                  <div className="text-white">
+                    <span className="font-medium">
+                      {t('unavailableNotice.title')}
+                    </span>
+                    <span className="ml-1">
+                      {t('unavailableNotice.message', { seriesId: unavailableSeries, language: language === 'es' ? 'español' : 'English' })}
+                    </span>
+                  </div>
+                </div>
+                <button
+                  onClick={dismissUnavailableNotice}
+                  className="text-white/80 hover:text-white p-1 ml-4 flex-shrink-0"
+                  aria-label={t('unavailableNotice.dismiss')}
+                >
+                  <X className="h-4 w-4" />
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+        
         {/* Enhanced Hero Section with Value Proposition */}
         <section className="bg-navy-dark pt-24 pb-8">
           <div className="container mx-auto px-4">
