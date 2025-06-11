@@ -4,6 +4,7 @@ import { Mail, MessageCircle, Upload } from 'lucide-react';
 import { emailService } from '../utils/emailService';
 import { Link } from 'react-router-dom';
 import Layout from '../components/layout/Layout';
+import { useTranslation } from 'react-i18next';
 
 // Form field interface
 interface FormField {
@@ -29,56 +30,58 @@ interface SubmitStatus {
 }
 
 export default function ContactPage() {
+  const { t } = useTranslation('contact');
+  
   // Form ref
   const form = useRef<HTMLFormElement>(null);
 
-  // Form fields
+  // Form fields with translations
   const formFields: FormField[] = [
     {
       id: 'name',
-      label: 'Your Name',
+      label: t('form.fields.name.label'),
       type: 'text',
-      placeholder: 'Enter your full name',
+      placeholder: t('form.fields.name.placeholder'),
       required: true
     },
     {
       id: 'email',
-      label: 'Email Address',
+      label: t('form.fields.email.label'),
       type: 'email',
-      placeholder: 'Enter your email address',
+      placeholder: t('form.fields.email.placeholder'),
       required: true
     },
     {
       id: 'inquiryType',
-      label: 'Inquiry Type',
+      label: t('form.fields.inquiryType.label'),
       type: 'select',
-      placeholder: 'Select an inquiry type',
+      placeholder: t('form.fields.inquiryType.placeholder'),
       required: true,
       options: [
-        'General Question',
-        'Technical Support',
-        'Content Suggestion',
-        'Narration Feedback',
-        'Study Group Interest',
-        'Accessibility Request',
-        'Translation Inquiry',
-        'Spiritual Question',
-        'Resource Request',
-        'Share My Experience'
+        t('form.fields.inquiryType.options.general'),
+        t('form.fields.inquiryType.options.technical'),
+        t('form.fields.inquiryType.options.content'),
+        t('form.fields.inquiryType.options.narration'),
+        t('form.fields.inquiryType.options.studyGroup'),
+        t('form.fields.inquiryType.options.accessibility'),
+        t('form.fields.inquiryType.options.translation'),
+        t('form.fields.inquiryType.options.spiritual'),
+        t('form.fields.inquiryType.options.resource'),
+        t('form.fields.inquiryType.options.experience')
       ]
     },
     {
       id: 'message',
-      label: 'Your Message',
+      label: t('form.fields.message.label'),
       type: 'textarea',
-      placeholder: 'Enter your message or question here...',
+      placeholder: t('form.fields.message.placeholder'),
       required: true
     },
     {
       id: 'photos',
-      label: 'Share Photos (Optional)',
+      label: t('form.fields.photos.label'),
       type: 'file',
-      placeholder: 'Upload photos related to your inquiry',
+      placeholder: t('form.fields.photos.placeholder'),
       required: false
     }
   ];
@@ -131,7 +134,7 @@ export default function ContactPage() {
       console.warn('Files exceed the 10MB limit, not processing');
       setSubmitStatus({
         success: false,
-        message: 'Total photo size exceeds 10MB. Please choose smaller photos.'
+        message: t('form.validation.photoSize')
       });
       return;
     }
@@ -218,7 +221,7 @@ export default function ContactPage() {
         console.warn('Form validation failed: Missing required fields');
         setSubmitStatus({
           success: false,
-          message: 'Please fill out all required fields.'
+          message: t('form.validation.required')
         });
         setIsSubmitting(false);
         return;
@@ -235,7 +238,7 @@ export default function ContactPage() {
         console.warn('Form validation failed: Attachments too large');
         setSubmitStatus({
           success: false,
-          message: 'Total attachment size exceeds 10MB limit'
+          message: t('form.validation.photoLimit')
         });
         setIsSubmitting(false);
         return;
@@ -271,7 +274,7 @@ export default function ContactPage() {
         // Show success message
         setSubmitStatus({
           success: true,
-          message: 'Your message has been sent! We will get back to you soon.'
+          message: t('form.success')
         });
       } else {
         console.error('Form submission failed:', response.error);
@@ -279,7 +282,7 @@ export default function ContactPage() {
         // Show error message
         setSubmitStatus({
           success: false,
-          message: response.error || 'Failed to send message. Please try again later.'
+          message: response.error || t('form.error')
         });
       }
     } catch (error) {
@@ -288,8 +291,8 @@ export default function ContactPage() {
       // Show error message
       setSubmitStatus({
         success: false,
-        message: error instanceof Error ? error.message : 'Unknown error',
-        error: error instanceof Error ? error.message : 'Unknown error'
+        message: error instanceof Error ? error.message : t('form.error'),
+        error: error instanceof Error ? error.message : t('form.error')
       });
     } finally {
       setIsSubmitting(false);
@@ -321,9 +324,9 @@ export default function ContactPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
               >
-                <h1 className="title-main">Connect With Us</h1>
+                <h1 className="title-main">{t('hero.title')}</h1>
                 <p className="section-subtitle">
-                  Share your experience, ask questions, or request resources
+                  {t('hero.subtitle')}
                 </p>
               </motion.div>
             </div>
@@ -340,10 +343,9 @@ export default function ContactPage() {
               transition={{ duration: 0.8 }}
             >
               <div className="text-center max-w-3xl mx-auto pt-4 sm:pt-0">
-                <h2 className="section-title mb-4">Get in Touch</h2>
+                <h2 className="section-title mb-4">{t('form.title')}</h2>
                 <p className="body-lg">
-                  Whether you have questions about the Urantia Book Podcast, need technical assistance, 
-                  or want to share your experience, we're here to help.
+                  {t('form.description')}
                 </p>
               </div>
               
@@ -352,7 +354,7 @@ export default function ContactPage() {
                 {import.meta.env.DEV && (
                   <div className="mb-6 p-3 bg-blue-500/20 border border-blue-500/30 rounded-lg">
                     <p className="text-sm text-blue-200">
-                      <span className="font-semibold">Development Mode:</span> In this environment, emails will be sent to the development team for testing. In production, emails will be sent to the official contact address.
+                      <span className="font-semibold">{t('form.devNotice').split(':')[0]}:</span> {t('form.devNotice').split(':')[1]}
                     </p>
                   </div>
                 )}
@@ -497,7 +499,7 @@ export default function ContactPage() {
                           )}
                           
                           <div className="text-xs text-white/50 mt-1">
-                            <p>Note: Maximum 3 photos, 5MB each.</p>
+                            <p>{t('form.fields.photos.note')}</p>
                           </div>
                         </div>
                       ) : (
@@ -529,10 +531,10 @@ export default function ContactPage() {
                             <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                             <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                           </svg>
-                          Sending...
+                          {t('form.submit.sending')}
                         </div>
                       ) : (
-                        'Send Message'
+                        t('form.submit.send')
                       )}
                     </button>
                   </div>
@@ -553,9 +555,9 @@ export default function ContactPage() {
               transition={{ duration: 0.8 }}
             >
               <div className="text-center max-w-3xl mx-auto">
-                <h2 className="section-title mb-4">Frequently Asked Questions</h2>
+                <h2 className="section-title mb-4">{t('faq.title')}</h2>
                 <p className="body-lg">
-                  Find answers to common questions about the Urantia Book Podcast.
+                  {t('faq.subtitle')}
                 </p>
               </div>
               
@@ -567,11 +569,9 @@ export default function ContactPage() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: 0.1 }}
                 >
-                  <h3 className="title-subtitle text-primary mb-2">What is the Urantia Book Podcast?</h3>
+                  <h3 className="title-subtitle text-primary mb-2">{t('faq.questions.what.question')}</h3>
                   <p className="body">
-                    The Urantia Book Podcast is an audio experience of the Urantia Book, allowing you to listen to its teachings
-                    while following along with the text. Our goal is to make this profound spiritual content more accessible
-                    through high-quality narration.
+                    {t('faq.questions.what.answer')}
                   </p>
                 </motion.div>
                 
@@ -582,11 +582,9 @@ export default function ContactPage() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: 0.2 }}
                 >
-                  <h3 className="title-subtitle text-primary mb-2">How do I listen to the podcast?</h3>
+                  <h3 className="title-subtitle text-primary mb-2">{t('faq.questions.how.question')}</h3>
                   <p className="body">
-                    Simply navigate to the Papers section, select a paper that interests you, and press play. You can read 
-                    along with the text as you listen, and track your progress through the book. The podcast can be accessed
-                    from any device with a web browser.
+                    {t('faq.questions.how.answer')}
                   </p>
                 </motion.div>
                 
@@ -597,11 +595,9 @@ export default function ContactPage() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: 0.3 }}
                 >
-                  <h3 className="title-subtitle text-primary mb-2">Can I download episodes for offline listening?</h3>
+                  <h3 className="title-subtitle text-primary mb-2">{t('faq.questions.download.question')}</h3>
                   <p className="body">
-                    Yes! Each episode can be downloaded for offline listening. Simply navigate to the paper you want to listen to,
-                    and use the download button to save the audio file to your device. This allows you to study the teachings
-                    even when you don't have an internet connection.
+                    {t('faq.questions.download.answer')}
                   </p>
                 </motion.div>
                 
@@ -612,11 +608,9 @@ export default function ContactPage() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: 0.4 }}
                 >
-                  <h3 className="title-subtitle text-primary mb-2">How can I suggest improvements?</h3>
+                  <h3 className="title-subtitle text-primary mb-2">{t('faq.questions.suggestions.question')}</h3>
                   <p className="body">
-                    We welcome your feedback and suggestions! Use the contact form above to share your ideas for improving the podcast,
-                    suggest new features, or report any technical issues you encounter. Your input helps us make the Urantia Book
-                    more accessible to everyone.
+                    {t('faq.questions.suggestions.answer')}
                   </p>
                 </motion.div>
               </div>
@@ -634,17 +628,16 @@ export default function ContactPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="title-subtitle mb-4">Start Your Journey</h2>
+              <h2 className="title-subtitle mb-4">{t('cta.title')}</h2>
               <p className="body-lg max-w-3xl mx-auto mb-8">
-                Begin your exploration of the Urantia Book through our podcast. Experience the teachings in a new way
-                and deepen your understanding of its cosmic concepts.
+                {t('cta.description')}
               </p>
               <div className="flex justify-center pt-4">
                 <Link 
                   to="/urantia-papers" 
                   className="px-6 py-3 bg-primary text-white hover:bg-primary-light transition-colors duration-300 rounded-full"
                 >
-                  Explore Urantia Papers
+                  {t('cta.button')}
                 </Link>
               </div>
             </motion.div>

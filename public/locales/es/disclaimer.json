@@ -1,0 +1,65 @@
+{
+  "title": "DESCARGO DE RESPONSABILIDAD IMPORTANTE",
+  "subtitle": "POR FAVOR LEE ANTES DE ESCUCHAR",
+  "introduction": "UrantiaBookPod.com proporciona episodios de podcast de audio generados por IA basados en los documentos contenidos en El Libro de Urantia. Cada episodio corresponde a un documento específico del texto original.",
+  "sections": {
+    "copyright": {
+      "title": "Derechos de Autor y Atribución",
+      "items": [
+        "El texto original de El Libro de Urantia es propiedad con derechos de autor de la Fundación Urantia.",
+        "El contenido de audio proporcionado en este sitio se deriva del texto usando tecnología de IA y está destinado para propósitos educativos y de accesibilidad.",
+        "Este servicio no está afiliado, respaldado o conectado oficialmente con la Fundación Urantia o cualquier organización oficial de publicación del Libro de Urantia."
+      ]
+    },
+    "aiContent": {
+      "title": "Aviso Importante Sobre Contenido Generado por IA",
+      "warning": "POR FAVOR TEN EN CUENTA: Este contenido es generado usando tecnología de IA que tiene limitaciones inherentes.",
+      "description": "La IA puede y comete errores tanto de omisión como de comisión, lo que significa que puede:",
+      "limitations": [
+        "Omitir detalles importantes o información contextual",
+        "Malinterpretar conceptos filosóficos",
+        "Simplificar excesivamente narrativas espirituales complejas",
+        "Ocasionalmente generar declaraciones inexactas"
+      ],
+      "disclaimer": "Estos episodios de podcast deben verse como una introducción imperfecta solamente y NO como una representación autorizada de las enseñanzas del Libro de Urantia.",
+      "requirement": "Para estudio serio, los usuarios DEBEN referirse a la versión oficial publicada del Libro de Urantia.",
+      "purpose": "Los episodios se proporcionan a pesar de sus imperfecciones porque creemos que ofrecen valor como un recurso suplementario."
+    },
+    "fairUse": {
+      "title": "Declaración de Uso Justo",
+      "content": "El contenido en UrantiaBookPod.com se proporciona bajo los principios de uso justo para propósitos de comentario, crítica, investigación, enseñanza y mejora de la accesibilidad a las ideas contenidas en El Libro de Urantia."
+    },
+    "technical": {
+      "title": "Limitaciones Técnicas de la Tecnología de IA",
+      "description": "El contenido de audio ha sido creado usando tecnología de IA que tiene limitaciones significativas cuando maneja conceptos espirituales y filosóficos complejos.",
+      "feedback": "Los comentarios de estudiantes de largo tiempo del Libro de Urantia han identificado que estos episodios generados por IA:",
+      "issues": [
+        "Pueden perder matices y significados importantes",
+        "Pueden no transmitir adecuadamente la profundidad de los conceptos espirituales",
+        "A veces presentan versiones simplificadas de narrativas complejas",
+        "Son particularmente desafiados cuando abordan temas profundos como La Rebelión de Lucifer"
+      ],
+      "inherent": "Estas limitaciones son inherentes a los sistemas de IA actuales.",
+      "acknowledgment": "Reconocemos estas deficiencias mientras aún proporcionamos estos episodios como un recurso opcional."
+    },
+    "responsibility": {
+      "title": "Responsabilidad y Reconocimiento del Usuario",
+      "acknowledgment": "Al acceder a este contenido, los usuarios reconocen explícitamente que entienden que estos episodios de podcast contienen errores, omisiones y simplificaciones.",
+      "acceptance": "Los usuarios aceptan la responsabilidad completa de verificar TODA la información contra el texto original del Libro de Urantia.",
+      "neverUse": "Estas interpretaciones generadas por IA NUNCA deben ser:",
+      "restrictions": [
+        "Usadas como la única fuente para entender conceptos del Libro de Urantia",
+        "Citadas o referenciadas como autoritativas",
+        "Dependidas para comprensión espiritual, filosófica o religiosa sin verificación"
+      ],
+      "recommendation": "Recomendamos encarecidamente leer el texto original para el estudio serio de estas enseñanzas profundas."
+    },
+    "contact": {
+      "title": "Información de Contacto",
+      "content": "Para preguntas, inquietudes o solicitudes sobre este contenido, por favor contáctanos en",
+      "email": "contact@thecenterforunity.org"
+    }
+  },
+  "lastUpdated": "Última actualización: 14 de marzo, 2024",
+  "returnButton": "Regresar al Inicio"
+} 

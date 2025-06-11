@@ -25,18 +25,28 @@ This document outlines the plan for implementing internationalization (i18n) in 
 - ✅ SocialShareMenu component internationalized with namespaced translations
 - ✅ Episode data internationalization framework fully implemented
 - ✅ Fixed language-aware navigation for Next/Previous episode links
-- ✅ **Series Collections Internationalization Complete** (NEW)
+- ✅ **Series Collections Internationalization Complete**
   - ✅ Created comprehensive translation files for series collections (`series-collections.json`)
   - ✅ Implemented language-aware series filtering (Jesus series hidden in Spanish)
   - ✅ Updated SeriesCardGrid and SeriesCard components with full translation support
   - ✅ Created translation utilities for series data and UI labels
   - ✅ Enhanced series utilities with language parameters
+- ✅ **Remaining UI Components Complete** (NEW)
+  - ✅ ContactPage.tsx with comprehensive form and FAQ translations
+  - ✅ DisclaimerPage.tsx with complete legal content translations
+  - ✅ Debug.tsx with developer interface translations
+  - ✅ Created contact.json, disclaimer.json, and debug.json translation files
+  - ✅ Fixed language-aware navigation (return buttons maintain language context)
+- ✅ **UX Enhancement: Unavailable Series Handling** (NEW)
+  - ✅ Smart detection when series unavailable in selected language
+  - ✅ User-friendly redirect and notification system
+  - ✅ Clear messaging with available alternatives
 
 **Pending:**
-- ⏳ Comprehensive translation files not completed for all pages (Series Collections ✅)
-- ⏳ Automated script for full-site content translation
-- ❌ SEO meta tags not language-aware
-- ⏳ Home page series section integration with new translation system
+- ✅ Comprehensive translation files completed for all UI pages 
+- ⏳ Automated script for content translation (Urantia Papers summaries)
+- ❌ SEO meta tags not language-aware  
+- ❌ Content translations for Urantia Papers (197 papers)
 
 ## Requirements
 
@@ -125,17 +135,17 @@ We will implement URL-based language selection:
 
 ## Detailed Implementation Plan
 
-### Phase 1: UI Translation Infrastructure (Priority 1)
+### Phase 1: UI Translation Infrastructure (Priority 1) ✅ **COMPLETE**
 
-#### Step 1.1: Translation Utilities and Shared UI (1-2 hours)
-1. **Create translation extraction utility:**
-   - Script to scan components for text strings
-   - Generate baseline JSON files with English strings
-   - Document patterns for translators to follow
+#### Step 1.1: Translation Utilities and Shared UI (1-2 hours) ✅
+1. **Create translation extraction utility:** ✅
+   - Script to scan components for text strings ✅
+   - Generate baseline JSON files with English strings ✅
+   - Document patterns for translators to follow ✅
 
-2. **Create a shared UI strings file:**
-   - Create `/public/locales/en/ui.json` for buttons, form elements, etc.
-   - Create `/public/locales/en/errors.json` for error messages
+2. **Create a shared UI strings file:** ✅
+   - Create `/public/locales/en/ui.json` for buttons, form elements, etc. ✅
+   - Create `/public/locales/en/errors.json` for error messages ✅
 
 #### Step 1.2: Core Layout Components (2-3 hours) ✅
 1. **Add useTranslation hooks to core layout components:** ✅
@@ -173,36 +183,38 @@ We will implement URL-based language selection:
    - Replace hardcoded strings ✅
    - Handle dynamic content (episode titles/descriptions) ✅
 
-#### Step 1.4: Home and Series Pages (3-4 hours)
-1. **Create translations for main pages:**
-   - `/public/locales/en/home.json`
+#### Step 1.4: Home and Series Pages (3-4 hours) ✅
+1. **Create translations for main pages:** ✅
+   - `/public/locales/en/home.json` ✅
    - `/public/locales/en/series.json` ✅
 
-2. **Update components:**
-   - `src/pages/Home.tsx`
-   - `src/pages/SeriesPage.tsx`
-   - `src/pages/ListenPage.tsx`
+2. **Update components:** ✅
+   - `src/pages/Home.tsx` ✅
+   - `src/pages/SeriesPage.tsx` ✅
+   - `src/pages/ListenPage.tsx` ✅
    - `src/pages/UrantiaPapersPage.tsx` ✅
 
-3. **Translate high-impact UI elements:**
+3. **Translate high-impact UI elements:** ✅
    - Hero section content ✅
-   - Call-to-action buttons
-   - Series and episode cards
-   - Navigation elements
+   - Call-to-action buttons ✅
+   - Series and episode cards ✅
+   - Navigation elements ✅
 
-#### Step 1.5: Remaining UI Components (2-3 hours)
-1. **Complete translation of remaining components:**
-   - Contact page
-   - Error pages
-   - UI utility components
-   - Modals and popups
+#### Step 1.5: Remaining UI Components (2-3 hours) ✅
+1. **Complete translation of remaining components:** ✅
+   - Contact page ✅
+   - Disclaimer page ✅  
+   - Debug page ✅
+   - UI utility components ✅
+   - Modals and popups ✅
    - SocialShareMenu component ✅
 
-2. **Ensure translation coverage:**
-   - Use browser language tools to identify missing translations
-   - Check for hardcoded strings in templates
-   - Verify all user-facing text is translatable
+2. **Ensure translation coverage:** ✅
+   - Use browser language tools to identify missing translations ✅
+   - Check for hardcoded strings in templates ✅
+   - Verify all user-facing text is translatable ✅
    - Fix namespace conflicts between components ✅
+   - Fixed language-aware navigation (return links maintain context) ✅
 
 #### Step 1.6: Conditional Series Display based on Language Availability ✅
 A new requirement has been identified: not all series will be available in every language at launch. For example, the "Jesus Series" audio has not been produced for Spanish yet. The UI must be updated to only display series that are available for the selected language.
@@ -651,20 +663,23 @@ const translationTargets: TranslationTarget[] = [
 
 #### Step 7.4: Translation Priority Matrix ✅
 
-**IMMEDIATE (Week 1-2):**
-1. ✅ Series architecture (completed)
-2. ⏳ Move episodeUtils arrays to translation files
-3. ⏳ Extract UI text from ContactPage, DisclaimerPage, ErrorBoundary
+**COMPLETED:**
+1. ✅ Series architecture and UI translations (completed)
+2. ✅ Extract UI text from ContactPage, DisclaimerPage, Debug components
+3. ✅ Professional translation of disclaimer/legal content
+4. ✅ Audio player and error message translations
+5. ✅ Debug and development tool translations
+6. ✅ All identified UI components translated
 
-**HIGH PRIORITY (Week 3-4):**
+**HIGH PRIORITY (Remaining):**
 1. ⏳ Translate remaining `urantia_summaries.json` content (193 papers)
-2. ⏳ Professional translation of disclaimer/legal content
-3. ⏳ Audio player and error message translations
+2. ⏳ Move episodeUtils arrays to translation files
+3. ⏳ SEO meta tags with language support
 
-**MEDIUM PRIORITY (Week 5-6):**
+**MEDIUM PRIORITY (Future):**
 1. ⏳ `discoverJesusSummaries.ts` translations
-2. ⏳ Debug and development tool translations  
-3. ⏳ Additional UI components not yet identified
+2. ⏳ Analytics language tracking
+3. ⏳ Additional language support (French, Portuguese)
 
 **ESTIMATED TRANSLATION VOLUME:**
 - **Text Blocks**: ~600+ individual translation units
@@ -742,14 +757,17 @@ A comprehensive internationalization system has been implemented for series coll
 ### Namespace Strategy
 We'll use a clear namespace strategy to organize translations:
 
-1. **common.json** - Navigation, footer, shared labels (✅ Basic done)
-2. **ui.json** - UI components, buttons, form elements (❌ Needed)
-3. **episode.json** - Episode player and related content (✅ Basic done)
-4. **home.json** - Homepage content (❌ Needed)
-5. **series.json** - Series listings and metadata (✅ Basic done)
+1. **common.json** - Navigation, footer, shared labels (✅ Complete)
+2. **ui.json** - UI components, buttons, form elements (✅ Complete)
+3. **episode.json** - Episode player and related content (✅ Complete)
+4. **home.json** - Homepage content (✅ Complete)
+5. **series.json** - Series listings and metadata (✅ Complete)
 6. **series-collections.json** - Thematic series data and UI (✅ Complete)
-7. **errors.json** - Error messages and notifications (❌ Needed)
-8. **meta.json** - SEO and meta content (❌ Needed)
+7. **contact.json** - Contact page content (✅ Complete)
+8. **disclaimer.json** - Legal disclaimer content (✅ Complete)
+9. **debug.json** - Debug/development interface (✅ Complete)
+10. **errors.json** - Error messages and notifications (✅ Complete)
+11. **meta.json** - SEO and meta content (❌ Needed)
 
 ### Key Structure Patterns
 ```json
@@ -785,9 +803,12 @@ We'll use a clear namespace strategy to organize translations:
 - [x] Language switcher updates URL
 - [x] Direct URL access works (/es/episode/1)
 - [x] Share menu translations working correctly
-- [ ] Audio plays in selected language
-- [ ] All UI text is translated (in progress)
+- [x] Audio plays in selected language
+- [x] All UI text is translated
 - [x] Mobile responsive in both languages
+- [x] Language-aware navigation (return buttons maintain context)
+- [x] Series availability filtering works correctly
+- [x] Unavailable series redirect with notification
 - [ ] SEO meta tags include language info
 - [ ] Analytics track language preference
 
@@ -808,13 +829,13 @@ We'll use a clear namespace strategy to organize translations:
 ## Timeline Estimate
 
 **Total: 22-33 hours**
-- Phase 1 (UI Translation): 8-12 hours
-- Phase 2 (URL Routing): 3-6 hours
-- Phase 3 (Episode Data): 4-5 hours
-- Phase 4 (SEO): 2-3 hours
-- Phase 5 (Testing): 2-3 hours
-- Phase 6 (Analytics): 1 hour
-- Phase 7 (Scripting): 2-3 hours
+- Phase 1 (UI Translation): 8-12 hours ✅ **COMPLETE**
+- Phase 2 (URL Routing): 3-6 hours ✅ **COMPLETE**
+- Phase 3 (Episode Data): 4-5 hours ✅ **COMPLETE**
+- Phase 4 (SEO): 2-3 hours ⏳ **REMAINING**
+- Phase 5 (Testing): 2-3 hours ✅ **COMPLETE**
+- Phase 6 (Analytics): 1 hour ⏳ **REMAINING**
+- Phase 7 (Content Translation): 2-3 hours ⏳ **REMAINING**
 
 ## Future Expansion
 
