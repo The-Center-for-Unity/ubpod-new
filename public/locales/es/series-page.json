@@ -1,0 +1,43 @@
+{
+  "hero": {
+    "title": "Descubre la Sabiduría Cósmica que Cambia Vidas",
+    "subtitle": "Sumérgete en las profundas enseñanzas del Libro de Urantia a través de {{count}} series de audio narradas expertamente",
+    "description": "Desde la vida de Jesús hasta los orígenes cósmicos, cada serie transforma conceptos complejos en ideas accesibles para el crecimiento espiritual"
+  },
+  "featured": {
+    "title": "Comienza tu Viaje Cósmico",
+    "description": "Nuestras series más populares ofrecen puntos de entrada perfectos para entender las enseñanzas transformadoras del Libro de Urantia:",
+    "badge": "Favorito de los Fanáticos",
+    "episodeInfo": "5 episodios • ~1 hora total",
+    "startJourney": "Comienza tu viaje →"
+  },
+  "explore": {
+    "title": "Explora Todas las Colecciones de Series",
+    "description": "Navega por nuestra biblioteca completa de enseñanzas de audio o busca temas específicos"
+  },
+  "filters": {
+    "allSeries": "Todas las Series ({{count}})",
+    "jesusSeries": "Jesús ({{count}})",
+    "cosmicSeries": "Cósmico ({{count}})",
+    "searchPlaceholder": "Buscar series por título o descripción...",
+    "searchResults": "Se encontraron {{count}} resultados para \"{{query}}\"",
+    "clearSearch": "Limpiar búsqueda",
+    "structuredView": "Vista Estructurada",
+    "gridView": "Vista de Cuadrícula",
+    "filterByCategory": "Filtrar series por categoría"
+  },
+  "categories": {
+    "jesusTitle": "La Vida y Enseñanzas de Jesús",
+    "cosmicTitle": "Series Cósmicas"
+  },
+  "seriesCard": {
+    "jesusLabel": "Jesús",
+    "cosmicLabel": "Cósmico",
+    "episodes": "5 episodios",
+    "viewDetails": "Ver Detalles →"
+  },
+  "noResults": {
+    "message": "No se encontraron series que coincidan con tu búsqueda. Intenta ajustar tus filtros.",
+    "clearFilters": "Limpiar filtros"
+  }
+} 

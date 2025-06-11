@@ -2,23 +2,39 @@ import React, { useState } from 'react';
 import Layout from '../components/layout/Layout';
 import SeriesCardGrid from '../components/ui/SeriesCardGrid';
 import { getAllSeries, SeriesInfo } from '../utils/seriesUtils';
+import { filterSeriesByLanguage } from '../utils/seriesAvailabilityUtils';
+import { getTranslatedSeriesData } from '../utils/seriesCollectionsUtils';
 import { Search, Users, Globe, BookOpen, GridIcon, ListIcon } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { useLanguage } from '../i18n/LanguageContext';
 
 export default function SeriesPage() {
+  const { t } = useTranslation('series-page');
+  const { language } = useLanguage();
   const [viewMode, setViewMode] = useState<'grid' | 'structured'>('structured');
   const [searchQuery, setSearchQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   
-  // Get all series
-  const allSeries = getAllSeries();
+  // Get all series and filter by language availability
+  const allSeriesData = getAllSeries();
+  const languageFilteredSeries = filterSeriesByLanguage(allSeriesData, language);
   
-  // Count series by category
-  const jesusSeriesCount = allSeries.filter(s => s.category === 'jesus-focused').length;
-  const cosmicSeriesCount = allSeries.filter(s => s.category === 'parts-i-iii').length;
+  // Apply translations to each series
+  const allSeries = languageFilteredSeries.map((series: SeriesInfo) => {
+    const translatedData = getTranslatedSeriesData(series.id, language);
+    return {
+      ...series,
+      ...translatedData
+    };
+  });
+  
+  // Count series by category (language-aware filtering already done by getAllSeries)
+  const jesusSeriesCount = allSeries.filter((s: SeriesInfo) => s.category === 'jesus-focused').length;
+  const cosmicSeriesCount = allSeries.filter((s: SeriesInfo) => s.category === 'parts-i-iii').length;
   
   // Filter series based on search and category
-  const filteredSeries = allSeries.filter(series => {
+  const filteredSeries = allSeries.filter((series: SeriesInfo) => {
     // Filter by category if selected
     if (activeCategory && activeCategory !== 'all') {
       if (activeCategory === 'jesus' && series.category !== 'jesus-focused') return false;
@@ -35,13 +51,13 @@ export default function SeriesPage() {
   });
   
   // Group by category for structured view
-  const jesusSeries = filteredSeries.filter(s => s.category === 'jesus-focused');
-  const cosmicSeries = filteredSeries.filter(s => s.category === 'parts-i-iii');
+  const jesusSeries = filteredSeries.filter((s: SeriesInfo) => s.category === 'jesus-focused');
+  const cosmicSeries = filteredSeries.filter((s: SeriesInfo) => s.category === 'parts-i-iii');
   
   // Featured series - first from each category
   const featuredSeries = [
-    allSeries.find(s => s.category === 'jesus-focused'),
-    allSeries.find(s => s.category === 'parts-i-iii')
+    allSeries.find((s: SeriesInfo) => s.category === 'jesus-focused'),
+    allSeries.find((s: SeriesInfo) => s.category === 'parts-i-iii')
   ].filter(Boolean) as SeriesInfo[];
 
   return (
@@ -52,13 +68,13 @@ export default function SeriesPage() {
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center mb-8">
               <h1 className="title-main text-4xl md:text-5xl lg:text-6xl mb-4 text-white">
-                Discover Life-Changing Cosmic Wisdom
+                {t('hero.title')}
               </h1>
               <p className="section-subtitle text-xl text-white/90 max-w-2xl mx-auto mb-4">
-                Immerse yourself in the Urantia Book's profound teachings through {allSeries.length} expertly narrated audio series
+                {t('hero.subtitle', { count: allSeries.length })}
               </p>
               <p className="text-lg text-white/80 max-w-2xl mx-auto">
-                From the life of Jesus to cosmic origins, each series transforms complex concepts into accessible insights for spiritual growth
+                {t('hero.description')}
               </p>
             </div>
           </div>
@@ -69,9 +85,9 @@ export default function SeriesPage() {
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto mb-8">
               <div className="text-center mb-6">
-                <h2 className="text-2xl font-bold text-white mb-3">Begin Your Cosmic Journey</h2>
+                <h2 className="text-2xl font-bold text-white mb-3">{t('featured.title')}</h2>
                 <p className="text-white/70 max-w-xl mx-auto">
-                  Our most popular series offer perfect entry points to understanding the Urantia Book's transformative teachings:
+                  {t('featured.description')}
                 </p>
               </div>
               
@@ -84,13 +100,13 @@ export default function SeriesPage() {
                   >
                     <div className="p-6">
                       <div className="bg-primary/70 text-white text-xs px-2 py-1 rounded inline-block mb-3">
-                        Fan Favorite
+                        {t('featured.badge')}
                       </div>
                       <h3 className="text-xl font-bold text-white mb-2">{series.title}</h3>
                       <p className="text-white/70 text-sm mb-3 line-clamp-2">{series.description}</p>
                       <div className="flex justify-between items-center">
-                        <span className="text-white/50 text-xs">5 episodes • ~1 hour total</span>
-                        <span className="text-primary text-sm">Start your journey →</span>
+                        <span className="text-white/50 text-xs">{t('featured.episodeInfo')}</span>
+                        <span className="text-primary text-sm">{t('featured.startJourney')}</span>
                       </div>
                     </div>
                   </Link>
@@ -106,9 +122,9 @@ export default function SeriesPage() {
             <div className="w-full max-w-4xl mx-auto px-0 sm:px-4">
               {/* Section Heading */}
               <div className="text-center mb-6">
-                <h2 className="text-2xl font-bold text-white mb-2">Explore All Series Collections</h2>
+                <h2 className="text-2xl font-bold text-white mb-2">{t('explore.title')}</h2>
                 <p className="text-white/70 max-w-xl mx-auto px-4 sm:px-0">
-                  Browse our complete library of audio teachings or search for specific topics
+                  {t('explore.description')}
                 </p>
               </div>
             
@@ -121,21 +137,23 @@ export default function SeriesPage() {
                       className={`px-3 py-2 rounded-md text-sm ${activeCategory === null ? 'bg-primary text-white' : 'bg-navy-light/30 text-white/70 hover:bg-navy-light/50'}`}
                       onClick={() => setActiveCategory(null)}
                     >
-                      All Series ({allSeries.length})
+                      {t('filters.allSeries', { count: allSeries.length })}
                     </button>
-                    <button
-                      className={`flex items-center px-3 py-2 rounded-md text-sm ${activeCategory === 'jesus' ? 'bg-primary text-white' : 'bg-navy-light/30 text-white/70 hover:bg-navy-light/50'}`}
-                      onClick={() => setActiveCategory(activeCategory === 'jesus' ? null : 'jesus')}
-                    >
-                      <Users className="w-3.5 h-3.5 mr-1.5" />
-                      Jesus ({jesusSeriesCount})
-                    </button>
+                    {jesusSeriesCount > 0 && (
+                      <button
+                        className={`flex items-center px-3 py-2 rounded-md text-sm ${activeCategory === 'jesus' ? 'bg-primary text-white' : 'bg-navy-light/30 text-white/70 hover:bg-navy-light/50'}`}
+                        onClick={() => setActiveCategory(activeCategory === 'jesus' ? null : 'jesus')}
+                      >
+                        <Users className="w-3.5 h-3.5 mr-1.5" />
+                        {t('filters.jesusSeries', { count: jesusSeriesCount })}
+                      </button>
+                    )}
                     <button
                       className={`flex items-center px-3 py-2 rounded-md text-sm ${activeCategory === 'cosmic' ? 'bg-primary text-white' : 'bg-navy-light/30 text-white/70 hover:bg-navy-light/50'}`}
                       onClick={() => setActiveCategory(activeCategory === 'cosmic' ? null : 'cosmic')}
                     >
                       <Globe className="w-3.5 h-3.5 mr-1.5" />
-                      Cosmic ({cosmicSeriesCount})
+                      {t('filters.cosmicSeries', { count: cosmicSeriesCount })}
                     </button>
                   </div>
                   
@@ -151,11 +169,11 @@ export default function SeriesPage() {
                           if (value === 'all') setActiveCategory(null);
                           else setActiveCategory(value);
                         }}
-                        aria-label="Filter series by category"
+                        aria-label={t('filters.filterByCategory')}
                       >
-                        <option value="all">All Series ({allSeries.length})</option>
-                        <option value="jesus">Jesus Series ({jesusSeriesCount})</option>
-                        <option value="cosmic">Cosmic Series ({cosmicSeriesCount})</option>
+                        <option value="all">{t('filters.allSeries', { count: allSeries.length })}</option>
+                        {jesusSeriesCount > 0 && <option value="jesus">{t('filters.jesusSeries', { count: jesusSeriesCount })}</option>}
+                        <option value="cosmic">{t('filters.cosmicSeries', { count: cosmicSeriesCount })}</option>
                       </select>
                     </div>
                     
@@ -164,16 +182,16 @@ export default function SeriesPage() {
                       <button
                         className={`p-1.5 rounded ${viewMode === 'structured' ? 'bg-primary text-white' : 'bg-navy-light/30 text-white/70'}`}
                         onClick={() => setViewMode('structured')}
-                        aria-label="Structured View"
-                        title="Structured View"
+                        aria-label={t('filters.structuredView')}
+                        title={t('filters.structuredView')}
                       >
                         <ListIcon size={18} />
                       </button>
                       <button
                         className={`p-1.5 rounded ${viewMode === 'grid' ? 'bg-primary text-white' : 'bg-navy-light/30 text-white/70'}`}
                         onClick={() => setViewMode('grid')}
-                        aria-label="Grid View"
-                        title="Grid View"
+                        aria-label={t('filters.gridView')}
+                        title={t('filters.gridView')}
                       >
                         <GridIcon size={18} />
                       </button>
@@ -185,16 +203,16 @@ export default function SeriesPage() {
                     <button
                       className={`p-2 rounded ${viewMode === 'structured' ? 'bg-primary text-white' : 'bg-navy-light/30 text-white/70'}`}
                       onClick={() => setViewMode('structured')}
-                      aria-label="Structured View"
-                      title="Structured View"
+                      aria-label={t('filters.structuredView')}
+                      title={t('filters.structuredView')}
                     >
                       <ListIcon size={20} />
                     </button>
                     <button
                       className={`p-2 rounded ${viewMode === 'grid' ? 'bg-primary text-white' : 'bg-navy-light/30 text-white/70'}`}
                       onClick={() => setViewMode('grid')}
-                      aria-label="Grid View"
-                      title="Grid View"
+                      aria-label={t('filters.gridView')}
+                      title={t('filters.gridView')}
                     >
                       <GridIcon size={20} />
                     </button>
@@ -207,17 +225,17 @@ export default function SeriesPage() {
                     <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white/50" size={16} />
                     <input
                       type="text"
-                      placeholder="Search series by title or description..."
+                      placeholder={t('filters.searchPlaceholder')}
                       className="w-full py-1.5 sm:py-3 pl-9 pr-4 bg-navy-light/30 border border-white/10 rounded-md text-white placeholder:text-white/50 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent"
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
-                      aria-label="Search series"
+                      aria-label={t('filters.searchPlaceholder')}
                     />
                     {searchQuery && (
                       <button
                         onClick={() => setSearchQuery('')}
                         className="absolute right-3 top-1/2 transform -translate-y-1/2 text-white/50 hover:text-white/70"
-                        aria-label="Clear search"
+                        aria-label={t('filters.clearSearch')}
                       >
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -227,7 +245,7 @@ export default function SeriesPage() {
                   </div>
                   {searchQuery && (
                     <div className="mt-2 text-sm text-white/70">
-                      Found {filteredSeries.length} results for "{searchQuery}"
+                      {t('filters.searchResults', { count: filteredSeries.length, query: searchQuery })}
                     </div>
                   )}
                 </div>
@@ -237,12 +255,12 @@ export default function SeriesPage() {
               <div className="bg-navy-dark border-x border-b border-white/10 rounded-b-xl p-4 sm:p-5">
                 {filteredSeries.length === 0 ? (
                   <div className="text-center py-12">
-                    <p className="text-white/70">No series found matching your search. Try adjusting your filters.</p>
+                    <p className="text-white/70">{t('noResults.message')}</p>
                     <button 
                       className="mt-4 text-primary hover:text-primary-light"
                       onClick={() => {setSearchQuery(''); setActiveCategory(null);}}
                     >
-                      Clear filters
+                      {t('noResults.clearFilters')}
                     </button>
                   </div>
                 ) : viewMode === 'grid' ? (
@@ -251,10 +269,10 @@ export default function SeriesPage() {
                       <div>
                         <div className="flex items-center mb-4">
                           <Users className="w-5 h-5 text-rose-400/70 mr-2" />
-                          <h2 className="text-xl font-bold text-rose-400">The Life and Teachings of Jesus</h2>
+                          <h2 className="text-xl font-bold text-rose-400">{t('categories.jesusTitle')}</h2>
                         </div>
                         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
-                          {jesusSeries.map(series => (
+                          {jesusSeries.map((series: SeriesInfo) => (
                             <Link 
                               key={series.id}
                               to={`/series/${series.id}`}
@@ -263,15 +281,15 @@ export default function SeriesPage() {
                               <div className="p-4 sm:p-5">
                                 <div className="flex flex-wrap items-center gap-2 mb-3">
                                   <span className={`text-xs px-2 py-0.5 rounded-full ${series.category === 'jesus-focused' ? 'bg-rose-400/20 text-rose-400' : 'bg-blue-400/20 text-blue-400'}`}>
-                                    {series.category === 'jesus-focused' ? 'Jesus' : 'Cosmic'}
+                                    {series.category === 'jesus-focused' ? t('seriesCard.jesusLabel') : t('seriesCard.cosmicLabel')}
                                   </span>
                                   <span className="text-white/30 text-xs">•</span>
-                                  <span className="text-white/50 text-xs">5 episodes</span>
+                                  <span className="text-white/50 text-xs">{t('seriesCard.episodes')}</span>
                                 </div>
                                 <h3 className="text-lg font-bold text-white mb-2 line-clamp-2">{series.title}</h3>
                                 <p className="text-white/70 text-sm mb-3 line-clamp-2">{series.description}</p>
                                 <div className="flex items-center justify-end">
-                                  <span className="text-primary text-sm font-medium group-hover:underline">View Details →</span>
+                                  <span className="text-primary text-sm font-medium group-hover:underline">{t('seriesCard.viewDetails')}</span>
                                 </div>
                               </div>
                             </Link>
@@ -284,10 +302,10 @@ export default function SeriesPage() {
                       <div>
                         <div className="flex items-center mb-4">
                           <Globe className="w-5 h-5 text-blue-400/70 mr-2" />
-                          <h2 className="text-xl font-bold text-blue-400">Cosmic Series</h2>
+                          <h2 className="text-xl font-bold text-blue-400">{t('categories.cosmicTitle')}</h2>
                         </div>
                         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
-                          {cosmicSeries.map(series => (
+                          {cosmicSeries.map((series: SeriesInfo) => (
                             <Link 
                               key={series.id}
                               to={`/series/${series.id}`}
@@ -296,15 +314,15 @@ export default function SeriesPage() {
                               <div className="p-4 sm:p-5">
                                 <div className="flex flex-wrap items-center gap-2 mb-3">
                                   <span className={`text-xs px-2 py-0.5 rounded-full ${series.category === 'jesus-focused' ? 'bg-rose-400/20 text-rose-400' : 'bg-blue-400/20 text-blue-400'}`}>
-                                    {series.category === 'jesus-focused' ? 'Jesus' : 'Cosmic'}
+                                    {series.category === 'jesus-focused' ? t('seriesCard.jesusLabel') : t('seriesCard.cosmicLabel')}
                                   </span>
                                   <span className="text-white/30 text-xs">•</span>
-                                  <span className="text-white/50 text-xs">5 episodes</span>
+                                  <span className="text-white/50 text-xs">{t('seriesCard.episodes')}</span>
                                 </div>
                                 <h3 className="text-lg font-bold text-white mb-2 line-clamp-2">{series.title}</h3>
                                 <p className="text-white/70 text-sm mb-3 line-clamp-2">{series.description}</p>
                                 <div className="flex items-center justify-end">
-                                  <span className="text-primary text-sm font-medium group-hover:underline">View Details →</span>
+                                  <span className="text-primary text-sm font-medium group-hover:underline">{t('seriesCard.viewDetails')}</span>
                                 </div>
                               </div>
                             </Link>
@@ -319,10 +337,10 @@ export default function SeriesPage() {
                       <div>
                         <div className="flex items-center mb-4">
                           <Users className="w-5 h-5 text-rose-400/70 mr-2" />
-                          <h2 className="text-xl font-bold text-rose-400">The Life and Teachings of Jesus</h2>
+                          <h2 className="text-xl font-bold text-rose-400">{t('categories.jesusTitle')}</h2>
                         </div>
                         <div className="grid sm:grid-cols-2 gap-4">
-                          {jesusSeries.map(series => (
+                          {jesusSeries.map((series: SeriesInfo) => (
                             <Link 
                               key={series.id}
                               to={`/series/${series.id}`}
@@ -331,15 +349,15 @@ export default function SeriesPage() {
                               <div className="p-4 sm:p-5">
                                 <div className="flex flex-wrap items-center gap-2 mb-3">
                                   <span className={`text-xs px-2 py-0.5 rounded-full ${series.category === 'jesus-focused' ? 'bg-rose-400/20 text-rose-400' : 'bg-blue-400/20 text-blue-400'}`}>
-                                    {series.category === 'jesus-focused' ? 'Jesus' : 'Cosmic'}
+                                    {series.category === 'jesus-focused' ? t('seriesCard.jesusLabel') : t('seriesCard.cosmicLabel')}
                                   </span>
                                   <span className="text-white/30 text-xs">•</span>
-                                  <span className="text-white/50 text-xs">5 episodes</span>
+                                  <span className="text-white/50 text-xs">{t('seriesCard.episodes')}</span>
                                 </div>
                                 <h3 className="text-lg font-bold text-white mb-2 line-clamp-2">{series.title}</h3>
                                 <p className="text-white/70 text-sm mb-3 line-clamp-2">{series.description}</p>
                                 <div className="flex items-center justify-end">
-                                  <span className="text-primary text-sm font-medium group-hover:underline">View Details →</span>
+                                  <span className="text-primary text-sm font-medium group-hover:underline">{t('seriesCard.viewDetails')}</span>
                                 </div>
                               </div>
                             </Link>
@@ -352,10 +370,10 @@ export default function SeriesPage() {
                       <div>
                         <div className="flex items-center mb-4">
                           <Globe className="w-5 h-5 text-blue-400/70 mr-2" />
-                          <h2 className="text-xl font-bold text-blue-400">Cosmic Series</h2>
+                          <h2 className="text-xl font-bold text-blue-400">{t('categories.cosmicTitle')}</h2>
                         </div>
                         <div className="grid sm:grid-cols-2 gap-4">
-                          {cosmicSeries.map(series => (
+                          {cosmicSeries.map((series: SeriesInfo) => (
                             <Link 
                               key={series.id}
                               to={`/series/${series.id}`}
@@ -364,15 +382,15 @@ export default function SeriesPage() {
                               <div className="p-4 sm:p-5">
                                 <div className="flex flex-wrap items-center gap-2 mb-3">
                                   <span className={`text-xs px-2 py-0.5 rounded-full ${series.category === 'jesus-focused' ? 'bg-rose-400/20 text-rose-400' : 'bg-blue-400/20 text-blue-400'}`}>
-                                    {series.category === 'jesus-focused' ? 'Jesus' : 'Cosmic'}
+                                    {series.category === 'jesus-focused' ? t('seriesCard.jesusLabel') : t('seriesCard.cosmicLabel')}
                                   </span>
                                   <span className="text-white/30 text-xs">•</span>
-                                  <span className="text-white/50 text-xs">5 episodes</span>
+                                  <span className="text-white/50 text-xs">{t('seriesCard.episodes')}</span>
                                 </div>
                                 <h3 className="text-lg font-bold text-white mb-2 line-clamp-2">{series.title}</h3>
                                 <p className="text-white/70 text-sm mb-3 line-clamp-2">{series.description}</p>
                                 <div className="flex items-center justify-end">
-                                  <span className="text-primary text-sm font-medium group-hover:underline">View Details →</span>
+                                  <span className="text-primary text-sm font-medium group-hover:underline">{t('seriesCard.viewDetails')}</span>
                                 </div>
                               </div>
                             </Link>
