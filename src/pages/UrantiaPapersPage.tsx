@@ -2,18 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Search, Book, Headphones, Download, ChevronDown, ChevronUp, Play, Pause, BookOpen } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { Episode } from '../types/index';
 import { getUrantiaPapers, getUrantiaPaperPart } from '../data/episodes';
 import Layout from '../components/layout/Layout';
 import { LocalizedLink } from '../components/shared/LocalizedLink';
-
-// Define the parts of the Urantia Book
-const URANTIA_PARTS = [
-  { id: 1, title: "The Central and Superuniverses", papers: [1, 31], color: "from-blue-500/20" },
-  { id: 2, title: "The Local Universe", papers: [32, 56], color: "from-green-500/20" },
-  { id: 3, title: "The History of Urantia", papers: [57, 119], color: "from-amber-500/20" },
-  { id: 4, title: "The Life and Teachings of Jesus", papers: [120, 196], color: "from-rose-500/20" }
-];
+import { useLanguage } from '../i18n/LanguageContext';
 
 // Paper Card Component
 interface PaperCardProps {
@@ -21,6 +15,7 @@ interface PaperCardProps {
 }
 
 const PaperCard: React.FC<PaperCardProps> = ({ paper }) => {
+  const { t } = useTranslation('series');
   // Get part color based on paper ID
   const getPartColor = (paperId: number) => {
     const part = getUrantiaPaperPart(paperId);
@@ -54,7 +49,7 @@ const PaperCard: React.FC<PaperCardProps> = ({ paper }) => {
       <div className="p-5">
         <div className="flex justify-between items-start mb-3">
           <span className="text-primary font-bold">{paper.id}</span>
-          <span className="text-xs text-white/50">Part {getUrantiaPaperPart(paper.id)}</span>
+          <span className="text-xs text-white/50">{t('part_label', { id: getUrantiaPaperPart(paper.id) })}</span>
         </div>
         <h3 className="text-lg font-semibold mb-2 text-white">{paper.title}</h3>
         <p className="text-white/70 text-sm mb-4 line-clamp-2">{displaySummary}</p>
@@ -65,7 +60,7 @@ const PaperCard: React.FC<PaperCardProps> = ({ paper }) => {
             className="flex items-center gap-1.5 px-3 py-1.5 bg-primary text-white rounded-md hover:bg-primary-dark transition-colors text-sm"
           >
             <Play size={14} />
-            <span>Listen</span>
+            <span>{t('listen_button')}</span>
           </LocalizedLink>
           
           {paper.pdfUrl && (
@@ -76,7 +71,7 @@ const PaperCard: React.FC<PaperCardProps> = ({ paper }) => {
               className="flex items-center gap-1.5 px-3 py-1.5 bg-navy-light text-white/80 rounded-md hover:bg-navy transition-colors text-sm"
             >
               <BookOpen size={14} />
-              <span>Read</span>
+              <span>{t('read_button')}</span>
             </a>
           )}
           
@@ -86,7 +81,7 @@ const PaperCard: React.FC<PaperCardProps> = ({ paper }) => {
             className="flex items-center gap-1.5 px-3 py-1.5 bg-navy-light text-white/80 rounded-md hover:bg-navy transition-colors text-sm"
           >
             <Download size={14} />
-            <span>Download</span>
+            <span>{t('download_button')}</span>
           </a>
         </div>
       </div>
@@ -96,6 +91,16 @@ const PaperCard: React.FC<PaperCardProps> = ({ paper }) => {
 
 // Main Page Component
 export default function UrantiaPapersPage() {
+  const { t } = useTranslation('series');
+  const { language } = useLanguage();
+
+  const URANTIA_PARTS = [
+    { id: 1, title: t("part_1_title"), papers: [1, 31], color: "from-blue-500/20" },
+    { id: 2, title: t("part_2_title"), papers: [32, 56], color: "from-green-500/20" },
+    { id: 3, title: t("part_3_title"), papers: [57, 119], color: "from-amber-500/20" },
+    { id: 4, title: t("part_4_title"), papers: [120, 196], color: "from-rose-500/20" }
+  ];
+
   const [papers, setPapers] = useState<Episode[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [filteredPapers, setFilteredPapers] = useState<Episode[]>([]);
@@ -105,9 +110,27 @@ export default function UrantiaPapersPage() {
   // Load papers on component mount
   useEffect(() => {
     const allPapers = getUrantiaPapers();
-    setPapers(allPapers);
-    setFilteredPapers(allPapers);
-  }, []);
+    if (language === 'en') {
+      setPapers(allPapers);
+      setFilteredPapers(allPapers);
+    } else {
+      const translatedPapers = allPapers.map(paper => {
+        const translation = paper.translations?.[language];
+        if (translation) {
+          return {
+            ...paper,
+            title: translation.title || paper.title,
+            description: translation.description || paper.description,
+            summary: translation.summary || paper.summary,
+            cardSummary: translation.cardSummary || paper.cardSummary,
+          };
+        }
+        return paper;
+      });
+      setPapers(translatedPapers);
+      setFilteredPapers(translatedPapers);
+    }
+  }, [language]);
   
   // Filter papers when search query changes
   useEffect(() => {
@@ -153,17 +176,16 @@ export default function UrantiaPapersPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h1 className="title-main text-xl md:text-2xl lg:text-3xl mb-4">The Urantia Papers</h1>
+          <h1 className="title-main text-xl md:text-2xl lg:text-3xl mb-4">{t('title')}</h1>
           <p className="body-lg max-w-3xl">
-            Immerse yourself in cosmic wisdom through AI-crafted audio journeys of the Urantia Book.
-            Experience profound teachings in a new, accessible format.
+            {t('description')}
           </p>
           
           {/* Search Bar */}
           <div className="relative max-w-md mt-6">
             <input
               type="text"
-              placeholder="Search papers by title, number, or keyword..."
+              placeholder={t('search_placeholder')}
               className="w-full pl-10 pr-4 py-2 bg-navy-light/50 border border-white/10 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
@@ -177,13 +199,13 @@ export default function UrantiaPapersPage() {
               className={`px-3 py-1 rounded text-sm ${viewMode === 'grid' ? 'bg-primary text-white' : 'bg-navy-light/50 text-white/70'}`}
               onClick={() => setViewMode('grid')}
             >
-              Grid View
+              {t('grid_view')}
             </button>
             <button 
               className={`px-3 py-1 rounded text-sm ${viewMode === 'list' ? 'bg-primary text-white' : 'bg-navy-light/50 text-white/70'}`}
               onClick={() => setViewMode('list')}
             >
-              List View
+              {t('list_view')}
             </button>
           </div>
         </motion.div>
@@ -191,12 +213,12 @@ export default function UrantiaPapersPage() {
         {/* Search Results Count */}
         {isSearchActive && (
           <div className="mb-6 text-white/70">
-            Found {filteredPapers.length} papers matching "{searchQuery}"
+            {t('search_results', { count: filteredPapers.length, query: searchQuery })}
             <button 
               className="ml-2 text-primary hover:underline"
               onClick={() => setSearchQuery('')}
             >
-              Clear
+              {t('clear_search')}
             </button>
           </div>
         )}
@@ -212,7 +234,7 @@ export default function UrantiaPapersPage() {
                 onClick={() => togglePartExpansion(part.id)}
               >
                 <h2 className="text-xl font-semibold text-white">
-                  Part {part.id}: {part.title}
+                  {t('part_header', { id: part.id, title: part.title })}
                 </h2>
                 <button className="text-white/80 hover:text-white">
                   {expandedParts.includes(part.id) ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
@@ -271,48 +293,53 @@ export default function UrantiaPapersPage() {
 
 // Paper List Item Component
 const PaperListItem: React.FC<PaperCardProps> = ({ paper }) => {
+  const { t } = useTranslation('series');
   const displaySummary = paper.summary || paper.description || '';
 
   return (
-    <div className="flex flex-col md:flex-row items-center justify-between p-3 bg-navy-light/20 rounded-lg border border-transparent hover:border-primary/30 transition-all">
-      <div className="flex-1 mb-3 md:mb-0">
-        <div className="flex items-center space-x-3">
-          <span className="text-primary font-bold text-lg">{paper.id}</span>
-          <h3 className="text-md font-semibold text-white">{paper.title}</h3>
+    <LocalizedLink to={`/series/urantia-papers/${paper.id}`}>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        className="p-4 bg-navy-light/30 rounded-lg border border-transparent hover:border-primary/30 transition-all flex items-center justify-between"
+      >
+        <div className="flex-grow">
+          <div className="flex items-center gap-4">
+            <span className="text-primary font-bold text-lg">{paper.id}</span>
+            <h3 className="text-md font-semibold text-white">{paper.title}</h3>
+          </div>
+          <p className="text-white/70 text-sm mt-1 ml-9">{displaySummary}</p>
         </div>
-        <p className="text-white/60 text-sm mt-1 ml-8 line-clamp-1">{displaySummary}</p>
-      </div>
-      
-      <div className="flex items-center space-x-2 ml-12 md:ml-0">
-        <LocalizedLink
-          to={`/series/urantia-papers/${paper.id}`}
-          className="flex items-center gap-1 px-2 py-1 bg-primary text-white rounded hover:bg-primary-dark transition-colors text-sm"
-        >
-          <Play size={14} />
-          <span className="hidden md:inline">Listen</span>
-        </LocalizedLink>
-        
-        {paper.pdfUrl && (
-          <a
-            href={paper.pdfUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-1 px-2 py-1 bg-navy-light text-white/80 rounded hover:bg-navy transition-colors text-sm"
+        <div className="flex items-center space-x-2 flex-shrink-0 ml-4">
+          <LocalizedLink
+            to={`/series/urantia-papers/${paper.id}`}
+            className="p-2 bg-navy-light rounded-md hover:bg-navy transition-colors"
+            title={t('listen_button')}
           >
-            <Book size={14} />
-            <span className="hidden md:inline">Read</span>
+            <Headphones size={18} className="text-white" />
+          </LocalizedLink>
+          {paper.pdfUrl && (
+            <a
+              href={paper.pdfUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 bg-navy-light rounded-md hover:bg-navy transition-colors"
+              title={t('read_button')}
+            >
+              <BookOpen size={18} className="text-white" />
+            </a>
+          )}
+          <a
+            href={paper.audioUrl}
+            download
+            className="p-2 bg-navy-light rounded-md hover:bg-navy transition-colors"
+            title={t('download_button')}
+          >
+            <Download size={18} className="text-white" />
           </a>
-        )}
-        
-        <a
-          href={paper.audioUrl}
-          download
-          className="flex items-center gap-1 px-2 py-1 bg-navy-light text-white/80 rounded hover:bg-navy transition-colors text-sm"
-        >
-          <Download size={14} />
-          <span className="hidden md:inline">Download</span>
-        </a>
-      </div>
-    </div>
+        </div>
+      </motion.div>
+    </LocalizedLink>
   );
 }; 

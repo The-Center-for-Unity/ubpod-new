@@ -308,28 +308,51 @@ const seriesData: SeriesInfo[] = [
 
 /**
  * Get all series information
+ * @param language The language code for translations (optional)
  * @returns Array of all series
  */
-export function getAllSeries(): SeriesInfo[] {
+export function getAllSeries(language: string = 'en'): SeriesInfo[] {
+  if (language === 'en') {
+    return seriesData;
+  }
+  
+  // For non-English languages, we need to apply translations
+  // Note: We can't use the hook here, so translations will be applied at component level
   return seriesData;
 }
 
 /**
  * Get series by category
  * @param category The category to filter by
+ * @param language The language code for translations (optional)
  * @returns Array of series in the specified category
  */
-export function getSeriesByCategory(category: 'jesus-focused' | 'parts-i-iii'): SeriesInfo[] {
-  return seriesData.filter(series => series.category === category);
+export function getSeriesByCategory(category: 'jesus-focused' | 'parts-i-iii', language: string = 'en'): SeriesInfo[] {
+  const filtered = seriesData.filter(series => series.category === category);
+  
+  if (language === 'en') {
+    return filtered;
+  }
+  
+  // For non-English languages, translations will be applied at component level
+  return filtered;
 }
 
 /**
  * Get series information by ID
  * @param seriesId The ID of the series
+ * @param language The language code for translations (optional)
  * @returns Series information or undefined if not found
  */
-export function getSeriesInfo(seriesId: string): SeriesInfo | undefined {
-  return seriesData.find(series => series.id === seriesId);
+export function getSeriesInfo(seriesId: string, language: string = 'en'): SeriesInfo | undefined {
+  const series = seriesData.find(series => series.id === seriesId);
+  
+  if (!series || language === 'en') {
+    return series;
+  }
+  
+  // For non-English languages, translations will be applied at component level
+  return series;
 }
 
 /**

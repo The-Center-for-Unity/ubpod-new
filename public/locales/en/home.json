@@ -1,0 +1,58 @@
+{
+  "hero": {
+    "title": "The Urantia\nBook Podcast",
+    "subtitle": "AI-powered audio journeys through cosmic wisdom",
+    "buttons": {
+      "startListening": "Start Listening",
+      "browseSeries": "Browse Series"
+    }
+  },
+  "series": {
+    "subtitle": "PODCAST SERIES",
+    "title": "Explore Our Collections",
+    "description": "Choose from our growing library of thematic series, each exploring a unique facet of the Urantia Book's cosmic teachings."
+  },
+  "features": {
+    "subtitle": "FEATURES",
+    "title": "A New Way to Experience\nThe Urantia Book",
+    "description": "UrantiaBookPod brings the cosmic teachings to life through AI-crafted audio narrations that make complex concepts accessible and engaging.",
+    "items": {
+      "aiAudio": {
+        "title": "AI-Crafted Audio Journeys",
+        "description": "Listen to engaging podcast-style narrations that explore the Urantia Book's concepts with fresh perspectives and insights."
+      },
+      "simplified": {
+        "title": "Complex Concepts Simplified",
+        "description": "Difficult cosmic teachings broken down into accessible conversations that anyone can understand and appreciate."
+      },
+      "offline": {
+        "title": "Offline Access",
+        "description": "Download episodes for offline listening, perfect for commutes, walks, or times without internet access."
+      }
+    }
+  },
+  "howItWorks": {
+    "subtitle": "HOW IT WORKS",
+    "title": "Simple & Accessible",
+    "description": "We've designed UrantiaBookPod to be intuitive and accessible for everyone, whether you're at home or on the go.",
+    "steps": {
+      "browse": {
+        "title": "Browse Episodes",
+        "description": "Navigate through our collection of podcast episodes, organized by Urantia Book papers and topics."
+      },
+      "select": {
+        "title": "Select a Discussion",
+        "description": "Choose a podcast episode that interests you and click to access the audio discussion."
+      },
+      "listen": {
+        "title": "Listen & Engage",
+        "description": "Play the podcast on any device, download for offline listening, or share with friends."
+      }
+    }
+  },
+  "cta": {
+    "title": "Begin Your Journey",
+    "description": "The Urantia Book offers profound insights into our universe, our world, and our spiritual destiny. Start exploring these cosmic teachings through our engaging podcast discussions today.",
+    "button": "Explore The Papers"
+  }
+}

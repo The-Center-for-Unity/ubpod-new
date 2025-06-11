@@ -13,7 +13,7 @@ This document outlines the plan for implementing internationalization (i18n) in 
 - ✅ Media utilities support language-specific paths
 - ✅ Spanish PDFs and audios uploaded to R2 bucket
 
-**Progress (Updated: June 2025):**
+**Progress (Updated: January 2025):**
 - ✅ Header and Footer components updated to use translation hooks
 - ✅ Translation files for common.json created and implemented
 - ✅ Translation files for episode.json created and expanded
@@ -23,12 +23,20 @@ This document outlines the plan for implementing internationalization (i18n) in 
 - ✅ Basic layout improvements for multi-language support
 - ✅ EpisodePage component updated to use translations
 - ✅ SocialShareMenu component internationalized with namespaced translations
-- ✅ Fixed namespace conflicts between component-specific translations
+- ✅ Episode data internationalization framework fully implemented
+- ✅ Fixed language-aware navigation for Next/Previous episode links
+- ✅ **Series Collections Internationalization Complete** (NEW)
+  - ✅ Created comprehensive translation files for series collections (`series-collections.json`)
+  - ✅ Implemented language-aware series filtering (Jesus series hidden in Spanish)
+  - ✅ Updated SeriesCardGrid and SeriesCard components with full translation support
+  - ✅ Created translation utilities for series data and UI labels
+  - ✅ Enhanced series utilities with language parameters
 
 **Pending:**
-- ⏳ Comprehensive translation files not completed for all pages
-- ✅ Episode data internationalization framework implemented with sample translations
+- ⏳ Comprehensive translation files not completed for all pages (Series Collections ✅)
+- ⏳ Automated script for full-site content translation
 - ❌ SEO meta tags not language-aware
+- ⏳ Home page series section integration with new translation system
 
 ## Requirements
 
@@ -168,16 +176,16 @@ We will implement URL-based language selection:
 #### Step 1.4: Home and Series Pages (3-4 hours)
 1. **Create translations for main pages:**
    - `/public/locales/en/home.json`
-   - `/public/locales/en/series.json`
+   - `/public/locales/en/series.json` ✅
 
 2. **Update components:**
    - `src/pages/Home.tsx`
    - `src/pages/SeriesPage.tsx`
    - `src/pages/ListenPage.tsx`
-   - `src/pages/UrantiaPapersPage.tsx`
+   - `src/pages/UrantiaPapersPage.tsx` ✅
 
 3. **Translate high-impact UI elements:**
-   - Hero section content
+   - Hero section content ✅
    - Call-to-action buttons
    - Series and episode cards
    - Navigation elements
@@ -195,6 +203,39 @@ We will implement URL-based language selection:
    - Check for hardcoded strings in templates
    - Verify all user-facing text is translatable
    - Fix namespace conflicts between components ✅
+
+#### Step 1.6: Conditional Series Display based on Language Availability ✅
+A new requirement has been identified: not all series will be available in every language at launch. For example, the "Jesus Series" audio has not been produced for Spanish yet. The UI must be updated to only display series that are available for the selected language.
+
+**Technical Solution:** ✅
+We implemented a declarative, data-driven approach to control series visibility.
+
+1.  **Created a Series Availability Manifest:** ✅
+    -   Created `src/data/series-availability.json`.
+    -   This file explicitly defines which series collections are available for each supported language.
+    -   Final implementation structure:
+        ```json
+        {
+          "en": [
+            "jesus-1", "jesus-2", ..., "jesus-14",
+            "cosmic-1", "cosmic-2", ..., "cosmic-14"
+          ],
+          "es": [
+            "cosmic-1", "cosmic-2", ..., "cosmic-14"
+          ]
+        }
+        ```
+
+2.  **Created Filtering Utilities:** ✅
+    -   `getAvailableSeriesIds(language)` - Returns array of available series IDs
+    -   `filterSeriesByLanguage(series, language)` - Filters series arrays by availability
+    -   `getAvailableCategories(language)` - Returns category availability flags
+
+3.  **Updated UI Components:** ✅
+    -   `SeriesCardGrid.tsx` updated to filter series by language availability
+    -   Category buttons (Jesus Series/Cosmic Series) show/hide based on availability
+    -   Automatic fallback when user switches to language without current category
+    -   Status messages show correct series count for the language
 
 ### Phase 2: URL Routing with Language Prefixes (Priority 2) ✅
 
@@ -336,12 +377,6 @@ We will implement URL-based language selection:
    }
    ```
 
-#### Step 3.2: Translated Episode Data Creation (2-3 hours) ✅
-1. **Create Spanish translations for episode data:** ✅
-   - Created sample translations for Urantia Papers in Spanish
-   - Implemented JSON structure with Spanish titles, descriptions, and summaries
-   - Created urantia_translations_es.json file with sample translations
-
 2. **Update components to use translated episode data:** ✅
    ```typescript
    // In EpisodePage.tsx
@@ -351,10 +386,20 @@ We will implement URL-based language selection:
 
 #### Step 3.3: Media Integration Verification (1 hour) ✅
 1. **Verify media utilities handle languages correctly:** ✅
-   - Updated URL generation for Spanish audio files (/es/ path prefix)
-   - Added proper fallback to English if Spanish translations not available
-   - Added logging for debugging language-specific media loading
-   - Updated EpisodePage component to pass language to episode retrieval functions
+   - Updated URL generation for all media to use filename localization (e.g., `file-es.mp3`). ✅
+   - Removed faulty client-side existence checks. ✅
+   - Added proper fallback to English if Spanish translations not available. ✅
+   - Added logging for debugging language-specific media loading. ✅
+   - Updated EpisodePage component to pass language to episode retrieval functions. ✅
+
+#### Step 3.4: File Existence Check (Deferred) ✅
+A key challenge identified during i18n implementation is the need to dynamically check for the existence of media files (especially transcripts) on the R2 bucket before displaying a download link. The original method for this is not compatible with cross-origin requests from a client-side application.
+
+**Decision:** ✅
+- A robust, server-side file checking mechanism will be implemented. ✅
+- This is a significant task that is separate from the primary i18n effort.
+- A detailed work plan has been created in `docs/development/R2-file-check-work-plan.md`.
+- This task will be addressed **after** the completion of the i18n feature. ✅
 
 ### Phase 4: SEO and Meta Tags (Priority 4)
 
@@ -469,6 +514,57 @@ We will implement URL-based language selection:
    }
    ```
 
+### Phase 7: Automated Content Translation (Future Priority)
+
+#### Step 7.1: Create Master Translation Script (2-3 hours)
+1. **Develop a Node.js script for automated translation:**
+   - Reads source JSON files (e.g., `urantia_summaries.json`).
+   - Iterates through each entry and specified text fields.
+   - Connects to a translation API (e.g., Google Translate, DeepL) to translate content.
+   - Writes the translated content to a new language-specific JSON file (e.g., `urantia_summaries_es.json`).
+
+2. **Note on Timing:**
+   - This script will be developed towards the end of the i18n project.
+   - This ensures all content structures and translation requirements across the entire site are finalized before performing a bulk translation.
+
+## Series Collections Internationalization Implementation ✅
+
+### Architecture Overview
+A comprehensive internationalization system has been implemented for series collections with the following components:
+
+**Translation Files:**
+- `public/locales/en/series-collections.json` - Complete English translations for all 28 series
+- `public/locales/es/series-collections.json` - Spanish translations for cosmic series only
+
+**Utilities:**
+- `src/utils/seriesCollectionsUtils.ts` - Translation functions and UI label management
+- `src/utils/seriesAvailabilityUtils.ts` - Language-based series filtering
+- Enhanced `src/utils/seriesUtils.ts` - Language-aware series data functions
+
+**Components Updated:**
+- `src/components/ui/SeriesCardGrid.tsx` - Full translation support with language filtering
+- `src/components/ui/SeriesCard.tsx` - Translated badges and action labels
+
+**Configuration:**
+- `src/i18n/i18n.ts` - Added `series-collections` namespace
+- `src/data/series-availability.json` - Defines series availability per language
+
+### Translation Coverage
+**English:** All 28 series (jesus-1 through jesus-14, cosmic-1 through cosmic-14)
+**Spanish:** 14 cosmic series only (cosmic-1 through cosmic-14)
+
+**UI Elements Translated:**
+- Category buttons ("All Series", "Jesus Series", "Cosmic Series")
+- Status messages ("Showing X series", "No series found")
+- Action labels ("View Episodes", "Ver Episodios")
+- Category badges ("Jesus Series", "Serie de Jesús")
+
+### Key Features
+- **Language-aware filtering**: Jesus series automatically hidden in Spanish
+- **Graceful fallbacks**: Missing translations default to English
+- **Dynamic UI adaptation**: Buttons show/hide based on language availability
+- **Extensible architecture**: Easy to add new languages or series
+
 ## Translation File Organization
 
 ### Namespace Strategy
@@ -478,9 +574,10 @@ We'll use a clear namespace strategy to organize translations:
 2. **ui.json** - UI components, buttons, form elements (❌ Needed)
 3. **episode.json** - Episode player and related content (✅ Basic done)
 4. **home.json** - Homepage content (❌ Needed)
-5. **series.json** - Series listings and metadata (❌ Needed)
-6. **errors.json** - Error messages and notifications (❌ Needed)
-7. **meta.json** - SEO and meta content (❌ Needed)
+5. **series.json** - Series listings and metadata (✅ Basic done)
+6. **series-collections.json** - Thematic series data and UI (✅ Complete)
+7. **errors.json** - Error messages and notifications (❌ Needed)
+8. **meta.json** - SEO and meta content (❌ Needed)
 
 ### Key Structure Patterns
 ```json
@@ -538,13 +635,14 @@ We'll use a clear namespace strategy to organize translations:
 
 ## Timeline Estimate
 
-**Total: 20-30 hours**
+**Total: 22-33 hours**
 - Phase 1 (UI Translation): 8-12 hours
 - Phase 2 (URL Routing): 3-6 hours
 - Phase 3 (Episode Data): 4-5 hours
 - Phase 4 (SEO): 2-3 hours
 - Phase 5 (Testing): 2-3 hours
 - Phase 6 (Analytics): 1 hour
+- Phase 7 (Scripting): 2-3 hours
 
 ## Future Expansion
 

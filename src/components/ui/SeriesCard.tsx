@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Book, Library } from 'lucide-react';
 import type { SeriesInfo } from '../../utils/seriesUtils';
+import { getCategoryBadge, getSeriesCollectionsUILabels } from '../../utils/seriesCollectionsUtils';
 
 interface SeriesCardProps {
   series: SeriesInfo;
@@ -10,28 +11,11 @@ interface SeriesCardProps {
 export default function SeriesCard({ series }: SeriesCardProps) {
   const [imageError, setImageError] = useState(false);
   
-  // Get category badge text and color
-  const getCategoryBadge = () => {
-    switch (series.category) {
-      case 'jesus-focused':
-        return {
-          text: 'Jesus Series',
-          className: 'bg-gold/20 text-gold'
-        };
-      case 'parts-i-iii':
-        return {
-          text: 'Cosmic Series',
-          className: 'bg-blue-400/20 text-blue-400'
-        };
-      default:
-        return {
-          text: 'Series',
-          className: 'bg-primary/20 text-primary'
-        };
-    }
-  };
+  // Get translated UI labels
+  const labels = getSeriesCollectionsUILabels();
   
-  const badge = getCategoryBadge();
+  // Get category badge with translations
+  const badge = getCategoryBadge(series.category);
   
   // Get appropriate icon based on category
   const getPlaceholderIcon = () => {
@@ -74,7 +58,7 @@ export default function SeriesCard({ series }: SeriesCardProps) {
           </p>
           <div className="mt-4 flex items-center justify-between">
             <span className="text-primary text-sm font-medium group-hover:underline">
-              View Episodes
+              {labels.actions.viewEpisodes}
             </span>
           </div>
         </div>

@@ -1,15 +1,16 @@
 {
   "player": {
     "play": "Reproducir",
-    "pause": "Pausar",
+    "pause": "Pausa",
     "mute": "Silenciar",
-    "unmute": "Activar sonido",
+    "unmute": "No silenciar",
     "download": "Descargar Audio",
-    "transcript": "Leer Transcripción",
+    "transcript": "Ver Transcripción",
     "read_pdf": "Leer PDF",
-    "skipForward": "Avanzar 10 segundos",
-    "skipBackward": "Retroceder 10 segundos",
-    "speed": "Velocidad de Reproducción"
+    "speed": "Velocidad",
+    "skipForward": "Avanzar 10s",
+    "skipBackward": "Retroceder 10s",
+    "downloadTranscript": "Descargar Transcripción"
   },
   "navigation": {
     "back_to_papers": "Volver a los Documentos",

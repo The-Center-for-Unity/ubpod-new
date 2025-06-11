@@ -1,0 +1,172 @@
+{
+  "ui": {
+    "buttons": {
+      "allSeries": "All Series",
+      "jesusSeries": "Jesus Series", 
+      "cosmicSeries": "Cosmic Series"
+    },
+    "sections": {
+      "jesusTitle": "The Life and Teachings of Jesus",
+      "jesusDescription": "Explore the complete life story and teachings of Jesus as revealed in the Urantia Book, from his birth through resurrection, with insights beyond traditional Biblical accounts.",
+      "cosmicTitle": "Cosmic Series",
+      "cosmicDescription": "Discover the cosmic teachings from the first three parts of The Urantia Book, covering everything from the nature of God to universe structure and Earth's planetary history."
+    },
+    "badges": {
+      "jesus": "Jesus Series",
+      "cosmic": "Cosmic Series"
+    },
+    "status": {
+      "showingCount": "Showing {{count}} series",
+      "noSeries": "No series found in this category.",
+      "searchNoResults": "No series found matching your search. Try adjusting your filters.",
+      "clearFilters": "Clear filters"
+    },
+    "actions": {
+      "viewEpisodes": "View Episodes",
+      "viewDetails": "View Details",
+      "episodes": "{{count}} episodes"
+    }
+  },
+  "series": {
+    "jesus-1": {
+      "title": "Beyond Traditional Religion: The True Nature of God",
+      "description": "Comparing conventional religious concepts of God with the expanded Urantia perspective",
+      "logline": "Discover the loving Universal Father behind religious traditions and transform your relationship with a God who values love over fear."
+    },
+    "jesus-2": {
+      "title": "Jesus Revealed: Beyond the Biblical Account",
+      "description": "Exploring aspects of Jesus' life not found in traditional Christian texts",
+      "logline": "Explore untold stories of Jesus' travels, education, and experiences that shaped the divine human who changed our world forever."
+    },
+    "jesus-3": {
+      "title": "The Inner Divine Presence: Thought Adjusters & Holy Spirit",
+      "description": "Comparing traditional concepts of divine guidance with Urantia teachings",
+      "logline": "Understand the remarkable connection between your mind and God's indwelling spirit, transcending traditional concepts of spiritual guidance."
+    },
+    "jesus-4": {
+      "title": "Life After Death: The Mansion World Journey",
+      "description": "Contrasting traditional afterlife concepts with the Urantia cosmology",
+      "logline": "Discover what happens after death according to the Urantia Book—a progressive journey of growth far beyond traditional concepts of heaven."
+    },
+    "jesus-5": {
+      "title": "Women in Spiritual Leadership: A New Perspective",
+      "description": "Comparing historical religious views of women with Jesus' revolutionary approach",
+      "logline": "Meet the remarkable women who followed Jesus and discover his revolutionary approach to gender equality that was centuries ahead of his time."
+    },
+    "jesus-6": {
+      "title": "Good & Evil Reconsidered: Beyond Traditional Theology",
+      "description": "Reframing traditional concepts of sin and evil through Urantia teachings",
+      "logline": "Explore the true origins of evil, sin, and suffering, and discover a cosmic perspective that transcends traditional religious explanations."
+    },
+    "jesus-7": {
+      "title": "Prayer & Worship: Enhanced Understanding",
+      "description": "Expanding traditional views of communication with the Divine",
+      "logline": "Transform your spiritual practices with deeper insights into prayer and worship that enhance personal communication with the Divine."
+    },
+    "jesus-8": {
+      "title": "Angels & Celestial Beings: The Cosmic Hierarchy",
+      "description": "Comparing traditional angelic concepts with the expanded Urantia cosmology",
+      "logline": "Meet the countless celestial personalities who serve throughout the universe, far beyond traditional religious concepts of angels."
+    },
+    "jesus-9": {
+      "title": "The Kingdom of Heaven: Spiritual Reality vs. Religious Concept",
+      "description": "Contrasting traditional religious concepts with Jesus' actual teachings",
+      "logline": "Discover Jesus' true message about the spiritual kingdom—not a future realm, but a present reality of divine relationship."
+    },
+    "jesus-10": {
+      "title": "Jesus' Transformative Moments: Behind the Familiar Stories",
+      "description": "Providing deeper context for familiar Biblical events",
+      "logline": "Experience familiar biblical stories with expanded details and cosmic context that transforms their spiritual significance."
+    },
+    "jesus-11": {
+      "title": "The Human Experience: Divine Insights on Daily Challenges",
+      "description": "Addressing universal human concerns through Urantia wisdom",
+      "logline": "Cosmic wisdom for everyday problems—practical divine insights that enhance relationships, work, and personal fulfillment."
+    },
+    "jesus-12": {
+      "title": "Jesus' Death & Resurrection: The Expanded Narrative",
+      "description": "Offering revelatory details beyond traditional accounts",
+      "logline": "The crucifixion and resurrection reveal a cosmic victory with universal implications beyond religious doctrine about sin and salvation."
+    },
+    "jesus-13": {
+      "title": "Evolving Faith: From Traditional Religion to Cosmic Truth",
+      "description": "Bridging conventional religious concepts with expanded spiritual understanding",
+      "logline": "Religious concepts evolve like everything else—see how spiritual truth has progressed from primitive belief toward cosmic revelation."
+    },
+    "jesus-14": {
+      "title": "The Human Jesus: Beyond the Divine Image",
+      "description": "Humanizing Jesus beyond traditional religious portrayals",
+      "logline": "Jesus laughed, had hobbies, and experienced emotions—discover the fully human person behind the religious icon."
+    },
+    "cosmic-1": {
+      "title": "Cosmic Origins: Understanding Universe Creation",
+      "description": "Introducing the fundamental cosmology of the Urantia revelation",
+      "logline": "Explore the magnificent architecture of creation—from eternal Paradise to the evolving universes of time and space."
+    },
+    "cosmic-2": {
+      "title": "Divine Personalities: The Beings Beyond Traditional Religion",
+      "description": "Introducing celestial personalities and hierarchy",
+      "logline": "Meet the divine personalities who sustain the universe—from the Paradise Trinity to the many orders of celestial ministers."
+    },
+    "cosmic-3": {
+      "title": "The Thought Adjuster: Your Inner Divine Compass",
+      "description": "Understanding the indwelling presence of God",
+      "logline": "Discover the remarkable fragment of God living within your mind—your divine pilot guiding your spiritual evolution."
+    },
+    "cosmic-4": {
+      "title": "Our Local Universe: Nebadon's Organization",
+      "description": "Understanding our cosmic neighborhood",
+      "logline": "Learn about our local universe Nebadon—its creation, administration, and the personalities who manage our cosmic neighborhood."
+    },
+    "cosmic-5": {
+      "title": "Angels Among Us: The Seraphic Hosts",
+      "description": "Understanding angelic ministries",
+      "logline": "Explore the fascinating reality of angels—their nature, purpose, and how they interact with humans throughout our lives."
+    },
+    "cosmic-6": {
+      "title": "Life After Death: The Ascension Career",
+      "description": "Understanding the progressive journey after mortal life",
+      "logline": "The mansion worlds are just the beginning—discover your epic journey through the universe after mortal death."
+    },
+    "cosmic-7": {
+      "title": "Urantia's Remarkable History",
+      "description": "Understanding Earth's unique planetary development",
+      "logline": "The untold story of Earth's (Urantia's) formation, early life development, and the emergence of humanity."
+    },
+    "cosmic-8": {
+      "title": "The Lucifer Rebellion: Cosmic Crisis",
+      "description": "Understanding the rebellion's impact on Earth's spiritual development",
+      "logline": "The cosmic rebellion that isolated our world and continues to influence human affairs—discover the truth behind the myths of Satan."
+    },
+    "cosmic-9": {
+      "title": "Adam & Eve: The True Story",
+      "description": "Revealing the actual mission and impact of Adam and Eve",
+      "logline": "The real mission of Adam and Eve on our world went far beyond the biblical garden story—discover their true purpose and legacy."
+    },
+    "cosmic-10": {
+      "title": "Melchizedek Missions: Divine Interventions",
+      "description": "Understanding key spiritual interventions in human history",
+      "logline": "Explore how Melchizedek's emergency mission to Salem became the foundation for Judaism, Christianity, and Islam."
+    },
+    "cosmic-11": {
+      "title": "Evolution of Religion: From Fear to Faith",
+      "description": "Tracing the development of human religious concepts",
+      "logline": "Follow humanity's religious evolution from primitive fear of nature through ghost cults to enlightened spiritual understanding."
+    },
+    "cosmic-12": {
+      "title": "Genuine Spirituality: The Reality of Religious Experience",
+      "description": "Understanding authentic spiritual growth",
+      "logline": "Go beyond doctrine and ritual to discover the authentic reality of personal religious experience and spiritual growth."
+    },
+    "cosmic-13": {
+      "title": "The Supreme Being: Evolving Deity",
+      "description": "Understanding the concept of experiential Deity",
+      "logline": "Discover God the Supreme—the evolving Deity whose growth depends on all our experiences and achievements in time and space."
+    },
+    "cosmic-14": {
+      "title": "The Divine Family: Understanding Eternal Relationships",
+      "description": "Exploring the relationships among divine personalities",
+      "logline": "Explore the relationships between the Universal Father, Eternal Son, and Infinite Spirit—the divine family at the core of all reality."
+    }
+  }
+} 

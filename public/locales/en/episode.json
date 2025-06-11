@@ -9,7 +9,8 @@
     "read_pdf": "Read PDF",
     "speed": "Speed",
     "skipForward": "Skip Forward 10s",
-    "skipBackward": "Skip Backward 10s"
+    "skipBackward": "Skip Backward 10s",
+    "downloadTranscript": "Download Transcript"
   },
   "navigation": {
     "back_to_papers": "Back to Papers",

@@ -21,7 +21,7 @@ i18n
     backend: {
       loadPath: '/locales/{{lng}}/{{ns}}.json',
     },
-    ns: ['common', 'episode', 'home'],
+    ns: ['common', 'episode', 'home', 'series', 'series-collections'],
     defaultNS: 'common',
   });
 

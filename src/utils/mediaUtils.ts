@@ -54,19 +54,16 @@ export function getMediaUrl(
   try {
     // For Urantia Papers (simple pattern)
     if (seriesId === 'urantia-papers' || seriesId.startsWith('FER')) {
-      // Handle language-specific paths
+      const baseFilename = episodeNumber === 0 
+        ? `foreword.${fileType}`
+        : `paper-${episodeNumber}.${fileType}`;
+      
       if (language === 'en') {
-        // Default English path
-        const filename = episodeNumber === 0 
-          ? `foreword.${fileType}`
-          : `paper-${episodeNumber}.${fileType}`;
-        return `${URANTIA_BUCKET_URL}/${filename}`;
+        return `${URANTIA_BUCKET_URL}/${baseFilename}`;
       } else {
-        // Language-specific path
-        const filename = episodeNumber === 0 
-          ? `${language}/foreword.${fileType}`
-          : `${language}/paper-${episodeNumber}.${fileType}`;
-        return `${URANTIA_BUCKET_URL}/${filename}`;
+        // Correctly append language code to filename
+        const localizedFilename = baseFilename.replace(/\.([^.]+)$/, `-${language}.$1`);
+        return `${URANTIA_BUCKET_URL}/${localizedFilename}`;
       }
     }
     
@@ -195,6 +192,12 @@ export function getTranscriptUrl(
   episodeNumber: number | string,
   language: string = 'en'
 ): string | null {
+  // As of June 2024, no Spanish transcripts are available.
+  // To prevent showing a button that leads to a 404, we return null.
+  if (language === 'es') {
+    return null; 
+  }
+
   try {
     // Ensure episodeNumber is a number
     const episodeNum = typeof episodeNumber === 'string' ? parseInt(episodeNumber, 10) : episodeNumber;
@@ -203,20 +206,16 @@ export function getTranscriptUrl(
     
     // For Urantia Papers (correct pattern with PDFs)
     if (seriesId === 'urantia-papers' || seriesId.startsWith('FER')) {
-      // All papers have transcripts, so generate URLs for all
-      let filename;
+      const baseFilename = episodeNum === 0 
+        ? `foreword-transcript.pdf`
+        : `paper-${episodeNum}-transcript.pdf`;
       
-      if (language === 'en') {
-        filename = episodeNum === 0 
-          ? `foreword-transcript.pdf`
-          : `paper-${episodeNum}-transcript.pdf`;
-      } else {
-        filename = episodeNum === 0 
-          ? `${language}/foreword-transcript.pdf`
-          : `${language}/paper-${episodeNum}-transcript.pdf`;
+      let finalFilename = baseFilename;
+      if (language !== 'en') {
+        finalFilename = baseFilename.replace(/\.([^.]+)$/, `-${language}.$1`);
       }
       
-      const url = `${URANTIA_BUCKET_URL}/${filename}`;
+      const url = `${URANTIA_BUCKET_URL}/${finalFilename}`;
       console.log(`[getTranscriptUrl] Generated Urantia URL: ${url}`);
       return url;
     }
@@ -225,10 +224,12 @@ export function getTranscriptUrl(
     if (seriesId === 'discover-jesus') {
       // Use PDF format instead of TXT and proper path
       let url;
+      const baseFilename = `discover-jesus-episode-${episodeNum}-transcript.pdf`;
       if (language === 'en') {
-        url = `${JESUS_BUCKET_URL}/discover-jesus-episode-${episodeNum}-transcript.pdf`;
+        url = `${JESUS_BUCKET_URL}/${baseFilename}`;
       } else {
-        url = `${JESUS_BUCKET_URL}/${language}/discover-jesus-episode-${episodeNum}-transcript.pdf`;
+        const localizedFilename = baseFilename.replace(/\.([^.]+)$/, `-${language}.$1`);
+        url = `${JESUS_BUCKET_URL}/${localizedFilename}`;
       }
       console.log(`[getTranscriptUrl] Generated discover-jesus URL: ${url}`);
       return url;
@@ -238,10 +239,12 @@ export function getTranscriptUrl(
     if (seriesId === 'history') {
       // Use PDF format instead of TXT and proper path
       let url;
+      const baseFilename = `history-episode-${episodeNum}-transcript.pdf`;
       if (language === 'en') {
-        url = `${JESUS_BUCKET_URL}/history-episode-${episodeNum}-transcript.pdf`;
+        url = `${JESUS_BUCKET_URL}/${baseFilename}`;
       } else {
-        url = `${JESUS_BUCKET_URL}/${language}/history-episode-${episodeNum}-transcript.pdf`;
+        const localizedFilename = baseFilename.replace(/\.([^.]+)$/, `-${language}.$1`);
+        url = `${JESUS_BUCKET_URL}/${localizedFilename}`;
       }
       console.log(`[getTranscriptUrl] Generated history URL: ${url}`);
       return url;
@@ -251,10 +254,12 @@ export function getTranscriptUrl(
     if (seriesId === 'sadler-workbooks') {
       // Use PDF format instead of TXT and proper path
       let url;
+      const baseFilename = `sadler-workbooks-episode-${episodeNum}-transcript.pdf`;
       if (language === 'en') {
-        url = `${JESUS_BUCKET_URL}/sadler-workbooks-episode-${episodeNum}-transcript.pdf`;
+        url = `${JESUS_BUCKET_URL}/${baseFilename}`;
       } else {
-        url = `${JESUS_BUCKET_URL}/${language}/sadler-workbooks-episode-${episodeNum}-transcript.pdf`;
+        const localizedFilename = baseFilename.replace(/\.([^.]+)$/, `-${language}.$1`);
+        url = `${JESUS_BUCKET_URL}/${localizedFilename}`;
       }
       console.log(`[getTranscriptUrl] Generated sadler-workbooks URL: ${url}`);
       return url;

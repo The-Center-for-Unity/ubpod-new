@@ -716,6 +716,12 @@ export default function EpisodePage() {
     setSummaryExpanded(!summaryExpanded);
   };
 
+  const handleCopy = (textToCopy: string, type: 'link' | 'embed' = 'link') => {
+    navigator.clipboard.writeText(textToCopy).then(() => {
+      setShareNotification(type === 'link' ? t('share.linkCopied') : t('share.embedCopied'));
+    });
+  };
+
   // Show error if any
   if (error && !episode) {
     return (
@@ -799,19 +805,36 @@ export default function EpisodePage() {
             <div className="flex-shrink-0 mt-4 md:mt-0 md:ml-6">
               <div className="flex flex-col space-y-3">
                 {episode.pdfUrl && (
-                  <a href={episode.pdfUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 bg-navy-light/70 text-white/90 hover:bg-navy transition-colors rounded-lg">
+                  <a
+                    href={episode.pdfUrl}
+                    download
+                    className="flex items-center gap-2 px-4 py-2 bg-navy-light/70 text-white/90 rounded-md hover:bg-navy-light/80 transition-colors"
+                  >
                     <BookOpen size={18} />
                     <span>{t('player.read_pdf')}</span>
                   </a>
                 )}
-                <a href={`https://pub-69ae36e16d64438e9bb56350459d5c7d.r2.dev/${episode.id === 0 ? 'foreword' : `paper-${episode.id}`}-transcript.pdf`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 bg-navy-light/70 text-white/90 hover:bg-navy transition-colors rounded-lg">
-                  <FileText size={18} />
-                  <span>{t('player.transcript')}</span>
-                </a>
-                <a href={episode.audioUrl} download target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 bg-navy-light/70 text-white/90 hover:bg-navy transition-colors rounded-lg">
-                  <Download size={18} />
-                  <span>{t('player.download')}</span>
-                </a>
+                {episode.transcriptUrl && (
+                  <a
+                    href={episode.transcriptUrl}
+                    download
+                    className="flex items-center gap-2 px-4 py-3 bg-navy-light/50 text-white/90 rounded-md transition-colors hover:bg-navy-light/80"
+                    role="button"
+                  >
+                    <FileText size={18} />
+                    <span>{t('player.downloadTranscript')}</span>
+                  </a>
+                )}
+                {episode.audioUrl && (
+                  <a
+                    href={episode.audioUrl}
+                    download
+                    className="flex items-center gap-2 px-4 py-3 bg-navy-light/50 text-white/90 rounded-md transition-colors hover:bg-navy-light/80"
+                  >
+                    <Download size={18} />
+                    <span>{t('player.download')}</span>
+                  </a>
+                )}
                 <SocialShareMenu 
                   url={window.location.href}
                   title={`Listen to ${episode.title} | Urantia Book Podcast`}

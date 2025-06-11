@@ -16,27 +16,6 @@ import {
   getSadlerWorkbooks 
 } from '../data/episodes';
 
-// Instead of importing from a file, create hardcoded translations for testing
-const urantiaTranslationsEs = {
-  'urantia-papers': {
-    '0': {
-      title: 'Prólogo',
-      description: 'Una introducción a los Documentos de Urantia, que cubre la Deidad, la realidad, las definiciones del universo y un esquema de la estructura del cosmos.',
-      summary: 'El Prólogo a los Documentos de Urantia establece el fundamento para comprender los conceptos cósmicos y las definiciones que se utilizarán a lo largo del texto.'
-    },
-    '1': {
-      title: 'El Padre Universal',
-      description: 'Documento 1: El Padre Universal',
-      summary: 'Este documento presenta la naturaleza del Padre Universal como una persona real e infinita que busca relaciones personales con todas sus criaturas inteligentes.'
-    },
-    '2': {
-      title: 'La Naturaleza de Dios',
-      description: 'Documento 2: La Naturaleza de Dios',
-      summary: 'Este documento explora los atributos y características de Dios, destacando tanto su infinidad como su personalidad.'
-    }
-  }
-};
-
 // Define the cosmic audio URL - use the same R2 backend that other audio files use
 // This should be updated to the actual URL when cosmic audio files are available
 const COSMIC_AUDIO_BASE_URL = import.meta.env.VITE_COSMIC_AUDIO_BASE_URL || URANTIA_AUDIO_BASE_URL;
@@ -488,30 +467,7 @@ export function getEpisodesForSeries(seriesId: string, language: string = 'en'):
       return episode;
     });
   }
-
-  // Apply translations if language is not English
-  if (language !== 'en') {
-    const translations = urantiaTranslationsEs[seriesId as keyof typeof urantiaTranslationsEs] as Record<string, { title: string, description: string, summary: string }>;
-    if (translations) {
-      return episodes.map(episode => {
-        const translation = translations[episode.id.toString()];
-        if (translation) {
-          return {
-            ...episode,
-            title: translation.title,
-            description: translation.description,
-            summary: translation.summary,
-            // Adjust audio/pdf for language
-            audioUrl: getAudioPath(episode.audioUrl, language),
-            pdfUrl: episode.pdfUrl ? getPdfPath(episode.pdfUrl, language) : undefined,
-            transcriptUrl: getTranscriptPath(episode.transcriptUrl || '', language)
-          };
-        }
-        return episode;
-      });
-    }
-  }
-
+  
   return episodes;
 }
 
@@ -538,12 +494,8 @@ export function getEpisode(seriesId: string, episodeId: number, language: string
   
   console.log(`Found episode: ${episode.title}`);
   
-  // Ensure transcriptUrl is set
-  if (!episode.transcriptUrl) {
-    console.log(`Setting transcript URL for ${seriesId}/${episodeId}, episodeId type: ${typeof episodeId}`);
-    episode.transcriptUrl = getTranscriptUrl(seriesId, episodeId, language) || undefined;
-    console.log(`Transcript URL result: ${episode.transcriptUrl || 'none'}`);
-  }
+  // Always set the transcriptUrl with the correct language.
+  episode.transcriptUrl = getTranscriptUrl(seriesId, episodeId, language) || undefined;
   
   // Apply translations if available and not English
   if (language !== 'en' && episode.translations) {
@@ -559,7 +511,8 @@ export function getEpisode(seriesId: string, episodeId: number, language: string
         // For audio and PDF URLs, we need to adjust for language
         audioUrl: getAudioPath(episode.audioUrl, language),
         pdfUrl: episode.pdfUrl ? getPdfPath(episode.pdfUrl, language) : undefined,
-        transcriptUrl: episode.transcriptUrl ? getTranscriptPath(episode.transcriptUrl, language) : undefined
+        // The transcriptUrl is already localized from the call above, so pass it through.
+        transcriptUrl: episode.transcriptUrl
       };
     }
   }
@@ -568,41 +521,48 @@ export function getEpisode(seriesId: string, episodeId: number, language: string
 }
 
 /**
- * Helper function to get language-specific audio path
+ * Adjusts an audio URL to include a language path segment.
+ * @param url The original audio URL
+ * @param language The language code (e.g., 'es')
+ * @returns The new URL with the language path segment
  */
 function getAudioPath(url: string, language: string): string {
-  if (language === 'en') return url;
-  
-  // Insert language code before filename
-  // From: https://pub-xxx.r2.dev/paper-1.mp3
-  // To:   https://pub-xxx.r2.dev/es/paper-1.mp3
-  const urlParts = url.split('/');
-  const filename = urlParts.pop() || '';
-  return [...urlParts, language, filename].join('/');
+  if (language === 'en' || !url) {
+    return url;
+  }
+  // Inserts the language code before the file extension.
+  // Example: /audio/file.mp3 -> /audio/file-es.mp3
+  return url.replace(/\.([^.]+)$/, `-${language}.$1`);
 }
 
 /**
- * Helper function to get language-specific PDF path
+ * Adjusts a PDF URL to include a language path segment.
+ * @param url The original PDF URL
+ * @param language The language code (e.g., 'es')
+ * @returns The new URL with the language path segment
  */
 function getPdfPath(url: string, language: string): string {
-  if (language === 'en') return url;
-  
-  // Insert language code before filename
-  const urlParts = url.split('/');
-  const filename = urlParts.pop() || '';
-  return [...urlParts, language, filename].join('/');
+  if (language === 'en' || !url) {
+    return url;
+  }
+  // Inserts the language code before the file extension.
+  // Example: /pdfs/file.pdf -> /pdfs/file-es.pdf
+  return url.replace(/\.([^.]+)$/, `-${language}.$1`);
 }
 
 /**
- * Helper function to get language-specific transcript path
+ * Adjusts a transcript URL to include a language path segment.
+ * @param url The original transcript URL
+ * @param language The language code (e.g., 'es')
+ * @returns The new URL with the language path segment
  */
 function getTranscriptPath(url: string, language: string): string {
-  if (language === 'en') return url;
-  
-  // Insert language code before filename
-  const urlParts = url.split('/');
-  const filename = urlParts.pop() || '';
-  return [...urlParts, language, filename].join('/');
+  if (language === 'en' || !url) {
+    return url;
+  }
+  // Inserts the language code before the file extension.
+  // Example: /transcripts/file.pdf -> /transcripts/file-es.pdf
+  return url.replace(/\.([^.]+)$/, `-${language}.$1`);
 }
 
 /**
