@@ -20,40 +20,46 @@ export const LanguageProvider: React.FC<{children: React.ReactNode}> = ({ childr
   const [language, setLanguage] = useState('en');
   const [isInitialized, setIsInitialized] = useState(false);
 
-  // Initialize from URL on first load
+  // Initialize and update from URL whenever location changes
   useEffect(() => {
     const path = location.pathname;
-    const langMatch = path.match(/^\/([a-z]{2})\//); 
+    // Updated regex to match /es, /es/, /es/something
+    const langMatch = path.match(/^\/([a-z]{2})(?:\/|$)/); 
     
-    let initialLanguage = 'en';
+    let detectedLanguage = 'en';
     if (langMatch && ['es', 'fr', 'pt'].includes(langMatch[1])) {
-      initialLanguage = langMatch[1];
+      detectedLanguage = langMatch[1];
     }
     
-    setLanguage(initialLanguage);
-    i18n.changeLanguage(initialLanguage);
+    setLanguage(detectedLanguage);
+    i18n.changeLanguage(detectedLanguage);
     setIsInitialized(true);
     
-  }, []); // Run only once on initial mount
+  }, [location.pathname]); // Update whenever the pathname changes
 
   const changeLanguage = (lang: string) => {
     if (lang === language) return;
 
     const currentPath = location.pathname;
     
-    // Strip the current language prefix to get the base path
-    const basePath = currentPath.startsWith(`/${language}/`) 
-      ? currentPath.substring(`/${language}`.length) 
-      : currentPath;
-  
-    // Prepend the new language prefix. Ensure the base path starts with a /
+    // Strip any existing language prefix to get the base path
+    // Handle both /es and /es/something cases
+    let basePath = currentPath;
+    const langPrefixMatch = currentPath.match(/^\/([a-z]{2})(?:\/(.*))?$/);
+    
+    if (langPrefixMatch && ['es', 'fr', 'pt'].includes(langPrefixMatch[1])) {
+      // Extract the path after the language prefix
+      basePath = langPrefixMatch[2] ? `/${langPrefixMatch[2]}` : '/';
+    }
+    
+    // Build new path with language prefix (or without for English)
     const newPath = lang === 'en' 
-      ? basePath 
-      : `/${lang}${basePath.startsWith('/') ? basePath : '/' + basePath}`;
+      ? basePath === '/' ? '/' : basePath
+      : `/${lang}${basePath}`;
   
     setLanguage(lang);
     i18n.changeLanguage(lang);
-    navigate(newPath, { replace: true });
+    navigate(newPath); // Remove replace: true to allow browser back/forward
   };
 
   return (

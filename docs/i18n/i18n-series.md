@@ -380,3 +380,293 @@ With series collections internationalization complete, you can:
 4. **Add more series content** - Jesus series translations can be added when audio becomes available
 
 The foundation is now in place for comprehensive series internationalization across the entire application.
+
+---
+
+## **🔧 NEXT PHASE: SeriesPage.tsx Translation Implementation**
+
+### **🔍 Current Issues Identified**
+
+After examining `src/pages/SeriesPage.tsx` (the `/series` route), several critical issues prevent our translation system from working properly:
+
+**❌ Problem 1: No Language Awareness**
+- Uses `getAllSeries()` without language parameter
+- Shows Jesus series in Spanish (should be hidden)
+- No translation of UI text
+
+**❌ Problem 2: Hardcoded Text Everywhere**
+- Hero section: "Discover Life-Changing Cosmic Wisdom", "Begin Your Cosmic Journey"
+- Category buttons: "All Series", "Jesus", "Cosmic" 
+- Section headers: "The Life and Teachings of Jesus", "Cosmic Series"
+- Search placeholders, error messages, and metadata text
+- View toggle labels and filter text
+
+**❌ Problem 3: Manual Series Filtering**
+- Component manually filters by category instead of using our language-aware utilities
+- Doesn't respect series availability per language
+- No integration with our `seriesAvailabilityUtils.ts`
+
+**❌ Problem 4: No Translation System Integration**
+- Missing `useLanguage()` and `useTranslation()` hooks
+- No use of our `seriesCollectionsUtils.ts` functions
+- Series content shows in English even on `/es/series`
+
+### **📋 Detailed Implementation Plan**
+
+#### **Step 1: Add Language Infrastructure (15 minutes)**
+
+**1.1: Import Required Utilities**
+```typescript
+// Add to existing imports
+import { useLanguage } from '../i18n/LanguageContext';
+import { getSeriesCollectionsUILabels, getTranslatedSeriesData } from '../utils/seriesCollectionsUtils';
+import { filterSeriesByLanguage, getAvailableCategories } from '../utils/seriesAvailabilityUtils';
+```
+
+**1.2: Add Language Hooks**
+```typescript
+export default function SeriesPage() {
+  const { language } = useLanguage();
+  const labels = getSeriesCollectionsUILabels();
+  const availableCategories = getAvailableCategories(language);
+  
+  // ... rest of component
+}
+```
+
+#### **Step 2: Fix Series Data Loading (10 minutes)**
+
+**2.1: Replace Manual Series Loading**
+```typescript
+// BEFORE (❌):
+const allSeries = getAllSeries();
+
+// AFTER (✅):
+const allSeries = getAllSeries(language).map(series => ({
+  ...series,
+  ...getTranslatedSeriesData(series.id, language)
+}));
+
+// Filter by language availability
+const availableSeries = filterSeriesByLanguage(allSeries, language);
+```
+
+**2.2: Update Category Filtering Logic**
+```typescript
+// BEFORE (❌):
+const jesusSeriesCount = allSeries.filter(s => s.category === 'jesus-focused').length;
+const cosmicSeriesCount = allSeries.filter(s => s.category === 'parts-i-iii').length;
+
+// AFTER (✅):
+const jesusSeriesCount = availableCategories.jesusCount;
+const cosmicSeriesCount = availableCategories.cosmicCount;
+```
+
+#### **Step 3: Create Series Page Translation File (20 minutes)**
+
+**3.1: Create `public/locales/en/series-page.json`**
+```json
+{
+  "hero": {
+    "title": "Discover Life-Changing Cosmic Wisdom",
+    "subtitle": "Immerse yourself in the Urantia Book's profound teachings through {{count}} expertly narrated audio series",
+    "description": "From the life of Jesus to cosmic origins, each series transforms complex concepts into accessible insights for spiritual growth"
+  },
+  "featured": {
+    "title": "Begin Your Cosmic Journey",
+    "description": "Our most popular series offer perfect entry points to understanding the Urantia Book's transformative teachings:",
+    "badge": "Fan Favorite",
+    "episodeCount": "{{count}} episodes • ~1 hour total",
+    "cta": "Start your journey →"
+  },
+  "browse": {
+    "title": "Explore All Series Collections",
+    "description": "Browse our complete library of audio teachings or search for specific topics"
+  },
+  "controls": {
+    "allSeries": "All Series ({{count}})",
+    "jesus": "Jesus ({{count}})",
+    "cosmic": "Cosmic ({{count}})",
+    "search": {
+      "placeholder": "Search series by title or description...",
+      "results": "Found {{count}} results for \"{{query}}\"",
+      "clear": "Clear search"
+    },
+    "viewMode": {
+      "structured": "Structured View",
+      "grid": "Grid View"
+    }
+  },
+  "sections": {
+    "jesusTitle": "The Life and Teachings of Jesus",
+    "cosmicTitle": "Cosmic Series"
+  },
+  "series": {
+    "episodes": "{{count}} episodes",
+    "viewDetails": "View Details →"
+  },
+  "empty": {
+    "noResults": "No series found matching your search. Try adjusting your filters.",
+    "clearFilters": "Clear filters"
+  }
+}
+```
+
+**3.2: Create `public/locales/es/series-page.json`**
+```json
+{
+  "hero": {
+    "title": "Descubre la Sabiduría Cósmica que Cambia Vidas",
+    "subtitle": "Sumérgete en las enseñanzas profundas del Libro de Urantia a través de {{count}} series de audio narradas expertamente",
+    "description": "Desde la vida de Jesús hasta los orígenes cósmicos, cada serie transforma conceptos complejos en perspectivas accesibles para el crecimiento espiritual"
+  },
+  "featured": {
+    "title": "Comienza tu Viaje Cósmico",
+    "description": "Nuestras series más populares ofrecen puntos de entrada perfectos para entender las enseñanzas transformadoras del Libro de Urantia:",
+    "badge": "Favorito de los Fans",
+    "episodeCount": "{{count}} episodios • ~1 hora total",
+    "cta": "Comienza tu viaje →"
+  },
+  "browse": {
+    "title": "Explora Todas las Colecciones de Series",
+    "description": "Navega nuestra biblioteca completa de enseñanzas en audio o busca temas específicos"
+  },
+  "controls": {
+    "allSeries": "Todas las Series ({{count}})",
+    "jesus": "Jesús ({{count}})",
+    "cosmic": "Cósmicas ({{count}})",
+    "search": {
+      "placeholder": "Buscar series por título o descripción...",
+      "results": "Se encontraron {{count}} resultados para \"{{query}}\"",
+      "clear": "Limpiar búsqueda"
+    },
+    "viewMode": {
+      "structured": "Vista Estructurada",
+      "grid": "Vista de Cuadrícula"
+    }
+  },
+  "sections": {
+    "jesusTitle": "La Vida y las Enseñanzas de Jesús",
+    "cosmicTitle": "Series Cósmicas"
+  },
+  "series": {
+    "episodes": "{{count}} episodios",
+    "viewDetails": "Ver Detalles →"
+  },
+  "empty": {
+    "noResults": "No se encontraron series que coincidan con tu búsqueda. Intenta ajustar tus filtros.",
+    "clearFilters": "Limpiar filtros"
+  }
+}
+```
+
+#### **Step 4: Implement Translation Hooks (25 minutes)**
+
+**4.1: Add Translation Hook**
+```typescript
+export default function SeriesPage() {
+  const { language } = useLanguage();
+  const { t } = useTranslation('series-page');
+  const labels = getSeriesCollectionsUILabels();
+  const availableCategories = getAvailableCategories(language);
+  
+  // ... rest of component
+}
+```
+
+**4.2: Update Hero Section**
+```typescript
+// BEFORE (❌):
+<h1 className="title-main text-4xl md:text-5xl lg:text-6xl mb-4 text-white">
+  Discover Life-Changing Cosmic Wisdom
+</h1>
+
+// AFTER (✅):
+<h1 className="title-main text-4xl md:text-5xl lg:text-6xl mb-4 text-white">
+  {t('hero.title')}
+</h1>
+```
+
+**4.3: Update Category Controls**
+```typescript
+// BEFORE (❌):
+All Series ({allSeries.length})
+
+// AFTER (✅):
+{t('controls.allSeries', { count: availableSeries.length })}
+```
+
+**4.4: Update Section Headers**
+```typescript
+// BEFORE (❌):
+<h2 className="text-xl font-bold text-rose-400">The Life and Teachings of Jesus</h2>
+
+// AFTER (✅):
+<h2 className="text-xl font-bold text-rose-400">{t('sections.jesusTitle')}</h2>
+```
+
+#### **Step 5: Conditional Category Display (15 minutes)**
+
+**5.1: Hide Jesus Category in Spanish**
+```typescript
+// Category buttons should only show if available
+{availableCategories.hasJesusSeries && (
+  <button
+    className={`...`}
+    onClick={() => setActiveCategory(activeCategory === 'jesus' ? null : 'jesus')}
+  >
+    <Users className="w-3.5 h-3.5 mr-1.5" />
+    {t('controls.jesus', { count: jesusSeriesCount })}
+  </button>
+)}
+```
+
+**5.2: Conditional Section Rendering**
+```typescript
+// Only render Jesus section if series exist for current language
+{availableCategories.hasJesusSeries && jesusSeries.length > 0 && (
+  <div>
+    <div className="flex items-center mb-4">
+      <Users className="w-5 h-5 text-rose-400/70 mr-2" />
+      <h2 className="text-xl font-bold text-rose-400">{t('sections.jesusTitle')}</h2>
+    </div>
+    {/* Jesus series grid */}
+  </div>
+)}
+```
+
+#### **Step 6: Update i18n Configuration (5 minutes)**
+
+**6.1: Add Namespace**
+```typescript
+// In src/i18n/i18n.ts
+ns: ['common', 'episode', 'home', 'series', 'series-collections', 'series-page'],
+```
+
+#### **Step 7: Testing & Verification (10 minutes)**
+
+**7.1: Test Scenarios**
+- [ ] English `/series` - Shows all 28 series with English text
+- [ ] Spanish `/es/series` - Shows only 14 cosmic series with Spanish text
+- [ ] Jesus category button hidden in Spanish
+- [ ] All UI text translated properly
+- [ ] Search functionality works in both languages
+- [ ] View mode toggles work correctly
+
+**7.2: Expected Results**
+- ✅ Spanish page shows only cosmic series (no Jesus series)
+- ✅ All button labels, headers, and text in Spanish
+- ✅ Series titles and descriptions translated
+- ✅ Search placeholders and results in correct language
+- ✅ Error messages and empty states translated
+
+### **🎯 Implementation Priority**
+
+**Total Estimated Time: 1.5-2 hours**
+
+1. **Step 1-2** (Critical): Fix language awareness and series filtering
+2. **Step 3-4** (High): Add translation files and implement UI translations  
+3. **Step 5** (High): Implement conditional display logic
+4. **Step 6-7** (Medium): Configuration and testing
+
+This comprehensive plan will transform SeriesPage.tsx from a hardcoded English-only page into a fully internationalized component that respects language availability and provides complete Spanish translations.
