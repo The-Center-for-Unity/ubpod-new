@@ -56,6 +56,11 @@ export const LanguageProvider: React.FC<{children: React.ReactNode}> = ({ childr
     const newPath = lang === 'en' 
       ? basePath === '/' ? '/' : basePath
       : `/${lang}${basePath}`;
+      
+    console.log(`[LANGUAGE SWITCHER DEBUG] Switching from ${language} to ${lang}`);
+    console.log(`[LANGUAGE SWITCHER DEBUG] Current path: ${currentPath}`);
+    console.log(`[LANGUAGE SWITCHER DEBUG] Base path: ${basePath}`);
+    console.log(`[LANGUAGE SWITCHER DEBUG] New path: ${newPath}`);
   
     setLanguage(lang);
     i18n.changeLanguage(lang);

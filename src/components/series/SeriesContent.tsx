@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { LocalizedLink } from '../shared/LocalizedLink';
 import { ChevronRight, ChevronDown, ChevronUp, Users, Globe, Book, Library } from 'lucide-react';
 import { SeriesInfo } from '../../utils/seriesUtils';
 
@@ -40,7 +40,7 @@ const SeriesContent: React.FC<SeriesContentProps> = ({
       : 'bg-gradient-to-br from-blue-900/40 to-navy-dark';
     
     return (
-      <Link 
+      <LocalizedLink 
         to={`/series/${series.id}`}
         className="flex bg-navy-dark/50 rounded-lg overflow-hidden hover:bg-navy-dark transition-colors border border-white/10 hover:border-white/20 group shadow-md hover:shadow-lg h-full"
       >
@@ -77,7 +77,7 @@ const SeriesContent: React.FC<SeriesContentProps> = ({
             </div>
           </div>
         </div>
-      </Link>
+      </LocalizedLink>
     );
   };
   

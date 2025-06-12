@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Search, Book, Headphones, Download, ChevronDown, ChevronUp, Play, Pause, BookOpen } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Episode } from '../types/index';
-import { getUrantiaPapers, getUrantiaPaperPart } from '../data/episodes';
+import { getEpisodesForSeries, getUrantiaPaperPart } from '../utils/episodeUtils';
 import Layout from '../components/layout/Layout';
 import { LocalizedLink } from '../components/shared/LocalizedLink';
 import { useLanguage } from '../i18n/LanguageContext';
@@ -95,6 +95,7 @@ export default function UrantiaPapersPage() {
   const { language } = useLanguage();
 
   const URANTIA_PARTS = [
+    { id: 0, title: t("foreword_title"), papers: [0, 0], color: "from-purple-500/20" },
     { id: 1, title: t("part_1_title"), papers: [1, 31], color: "from-blue-500/20" },
     { id: 2, title: t("part_2_title"), papers: [32, 56], color: "from-green-500/20" },
     { id: 3, title: t("part_3_title"), papers: [57, 119], color: "from-amber-500/20" },
@@ -104,17 +105,17 @@ export default function UrantiaPapersPage() {
   const [papers, setPapers] = useState<Episode[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [filteredPapers, setFilteredPapers] = useState<Episode[]>([]);
-  const [expandedParts, setExpandedParts] = useState<number[]>([1]); // Start with Part 1 expanded
+  const [expandedParts, setExpandedParts] = useState<number[]>([0, 1]); // Start with Foreword and Part 1 expanded
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   
   // Load papers on component mount
   useEffect(() => {
-    const allPapers = getUrantiaPapers();
+    const allPapers = getEpisodesForSeries('urantia-papers');
     if (language === 'en') {
       setPapers(allPapers);
       setFilteredPapers(allPapers);
     } else {
-      const translatedPapers = allPapers.map(paper => {
+      const translatedPapers = allPapers.map((paper: Episode) => {
         const translation = paper.translations?.[language];
         if (translation) {
           return {
@@ -234,7 +235,7 @@ export default function UrantiaPapersPage() {
                 onClick={() => togglePartExpansion(part.id)}
               >
                 <h2 className="text-xl font-semibold text-white">
-                  {t('part_header', { id: part.id, title: part.title })}
+                  {part.id === 0 ? part.title : t('part_header', { id: part.id, title: part.title })}
                 </h2>
                 <button className="text-white/80 hover:text-white">
                   {expandedParts.includes(part.id) ? <ChevronUp size={20} /> : <ChevronDown size={20} />}

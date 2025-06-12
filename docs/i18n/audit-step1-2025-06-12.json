@@ -1,0 +1,135 @@
+{
+  "criticalFiles": [
+    {
+      "path": "src/utils/episodeUtils.ts",
+      "exists": true,
+      "lines": 706,
+      "sizeKB": 35,
+      "i18nStatus": "❌ Hardcoded",
+      "hasUseTranslation": false,
+      "hasTranslationKey": true,
+      "hasHardcodedStrings": true
+    },
+    {
+      "path": "src/utils/seriesUtils.ts",
+      "exists": true,
+      "lines": 437,
+      "sizeKB": 17,
+      "i18nStatus": "❌ Hardcoded",
+      "hasUseTranslation": false,
+      "hasTranslationKey": false,
+      "hasHardcodedStrings": true
+    },
+    {
+      "path": "src/data/episodes.ts",
+      "exists": true,
+      "lines": 881,
+      "sizeKB": 41,
+      "i18nStatus": "❌ Hardcoded",
+      "hasUseTranslation": false,
+      "hasTranslationKey": true,
+      "hasHardcodedStrings": true
+    },
+    {
+      "path": "src/data/json/episodes.json",
+      "exists": true,
+      "lines": 2974,
+      "sizeKB": 93,
+      "i18nStatus": "❌ Hardcoded",
+      "hasUseTranslation": false,
+      "hasTranslationKey": false,
+      "hasHardcodedStrings": true
+    },
+    {
+      "path": "src/data/json/urantia_summaries.json",
+      "exists": true,
+      "lines": 1381,
+      "sizeKB": 151,
+      "i18nStatus": "❌ Hardcoded",
+      "hasUseTranslation": false,
+      "hasTranslationKey": false,
+      "hasHardcodedStrings": true
+    },
+    {
+      "path": "src/data/discoverJesusSummaries.ts",
+      "exists": true,
+      "lines": 865,
+      "sizeKB": 228,
+      "i18nStatus": "❌ Hardcoded",
+      "hasUseTranslation": false,
+      "hasTranslationKey": false,
+      "hasHardcodedStrings": true
+    }
+  ],
+  "componentFiles": [],
+  "spanishContentFiles": [
+    {
+      "path": "public/locales/es/content/episode-titles.json",
+      "exists": true,
+      "lines": 198,
+      "sizeKB": 6,
+      "entryCount": 28,
+      "contentType": "Episode Titles",
+      "structure": "object"
+    },
+    {
+      "path": "public/locales/es/content/series-metadata.json",
+      "exists": true,
+      "lines": 1590,
+      "sizeKB": 38,
+      "entryCount": 34,
+      "contentType": "Series Metadata",
+      "structure": "object"
+    },
+    {
+      "path": "public/locales/es/content/urantia-papers.json",
+      "exists": true,
+      "lines": 987,
+      "sizeKB": 159,
+      "entryCount": 197,
+      "contentType": "Urantia Paper Summaries",
+      "structure": "object"
+    },
+    {
+      "path": "public/locales/es/content/episode-loglines.json",
+      "exists": true,
+      "lines": 198,
+      "sizeKB": 21,
+      "entryCount": 28,
+      "contentType": "Episode Loglines",
+      "structure": "object"
+    },
+    {
+      "path": "public/locales/es/content/general-summaries.json",
+      "exists": true,
+      "lines": 857,
+      "sizeKB": 242,
+      "entryCount": 171,
+      "contentType": "General Episode Summaries",
+      "structure": "object"
+    },
+    {
+      "path": "public/locales/es/content/jesus-summaries.json",
+      "exists": true,
+      "lines": 686,
+      "sizeKB": 235,
+      "entryCount": 171,
+      "contentType": "Jesus Episode Summaries",
+      "structure": "object"
+    }
+  ],
+  "contentGaps": {
+    "spanishContentFiles": 6,
+    "totalSpanishContentKB": 701,
+    "totalSpanishEntries": 629,
+    "englishContentFiles": 0,
+    "missingEnglishOrganization": [
+      "Episode titles (hardcoded in episodeUtils.ts)",
+      "Series metadata (hardcoded in seriesUtils.ts)",
+      "Episode summaries (scattered in data files)",
+      "Urantia paper summaries (in JSON files)",
+      "Episode loglines (not extracted)"
+    ]
+  },
+  "summary": {}
+}

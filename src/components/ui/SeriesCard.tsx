@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { LocalizedLink } from '../shared/LocalizedLink';
 import { Book, Library } from 'lucide-react';
 import type { SeriesInfo } from '../../utils/seriesUtils';
 import { getCategoryBadge, getSeriesCollectionsUILabels } from '../../utils/seriesCollectionsUtils';
@@ -30,7 +30,7 @@ export default function SeriesCard({ series }: SeriesCardProps) {
     : 'bg-gradient-to-br from-blue-900/40 to-navy-dark';
   
   return (
-    <Link to={`/series/${series.id}`} className="group">
+    <LocalizedLink to={`/series/${series.id}`} className="group">
       <div className="rounded-lg overflow-hidden bg-navy-light/20 border border-white/5 hover:border-white/20 transition-all h-full flex flex-col shadow-md hover:shadow-lg">
         <div className={`aspect-video relative overflow-hidden ${imageError ? placeholderImageStyle : ''}`}>
           {!imageError && series.imageSrc ? (
@@ -62,7 +62,7 @@ export default function SeriesCard({ series }: SeriesCardProps) {
             </span>
           </div>
         </div>
-      </div>
-    </Link>
+              </div>
+      </LocalizedLink>
   );
 } 

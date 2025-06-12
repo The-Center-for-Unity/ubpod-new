@@ -99,7 +99,7 @@ export default function EpisodeCard({ episode, onPlay }: EpisodeCardProps) {
         {/* Action Buttons */}
         <div className="flex flex-wrap gap-2 mt-auto">
           <Link 
-            to={language === 'es' ? `/es/listen/${series}/${id}` : `/listen/${series}/${id}`}
+            to={language === 'es' ? `/es/series/${series}/${id}` : `/series/${series}/${id}`}
             className="flex items-center gap-1 px-4 py-2 bg-gold text-navy-dark rounded-md hover:bg-gold/90 transition-colors font-medium"
             onClick={onPlay}
           >

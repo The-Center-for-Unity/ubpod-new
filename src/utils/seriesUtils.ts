@@ -389,35 +389,7 @@ export function getPreviousEpisode(seriesId: string, currentEpisode: number): nu
   return currentEpisode > 1 ? currentEpisode - 1 : null;
 }
 
-/**
- * Get episode title based on series and episode number
- * @param seriesId The series ID
- * @param episodeNumber The episode number
- * @returns The episode title
- */
-export function getEpisodeTitle(seriesId: string, episodeNumber: number): string {
-  const series = getSeriesInfo(seriesId);
-  if (!series) return `Episode ${episodeNumber}`;
-  
-  // First try to import the episode titles from episodeUtils
-  // For now, return the proper title format used in production
-  const episodeIndex = episodeNumber - 1;
-  
-  // Cosmic-1 specific titles (matching production)
-  if (seriesId === 'cosmic-1') {
-    const cosmic1Titles = [
-      "The Universal Father",
-      "The Universe of Universes", 
-      "The Sacred Spheres of Paradise",
-      "The Seven Superuniverses",
-      "Energy—Mind and Matter"
-    ];
-    return cosmic1Titles[episodeIndex] || `Episode ${episodeNumber}`;
-  }
-  
-  // Return a generic episode title for other series
-  return `${series.title} - Episode ${episodeNumber}`;
-}
+// getEpisodeTitle function removed - titles now come from translation system only
 
 /**
  * Check if a series is Jesus-related (for asset handling)
