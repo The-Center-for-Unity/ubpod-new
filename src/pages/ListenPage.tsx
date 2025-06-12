@@ -47,7 +47,7 @@ export default function ListenPage() {
     
     try {
       setLoading(true);
-      const seriesEpisodes = getEpisodesForSeries(seriesId);
+      const seriesEpisodes = getEpisodesForSeries(seriesId, language);
       setEpisodes(seriesEpisodes);
       setError(null);
     } catch (err) {
