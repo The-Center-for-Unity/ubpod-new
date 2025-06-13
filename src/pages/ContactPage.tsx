@@ -5,6 +5,7 @@ import { emailService } from '../utils/emailService';
 import { Link } from 'react-router-dom';
 import Layout from '../components/layout/Layout';
 import { useTranslation } from 'react-i18next';
+import { LocalizedLink } from '../components/shared/LocalizedLink';
 
 // Form field interface
 interface FormField {
@@ -633,12 +634,12 @@ export default function ContactPage() {
                 {t('cta.description')}
               </p>
               <div className="flex justify-center pt-4">
-                <Link 
+                <LocalizedLink 
                   to="/urantia-papers" 
                   className="px-6 py-3 bg-primary text-white hover:bg-primary-light transition-colors duration-300 rounded-full"
                 >
                   {t('cta.button')}
-                </Link>
+                </LocalizedLink>
               </div>
             </motion.div>
           </div>

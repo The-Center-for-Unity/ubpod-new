@@ -19,6 +19,14 @@ const SeriesContent: React.FC<SeriesContentProps> = ({
     'cosmic': true
   });
 
+  // Helper function to determine correct series path
+  const getSeriesPath = (seriesId: string) => {
+    if (seriesId === 'urantia-papers') {
+      return '/urantia-papers';
+    }
+    return `/series/${seriesId}`;
+  };
+
   // Toggle section expansion
   const toggleSection = (section: string) => {
     setExpandedSections({
@@ -41,7 +49,7 @@ const SeriesContent: React.FC<SeriesContentProps> = ({
     
     return (
       <LocalizedLink 
-        to={`/series/${series.id}`}
+        to={getSeriesPath(series.id)}
         className="flex bg-navy-dark/50 rounded-lg overflow-hidden hover:bg-navy-dark transition-colors border border-white/10 hover:border-white/20 group shadow-md hover:shadow-lg h-full"
       >
         <div className={`w-[120px] relative overflow-hidden flex-shrink-0 ${imageError ? placeholderStyle : ''}`}>

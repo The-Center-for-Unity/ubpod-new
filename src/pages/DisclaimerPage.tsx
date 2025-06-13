@@ -3,6 +3,7 @@ import Layout from '../components/layout/Layout';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useLanguage } from '../i18n/LanguageContext';
+import { LocalizedLink } from '../components/shared/LocalizedLink';
 
 export default function DisclaimerPage() {
   const { t } = useTranslation('disclaimer');
@@ -77,13 +78,13 @@ export default function DisclaimerPage() {
         </div>
         
         <div className="mt-10 text-center">
-          <Link 
-            to={language === 'en' ? '/' : `/${language}`}
+          <LocalizedLink 
+            to="/"
             className="inline-flex items-center px-8 py-4 bg-gold text-navy-dark rounded-full 
                       hover:bg-gold-light transition-all duration-300 font-bold text-lg shadow-lg shadow-gold/20"
           >
             {t('returnButton')}
-          </Link>
+          </LocalizedLink>
         </div>
       </div>
     </Layout>

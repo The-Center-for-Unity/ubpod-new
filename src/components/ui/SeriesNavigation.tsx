@@ -6,6 +6,7 @@ import { getAllSeries, getSeriesInfo } from '../../utils/seriesUtils';
 import { filterSeriesByLanguage, getAvailableCategories } from '../../utils/seriesAvailabilityUtils';
 import { useLanguage } from '../../i18n/LanguageContext';
 import { ChevronDown, Users, Globe, LayoutGrid } from 'lucide-react';
+import { LocalizedLink } from '../shared/LocalizedLink';
 
 interface SeriesNavigationProps {
   currentSeries?: SeriesType;
@@ -134,9 +135,9 @@ export default function SeriesNavigation({ currentSeries, hideTitle = false }: S
               </div>
             ) : (
               filteredSeries.map(series => (
-                <Link 
+                <LocalizedLink 
                   key={series.id}
-                  to={language === 'es' ? `/es/series/${series.id}` : `/series/${series.id}`}
+                  to={`/series/${series.id}`}
                   className={`block py-3 px-4 hover:bg-navy-light/70 transition-colors ${
                     currentSeries === series.id 
                       ? 'bg-gold/20 text-white font-medium' 
@@ -151,7 +152,7 @@ export default function SeriesNavigation({ currentSeries, hideTitle = false }: S
                     }
                     <span>{series.title}</span>
                   </div>
-                </Link>
+                </LocalizedLink>
               ))
             )}
           </div>
@@ -168,9 +169,9 @@ export default function SeriesNavigation({ currentSeries, hideTitle = false }: S
               </div>
             ) : (
               filteredSeries.map(series => (
-                <Link 
+                <LocalizedLink 
                   key={series.id}
-                  to={language === 'es' ? `/es/series/${series.id}` : `/series/${series.id}`}
+                  to={`/series/${series.id}`}
                   className={`block py-2 px-3 rounded transition-colors ${
                     currentSeries === series.id 
                       ? 'bg-gold/20 text-white font-medium' 
@@ -184,7 +185,7 @@ export default function SeriesNavigation({ currentSeries, hideTitle = false }: S
                     }
                     <span>{series.title}</span>
                   </div>
-                </Link>
+                </LocalizedLink>
               ))
             )}
           </div>

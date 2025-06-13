@@ -29,8 +29,16 @@ export default function SeriesCard({ series }: SeriesCardProps) {
     ? 'bg-gradient-to-br from-rose-900/40 to-navy-dark'
     : 'bg-gradient-to-br from-blue-900/40 to-navy-dark';
   
+  // Determine the correct URL path based on series type
+  const getSeriesPath = () => {
+    if (series.id === 'urantia-papers') {
+      return '/urantia-papers';
+    }
+    return `/series/${series.id}`;
+  };
+  
   return (
-    <LocalizedLink to={`/series/${series.id}`} className="group">
+    <LocalizedLink to={getSeriesPath()} className="group">
       <div className="rounded-lg overflow-hidden bg-navy-light/20 border border-white/5 hover:border-white/20 transition-all h-full flex flex-col shadow-md hover:shadow-lg">
         <div className={`aspect-video relative overflow-hidden ${imageError ? placeholderImageStyle : ''}`}>
           {!imageError && series.imageSrc ? (

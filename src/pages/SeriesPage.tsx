@@ -19,6 +19,14 @@ export default function SeriesPage() {
   const [showUnavailableNotice, setShowUnavailableNotice] = useState(false);
   const [unavailableSeries, setUnavailableSeries] = useState<string | null>(null);
   
+  // Helper function to determine correct series path
+  const getSeriesPath = (seriesId: string) => {
+    if (seriesId === 'urantia-papers') {
+      return '/urantia-papers';
+    }
+    return `/series/${seriesId}`;
+  };
+
   // Check for unavailable series parameter
   useEffect(() => {
     const unavailableParam = searchParams.get('unavailable');
@@ -150,7 +158,7 @@ export default function SeriesPage() {
                 {featuredSeries.map(series => (
                   <LocalizedLink 
                     key={series.id}
-                    to={`/series/${series.id}`} 
+                    to={getSeriesPath(series.id)} 
                     className="block bg-navy-light/30 rounded-xl overflow-hidden border border-white/10 transition-all hover:scale-[1.02] hover:border-primary/30"
                   >
                     <div className="p-6">
@@ -330,7 +338,7 @@ export default function SeriesPage() {
                           {jesusSeries.map((series: SeriesInfo) => (
                             <LocalizedLink 
                               key={series.id}
-                              to={`/series/${series.id}`}
+                              to={getSeriesPath(series.id)}
                               className="block bg-navy-light/20 rounded-lg overflow-hidden border border-white/10 transition-all hover:scale-[1.02] hover:border-primary/30 hover:shadow-lg"
                             >
                               <div className="p-4 sm:p-5">
@@ -363,7 +371,7 @@ export default function SeriesPage() {
                           {cosmicSeries.map((series: SeriesInfo) => (
                             <LocalizedLink 
                               key={series.id}
-                              to={`/series/${series.id}`}
+                              to={getSeriesPath(series.id)}
                               className="block bg-navy-light/20 rounded-lg overflow-hidden border border-white/10 transition-all hover:scale-[1.02] hover:border-primary/30 hover:shadow-lg"
                             >
                               <div className="p-4 sm:p-5">
@@ -398,7 +406,7 @@ export default function SeriesPage() {
                           {jesusSeries.map((series: SeriesInfo) => (
                             <LocalizedLink 
                               key={series.id}
-                              to={`/series/${series.id}`}
+                              to={getSeriesPath(series.id)}
                               className="block bg-navy-light/20 rounded-lg overflow-hidden border border-white/10 transition-all hover:scale-[1.02] hover:border-primary/30 hover:shadow-lg"
                             >
                               <div className="p-4 sm:p-5">
@@ -431,7 +439,7 @@ export default function SeriesPage() {
                           {cosmicSeries.map((series: SeriesInfo) => (
                             <LocalizedLink 
                               key={series.id}
-                              to={`/series/${series.id}`}
+                              to={getSeriesPath(series.id)}
                               className="block bg-navy-light/20 rounded-lg overflow-hidden border border-white/10 transition-all hover:scale-[1.02] hover:border-primary/30 hover:shadow-lg"
                             >
                               <div className="p-4 sm:p-5">

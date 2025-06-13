@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import Layout from '../components/layout/Layout';
 import { PlayCircle, Headphones, MessageCircle, Download, Sparkles } from 'lucide-react';
 import SeriesCardGrid from '../components/ui/SeriesCardGrid';
+import { LocalizedLink } from '../components/shared/LocalizedLink';
 
 export default function HomePage() {
   const { t } = useTranslation('home');
@@ -74,7 +75,7 @@ export default function HomePage() {
               
               {/* Call to action buttons */}
               <div className="flex flex-col sm:flex-row gap-5">
-                <Link 
+                <LocalizedLink 
                   to="/urantia-papers"
                   className="inline-flex items-center px-8 py-4 bg-gold text-navy-dark rounded-full 
                             hover:bg-gold-light transition-all duration-300 font-bold text-lg shadow-xl group"
@@ -84,7 +85,7 @@ export default function HomePage() {
                   <span className="ml-2 group-hover:translate-x-1 transition-transform">
                     →
                   </span>
-                </Link>
+                </LocalizedLink>
                 <a 
                   href="#series"
                   className="inline-flex items-center px-8 py-4 bg-white/15 backdrop-blur-sm border-2 border-white/40 
@@ -174,7 +175,7 @@ export default function HomePage() {
               </p>
               
               <div className="space-y-6">
-                <Link 
+                <LocalizedLink 
                   to="/urantia-papers"
                   className="inline-flex items-center px-8 py-4 bg-gold text-navy-dark rounded-full 
                             hover:bg-gold-light transition-all duration-300 font-bold text-lg shadow-lg shadow-gold/20 group"
@@ -183,7 +184,7 @@ export default function HomePage() {
                   <span className="ml-2 group-hover:translate-x-1 transition-transform">
                     →
                   </span>
-                </Link>
+                </LocalizedLink>
               </div>
             </div>
           </div>
