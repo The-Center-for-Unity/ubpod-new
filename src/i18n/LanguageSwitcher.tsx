@@ -10,8 +10,8 @@ type Language = {
 const languages: Language[] = [
   { code: 'en', name: 'English', flag: '🇺🇸' },
   { code: 'es', name: 'Español', flag: '🇪🇸' },
-  { code: 'fr', name: 'Français', flag: '🇫🇷' },
-  { code: 'pt', name: 'Português', flag: '🇵🇹' },
+  // { code: 'fr', name: 'Français', flag: '🇫🇷' },
+  // { code: 'pt', name: 'Português', flag: '🇵🇹' },
 ];
 
 export const LanguageSwitcher: React.FC<{compact?: boolean}> = ({ compact = false }) => {
