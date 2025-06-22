@@ -198,8 +198,8 @@ export default function UrantiaPapersPage() {
           <div className="mb-6 text-white/70">
             {t('search_results', { count: filteredPapers.length, query: searchQuery })}
             <button 
-              className="ml-2 text-primary hover:underline"
               onClick={() => setSearchQuery('')}
+              className="ml-2 text-primary hover:underline text-sm"
             >
               {t('clear_search')}
             </button>
@@ -211,36 +211,30 @@ export default function UrantiaPapersPage() {
           // Organized by parts when not searching
           URANTIA_PARTS.map(part => (
             <div key={part.id} className="mb-8">
-              {/* Part Header */}
               <div 
-                className={`flex justify-between items-center p-4 rounded-lg bg-gradient-to-r ${part.color} to-transparent cursor-pointer mb-4`}
+                className={`p-4 rounded-t-lg cursor-pointer bg-gradient-to-r ${part.color} transition-all hover:brightness-125 flex justify-between items-center`}
                 onClick={() => togglePartExpansion(part.id)}
               >
                 <h2 className="text-xl font-semibold text-white">
                   {part.id === 0 ? part.title : t('part_header', { id: part.id, title: part.title })}
                 </h2>
                 <button className="text-white/80 hover:text-white">
-                  {expandedParts.includes(part.id) ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+                  {expandedParts.includes(part.id) ? <ChevronUp size={24} /> : <ChevronDown size={24} />}
                 </button>
               </div>
               
-              {/* Papers Grid/List */}
               {expandedParts.includes(part.id) && (
-                <motion.div 
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: 'auto' }}
-                  exit={{ opacity: 0, height: 0 }}
-                  transition={{ duration: 0.3 }}
-                  className={viewMode === 'grid' ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4' : 'space-y-3'}
-                >
-                  {getPapersForPart(part.id).map(paper => (
-                    viewMode === 'grid' ? (
-                      <PaperCard key={paper.id} paper={paper} />
-                    ) : (
-                      <PaperListItem key={paper.id} paper={paper} />
-                    )
-                  ))}
-                </motion.div>
+                <div className={`p-4 rounded-b-lg ${part.color.replace('from-', 'bg-')}`}>
+                  <div className={viewMode === 'grid' ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4' : 'space-y-3'}>
+                    {getPapersForPart(part.id).map(paper => (
+                      viewMode === 'grid' ? (
+                        <PaperCard key={paper.id} paper={paper} />
+                      ) : (
+                        <PaperListItem key={paper.id} paper={paper} />
+                      )
+                    ))}
+                  </div>
+                </div>
               )}
             </div>
           ))
@@ -254,19 +248,6 @@ export default function UrantiaPapersPage() {
                 <PaperListItem key={paper.id} paper={paper} />
               )
             ))}
-          </div>
-        )}
-        
-        {/* Empty State */}
-        {filteredPapers.length === 0 && (
-          <div className="text-center py-12">
-            <p className="text-xl text-white/70">No papers found matching your search.</p>
-            <button 
-              className="mt-4 text-primary hover:underline"
-              onClick={() => setSearchQuery('')}
-            >
-              Clear search
-            </button>
           </div>
         )}
       </div>

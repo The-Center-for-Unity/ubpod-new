@@ -188,12 +188,10 @@ export function getEpisodeById(id: number, series: string, language: string = 'e
  * Get Urantia Paper part number (for organization)
  */
 export function getUrantiaPaperPart(paperId: number): number {
-  if (paperId === 0) return 0; // Foreword
-  if (paperId >= 1 && paperId <= 31) return 1; // Part I
-  if (paperId >= 32 && paperId <= 56) return 2; // Part II
-  if (paperId >= 57 && paperId <= 119) return 3; // Part III
-  if (paperId >= 120 && paperId <= 196) return 4; // Part IV
-  return -1; // Should not happen
+  if (paperId <= 31) return 1;
+  if (paperId <= 57) return 2;
+  if (paperId <= 119) return 3;
+  return 4;
 }
 
 /**

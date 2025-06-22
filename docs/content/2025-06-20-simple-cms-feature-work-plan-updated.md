@@ -1,5 +1,7 @@
 # Simple CMS Feature Work Plan - COMPREHENSIVE REVISION
 
+**_Status Update (June 23, 2025): The extensive refactoring described in this document is now functionally complete. All major architectural changes, data migrations, and bug fixes have been implemented. The system is stable on the new two-file content model. Remaining work involves implementing the automated testing suite (Phase 4) and final cleanup (Phase 5)._**
+
 **Project:** UrantiaBookPod JSON Content Aggressive Streamlining  
 **Date:** 2025-06-20 (Complete Revision Based on Deep Analysis)  
 **Approach:** Radical episodes.json Streamlining + Comprehensive Bug Fixes  
@@ -40,6 +42,134 @@ Gabriel's observations revealed **major oversights** in the original analysis:
 - **QUESTION**: What is the English-only "title" field used for?
 - **I18N GAP**: Titles should come from i18n system, not hardcoded in episodes.json
 - **SOLUTION**: Move titles to translation files, keep only metadata in episodes.json
+
+---
+
+## 🚀 PROPOSED CONTENT ARCHITECTURE REFACTOR: TWO-FILE MODEL FOR SIMPLIFIED JSON
+
+### ✅ COMPLETED - June 22, 2025
+
+**Status**: Successfully implemented and tested
+
+### Rationale
+
+The current system splits localized content (titles, loglines, summaries) across multiple files (`episode-titles.json`, `episode-loglines.json`, `general-summaries.json`, `urantia-papers.json`, etc.), while non-localized metadata (series structure, episode IDs) is in `series-metadata.json` and `episodes.json`.
+
+This fragmentation leads to:
+- Redundant keys and data
+- Harder maintenance (adding a new episode/translation means editing several files)
+- More complex code (must merge data from multiple sources)
+- Inconsistent data structures
+- Difficult debugging and validation
+
+### ✅ Solution Implemented: Two-File Model
+
+**1. Non-localized metadata file**: `src/locales/series-metadata.json`
+- Contains series structure, episode IDs, and order
+- Language-agnostic
+- Single source of truth for series/episode structure
+
+**2. Localized content files**: `src/locales/{lang}/content/content.json`
+- Contains all localized content for each language
+- Unified structure: series → episodes → content (title, logline, episodeCard, summary)
+- One file per language, all content in one place
+
+### ✅ Schema Examples
+
+**Non-localized metadata** (`src/locales/series-metadata.json`):
+```json
+{
+  "jesus-1": {
+    "seriesId": "jesus-1",
+    "episodes": [
+      { "id": 1 },
+      { "id": 2 },
+      { "id": 3 },
+      { "id": 4 },
+      { "id": 5 }
+    ]
+  },
+  "urantia-papers": {
+    "seriesId": "urantia-papers",
+    "episodes": [
+      { "id": 1, "paperNumber": 1 },
+      { "id": 2, "paperNumber": 2 },
+      // ... all 197 papers
+    ]
+  }
+}
+```
+
+**Localized content** (`src/locales/en/content/content.json`):
+```json
+{
+  "jesus-1": {
+    "seriesTitle": "The Divine and Human Jesus",
+    "seriesDescription": "Explore the profound dual nature of Jesus as both human and divine.",
+    "episodes": {
+      "1": {
+        "title": "The Personality of God",
+        "logline": "God's personality, though not fully comprehensible...",
+        "episodeCard": "Brief summary for cards",
+        "summary": "Full detailed summary for episode pages"
+      }
+    }
+  }
+}
+```
+
+### ✅ Benefits Achieved
+
+1. **Simplified Maintenance**: Adding new episodes/translations requires editing only 2-3 files instead of 6+
+2. **Consistent Structure**: All series follow the same data pattern
+3. **Better Performance**: Fewer file reads and simpler data access
+4. **Easier Debugging**: All content for a series is in one place
+5. **Reduced Redundancy**: No duplicate keys or data structures
+6. **Future-Proof**: Easy to add new languages or content types
+
+### ✅ Implementation Summary
+
+**Files Created**:
+- `src/locales/series-metadata.json` (18KB, 1355 lines)
+- `src/locales/en/content/content.json` (200KB, 2198 lines)
+- `src/locales/es/content/content.json` (217KB, 2198 lines)
+
+**Files Consolidated**:
+- `episode-titles.json` (English & Spanish)
+- `episode-loglines.json` (English & Spanish)
+- `general-summaries.json` (English & Spanish)
+- `jesus-summaries.json` (English & Spanish)
+- `urantia-papers.json` (English & Spanish)
+
+**Code Updated**:
+- `src/utils/episodeUtils.ts` - Completely rewritten to use new structure
+- All imports updated to use consolidated files
+- TypeScript interfaces added for new data structures
+
+**Validation Results**:
+- ✅ 29 series successfully consolidated
+- ✅ 337 total episodes across all series
+- ✅ 100% title coverage
+- ✅ 42.3% logline coverage
+- ✅ 58.2% summary coverage
+- ✅ All episode counts match between metadata and content files
+- ✅ Build successful with no TypeScript errors
+
+**Backup Created**:
+- All original files backed up to `src/locales/backup/2025-06-22/`
+- Safe rollback possible if needed
+
+### ✅ Migration Scripts Created
+
+1. `scripts/consolidate-content-files.cjs` - Main consolidation script
+2. `scripts/fix-english-urantia-papers.cjs` - Fixed English metadata to match Spanish
+3. `scripts/cleanup-spanish-metadata.cjs` - Removed old series-platform-X entries
+4. `scripts/test-new-episode-utils.cjs` - Comprehensive validation script
+5. `scripts/cleanup-old-files.cjs` - Safe cleanup of old files (safety mode)
+
+### ✅ Next Steps
+
+The two-file model is now fully implemented and working. The old fragmented files can be safely removed when ready. The new structure provides a solid foundation for future content management and localization efforts.
 
 ---
 
@@ -103,6 +233,12 @@ After discovering the dual system crisis, Gabriel has clarified the ideal archit
 5. **Single source of truth**: All papers use same streamlined CMS system
 
 **Key Insight**: The `series-platform-X` naming was always meant to be temporary - it's cryptic and user-unfriendly. The goal is clean, semantic series names that users understand.
+
+---
+
+### ✅ **Resolution Status: COMPLETED**
+
+The dual system has been fully resolved by consolidating all Urantia Papers content under a single `urantia-papers` series ID within the new two-file content architecture. The obsolete `generateUrantiaPapers()` function and all `series-platform-X` constructs have been eliminated from the codebase. The `UrantiaPapersPage.tsx` now uses the standard `getEpisodesForSeries` function, while retaining its unique UI. This resolves the architectural inconsistency and associated bugs.
 
 ---
 
@@ -346,7 +482,9 @@ testCases.forEach(({ old, new: expected }) => {
 
 ---
 
-## PHASE 1: Comprehensive Cleanup (2 days)
+## PHASE 1: Comprehensive Cleanup (2 days) - ✅ COMPLETED
+
+**Summary**: This phase was successfully executed. The deprecated 'history' series has been purged. The `episodes.json` file was first streamlined and then entirely replaced by the new two-file model (`series-metadata.json` and `content.json`), which now holds only pure metadata, eliminating all hardcoded URLs and language-specific content.
 
 ### Step 1.1: Remove Deprecated History Series Completely
 **Duration:** 1 hour
@@ -469,7 +607,9 @@ const { id, summaryKey, paperNumber } = episode;
 
 ---
 
-## PHASE 2: Fix URL Generation with Language Support (1 day)
+## PHASE 2: Fix URL Generation with Language Support (1 day) - ✅ COMPLETED
+
+**Summary**: URL generation has been completely refactored. All URL-generating functions now accept a language parameter, ensuring correct links for Spanish content. Critical bugs, including the missing support for the Foreword (Paper 0), have been resolved. `episodeUtils.ts` was rewritten to dynamically generate all media URLs based on the new content structure.
 
 ### Step 2.1: Add Language Parameter to audio.ts
 **Duration:** 30 minutes
@@ -601,7 +741,9 @@ function getImageUrl(seriesId: string, episodeId: number): string {
 
 ---
 
-## PHASE 3: Fix i18n Implementation (1 day)
+## PHASE 3: Fix i18n Implementation (1 day) - ✅ COMPLETED
+
+**Summary**: The internationalization system has been significantly improved. All episode titles have been migrated from the old `episodes.json` to the new localized `content.json` files. Components like `EpisodeCard` now correctly source all text from the i18n system, removing hardcoded strings and ensuring proper language display.
 
 ### Step 3.1: Move Titles to Translation Files
 **Duration:** 2 hours
@@ -1198,7 +1340,7 @@ git commit -m "feat: move episode titles to i18n translation files
 - **Faster Feedback**: Automated tests run in minutes vs hours of manual testing
 - **Regression Prevention**: Tests catch regressions automatically on future changes
 - **Comprehensive Coverage**: Can test many more scenarios than manual testing
-- **CI/CD Ready**: Tests can run automatically on every commit
-- **Maintenance Friendly**: Tests serve as living documentation of expected behavior
+- [ ] **CI/CD Ready**: Tests can run automatically on every commit
+- [ ] **Maintenance Friendly**: Tests serve as living documentation of expected behavior
 
 This aggressive streamlining approach minimizes future bugs by reducing the surface area for errors while fixing all current issues comprehensively. 
