@@ -52,9 +52,11 @@ export default function LegacyRedirect() {
 
     console.log(`[LegacyRedirect] Redirecting from ${location.pathname} to ${newUrl}`);
     
-    // Perform the redirect
-    navigate(newUrl, { replace: true });
-  }, [series, id, navigate, location.pathname]);
+    // Perform the redirect using window.location to force a full page load
+    // This can be more reliable in some hosting environments than router.navigate()
+    window.location.replace(newUrl);
+
+  }, [series, id, location.pathname]);
 
   // Show loading while redirecting
   return (
