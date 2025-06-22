@@ -27,8 +27,8 @@ export default function LegacyRedirect() {
     let newUrl: string;
 
     if (series === 'urantia-papers') {
-      // /listen/urantia-papers/X → /urantia-papers/X
-      newUrl = `/urantia-papers/${id}`;
+      // /listen/urantia-papers/X → /series/urantia-papers/X
+      newUrl = `/series/urantia-papers/${id}`;
     } else if (series.startsWith('cosmic-') || series.startsWith('jesus-')) {
       // /listen/cosmic-X/Y → /series/cosmic-X/Y
       // /listen/jesus-X/Y → /series/jesus-X/Y
@@ -38,7 +38,7 @@ export default function LegacyRedirect() {
       newUrl = `/series/jesus-1/${id}`;
     } else if (series === 'sadler-workbooks') {
       // /listen/sadler-workbooks/X → /urantia-papers/X (map to unified Urantia Papers)
-      newUrl = `/urantia-papers/${id}`;
+      newUrl = `/series/urantia-papers/${id}`;
     } else {
       // Unknown series, try mapping to series format
       newUrl = `/series/${series}/${id}`;
