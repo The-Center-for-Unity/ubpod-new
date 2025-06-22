@@ -110,27 +110,9 @@ export default function UrantiaPapersPage() {
   
   // Load papers on component mount
   useEffect(() => {
-    const allPapers = getEpisodesForSeries('urantia-papers');
-    if (language === 'en') {
-      setPapers(allPapers);
-      setFilteredPapers(allPapers);
-    } else {
-      const translatedPapers = allPapers.map((paper: Episode) => {
-        const translation = paper.translations?.[language];
-        if (translation) {
-          return {
-            ...paper,
-            title: translation.title || paper.title,
-            description: translation.description || paper.description,
-            summary: translation.summary || paper.summary,
-            cardSummary: translation.cardSummary || paper.cardSummary,
-          };
-        }
-        return paper;
-      });
-      setPapers(translatedPapers);
-      setFilteredPapers(translatedPapers);
-    }
+    const allPapers = getEpisodesForSeries('urantia-papers', language);
+    setPapers(allPapers);
+    setFilteredPapers(allPapers);
   }, [language]);
   
   // Filter papers when search query changes

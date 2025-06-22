@@ -17,6 +17,7 @@ const DisclaimerPage = React.lazy(() => import('./pages/DisclaimerPage'));
 const ContactPage = React.lazy(() => import('./pages/ContactPage'));
 const SeriesPage = React.lazy(() => import('./pages/SeriesPage'));
 const DebugPage = React.lazy(() => import('./pages/Debug'));
+const LegacyRedirect = React.lazy(() => import('./components/shared/LegacyRedirect'));
 
 // Analytics IDs
 const HOTJAR_ID = '5205817';
@@ -53,7 +54,7 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/urantia-papers" element={<UrantiaPapersPage />} />
             <Route path="/episode/:id" element={<EpisodePage />} />
-            <Route path="/listen/:series/:id" element={<EpisodePage />} />
+            <Route path="/listen/:series/:id" element={<LegacyRedirect />} />
             <Route path="/listen/:series" element={<ListenPage />} />
             <Route path="/series" element={<SeriesPage />} />
             <Route path="/series/:seriesId" element={<ListenPage />} />
@@ -66,7 +67,7 @@ function App() {
             <Route path="/es" element={<HomePage />} />
             <Route path="/es/urantia-papers" element={<UrantiaPapersPage />} />
             <Route path="/es/episode/:id" element={<EpisodePage />} />
-            <Route path="/es/listen/:series/:id" element={<EpisodePage />} />
+            <Route path="/es/listen/:series/:id" element={<LegacyRedirect />} />
             <Route path="/es/listen/:series" element={<ListenPage />} />
             <Route path="/es/series" element={<SeriesPage />} />
             <Route path="/es/series/:seriesId" element={<ListenPage />} />

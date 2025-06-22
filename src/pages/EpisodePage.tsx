@@ -172,16 +172,14 @@ export default function EpisodePage() {
         }
         
         // Validate the series is recognized - include all valid series IDs
-        const validLegacySeries = ['urantia-papers', 'discover-jesus', 'history', 'sadler-workbooks'];
+        const validLegacySeries = ['urantia-papers', 'discover-jesus', 'sadler-workbooks'];
         const validJesusSeries = Array.from({ length: 14 }, (_, i) => `jesus-${i + 1}`);
         const validCosmicSeries = Array.from({ length: 14 }, (_, i) => `cosmic-${i + 1}`);
-        const validPlatformSeries = Array.from({ length: 4 }, (_, i) => `series-platform-${i + 1}`);
         
         const allValidSeries = [
           ...validLegacySeries,
           ...validJesusSeries,
-          ...validCosmicSeries,
-          ...validPlatformSeries
+          ...validCosmicSeries
         ];
         
         if (!allValidSeries.includes(series)) {

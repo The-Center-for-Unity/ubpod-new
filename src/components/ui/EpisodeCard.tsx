@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { Play, FileText, Download, Music } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useLanguage } from '../../i18n/LanguageContext';
 import { Episode } from '../../types/index';
+import { getEpisode } from '../../utils/episodeUtils';
 
 interface EpisodeCardProps {
   episode: Episode;
@@ -11,9 +12,19 @@ interface EpisodeCardProps {
 }
 
 export default function EpisodeCard({ episode, onPlay }: EpisodeCardProps) {
-  const { id, title, description, summary, cardSummary, audioUrl, pdfUrl, series, imageUrl, sourceUrl } = episode;
   const { language } = useLanguage();
   const { t } = useTranslation('series-detail');
+  
+  // Get complete episode data with language-aware URLs and titles
+  const episodeWithUrls = useMemo(() => {
+    return getEpisode(episode.series, episode.id, language);
+  }, [episode.series, episode.id, language]);
+  
+  if (!episodeWithUrls) {
+    return null; // Episode not found
+  }
+  
+  const { id, title, description, summary, cardSummary, audioUrl, pdfUrl, series, imageUrl, sourceUrl } = episodeWithUrls;
 
   // Determine which summary to display, with fallbacks
   const displaySummary = cardSummary || summary;
@@ -85,7 +96,7 @@ export default function EpisodeCard({ episode, onPlay }: EpisodeCardProps) {
       {/* Content Section */}
       <div className="p-5 flex-grow flex flex-col">
         <h3 className="text-xl font-semibold mb-3 text-white line-clamp-2 min-h-[3.5rem]">
-          {t('series-detail:episodeCard.episodePrefix')} {id}: {title}
+          {t('episodeCard.episodePrefix', { defaultValue: 'Episode' })} {id}: {title}
         </h3>
         
         <div className="mb-4 flex-grow">
@@ -104,7 +115,7 @@ export default function EpisodeCard({ episode, onPlay }: EpisodeCardProps) {
             onClick={onPlay}
           >
             <Play size={16} />
-            <span>{t('series-detail:episodeCard.actions.listen')}</span>
+            <span>{t('episodeCard.actions.listen', { defaultValue: 'Listen' })}</span>
           </Link>
           
           {readLink && (
@@ -115,18 +126,20 @@ export default function EpisodeCard({ episode, onPlay }: EpisodeCardProps) {
               className="flex items-center gap-1 px-3 py-2 bg-navy/50 text-white/90 rounded-md hover:bg-navy/70 transition-colors"
             >
               <FileText size={16} />
-              <span>{t('series-detail:episodeCard.actions.read')}</span>
+              <span>{t('episodeCard.actions.read', { defaultValue: 'Read' })}</span>
             </a>
           )}
           
-          <a 
-            href={audioUrl} 
-            download
-            className="flex items-center gap-1 px-3 py-2 bg-navy/50 text-white/90 rounded-md hover:bg-navy/70 transition-colors"
-          >
-            <Download size={16} />
-            <span>{t('series-detail:episodeCard.actions.download')}</span>
-          </a>
+          {audioUrl && (
+            <a 
+              href={audioUrl} 
+              download
+              className="flex items-center gap-1 px-3 py-2 bg-navy/50 text-white/90 rounded-md hover:bg-navy/70 transition-colors"
+            >
+              <Download size={16} />
+              <span>{t('episodeCard.actions.download', { defaultValue: 'Download Audio' })}</span>
+            </a>
+          )}
         </div>
       </div>
     </div>

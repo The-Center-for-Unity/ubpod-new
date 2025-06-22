@@ -8,28 +8,18 @@ export const legacySeriesMap: Record<string, string> = {
   'urantia-papers': 'urantia-papers', // No remapping for Urantia Papers
   'jesus-1': 'jesus-1', // No remapping for Jesus series
   'discover-jesus': 'jesus-1', // Map to first Jesus series
-  'history': 'series-platform-3', // Maps to Urantia History
-  'sadler-workbooks': 'series-platform-1', // Default mapping
+
+  'sadler-workbooks': 'urantia-papers', // Map to unified Urantia Papers
 };
 
 /**
- * Determines which platform series a paper number belongs to
+ * Returns the unified urantia-papers series for any paper number
  * @param paperNumber The paper number
- * @returns The appropriate platform series ID
+ * @returns The unified urantia-papers series ID
  */
 export function getPlatformSeriesForPaper(paperNumber: number): string {
-  if (paperNumber >= 1 && paperNumber <= 31) {
-    return 'series-platform-1';
-  } else if (paperNumber >= 32 && paperNumber <= 56) {
-    return 'series-platform-2';
-  } else if (paperNumber >= 57 && paperNumber <= 119) {
-    return 'series-platform-3';
-  } else if (paperNumber >= 120 && paperNumber <= 196) {
-    return 'series-platform-4';
-  }
-  
-  // Default to first series if paper number is invalid
-  return 'series-platform-1';
+  // All papers are now in the unified urantia-papers series
+  return 'urantia-papers';
 }
 
 /**
@@ -43,27 +33,12 @@ export function mapLegacyUrl(oldSeries: string | undefined, episodeId: string | 
   const series = oldSeries || 'urantia-papers';
   const id = episodeId || '1';
   
-  // For urantia-papers, map to the appropriate platform series based on paper number
+  // For urantia-papers, keep the same series and episode ID (unified approach)
   if (series === 'urantia-papers') {
     const paperNumber = parseInt(id, 10);
     if (!isNaN(paperNumber)) {
-      const newSeriesId = getPlatformSeriesForPaper(paperNumber);
-      
-      // Calculate episode ID within the new series
-      let newEpisodeId: number;
-      if (paperNumber >= 1 && paperNumber <= 31) {
-        newEpisodeId = paperNumber;
-      } else if (paperNumber >= 32 && paperNumber <= 56) {
-        newEpisodeId = paperNumber - 31;
-      } else if (paperNumber >= 57 && paperNumber <= 119) {
-        newEpisodeId = paperNumber - 56;
-      } else if (paperNumber >= 120 && paperNumber <= 196) {
-        newEpisodeId = paperNumber - 119;
-      } else {
-        newEpisodeId = 1;
-      }
-      
-      return { seriesId: newSeriesId, episodeId: newEpisodeId.toString() };
+      // Episode ID equals paper number in the unified series
+      return { seriesId: 'urantia-papers', episodeId: paperNumber.toString() };
     }
   }
   
@@ -73,6 +48,6 @@ export function mapLegacyUrl(oldSeries: string | undefined, episodeId: string | 
   }
   
   // For other legacy series, use the mapping table
-  const newSeriesId = legacySeriesMap[series] || 'series-platform-1';
+  const newSeriesId = legacySeriesMap[series] || 'urantia-papers';
   return { seriesId: newSeriesId, episodeId: id };
 } 

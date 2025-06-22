@@ -655,11 +655,11 @@
     "episodes": [
       {
         "id": 1,
-        "title": "Capítulo 1: El Padre Universal"
+        "title": "Documento 1: El Padre Universal"
       },
       {
         "id": 2,
-        "title": "Ponencia 2: La naturaleza de Dios"
+        "title": "Documento 2: La naturaleza de Dios"
       },
       {
         "id": 3,
@@ -683,7 +683,7 @@
       },
       {
         "id": 8,
-        "title": "Capítulo 8: El espíritu infinito"
+        "title": "Documento 8: El espíritu infinito"
       },
       {
         "id": 9,
@@ -695,7 +695,7 @@
       },
       {
         "id": 11,
-        "title": "Capítulo 11: La isla eterna del paraíso"
+        "title": "Documento 11: La isla eterna del paraíso"
       },
       {
         "id": 12,
@@ -703,7 +703,7 @@
       },
       {
         "id": 13,
-        "title": "Capítulo 13: Las esferas sagradas del Paraíso"
+        "title": "Documento 13: Las esferas sagradas del Paraíso"
       },
       {
         "id": 14,
@@ -715,7 +715,7 @@
       },
       {
         "id": 16,
-        "title": "Capítulo 16: Los siete espíritus maestros"
+        "title": "Documento 16: Los siete espíritus maestros"
       },
       {
         "id": 17,
@@ -785,11 +785,11 @@
     "episodes": [
       {
         "id": 1,
-        "title": "Ponencia 32: La evolución de los universos locales"
+        "title": "Documento 32: La evolución de los universos locales"
       },
       {
         "id": 2,
-        "title": "Ponencia 33: Administración del Universo Local"
+        "title": "Documento 33: Administración del Universo Local"
       },
       {
         "id": 3,
@@ -821,11 +821,11 @@
       },
       {
         "id": 10,
-        "title": "Ponencia 41: Aspectos físicos del universo local"
+        "title": "Documento 41: Aspectos físicos del universo local"
       },
       {
         "id": 11,
-        "title": "Ponencia 42: Energía-Mente y Materia"
+        "title": "Documento 42: Energía-Mente y Materia"
       },
       {
         "id": 12,
@@ -845,7 +845,7 @@
       },
       {
         "id": 16,
-        "title": "Paper 47: Los siete mundos mansión"
+        "title": "Documento 47: Los siete mundos mansión"
       },
       {
         "id": 17,
@@ -853,7 +853,7 @@
       },
       {
         "id": 18,
-        "title": "Capítulo 49: Los mundos habitados"
+        "title": "Documento 49: Los mundos habitados"
       },
       {
         "id": 19,
@@ -861,11 +861,11 @@
       },
       {
         "id": 20,
-        "title": "Paper 51: Los Adanes Planetarios"
+        "title": "Documento 51: Los Adanes Planetarios"
       },
       {
         "id": 21,
-        "title": "Artículo 52: Épocas mortales planetarias"
+        "title": "Documento 52: Épocas mortales planetarias"
       },
       {
         "id": 22,
@@ -911,11 +911,11 @@
       },
       {
         "id": 6,
-        "title": "Artículo 62: Las razas primitivas del hombre primitivo"
+        "title": "Documento 62: Las razas primitivas del hombre primitivo"
       },
       {
         "id": 7,
-        "title": "Artículo 63: La primera familia humana"
+        "title": "Documento 63: La primera familia humana"
       },
       {
         "id": 8,
@@ -923,7 +923,7 @@
       },
       {
         "id": 9,
-        "title": "Artículo 65: El sobrecontrol de la evolución"
+        "title": "Documento 65: El sobrecontrol de la evolución"
       },
       {
         "id": 10,
@@ -935,11 +935,11 @@
       },
       {
         "id": 12,
-        "title": "Paper 68: Los albores de la civilización"
+        "title": "Documento 68: Los albores de la civilización"
       },
       {
         "id": 13,
-        "title": "Artículo 69: Instituciones humanas primitivas"
+        "title": "Documento 69: Instituciones humanas primitivas"
       },
       {
         "id": 14,
@@ -947,7 +947,7 @@
       },
       {
         "id": 15,
-        "title": "Ponencia 71: Desarrollo del Estado"
+        "title": "Documento 71: Desarrollo del Estado"
       },
       {
         "id": 16,
@@ -983,7 +983,7 @@
       },
       {
         "id": 24,
-        "title": "Artículo 80: El sobrecontrol de la evolución"
+        "title": "Documento 80: El sobrecontrol de la evolución"
       },
       {
         "id": 25,
@@ -991,7 +991,7 @@
       },
       {
         "id": 26,
-        "title": "Paper 82: La rebelión planetaria"
+        "title": "Documento 82: La rebelión planetaria"
       },
       {
         "id": 27,
@@ -1003,7 +1003,7 @@
       },
       {
         "id": 29,
-        "title": "Artículo 85: La evolución del gobierno humano"
+        "title": "Documento 85: La evolución del gobierno humano"
       },
       {
         "id": 30,
@@ -1011,7 +1011,7 @@
       },
       {
         "id": 31,
-        "title": "Artículo 87: Gobierno en un planeta vecino"
+        "title": "Documento 87: Gobierno en un planeta vecino"
       },
       {
         "id": 32,
@@ -1019,7 +1019,7 @@
       },
       {
         "id": 33,
-        "title": "Artículo 89: Adán y Eva"
+        "title": "Documento 89: Adán y Eva"
       },
       {
         "id": 34,
@@ -1027,15 +1027,15 @@
       },
       {
         "id": 35,
-        "title": "Paper 91: El segundo jardín"
+        "title": "Documento 91: El segundo jardín"
       },
       {
         "id": 36,
-        "title": "Artículo 92: El sobrecontrol de la evolución"
+        "title": "Documento 92: El sobrecontrol de la evolución"
       },
       {
         "id": 37,
-        "title": "Artículo 93: El príncipe planetario de Urantia"
+        "title": "Documento 93: El príncipe planetario de Urantia"
       },
       {
         "id": 38,
@@ -1043,31 +1043,31 @@
       },
       {
         "id": 39,
-        "title": "Paper 95: Los albores de la civilización"
+        "title": "Documento 95: Los albores de la civilización"
       },
       {
         "id": 40,
-        "title": "Ponencia 96: Instituciones humanas primitivas"
+        "title": "Documento 96: Instituciones humanas primitivas"
       },
       {
         "id": 41,
-        "title": "Ponencia 97: La evolución del gobierno humano"
+        "title": "Documento 97: La evolución del gobierno humano"
       },
       {
         "id": 42,
-        "title": "Ponencia 98: Desarrollo del Estado"
+        "title": "Documento 98: Desarrollo del Estado"
       },
       {
         "id": 43,
-        "title": "Paper 99: Gobierno en un planeta vecino"
+        "title": "Documento 99: Gobierno en un planeta vecino"
       },
       {
         "id": 44,
-        "title": "Paper 100: El Jardín del Edén"
+        "title": "Documento 100: El Jardín del Edén"
       },
       {
         "id": 45,
-        "title": "Papel 101: Adán y Eva"
+        "title": "Documento 101: Adán y Eva"
       },
       {
         "id": 46,
@@ -1079,7 +1079,7 @@
       },
       {
         "id": 48,
-        "title": "Ponencia 104: El sobrecontrol de la evolución"
+        "title": "Documento 104: El sobrecontrol de la evolución"
       },
       {
         "id": 49,
@@ -1087,7 +1087,7 @@
       },
       {
         "id": 50,
-        "title": "Paper 106: La rebelión planetaria"
+        "title": "Documento 106: La rebelión planetaria"
       },
       {
         "id": 51,
@@ -1095,11 +1095,11 @@
       },
       {
         "id": 52,
-        "title": "Ponencia 108: Instituciones humanas primitivas"
+        "title": "Documento 108: Instituciones humanas primitivas"
       },
       {
         "id": 53,
-        "title": "Ponencia 109: La evolución del gobierno humano"
+        "title": "Documento 109: La evolución del gobierno humano"
       },
       {
         "id": 54,
@@ -1123,7 +1123,7 @@
       },
       {
         "id": 59,
-        "title": "Capítulo 115: Los mundos habitados"
+        "title": "Documento 115: Los mundos habitados"
       },
       {
         "id": 60,
@@ -1177,7 +1177,7 @@
       },
       {
         "id": 8,
-        "title": "Capítulo 127: La adolescencia"
+        "title": "Documento 127: La adolescencia"
       },
       {
         "id": 9,
@@ -1205,7 +1205,7 @@
       },
       {
         "id": 15,
-        "title": "Ponencia 134: Los años de transición"
+        "title": "Documento 134: Los años de transición"
       },
       {
         "id": 16,
@@ -1233,7 +1233,7 @@
       },
       {
         "id": 22,
-        "title": "Ponencia 141: El comienzo de la obra pública"
+        "title": "Documento 141: El comienzo de la obra pública"
       },
       {
         "id": 23,
@@ -1249,7 +1249,7 @@
       },
       {
         "id": 26,
-        "title": "Capítulo 145: Cuatro días llenos de acontecimientos en Cafarnaún"
+        "title": "Documento 145: Cuatro días llenos de acontecimientos en Cafarnaún"
       },
       {
         "id": 27,
@@ -1273,7 +1273,7 @@
       },
       {
         "id": 32,
-        "title": "Ponencia 151: Estancia y enseñanza a orillas del mar"
+        "title": "Documento 151: Estancia y enseñanza a orillas del mar"
       },
       {
         "id": 33,
@@ -1345,7 +1345,7 @@
       },
       {
         "id": 50,
-        "title": "Ponencia 169: La última enseñanza en Pella"
+        "title": "Documento 169: La última enseñanza en Pella"
       },
       {
         "id": 51,
@@ -1385,7 +1385,7 @@
       },
       {
         "id": 60,
-        "title": "Capítulo 179: La Última Cena"
+        "title": "Documento 179: La Última Cena"
       },
       {
         "id": 61,
@@ -1453,59 +1453,33 @@
       },
       {
         "id": 77,
-        "title": "Ponencia 196: La fe de Jesús"
+        "title": "Documento 196: La fe de Jesús"
       }
     ]
   },
   "urantia-papers": {
-    "seriesTitle": "Los documentos Urantia Podcast",
-    "seriesDescription": "Disfrute de un viaje narrativo a través del Libro de Urantia, papel a papel.",
+    "seriesTitle": "El Podcast de los Documentos de Urantia",
+    "seriesDescription": "Disfruta de un viaje narrativo a través del Libro de Urantia, un documento a la vez.",
     "episodes": [
       {
         "id": 1,
-        "title": "Capítulo 1: El Padre Universal"
+        "title": "Documento 1: El Padre Universal"
       },
       {
         "id": 2,
-        "title": "Ponencia 2: La naturaleza de Dios"
+        "title": "Documento 2: La Naturaleza de Dios"
       },
       {
         "id": 3,
-        "title": "Documento 3: Los atributos de Dios"
+        "title": "Documento 3: Los Atributos de Dios"
       },
       {
         "id": 4,
-        "title": "Documento 4: La relación de Dios con el Universo"
+        "title": "Documento 4: La Relación de Dios con el Universo"
       },
       {
         "id": 5,
-        "title": "Documento 5: La relación de Dios con el individuo"
-      }
-    ]
-  },
-  "history": {
-    "seriesTitle": "Historia de los documentos Urantia",
-    "seriesDescription": "La fascinante historia de los documentos Urantia y cómo surgieron.",
-    "episodes": [
-      {
-        "id": 1,
-        "title": "El sujeto dormido"
-      },
-      {
-        "id": 2,
-        "title": "La Comisión de Contacto"
-      },
-      {
-        "id": 3,
-        "title": "El Foro"
-      },
-      {
-        "id": 4,
-        "title": "Los Setenta"
-      },
-      {
-        "id": 5,
-        "title": "La publicación y la Fundación Urantia"
+        "title": "Documento 5: La Relación de Dios con el Individuo"
       }
     ]
   },

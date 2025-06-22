@@ -220,80 +220,22 @@ function getCosmicEpisodeTranslations(seriesId: string, episodeId: number, engli
   };
 }
 
-/**
- * Generate Urantia Papers episodes from translation system
- */
-function generateUrantiaPapers(): Episode[] {
-  const papers: Episode[] = [];
-  
-  // Create all papers from 0 to 196
-  for (let paperId = 0; paperId <= 196; paperId++) {
-    // Get the title from our translation loader, or use a generic title if not found
-    const title = getEnglishPaperTitle(paperId) || `Paper ${paperId}`;
-    
-    // Load Spanish translations using the translation loader
-    const spanishTitle = getSpanishPaperTitle(paperId);
-    const spanishCard = getSpanishPaperCard(paperId);
-    const spanishPage = getSpanishPaperPage(paperId);
-    
-    // Format the title with "Paper X:" prefix for all papers except the Foreword
-    const formattedTitle = paperId === 0 ? "Foreword" : `Paper ${paperId}: ${title}`;
-    
-    // Format Spanish title appropriately
-    const formattedSpanishTitle = spanishTitle 
-      ? (paperId === 0 ? spanishTitle : `Documento ${paperId}: ${spanishTitle}`)
-      : formattedTitle; // Fallback to English if no Spanish translation
-    
-    // Get English translations from the translation system  
-    const englishCard = getEnglishPaperCard(paperId);
-    const englishPage = getEnglishPaperPage(paperId);
-    
-    // Use translation data if available, otherwise use fallback
-    const defaultEnglishCard = `Enjoy a narrative journey through the Urantia Book, one paper at a time.`;
-    const defaultEnglishPage = `Enjoy a narrative journey through the Urantia Book, one paper at a time.`;
-    const defaultSpanishCard = `Disfruta de un viaje narrativo a través del Libro de Urantia, un documento a la vez.`;
-    const defaultSpanishPage = `Disfruta de un viaje narrativo a través del Libro de Urantia, un documento a la vez.`;
-    
-    // Create the episode object with translations
-    const episode: Episode = {
-      id: paperId,
-      title: formattedTitle,
-      audioUrl: getAudioUrl('urantia-papers', paperId),
-      pdfUrl: getPdfUrl('urantia-papers', paperId),
-      series: "urantia-papers",
-      // Use English card summary if available, otherwise fallback
-      description: englishCard || defaultEnglishCard,
-      summary: englishPage || defaultEnglishPage,
-      cardSummary: englishCard || defaultEnglishCard,
-      translations: {
-        en: {
-          title: formattedTitle,
-          description: englishCard || defaultEnglishCard,
-          summary: englishPage || defaultEnglishPage,
-          cardSummary: englishCard || defaultEnglishCard
-        },
-        es: {
-          title: formattedSpanishTitle,
-          description: spanishCard || defaultSpanishCard,
-          summary: spanishPage || defaultSpanishPage,
-          cardSummary: spanishCard || defaultSpanishCard,
-        },
-      }
-    };
-    
-    papers.push(episode);
-  }
-  
-  return papers;
-}
+
 
 // Main function to get all episodes for a given series
 export function getEpisodesForSeries(seriesId: string, language: string = 'en'): Episode[] {
   let episodes: Episode[];
 
   // Use ONLY episodes.json data and translation system
-  if (seriesId === 'urantia-papers') {
-    episodes = generateUrantiaPapers();
+  if (seriesId === 'urantia-papers' && episodesData[seriesId as keyof typeof episodesData]) {
+    // Handle Urantia Papers from episodes.json data using standard CMS system
+    console.log(`[DEBUG] Loading Urantia Papers data for: ${seriesId} (language: ${language})`);
+    const seriesData = episodesData[seriesId as keyof typeof episodesData];
+    
+    episodes = seriesData.episodes.map((ep: any) => {
+      const episode = getEpisode(seriesId, ep.id, language);
+      return episode;
+    }).filter(Boolean) as Episode[];
   } else if (seriesId.startsWith('jesus-') && episodesData[seriesId as keyof typeof episodesData]) {
     // Handle Jesus series from episodes.json data
     console.log(`[DEBUG] Loading Jesus series data for: ${seriesId}`);
@@ -404,95 +346,144 @@ export function getEpisodesForSeries(seriesId: string, language: string = 'en'):
  * @returns The episode with translations applied if available
  */
 export function getEpisode(seriesId: string, episodeId: number, language: string = 'en'): Episode | undefined {
-  console.log(`[DEBUG] === getEpisode START ===`);
-  console.log(`[DEBUG] Getting episode: ${seriesId}/${episodeId}, language: ${language}, type of episodeId: ${typeof episodeId}`);
+  console.log(`[getEpisode] Getting episode: ${seriesId}/${episodeId}, language: ${language}`);
   
-  // Get all episodes for the series with the specified language
-  const episodes = getEpisodesForSeries(seriesId, language);
-  console.log(`[DEBUG] getEpisodesForSeries returned ${episodes.length} episodes for ${seriesId} in ${language}`);
-  
-  // DEBUG: Log all episode IDs and their types
-  console.log(`[DEBUG] Available episode IDs:`, episodes.map(ep => ({
-    id: ep.id,
-    type: typeof ep.id,
-    title: ep.title
-  })));
-  
-  console.log(`[DEBUG] Looking for episodeId: ${episodeId} (type: ${typeof episodeId})`);
-  
-  // Find the requested episode
-  const episode = episodes.find(ep => {
-    console.log(`[DEBUG] Raw comparison: ep.id=${ep.id}, episodeId=${episodeId}`);
-    console.log(`[DEBUG] JSON.stringify: ep.id=${JSON.stringify(ep.id)}, episodeId=${JSON.stringify(episodeId)}`);
-    console.log(`[DEBUG] Strict equality: ${ep.id} === ${episodeId} is ${ep.id === episodeId}`);
-    console.log(`[DEBUG] Loose equality: ${ep.id} == ${episodeId} is ${ep.id == episodeId}`);
-    const match = ep.id === episodeId;
-    console.log(`[DEBUG] Final match result: ${match}`);
-    return match;
-  });
-  
-  if (!episode) {
-    console.log(`[DEBUG] Episode not found: ${seriesId}/${episodeId}`);
-    console.log(`[DEBUG] Available episodes:`, episodes.map(ep => `${ep.id}: ${ep.title}`));
+  // Get episode metadata from streamlined episodes.json
+  const episodeMetadata = getEpisodeMetadata(seriesId, episodeId);
+  if (!episodeMetadata) {
+    console.log(`[getEpisode] Episode metadata not found: ${seriesId}/${episodeId}`);
     return undefined;
   }
   
-  console.log(`[DEBUG] Found episode before additional translations:`, {
+  // Generate all URLs dynamically with language support
+  const audioUrl = getAudioUrl(seriesId, episodeId, language);
+  const pdfUrl = getPdfUrl(seriesId, episodeId, language) || undefined;
+  const imageUrl = getImageUrl(seriesId, episodeId);
+  const transcriptUrl = getTranscriptUrl(seriesId, episodeId, language) || undefined;
+  
+  // Get title from i18n system
+  const title = getEpisodeTitle(seriesId, episodeId, language);
+  
+  // Get summary content from i18n system
+  const summaryContent = getSummaryContent(episodeMetadata.summaryKey, language);
+
+  // Generate sourceUrl for Jesus series
+  const sourceUrl = (seriesId.startsWith('jesus-') && episodeMetadata.summaryKey) 
+    ? `https://discoverjesus.com/${episodeMetadata.summaryKey}`
+    : undefined;
+
+  const episode: Episode = {
+    id: episodeId,
+    title,
+    audioUrl,
+    pdfUrl,
+    imageUrl,
+    transcriptUrl,
+    sourceUrl,
+    series: seriesId as SeriesType,
+    ...summaryContent, // cardSummary, summary, description
+    summaryKey: episodeMetadata.summaryKey || undefined
+  };
+  
+  console.log(`[getEpisode] Generated episode:`, {
     id: episode.id,
     title: episode.title,
-    language: language,
-    hasTranslations: !!episode.translations,
-    translations: episode.translations ? Object.keys(episode.translations) : 'none'
+    hasAudio: !!episode.audioUrl,
+    hasPdf: !!episode.pdfUrl,
+    hasTranscript: !!episode.transcriptUrl,
+    language
   });
   
-  // Always set the transcriptUrl with the correct language.
-  episode.transcriptUrl = getTranscriptUrl(seriesId, episodeId, language) || undefined;
-  
-  // Apply translations if available and not English
-  if (language !== 'en' && episode.translations) {
-    console.log(`[DEBUG] Applying ${language} translations...`);
-    const translationData = episode.translations[language];
-    if (translationData) {
-      console.log(`[DEBUG] Translation data found for ${language}:`, {
-        title: translationData.title,
-        hasDescription: !!translationData.description,
-        hasSummary: !!translationData.summary,
-        hasCardSummary: !!translationData.cardSummary
-      });
-      const translatedEpisode = {
-        ...episode,
-        title: translationData.title || episode.title,
-        description: translationData.description || episode.description,
-        summary: translationData.summary || episode.summary,
-        cardSummary: translationData.cardSummary || episode.cardSummary,
-        
-        // For audio and PDF URLs, we need to adjust for language
-        audioUrl: getAudioPath(episode.audioUrl, language),
-        pdfUrl: episode.pdfUrl ? getPdfPath(episode.pdfUrl, language) : undefined,
-        // The transcriptUrl is already localized from the call above, so pass it through.
-        transcriptUrl: episode.transcriptUrl
-      };
-      console.log(`[DEBUG] Final translated episode:`, {
-        id: translatedEpisode.id,
-        title: translatedEpisode.title,
-        language: language
-      });
-      console.log(`[DEBUG] === getEpisode END (translated) ===`);
-      return translatedEpisode;
-    } else {
-      console.log(`[DEBUG] No translation data found for language: ${language}`);
-    }
-  } else {
-    console.log(`[DEBUG] No translation needed - language: ${language}, hasTranslations: ${!!episode.translations}`);
+  return episode;
+}
+
+/**
+ * Get episode metadata from streamlined episodes.json
+ */
+function getEpisodeMetadata(seriesId: string, episodeId: number) {
+  const seriesData = (episodesData as any)[seriesId];
+  if (!seriesData) return undefined;
+  return seriesData.episodes.find((ep: any) => ep.id === episodeId);
+}
+
+/**
+ * Get episode title from i18n translation files
+ */
+function getEpisodeTitle(seriesId: string, episodeId: number, language: string): string {
+  // For platform series, handle special cases (foreword)
+  if (episodeId === 0) {
+    return language === 'es' ? 'Prólogo' : 'Foreword';
   }
   
-  console.log(`[DEBUG] Final episode (no translation):`, {
-    id: episode.id,
-    title: episode.title,
-    language: language
-  });
-  console.log(`[DEBUG] === getEpisode END (no translation) ===`);
-  return episode;
+  // Try to get title from episode-titles translation files
+  const languageCode = language === 'es' ? 'es' : 'en';
+  const titleData = languageCode === 'es' ? episodeTitlesEs : episodeTitlesEn;
+  const seriesTitles = titleData[seriesId as keyof typeof titleData];
+  
+  if (Array.isArray(seriesTitles) && seriesTitles[episodeId - 1]) {
+    return seriesTitles[episodeId - 1];
+  }
+  
+  // Fallback title
+  return `Episode ${episodeId}`;
+}
+
+/**
+ * Generate image URL using consistent pattern
+ */
+function getImageUrl(seriesId: string, episodeId: number): string {
+  return `/images/${seriesId}/card-${episodeId}.jpg`;
+}
+
+/**
+ * Get summary content from i18n system
+ */
+function getSummaryContent(summaryKey: string | null, language: string): { 
+  cardSummary?: string; 
+  summary?: string; 
+  description?: string; 
+} {
+  if (!summaryKey) {
+    return {
+      cardSummary: 'Explore the profound teachings and revelations.',
+      summary: 'Explore the profound teachings and revelations.',
+      description: 'Explore the profound teachings and revelations.'
+    };
+  }
+  
+  // For Jesus series, use the existing helper
+  if (summaryKey.startsWith('topic/') || summaryKey.startsWith('event/') || summaryKey.startsWith('person/')) {
+    return getJesusSummaryFromTranslations(summaryKey);
+  }
+  
+  // For cosmic/Urantia papers
+  if (summaryKey.startsWith('paper_')) {
+    const paperNumber = parseInt(summaryKey.substring(6), 10);
+    if (language === 'es') {
+      const spanishCard = getSpanishPaperCard(paperNumber);
+      const spanishPage = getSpanishPaperPage(paperNumber);
+      return {
+        cardSummary: spanishCard || 'Explora las profundas enseñanzas cósmicas.',
+        summary: spanishPage || spanishCard || 'Explora las profundas enseñanzas cósmicas.',
+        description: spanishCard || 'Explora las profundas enseñanzas cósmicas.'
+      };
+    } else {
+      const englishCard = getEnglishPaperCard(paperNumber);
+      const englishPage = getEnglishPaperPage(paperNumber);
+      return {
+        cardSummary: englishCard || 'Explore the profound cosmic teachings.',
+        summary: englishPage || englishCard || 'Explore the profound cosmic teachings.',
+        description: englishCard || 'Explore the profound cosmic teachings.'
+      };
+    }
+  }
+  
+  // Default fallback
+  return {
+    cardSummary: language === 'es' ? 'Explora las profundas enseñanzas.' : 'Explore the profound teachings.',
+    summary: language === 'es' ? 'Explora las profundas enseñanzas.' : 'Explore the profound teachings.',
+    description: language === 'es' ? 'Explora las profundas enseñanzas.' : 'Explore the profound teachings.'
+  };
 }
 
 /**
