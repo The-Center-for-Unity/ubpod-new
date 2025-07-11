@@ -14,6 +14,9 @@
     "translate": "node scripts/translate-content.js",
     "translate:test": "node scripts/translate-content.js --test",
     "translate:papers": "node scripts/translate-content.js --papers-only",
+    "translate:fr": "node scripts/translate-content.js --target=fr",
+    "translate:fr:test": "node scripts/translate-content.js --target=fr --test",
+    "translate:fr:papers": "node scripts/translate-content.js --target=fr --papers-only",
     "test:i18n-format": "node scripts/test-i18n-format.js"
   },
   "dependencies": {

@@ -1,0 +1,48 @@
+{
+  "hero": {
+    "title": "Discover Life-Changing Cosmic Wisdom",
+    "subtitle": "Immerse yourself in the Urantia Book's profound teachings through {{count}} expertly narrated audio series",
+    "description": "From the life of Jesus to cosmic origins, each series transforms complex concepts into accessible insights for spiritual growth"
+  },
+  "unavailableNotice": {
+    "title": "Series Not Available:",
+    "message": "The \"{{seriesId}}\" series is not yet available in {{language}}. Here are the series currently available in your selected language:",
+    "dismiss": "Dismiss notification"
+  },
+  "featured": {
+    "title": "Begin Your Cosmic Journey",
+    "description": "Our most popular series offer perfect entry points to understanding the Urantia Book's transformative teachings:",
+    "badge": "Fan Favorite",
+    "episodeInfo": "5 episodes • ~1 hour total",
+    "startJourney": "Start your journey →"
+  },
+  "explore": {
+    "title": "Explore All Series Collections",
+    "description": "Browse our complete library of audio teachings or search for specific topics"
+  },
+  "filters": {
+    "allSeries": "All Series ({{count}})",
+    "jesusSeries": "Jesus ({{count}})",
+    "cosmicSeries": "Cosmic ({{count}})",
+    "searchPlaceholder": "Search series by title or description...",
+    "searchResults": "Found {{count}} results for \"{{query}}\"",
+    "clearSearch": "Clear search",
+    "structuredView": "Structured View",
+    "gridView": "Grid View",
+    "filterByCategory": "Filter series by category"
+  },
+  "categories": {
+    "jesusTitle": "The Life and Teachings of Jesus",
+    "cosmicTitle": "Cosmic Series"
+  },
+  "seriesCard": {
+    "jesusLabel": "Jesus",
+    "cosmicLabel": "Cosmic",
+    "episodes": "5 episodes",
+    "viewDetails": "View Details →"
+  },
+  "noResults": {
+    "message": "No series found matching your search. Try adjusting your filters.",
+    "clearFilters": "Clear filters"
+  }
+} 

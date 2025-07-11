@@ -3,7 +3,7 @@
 /**
  * DeepL Content Translation Script
  * 
- * This script translates all user-facing content from English to Spanish
+ * This script translates all user-facing content from English to Spanish or French
  * using the DeepL API. It processes JSON files and TypeScript arrays
  * systematically while preserving structure.
  * 
@@ -11,6 +11,7 @@
  *   node scripts/translate-content.js [options]
  * 
  * Options:
+ *   --target <lang>     Target language (es|fr) - default: es
  *   --test              Run in test mode (translate only first 3 papers)
  *   --papers-only       Translate only Urantia papers
  *   --jesus-only        Translate only Jesus summaries  
@@ -19,9 +20,9 @@
  *   --help              Show help
  * 
  * Examples:
- *   node scripts/translate-content.js --test
- *   node scripts/translate-content.js --papers-only --limit 5
- *   node scripts/translate-content.js --jesus-only
+ *   node scripts/translate-content.js --target=fr --test
+ *   node scripts/translate-content.js --target=es --papers-only --limit 5
+ *   node scripts/translate-content.js --target=fr --jesus-only
  * 
  * Requirements:
  * - DEEPL_API_KEY environment variable
@@ -40,6 +41,7 @@ const __dirname = path.dirname(__filename);
 // Parse command line arguments
 const args = process.argv.slice(2);
 const options = {
+  target: 'es', // default to Spanish
   test: args.includes('--test'),
   papersOnly: args.includes('--papers-only'),
   jesusOnly: args.includes('--jesus-only'),
@@ -47,6 +49,17 @@ const options = {
   outputDir: null,
   help: args.includes('--help')
 };
+
+// Parse target language option
+const targetIndex = args.indexOf('--target');
+if (targetIndex !== -1 && args[targetIndex + 1]) {
+  options.target = args[targetIndex + 1];
+}
+// Also check for --target=lang format
+const targetEqualIndex = args.findIndex(arg => arg.startsWith('--target='));
+if (targetEqualIndex !== -1) {
+  options.target = args[targetEqualIndex].split('=')[1];
+}
 
 // Parse limit option
 const limitIndex = args.indexOf('--limit');
@@ -60,6 +73,12 @@ if (outputIndex !== -1 && args[outputIndex + 1]) {
   options.outputDir = args[outputIndex + 1];
 }
 
+// Validate target language
+if (!['es', 'fr'].includes(options.target)) {
+  console.error(`❌ Error: Invalid target language '${options.target}'. Must be 'es' or 'fr'`);
+  process.exit(1);
+}
+
 // Show help
 if (options.help) {
   console.log(`
@@ -68,6 +87,7 @@ DeepL Content Translation Script
 Usage: node scripts/translate-content.js [options]
 
 Options:
+  --target <lang>     Target language (es|fr) - default: es
   --test              Run in test mode (translate only first 3 papers)
   --papers-only       Translate only Urantia papers
   --jesus-only        Translate only Jesus summaries  
@@ -76,9 +96,9 @@ Options:
   --help              Show this help
 
 Examples:
-  node scripts/translate-content.js --test
-  node scripts/translate-content.js --papers-only --limit 5
-  node scripts/translate-content.js --jesus-only
+  node scripts/translate-content.js --target=fr --test
+  node scripts/translate-content.js --target=es --papers-only --limit 5
+  node scripts/translate-content.js --target=fr --jesus-only
 
 Environment Variables:
   DEEPL_API_KEY       Your DeepL API key (required)
@@ -98,9 +118,9 @@ const translator = new Translator(apiKey);
 
 // Configure output directory and logging
 const timestamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, -5);
-const OUTPUT_DIR = options.outputDir || 'public/locales/es/content';
+const OUTPUT_DIR = options.outputDir || `src/locales/${options.target}/content`;
 const LOG_DIR = 'logs/translation';
-const LOG_FILE = path.join(LOG_DIR, `translation-${timestamp}.log`);
+const LOG_FILE = path.join(LOG_DIR, `translation-${options.target}-${timestamp}.log`);
 
 // Rate limiting configuration (optimized for DeepL API)
 const BATCH_SIZE = 10; // Optimal batch size for cost efficiency
@@ -161,7 +181,7 @@ class ContentTranslator {
       const result = await translator.translateText(
         text, 
         'en', 
-        'es',
+        options.target,
         {
           formality: 'default',
           preserveFormatting: true,
@@ -542,6 +562,7 @@ class ContentTranslator {
     
     this.log('🚀 Starting content translation with DeepL API...\n');
     this.log(`📊 API Key: ${apiKey.substring(0, 8)}...`);
+    this.log(`🌍 Target Language: ${options.target.toUpperCase()}`);
     this.log(`🎯 Mode: ${options.test ? 'TEST' : options.papersOnly ? 'PAPERS ONLY' : options.jesusOnly ? 'JESUS ONLY' : 'FULL'}`);
     
     try {

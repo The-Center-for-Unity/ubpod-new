@@ -25,6 +25,17 @@ import esContact from '../locales/es/contact.json';
 import esDisclaimer from '../locales/es/disclaimer.json';
 import esDebug from '../locales/es/debug.json';
 
+import frCommon from '../locales/fr/common.json';
+import frEpisode from '../locales/fr/episode.json';
+import frHome from '../locales/fr/home.json';
+import frSeries from '../locales/fr/series.json';
+import frSeriesCollections from '../locales/fr/series-collections.json';
+import frSeriesPage from '../locales/fr/series-page.json';
+import frSeriesDetail from '../locales/fr/series-detail.json';
+import frContact from '../locales/fr/contact.json';
+import frDisclaimer from '../locales/fr/disclaimer.json';
+import frDebug from '../locales/fr/debug.json';
+
 i18n
   .use(LanguageDetector) // detects user language
   .use(initReactI18next) // passes i18n down to react-i18next
@@ -63,6 +74,18 @@ i18n
         contact: esContact,
         disclaimer: esDisclaimer,
         debug: esDebug,
+      },
+      fr: {
+        common: frCommon,
+        episode: frEpisode,
+        home: frHome,
+        series: frSeries,
+        'series-collections': frSeriesCollections,
+        'series-page': frSeriesPage,
+        'series-detail': frSeriesDetail,
+        contact: frContact,
+        disclaimer: frDisclaimer,
+        debug: frDebug,
       },
     },
     ns: ['common', 'episode', 'home', 'series', 'series-collections', 'series-page', 'series-detail', 'content'],
