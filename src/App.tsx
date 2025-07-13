@@ -86,6 +86,18 @@ function App() {
             <Route path="/fr/series/:seriesId/:episodeId" element={<EpisodePage />} />
             <Route path="/fr/disclaimer" element={<DisclaimerPage />} />
             <Route path="/fr/contact" element={<ContactPage />} />
+
+            {/* Portuguese routes */}
+            <Route path="/pt" element={<HomePage />} />
+            <Route path="/pt/urantia-papers" element={<UrantiaPapersPage />} />
+            <Route path="/pt/episode/:id" element={<EpisodePage />} />
+            <Route path="/pt/listen/:series/:id" element={<LegacyRedirect />} />
+            <Route path="/pt/listen/:series" element={<ListenPage />} />
+            <Route path="/pt/series" element={<SeriesPage />} />
+            <Route path="/pt/series/:seriesId" element={<ListenPage />} />
+            <Route path="/pt/series/:seriesId/:episodeId" element={<EpisodePage />} />
+            <Route path="/pt/disclaimer" element={<DisclaimerPage />} />
+            <Route path="/pt/contact" element={<ContactPage />} />
             
             {/* 404 route */}
             <Route path="*" element={<NotFoundPage />} />

@@ -1,0 +1,61 @@
+{
+  "nav": {
+    "home": "Início",
+    "episodes": "Episódios",
+    "about": "Sobre",
+    "contact": "Contato",
+    "urantia_papers": "Documentos",
+    "series_collections": "Séries",
+    "disclaimer": "Aviso",
+    "pay_it_forward": "Pagar para frente"
+  },
+  "footer": {
+    "copyright": "© {{year}} The Center for Unity. Todos os direitos reservados.",
+    "terms": "Termos de Serviço",
+    "privacy": "Política de privacidade",
+    "quick_links": "Links rápidos",
+    "resources": "Recursos",
+    "description": "Companheiros de áudio criados por IA para explorar a verdade cósmica",
+    "also_available": "Também disponível em",
+    "copy_rss": "Copiar RSS Feed",
+    "rss_copied": "URL do feed RSS copiado para a área de transferência!",
+    "rss_copy_failed": "Falha ao copiar o URL do feed RSS",
+    "external_links": {
+      "urantia_foundation": "Fundação Urântia",
+      "center_for_unity": "O Centro de Unidade"
+    }
+  },
+  "site": {
+    "name": "Podcast sobre o Livro de Urântia",
+    "logo_alt": "Logotipo do UrantiaBookPod",
+    "subtitle_line1": "A URANTIA",
+    "subtitle_line2": "PODCAST DE LIVROS"
+  },
+  "actions": {
+    "back": "Voltar",
+    "learn_more": "Saiba mais",
+    "listen_now": "Ouça agora",
+    "view_all": "Ver tudo",
+    "return_home": "Voltar para casa"
+  },
+  "platforms": {
+    "youtube": "YouTube",
+    "apple_podcasts": "Podcasts da Apple",
+    "spotify": "Spotify",
+    "amazon_music": "Amazon Music"
+  },
+  "share": {
+    "button": "Compartilhar",
+    "title": "Compartilhe este conteúdo",
+    "copy_link": "Copiar link",
+    "share_to_x": "Compartilhar para X",
+    "share_to_facebook": "Compartilhar no Facebook",
+    "share_to_linkedin": "Compartilhar no LinkedIn",
+    "share_via_email": "Compartilhar por e-mail",
+    "share_via_text": "Compartilhar via texto",
+    "link_copied": "Link copiado para a área de transferência!",
+    "content_copied": "Conteúdo copiado para a área de transferência! Cole na postagem do Facebook.",
+    "shared_success": "Compartilhado com sucesso!",
+    "rss_copy_failed": "Falha ao copiar o link"
+  }
+}

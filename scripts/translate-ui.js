@@ -3,11 +3,14 @@
 /**
  * DeepL UI Translation Script
  * 
- * This script translates UI components from English to French
+ * This script translates UI components from English to a target language
  * using the DeepL API.
  * 
  * Usage: 
- *   node scripts/translate-ui.js
+ *   node scripts/translate-ui.js --target=<lang>
+ *
+ * Example:
+ *   node scripts/translate-ui.js --target=pt
  */
 
 import fs from 'fs';
@@ -17,6 +20,37 @@ import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+// --- Argument Parsing ---
+const args = process.argv.slice(2);
+const options = {
+  target: null,
+  help: args.includes('--help')
+};
+
+const targetIndex = args.findIndex(arg => arg.startsWith('--target'));
+if (targetIndex !== -1) {
+  const targetArg = args[targetIndex];
+  if (targetArg.includes('=')) {
+    options.target = targetArg.split('=')[1];
+  } else if (args[targetIndex + 1]) {
+    options.target = args[targetIndex + 1];
+  }
+}
+
+if (options.help || !options.target) {
+    console.log(`
+DeepL UI Translation Script
+
+Usage: node scripts/translate-ui.js --target=<lang>
+
+Options:
+  --target <lang>   Target language code (e.g., pt, es, fr)
+  --help            Show this help
+    `);
+    process.exit(options.help ? 0 : 1);
+}
+// --- End Argument Parsing ---
 
 // Check for API key
 const authKey = process.env.DEEPL_API_KEY;
@@ -43,8 +77,14 @@ const UI_FILES = [
   'series.json'
 ];
 
-async function translateObject(obj, sourceLang = 'en', targetLang = 'fr') {
+async function translateObject(obj, sourceLang = 'en', targetLang = options.target) {
   const result = {};
+  
+  // DeepL specific fix for Portuguese
+  let deeplTargetLang = targetLang.toUpperCase();
+  if (deeplTargetLang === 'PT') {
+    deeplTargetLang = 'PT-BR'; // Default to Brazilian Portuguese
+  }
   
   for (const [key, value] of Object.entries(obj)) {
     if (typeof value === 'string') {
@@ -59,7 +99,7 @@ async function translateObject(obj, sourceLang = 'en', targetLang = 'fr') {
         const translation = await translator.translateText(
           value,
           sourceLang,
-          targetLang,
+          deeplTargetLang,
           { preserveFormatting: true }
         );
         result[key] = translation.text;
@@ -83,10 +123,10 @@ async function translateObject(obj, sourceLang = 'en', targetLang = 'fr') {
 }
 
 async function translateUIFile(filename) {
-  console.log(`\n📄 Translating ${filename}...`);
+  console.log(`\n📄 Translating ${filename} to ${options.target.toUpperCase()}...`);
   
   const sourcePath = path.join(__dirname, '..', 'src', 'locales', 'en', filename);
-  const targetPath = path.join(__dirname, '..', 'src', 'locales', 'fr', filename);
+  const targetPath = path.join(__dirname, '..', 'src', 'locales', options.target, filename);
   
   try {
     // Read English source file
@@ -105,9 +145,13 @@ async function translateUIFile(filename) {
 }
 
 async function main() {
-  console.log('🚀 Starting French UI translation with DeepL API...\n');
+  console.log(`🚀 Starting UI translation for ${options.target.toUpperCase()} with DeepL API...\n`);
   console.log(`📊 API Key: ${authKey.substring(0, 8)}...`);
-  console.log(`🌍 Target Language: French (FR)`);
+  console.log(`🌍 Target Language: ${options.target.toUpperCase()}`);
+  // Add a note for Portuguese
+  if (options.target.toLowerCase() === 'pt') {
+      console.log(`   (Using PT-BR for DeepL translation)`);
+  }
   console.log(`📋 Files to translate: ${UI_FILES.length}`);
   
   try {
@@ -127,11 +171,10 @@ async function main() {
       await translateUIFile(file);
     }
     
-    console.log('\n✅ French UI translation completed successfully!');
+    console.log(`\n✅ ${options.target.toUpperCase()} UI translation completed successfully!`);
     console.log('\n📝 Next steps:');
-    console.log('1. Review the translated files in src/locales/fr/');
-    console.log('2. Test the French UI by switching language in the app');
-    console.log('3. Run content translation with: npm run translate:fr');
+    console.log(`1. Review the translated files in src/locales/${options.target}/`);
+    console.log('2. Test the UI by switching language in the app');
     
   } catch (error) {
     console.error('\n💥 Translation failed:', error.message);

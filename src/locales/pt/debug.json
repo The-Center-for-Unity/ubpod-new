@@ -1,0 +1,17 @@
+{
+  "title": "Depurador de URL de mídia",
+  "fields": {
+    "series": "Série:",
+    "episodeNumber": "Número do episódio:",
+    "fileType": "Tipo de arquivo:",
+    "testButton": "URL de teste"
+  },
+  "fileTypes": {
+    "mp3": "MP3",
+    "pdf": "PDF"
+  },
+  "results": {
+    "generatedUrl": "URL gerada:",
+    "error": "Erro:"
+  }
+}

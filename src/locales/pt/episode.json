@@ -1,0 +1,53 @@
+{
+  "player": {
+    "play": "Jogar",
+    "pause": "Pausa",
+    "mute": "Mudo",
+    "unmute": "Tirar o som",
+    "download": "Baixar áudio",
+    "transcript": "Ver transcrição",
+    "read_pdf": "Ler PDF",
+    "speed": "Velocidade",
+    "skipForward": "Pular para frente 10s",
+    "skipBackward": "Pular 10s para trás",
+    "downloadTranscript": "Download da transcrição"
+  },
+  "navigation": {
+    "back_to_papers": "Voltar para Papéis",
+    "back_to_episodes": "Voltar aos episódios",
+    "back_to_series": "Voltar para a série",
+    "previous_episode": "Episódio anterior",
+    "next_episode": "Próximo Episódio"
+  },
+  "related": {
+    "title": "Episódios relacionados",
+    "viewAll": "Ver todos os episódios",
+    "related_content": "Conteúdo relacionado"
+  },
+  "share": {
+    "title": "Compartilhar",
+    "facebook": "Compartilhar no Facebook",
+    "twitter": "Compartilhar no Twitter",
+    "email": "Compartilhar por e-mail"
+  },
+  "summary": {
+    "title": "Resumo",
+    "read_more": "Leia mais",
+    "read_less": "Leia menos"
+  },
+  "errors": {
+    "audio_not_available": "Áudio não disponível",
+    "cosmic_unavailable": "O áudio desse episódio da série cosmic ainda não está disponível. No momento, estamos trabalhando na geração desses arquivos.",
+    "failed_to_load": "Falha ao carregar o episódio",
+    "not_found": "Episódio não encontrado",
+    "invalid_url": "URL de episódio inválido"
+  },
+  "meta": {
+    "title": "(título) | Podcast do Livro de Urântia",
+    "description": "Ouça {{título}}: {{descrição}}"
+  },
+  "external": {
+    "read_on_dj": "Leia em DiscoverJesus.com"
+  },
+  "loading": "Carregando..."
+}

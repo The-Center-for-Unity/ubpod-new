@@ -1,0 +1,48 @@
+{
+  "hero": {
+    "title": "Descubra a sabedoria cósmica que muda sua vida",
+    "subtitle": "Mergulhe nos profundos ensinamentos do Livro de Urântia por meio de séries de áudio narradas por especialistas",
+    "description": "Da vida de Jesus às origens cósmicas, cada série transforma conceitos complexos em percepções acessíveis para o crescimento espiritual"
+  },
+  "unavailableNotice": {
+    "title": "Série não disponível:",
+    "message": "A série \"{{seriesId}}\" ainda não está disponível em {{language}}. Aqui estão as séries atualmente disponíveis no idioma selecionado:",
+    "dismiss": "Dispensar notificação"
+  },
+  "featured": {
+    "title": "Comece sua jornada cósmica",
+    "description": "Nossas séries mais populares oferecem pontos de entrada perfeitos para a compreensão dos ensinamentos transformadores do Livro de Urântia:",
+    "badge": "Favorito dos fãs",
+    "episodeInfo": "5 episódios - ~1 hora no total",
+    "startJourney": "Comece sua jornada →"
+  },
+  "explore": {
+    "title": "Explore todas as coleções de séries",
+    "description": "Navegue por nossa biblioteca completa de ensinamentos em áudio ou pesquise tópicos específicos"
+  },
+  "filters": {
+    "allSeries": "Todas as séries ({{count}})",
+    "jesusSeries": "Jesus ({{count}})",
+    "cosmicSeries": "Cósmico ({{contagem}})",
+    "searchPlaceholder": "Pesquise séries por título ou descrição...",
+    "searchResults": "Encontramos {{count}} resultados para \"{{query}}\"",
+    "clearSearch": "Limpar pesquisa",
+    "structuredView": "Visão estruturada",
+    "gridView": "Visualização em grade",
+    "filterByCategory": "Filtrar séries por categoria"
+  },
+  "categories": {
+    "jesusTitle": "A vida e os ensinamentos de Jesus",
+    "cosmicTitle": "Série Cósmica"
+  },
+  "seriesCard": {
+    "jesusLabel": "Jesus",
+    "cosmicLabel": "Cósmico",
+    "episodes": "5 episódios",
+    "viewDetails": "Ver detalhes →"
+  },
+  "noResults": {
+    "message": "Não foram encontradas séries que correspondam à sua pesquisa. Tente ajustar seus filtros.",
+    "clearFilters": "Limpar filtros"
+  }
+}

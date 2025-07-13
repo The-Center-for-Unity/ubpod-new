@@ -9,6 +9,7 @@ import seriesMetadata from '../locales/series-metadata.json';
 import enContent from '../locales/en/content/content.json';
 import esContent from '../locales/es/content/content.json';
 import frContent from '../locales/fr/content/content.json';
+import ptContent from '../locales/pt/content/content.json';
 
 // Define the cosmic audio URL - use the same R2 backend that other audio files use
 const COSMIC_AUDIO_BASE_URL = import.meta.env.VITE_COSMIC_AUDIO_BASE_URL || URANTIA_AUDIO_BASE_URL;
@@ -41,8 +42,16 @@ interface SeriesMetadata {
 /**
  * Get episode data from consolidated content files
  */
-function getEpisodeContent(seriesId: string, episodeId: number, language: 'en' | 'es' | 'fr'): EpisodeContent | null {
-  const content = language === 'en' ? enContent : language === 'es' ? esContent : frContent;
+function getEpisodeContent(seriesId: string, episodeId: number, language: 'en' | 'es' | 'fr' | 'pt'): EpisodeContent | null {
+  let content: typeof enContent;
+  switch (language) {
+    case 'en': content = enContent; break;
+    case 'es': content = esContent; break;
+    case 'fr': content = frContent; break;
+    case 'pt': content = ptContent; break;
+    default: content = enContent;
+  }
+
   const seriesContent = content[seriesId as keyof typeof content] as SeriesContent | undefined;
   
   if (!seriesContent) {
@@ -116,6 +125,7 @@ export function getEpisode(seriesId: string, episodeId: number, language: string
   const enEpisodeContent = getEpisodeContent(seriesId, episodeId, 'en');
   const esEpisodeContent = getEpisodeContent(seriesId, episodeId, 'es');
   const frEpisodeContent = getEpisodeContent(seriesId, episodeId, 'fr');
+  const ptEpisodeContent = getEpisodeContent(seriesId, episodeId, 'pt');
   
   if (!enEpisodeContent) {
     console.warn(`[episodeUtils] English content not found for ${seriesId}/${episodeId}`);
@@ -123,7 +133,13 @@ export function getEpisode(seriesId: string, episodeId: number, language: string
   }
   
   // Use the requested language content as primary
-  const primaryContent = language === 'es' ? esEpisodeContent : language === 'fr' ? frEpisodeContent : enEpisodeContent;
+  let primaryContent: EpisodeContent | null = null;
+  switch (language) {
+    case 'es': primaryContent = esEpisodeContent; break;
+    case 'fr': primaryContent = frEpisodeContent; break;
+    case 'pt': primaryContent = ptEpisodeContent; break;
+    default: primaryContent = enEpisodeContent;
+  }
   const fallbackContent = enEpisodeContent;
   
   // Generate URLs

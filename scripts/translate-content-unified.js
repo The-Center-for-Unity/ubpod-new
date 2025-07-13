@@ -144,11 +144,17 @@ async function translateText(text, context = '') {
     return text;
   }
 
+  // DeepL specific fix for Portuguese
+  let deeplTargetLang = options.target.toUpperCase();
+  if (deeplTargetLang === 'PT') {
+    deeplTargetLang = 'PT-BR';
+  }
+
   try {
     const result = await translator.translateText(
       text,
       'en',
-      options.target.toUpperCase(),
+      deeplTargetLang,
       {
         formality: 'default',
         preserveFormatting: true,
@@ -217,6 +223,9 @@ async function main() {
   console.log(`🚀 Starting ${options.target.toUpperCase()} content translation with DeepL API...\n`);
   console.log(`📊 API Key: ${authKey.substring(0, 8)}...`);
   console.log(`🌍 Target Language: ${options.target.toUpperCase()}`);
+  if (options.target.toLowerCase() === 'pt') {
+    console.log(`   (Using PT-BR for DeepL translation)`);
+  }
   console.log(`🎯 Mode: ${options.test ? 'TEST' : 'FULL'}`);
   
   try {

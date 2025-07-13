@@ -1,0 +1,19 @@
+{
+  "title": "Os Documentos de Urântia",
+  "description": "Mergulhe na sabedoria cósmica por meio de jornadas de áudio do Livro de Urântia criadas por IA. Experimente ensinamentos profundos em um formato novo e acessível.",
+  "search_placeholder": "Pesquise documentos por título, número ou palavra-chave...",
+  "grid_view": "Visualização em grade",
+  "list_view": "Exibição de lista",
+  "search_results": "Encontramos {{contagem}} papéis que correspondem a \"{{query}}\"",
+  "clear_search": "Limpo",
+  "part_header": "Parte {{id}}: {{title}}",
+  "part_label": "Parte {{id}}",
+  "listen_button": "Ouça",
+  "read_button": "Ler",
+  "download_button": "Baixar",
+  "foreword_title": "Prefácio",
+  "part_1_title": "O universo central e os superuniversos",
+  "part_2_title": "O universo local",
+  "part_3_title": "A história de Urântia",
+  "part_4_title": "A vida e os ensinamentos de Jesus"
+}

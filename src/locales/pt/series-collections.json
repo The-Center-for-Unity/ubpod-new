@@ -1,0 +1,172 @@
+{
+  "ui": {
+    "buttons": {
+      "allSeries": "Todas as séries",
+      "jesusSeries": "Série Jesus",
+      "cosmicSeries": "Série Cósmica"
+    },
+    "sections": {
+      "jesusTitle": "A vida e os ensinamentos de Jesus",
+      "jesusDescription": "Explore a história completa da vida e os ensinamentos de Jesus conforme revelados no Livro de Urântia, desde seu nascimento até a ressurreição, com percepções que vão além dos relatos bíblicos tradicionais.",
+      "cosmicTitle": "Série Cósmica",
+      "cosmicDescription": "Descubra os ensinamentos cósmicos das três primeiras partes de O Livro de Urântia, que abrangem tudo, desde a natureza de Deus até a estrutura do universo e a história planetária da Terra."
+    },
+    "badges": {
+      "jesus": "Série Jesus",
+      "cosmic": "Série Cósmica"
+    },
+    "status": {
+      "showingCount": "Mostrando a série {{count}}",
+      "noSeries": "Nenhuma série encontrada nessa categoria.",
+      "searchNoResults": "Não foram encontradas séries que correspondam à sua pesquisa. Tente ajustar seus filtros.",
+      "clearFilters": "Limpar filtros"
+    },
+    "actions": {
+      "viewEpisodes": "Ver episódios",
+      "viewDetails": "Ver detalhes",
+      "episodes": "{{contagem}} episódios"
+    }
+  },
+  "series": {
+    "jesus-1": {
+      "title": "Além da religião tradicional: A verdadeira natureza de Deus",
+      "description": "Comparação dos conceitos religiosos convencionais de Deus com a perspectiva expandida de Urântia",
+      "logline": "Descubra o Pai Universal amoroso por trás das tradições religiosas e transforme seu relacionamento com um Deus que valoriza o amor em vez do medo."
+    },
+    "jesus-2": {
+      "title": "Jesus Revealed (Jesus Revelado): Além do relato bíblico",
+      "description": "Exploração de aspectos da vida de Jesus não encontrados nos textos cristãos tradicionais",
+      "logline": "Explore histórias não contadas sobre as viagens, a educação e as experiências de Jesus que moldaram o ser humano divino que mudou nosso mundo para sempre."
+    },
+    "jesus-3": {
+      "title": "A Presença Divina Interior: Ajustadores do Pensamento e Espírito Santo",
+      "description": "Comparação dos conceitos tradicionais de orientação divina com os ensinamentos de Urântia",
+      "logline": "Entenda a notável conexão entre sua mente e o espírito que habita em Deus, transcendendo os conceitos tradicionais de orientação espiritual."
+    },
+    "jesus-4": {
+      "title": "Vida após a morte: A Jornada no Mundo das Mansões",
+      "description": "Contraste entre os conceitos tradicionais de vida após a morte e a cosmologia de Urântia",
+      "logline": "Descubra o que acontece após a morte de acordo com o Livro de Urântia - uma jornada progressiva de crescimento muito além dos conceitos tradicionais de céu."
+    },
+    "jesus-5": {
+      "title": "Mulheres na liderança espiritual: Uma nova perspectiva",
+      "description": "Comparação das visões religiosas históricas sobre as mulheres com a abordagem revolucionária de Jesus",
+      "logline": "Conheça as notáveis mulheres que seguiram Jesus e descubra sua abordagem revolucionária à igualdade de gênero, que estava séculos à frente de seu tempo."
+    },
+    "jesus-6": {
+      "title": "Good & Evil Reconsidered (Bem e Mal Reconsiderados): Além da Teologia Tradicional",
+      "description": "Reformulação dos conceitos tradicionais de pecado e maldade por meio dos ensinamentos de Urântia",
+      "logline": "Explore as verdadeiras origens do mal, do pecado e do sofrimento e descubra uma perspectiva cósmica que transcende as explicações religiosas tradicionais."
+    },
+    "jesus-7": {
+      "title": "Oração e adoração: Compreensão aprimorada",
+      "description": "Expansão das visões tradicionais de comunicação com o Divino",
+      "logline": "Transforme suas práticas espirituais com insights mais profundos sobre oração e adoração que aprimoram a comunicação pessoal com o Divino."
+    },
+    "jesus-8": {
+      "title": "Anjos e Seres Celestiais: A hierarquia cósmica",
+      "description": "Comparação dos conceitos angélicos tradicionais com a cosmologia expandida de Urântia",
+      "logline": "Conheça as inúmeras personalidades celestiais que servem em todo o universo, muito além dos conceitos religiosos tradicionais de anjos."
+    },
+    "jesus-9": {
+      "title": "O Reino dos Céus: Realidade espiritual vs. conceito religioso",
+      "description": "Contraste entre os conceitos religiosos tradicionais e os ensinamentos reais de Jesus",
+      "logline": "Descubra a verdadeira mensagem de Jesus sobre o reino espiritual - não um reino futuro, mas uma realidade presente de relacionamento divino."
+    },
+    "jesus-10": {
+      "title": "Jesus' Transformative Moments (Momentos transformadores de Jesus): Por trás das histórias conhecidas",
+      "description": "Fornecimento de um contexto mais profundo para eventos bíblicos conhecidos",
+      "logline": "Vivencie histórias bíblicas conhecidas com detalhes ampliados e contexto cósmico que transformam seu significado espiritual."
+    },
+    "jesus-11": {
+      "title": "A experiência humana: Insights Divinos sobre os Desafios Diários",
+      "description": "Abordagem das preocupações humanas universais por meio da sabedoria de Urântia",
+      "logline": "Sabedoria cósmica para problemas cotidianos - percepções divinas práticas que melhoram os relacionamentos, o trabalho e a realização pessoal."
+    },
+    "jesus-12": {
+      "title": "A morte e a ressurreição de Jesus: A Narrativa Expandida",
+      "description": "Oferecendo detalhes reveladores além dos relatos tradicionais",
+      "logline": "A crucificação e a ressurreição revelam uma vitória cósmica com implicações universais que vão além da doutrina religiosa sobre pecado e salvação."
+    },
+    "jesus-13": {
+      "title": "Evolving Faith (Fé em evolução): Da Religião Tradicional à Verdade Cósmica",
+      "description": "Unir conceitos religiosos convencionais com uma compreensão espiritual ampliada",
+      "logline": "Os conceitos religiosos evoluem como tudo o mais - veja como a verdade espiritual progrediu da crença primitiva para a revelação cósmica."
+    },
+    "jesus-14": {
+      "title": "O Jesus Humano: Além da imagem divina",
+      "description": "Humanizando Jesus além das representações religiosas tradicionais",
+      "logline": "Jesus ria, tinha hobbies e experimentava emoções - descubra a pessoa totalmente humana por trás do ícone religioso."
+    },
+    "cosmic-1": {
+      "title": "Origens cósmicas: Entendendo a Criação do Universo",
+      "description": "Apresentando a cosmologia fundamental da revelação de Urântia",
+      "logline": "Explore a magnífica arquitetura da criação - desde o Paraíso eterno até os universos em evolução do tempo e do espaço."
+    },
+    "cosmic-2": {
+      "title": "Personalidades Divinas: Os Seres Além da Religião Tradicional",
+      "description": "Apresentação das personalidades celestiais e da hierarquia",
+      "logline": "Conheça as personalidades divinas que sustentam o universo - desde a Trindade do Paraíso até as muitas ordens de ministros celestiais."
+    },
+    "cosmic-3": {
+      "title": "O Ajustador de Pensamentos: Sua bússola divina interior",
+      "description": "Compreensão da presença de Deus",
+      "logline": "Descubra o notável fragmento de Deus que vive em sua mente - seu piloto divino guiando sua evolução espiritual."
+    },
+    "cosmic-4": {
+      "title": "Nosso universo local: Organização de Nebadon",
+      "description": "Compreensão de nossa vizinhança cósmica",
+      "logline": "Saiba mais sobre nosso universo local, Nebadon, sua criação, administração e as personalidades que gerenciam nossa vizinhança cósmica."
+    },
+    "cosmic-5": {
+      "title": "Anjos entre nós: As Hostes Seráficas",
+      "description": "Entendendo os ministérios angelicais",
+      "logline": "Explore a fascinante realidade dos anjos - sua natureza, propósito e como eles interagem com os seres humanos ao longo de nossas vidas."
+    },
+    "cosmic-6": {
+      "title": "Vida após a morte: A Carreira da Ascensão",
+      "description": "Compreender a jornada progressiva após a vida mortal",
+      "logline": "Os mundos das mansões são apenas o começo - descubra sua jornada épica pelo universo após a morte mortal."
+    },
+    "cosmic-7": {
+      "title": "A notável história de Urântia",
+      "description": "Entendendo o desenvolvimento planetário único da Terra",
+      "logline": "A história não contada da formação da Terra (Urântia), do desenvolvimento da vida primitiva e do surgimento da humanidade."
+    },
+    "cosmic-8": {
+      "title": "A rebelião de Lúcifer: Crise cósmica",
+      "description": "Compreender o impacto da rebelião no desenvolvimento espiritual da Terra",
+      "logline": "A rebelião cósmica que isolou nosso mundo e continua a influenciar os assuntos humanos - descubra a verdade por trás dos mitos de Satanás."
+    },
+    "cosmic-9": {
+      "title": "Adão e Eva: A Verdadeira História",
+      "description": "Revelar a verdadeira missão e o impacto de Adão e Eva",
+      "logline": "A verdadeira missão de Adão e Eva em nosso mundo foi muito além da história bíblica do jardim - descubra seu verdadeiro propósito e legado."
+    },
+    "cosmic-10": {
+      "title": "Missões Melquisedeque: Intervenções Divinas",
+      "description": "Compreensão das principais intervenções espirituais na história humana",
+      "logline": "Explore como a missão de emergência de Melquisedeque em Salém se tornou a base do judaísmo, do cristianismo e do islamismo."
+    },
+    "cosmic-11": {
+      "title": "Evolução da religião: Do medo à fé",
+      "description": "Rastreamento do desenvolvimento dos conceitos religiosos humanos",
+      "logline": "Acompanhe a evolução religiosa da humanidade, desde o medo primitivo da natureza, passando pelos cultos de fantasmas, até a compreensão espiritual iluminada."
+    },
+    "cosmic-12": {
+      "title": "Espiritualidade genuína: A Realidade da Experiência Religiosa",
+      "description": "Compreensão do crescimento espiritual autêntico",
+      "logline": "Vá além da doutrina e do ritual para descobrir a autêntica realidade da experiência religiosa pessoal e do crescimento espiritual."
+    },
+    "cosmic-13": {
+      "title": "O Ser Supremo: Deidade em evolução",
+      "description": "Compreensão do conceito de Deidade experiencial",
+      "logline": "Descubra Deus, o Supremo - a Deidade em evolução cujo crescimento depende de todas as nossas experiências e realizações no tempo e no espaço."
+    },
+    "cosmic-14": {
+      "title": "A Família Divina: Entendendo os relacionamentos eternos",
+      "description": "Explorando as relações entre as personalidades divinas",
+      "logline": "Explore as relações entre o Pai Universal, o Filho Eterno e o Espírito Infinito - a família divina no centro de toda a realidade."
+    }
+  }
+}
