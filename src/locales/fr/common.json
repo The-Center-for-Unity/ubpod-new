@@ -1,0 +1,61 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "episodes": "Épisodes",
+    "about": "A propos de",
+    "contact": "Contact",
+    "urantia_papers": "Les Fascicules d'Urantia",
+    "series_collections": "Collections",
+    "disclaimer": "Avertissement",
+    "pay_it_forward": "Contribuer"
+  },
+  "footer": {
+    "copyright": "© {{year}} The Center for Unity. Tous droits réservés.",
+    "terms": "Conditions d'utilisation",
+    "privacy": "Politique de confidentialité",
+    "quick_links": "Liens rapides",
+    "resources": "Ressources",
+    "description": "Des compagnons audio conçus par l'IA pour explorer la vérité cosmique",
+    "also_available": "Également disponible sur",
+    "copy_rss": "Copier le flux RSS",
+    "rss_copied": "URL du flux RSS copiée dans le presse-fascicules !",
+    "rss_copy_failed": "Échec de la copie de l'URL du flux RSS",
+    "external_links": {
+      "urantia_foundation": "Fondation Urantia",
+      "center_for_unity": "The Center for Unity"
+    }
+  },
+  "site": {
+    "name": "Podcast du Livre d'Urantia",
+    "logo_alt": "Logo UrantiaBookPod",
+    "subtitle_line1": "L'URANTIA",
+    "subtitle_line2": "BOOK PODCAST"
+  },
+  "actions": {
+    "back": "Retour",
+    "learn_more": "En savoir plus",
+    "listen_now": "Écouter",
+    "view_all": "Voir tout",
+    "return_home": "Retour à l'accueil"
+  },
+  "platforms": {
+    "youtube": "YouTube",
+    "apple_podcasts": "Apple Podcasts",
+    "spotify": "Spotify",
+    "amazon_music": "Amazon Music"
+  },
+  "share": {
+    "button": "Partager",
+    "title": "Partager ce contenu",
+    "copy_link": "Copier le lien",
+    "share_to_x": "Partager avec X",
+    "share_to_facebook": "Partager sur Facebook",
+    "share_to_linkedin": "Partager sur LinkedIn",
+    "share_via_email": "Partager par e-mail",
+    "share_via_text": "Partager par texte",
+    "link_copied": "Lien copié dans le presse-fascicules !",
+    "content_copied": "Contenu copié dans le presse-fascicules ! Coller dans un post Facebook.",
+    "shared_success": "Partagé avec succès !",
+    "rss_copy_failed": "Échec de la copie du lien"
+  }
+}

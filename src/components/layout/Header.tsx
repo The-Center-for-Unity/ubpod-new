@@ -1,42 +1,77 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X, BookOpen, Library } from 'lucide-react';
+import { LanguageSwitcher } from '../../i18n/LanguageSwitcher';
+import { useTranslation } from 'react-i18next';
+import { useLanguage } from '../../i18n/LanguageContext';
+import { LocalizedLink } from '../shared/LocalizedLink';
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { t } = useTranslation('common');
+  const { language } = useLanguage();
 
   // Main navigation items
   const navigationItems = [
-    { path: '/urantia-papers', label: 'The Urantia Papers', icon: <BookOpen className="h-4 w-4 mr-2" /> },
-    { path: '/series', label: 'Series Collections', icon: <Library className="h-4 w-4 mr-2" /> },
-    { path: '/contact', label: 'Contact' },
+    { 
+      path: '/urantia-papers', 
+      label: t('nav.urantia_papers'), 
+      icon: <BookOpen className="h-4 w-4 mr-2" /> 
+    },
+    { 
+      path: '/series', 
+      label: t('nav.series_collections'), 
+      icon: <Library className="h-4 w-4 mr-2" /> 
+    },
+    { 
+      path: '/contact', 
+      label: t('nav.contact') 
+    },
   ];
+
+  // Function to localize URLs
+  const getLocalizedPath = (path: string): string => {
+    if (language === 'en') return path;
+    return `/${language}${path}`;
+  };
 
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-40 bg-navy/80 backdrop-blur-sm border-b border-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            {/* Logo */}
-            <Link to="/" className="flex items-center space-x-3">
-              <img 
-                src="/logo.png" 
-                alt="UrantiaBookPod Logo" 
-                className="h-8 w-auto" 
-              />
-              <span className="title-subtitle text-sm tracking-[0.15em]">
-                Urantia Book Podcast
-              </span>
-            </Link>
+            {/* Logo and Language Switcher (Left Side) */}
+            <div className="flex items-center space-x-4">
+              <LocalizedLink to="/" className="flex items-center space-x-2">
+                <img 
+                  src="/logo.png" 
+                  alt={t('site.logo_alt')} 
+                  className="h-7 w-auto" 
+                />
+                <div className="flex flex-col hidden sm:block">
+                  <span className="title-subtitle text-xs tracking-[0.1em] leading-tight text-white/90">
+                    {t('site.subtitle_line1')}
+                  </span>
+                  <span className="title-subtitle text-xs tracking-[0.1em] leading-tight text-white/90">
+                    {t('site.subtitle_line2')}
+                  </span>
+                </div>
+              </LocalizedLink>
+              
+              {/* Language Switcher next to logo on mobile, hidden on desktop */}
+              <div className="md:hidden">
+                <LanguageSwitcher compact={true} />
+              </div>
+            </div>
 
             {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center space-x-8">
+            <nav className="hidden md:flex items-center space-x-4">
               {/* Main navigation items */}
               {navigationItems.map((item) => (
                 <Link
                   key={item.path}
-                  to={item.path}
-                  className="body-lg flex items-center text-sm text-white/70 hover:text-white/90 transition-colors tracking-wider"
+                  to={getLocalizedPath(item.path)}
+                  className="body-lg flex items-center text-sm text-white/70 hover:text-white/90 transition-colors tracking-wider whitespace-nowrap"
                 >
                   {item.icon}
                   {item.label}
@@ -44,22 +79,28 @@ export default function Header() {
               ))}
 
               <Link
-                to="/disclaimer"
+                to={getLocalizedPath("/disclaimer")}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="body-lg text-sm text-white/70 hover:text-white/90 transition-colors tracking-wider"
+                className="body-lg text-sm text-white/70 hover:text-white/90 transition-colors tracking-wider whitespace-nowrap"
               >
-                Disclaimer
+                {t('nav.disclaimer')}
               </Link>
-              <a
-                href="https://www.thecenterforunity.org/contribute"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center px-6 py-2 bg-gold text-navy rounded-full
-                          hover:bg-gold-light transition-all duration-300 btn-text"
-              >
-                Pay It Forward
-              </a>
+              
+              {/* Action button and language switcher in a separate container */}
+              <div className="flex items-center space-x-3">
+                <a
+                  href="https://www.thecenterforunity.org/contribute"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center px-3 py-1 bg-gold text-navy rounded-full
+                            hover:bg-gold-light transition-all duration-300 text-xs font-medium"
+                >
+                  {t('nav.pay_it_forward')}
+                </a>
+                
+                <LanguageSwitcher compact={true} />
+              </div>
             </nav>
 
             {/* Mobile Menu Button - Only show when menu is closed */}
@@ -102,19 +143,27 @@ export default function Header() {
             
             <nav className="flex flex-col space-y-8 mt-8">
               {/* Logo in mobile menu */}
-              <div className="flex items-center space-x-3 mb-4">
+              <div className="flex items-center space-x-3 mb-6">
                 <img 
                   src="/logo.png" 
-                  alt="UrantiaBookPod Logo" 
+                  alt={t('site.logo_alt')} 
                   className="h-10 w-auto" 
                 />
+                <div className="flex flex-col">
+                  <span className="title-subtitle text-sm tracking-[0.1em] leading-tight text-white/90">
+                    {language === 'es' ? 'PODCAST DEL' : 'THE URANTIA'}
+                  </span>
+                  <span className="title-subtitle text-sm tracking-[0.1em] leading-tight text-white/90">
+                    {language === 'es' ? 'LIBRO DE URANTIA' : 'BOOK PODCAST'}
+                  </span>
+                </div>
               </div>
               
               {/* Main navigation items in mobile menu */}
               {navigationItems.map((item) => (
                 <Link
                   key={item.path}
-                  to={item.path}
+                  to={getLocalizedPath(item.path)}
                   className="flex items-center text-2xl font-semibold text-white hover:text-gold transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
@@ -124,13 +173,13 @@ export default function Header() {
               ))}
               
               <Link
-                to="/disclaimer"
+                to={getLocalizedPath("/disclaimer")}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-2xl font-semibold text-white hover:text-gold transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                Disclaimer
+                {t('nav.disclaimer')}
               </Link>
               <a
                 href="https://www.thecenterforunity.org/contribute"
@@ -140,8 +189,12 @@ export default function Header() {
                           hover:bg-gold-light transition-all duration-300 text-lg font-medium mt-4 self-start"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                Pay It Forward
+                {t('nav.pay_it_forward')}
               </a>
+              
+              <div className="mt-6">
+                <LanguageSwitcher compact={false} />
+              </div>
             </nav>
           </div>
         </div>

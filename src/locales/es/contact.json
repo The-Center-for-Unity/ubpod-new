@@ -1,0 +1,84 @@
+{
+  "hero": {
+    "title": "Conecta Con Nosotros",
+    "subtitle": "Comparte tu experiencia, haz preguntas o solicita recursos"
+  },
+  "form": {
+    "title": "Ponte en Contacto",
+    "description": "Ya sea que tengas preguntas sobre el Podcast del Libro de Urantia, necesites asistencia técnica o quieras compartir tu experiencia, estamos aquí para ayudarte.",
+    "devNotice": "Modo de Desarrollo: En este entorno, los correos electrónicos se enviarán al equipo de desarrollo para pruebas. En producción, los correos se enviarán a la dirección de contacto oficial.",
+    "fields": {
+      "name": {
+        "label": "Tu Nombre",
+        "placeholder": "Ingresa tu nombre completo"
+      },
+      "email": {
+        "label": "Dirección de Correo Electrónico",
+        "placeholder": "Ingresa tu dirección de correo electrónico"
+      },
+      "inquiryType": {
+        "label": "Tipo de Consulta",
+        "placeholder": "Selecciona un tipo de consulta",
+        "options": {
+          "general": "Pregunta General",
+          "technical": "Soporte Técnico",
+          "content": "Sugerencia de Contenido",
+          "narration": "Comentarios sobre Narración",
+          "studyGroup": "Interés en Grupo de Estudio",
+          "accessibility": "Solicitud de Accesibilidad",
+          "translation": "Consulta de Traducción",
+          "spiritual": "Pregunta Espiritual",
+          "resource": "Solicitud de Recursos",
+          "experience": "Compartir Mi Experiencia"
+        }
+      },
+      "message": {
+        "label": "Tu Mensaje",
+        "placeholder": "Ingresa tu mensaje o pregunta aquí..."
+      },
+      "photos": {
+        "label": "Compartir Fotos (Opcional)",
+        "placeholder": "Sube fotos relacionadas con tu consulta",
+        "note": "Nota: Máximo 3 fotos, 5MB cada una."
+      }
+    },
+    "submit": {
+      "sending": "Enviando...",
+      "send": "Enviar Mensaje"
+    },
+    "validation": {
+      "required": "Por favor completa todos los campos requeridos.",
+      "photoSize": "El tamaño total de las fotos excede los 10MB. Por favor elige fotos más pequeñas.",
+      "photoLimit": "El tamaño total de los archivos adjuntos excede el límite de 10MB"
+    },
+    "success": "¡Tu mensaje ha sido enviado! Nos pondremos en contacto contigo pronto.",
+    "error": "Error al enviar el mensaje. Por favor intenta de nuevo más tarde."
+  },
+  "faq": {
+    "title": "Preguntas Frecuentes",
+    "subtitle": "Encuentra respuestas a preguntas comunes sobre el Podcast del Libro de Urantia.",
+    "questions": {
+      "what": {
+        "question": "¿Qué es el Podcast del Libro de Urantia?",
+        "answer": "El Podcast del Libro de Urantia es una experiencia auditiva del Libro de Urantia, que te permite escuchar sus enseñanzas mientras sigues el texto. Nuestro objetivo es hacer este profundo contenido espiritual más accesible a través de narración de alta calidad."
+      },
+      "how": {
+        "question": "¿Cómo escucho el podcast?",
+        "answer": "Simplemente navega a la sección de Documentos, selecciona un documento que te interese y presiona reproducir. Puedes leer junto con el texto mientras escuchas, y seguir tu progreso a través del libro. Se puede acceder al podcast desde cualquier dispositivo con navegador web."
+      },
+      "download": {
+        "question": "¿Puedo descargar episodios para escuchar sin conexión?",
+        "answer": "¡Sí! Cada episodio puede descargarse para escuchar sin conexión. Simplemente navega al documento que quieres escuchar, y usa el botón de descarga para guardar el archivo de audio en tu dispositivo. Esto te permite estudiar las enseñanzas incluso cuando no tienes conexión a internet."
+      },
+      "suggestions": {
+        "question": "¿Cómo puedo sugerir mejoras?",
+        "answer": "¡Damos la bienvenida a tus comentarios y sugerencias! Usa el formulario de contacto arriba para compartir tus ideas para mejorar el podcast, sugerir nuevas características o reportar cualquier problema técnico que encuentres. Tu contribución nos ayuda a hacer el Libro de Urantia más accesible para todos."
+      }
+    }
+  },
+  "cta": {
+    "title": "Comienza Tu Viaje",
+    "description": "Comienza tu exploración del Libro de Urantia a través de nuestro podcast. Experimenta las enseñanzas de una nueva manera y profundiza tu comprensión de sus conceptos cósmicos.",
+    "button": "Explorar Documentos de Urantia"
+  }
+} 

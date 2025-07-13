@@ -1,11 +1,49 @@
 // src/pages/Home.tsx
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import Layout from '../components/layout/Layout';
 import { PlayCircle, Headphones, MessageCircle, Download, Sparkles } from 'lucide-react';
 import SeriesCardGrid from '../components/ui/SeriesCardGrid';
+import { LocalizedLink } from '../components/shared/LocalizedLink';
 
 export default function HomePage() {
+  const { t } = useTranslation('home');
+
+  // Dynamic features array using translations
+  const features: FeatureProps[] = [
+    {
+      icon: <MessageCircle className="w-10 h-10" />,
+      title: t('features.items.aiAudio.title'),
+      description: t('features.items.aiAudio.description')
+    },
+    {
+      icon: <Sparkles className="w-10 h-10" />,
+      title: t('features.items.simplified.title'),
+      description: t('features.items.simplified.description')
+    },
+    {
+      icon: <Download className="w-10 h-10" />,
+      title: t('features.items.offline.title'),
+      description: t('features.items.offline.description')
+    }
+  ];
+
+  // Dynamic steps array using translations
+  const steps: StepProps[] = [
+    {
+      title: t('howItWorks.steps.browse.title'),
+      description: t('howItWorks.steps.browse.description')
+    },
+    {
+      title: t('howItWorks.steps.select.title'),
+      description: t('howItWorks.steps.select.description')
+    },
+    {
+      title: t('howItWorks.steps.listen.title'),
+      description: t('howItWorks.steps.listen.description')
+    }
+  ];
+
   return (
     <Layout>
       <main className="flex flex-col bg-navy text-white">
@@ -26,33 +64,33 @@ export default function HomePage() {
             <div className="max-w-3xl ml-4 md:ml-12">
               {/* Main heading with improved contrast */}
               <h1 className="title-main text-5xl md:text-6xl lg:text-7xl mb-6 text-white leading-tight drop-shadow-lg">
-                The Urantia<br />Book Podcast
+                {t('hero.title')}
               </h1>
               
               {/* Description text with improved visibility */}
               <p className="section-subtitle text-xl text-white mb-10 max-w-xl drop-shadow-md">
-                AI-powered audio journeys through cosmic wisdom
+                {t('hero.subtitle')}
               </p>
               
               {/* Call to action buttons */}
               <div className="flex flex-col sm:flex-row gap-5">
-                <Link 
+                <LocalizedLink 
                   to="/urantia-papers"
                   className="inline-flex items-center px-8 py-4 bg-gold text-navy-dark rounded-full 
                             hover:bg-gold-light transition-all duration-300 font-bold text-lg shadow-xl group"
                 >
                   <PlayCircle className="mr-2 h-6 w-6" />
-                  Start Listening
+                  {t('hero.buttons.startListening')}
                   <span className="ml-2 group-hover:translate-x-1 transition-transform">
                     →
                   </span>
-                </Link>
+                </LocalizedLink>
                 <a 
                   href="#series"
                   className="inline-flex items-center px-8 py-4 bg-white/15 backdrop-blur-sm border-2 border-white/40 
                             text-white rounded-full hover:bg-white/25 transition-all duration-300 font-bold text-lg shadow-xl"
                 >
-                  Browse Series
+                  {t('hero.buttons.browseSeries')}
                 </a>
               </div>
             </div>
@@ -64,14 +102,13 @@ export default function HomePage() {
           <div className="max-w-6xl mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="title-subtitle text-xl tracking-[0.15em] text-gold mb-3">
-                PODCAST SERIES
+                {t('series.subtitle')}
               </h2>
               <h3 className="title-main text-3xl md:text-4xl tracking-[0.1em] mb-6">
-                Explore Our Collections
+                {t('series.title')}
               </h3>
               <p className="body-lg text-white/80 max-w-2xl mx-auto mb-10">
-                Choose from our growing library of thematic series, each exploring a unique facet of 
-                the Urantia Book's cosmic teachings.
+                {t('series.description')}
               </p>
             </div>
 
@@ -84,14 +121,13 @@ export default function HomePage() {
           <div className="max-w-6xl mx-auto px-4">
             <div className="text-center mb-16">
               <h2 className="title-subtitle text-xl tracking-[0.15em] text-gold mb-3">
-                FEATURES
+                {t('features.subtitle')}
               </h2>
               <h3 className="title-main text-3xl md:text-4xl tracking-[0.1em] mb-6">
-                A New Way to Experience<br />The Urantia Book
+                {t('features.title')}
               </h3>
               <p className="body-lg text-white/80 max-w-2xl mx-auto">
-                UrantiaBookPod brings the cosmic teachings to life through AI-crafted 
-                audio narrations that make complex concepts accessible and engaging.
+                {t('features.description')}
               </p>
             </div>
 
@@ -108,14 +144,13 @@ export default function HomePage() {
           <div className="max-w-6xl mx-auto px-4">
             <div className="text-center mb-16">
               <h2 className="title-subtitle text-xl tracking-[0.15em] text-gold mb-3">
-                HOW IT WORKS
+                {t('howItWorks.subtitle')}
               </h2>
               <h3 className="title-main text-3xl md:text-4xl tracking-[0.1em] mb-6">
-                Simple & Accessible
+                {t('howItWorks.title')}
               </h3>
               <p className="body-lg text-white/80 max-w-2xl mx-auto">
-                We've designed UrantiaBookPod to be intuitive and accessible for everyone, 
-                whether you're at home or on the go.
+                {t('howItWorks.description')}
               </p>
             </div>
 
@@ -132,25 +167,23 @@ export default function HomePage() {
           <div className="max-w-6xl mx-auto px-4">
             <div className="bg-navy-light/30 rounded-lg p-12 text-center max-w-3xl mx-auto">
               <h2 className="title-main text-3xl md:text-4xl tracking-[0.1em] mb-6">
-                Begin Your Journey
+                {t('cta.title')}
               </h2>
               <p className="body-lg mb-12 text-white/80">
-                The Urantia Book offers profound insights into our universe, our world, 
-                and our spiritual destiny. Start exploring these cosmic teachings through 
-                our engaging podcast discussions today.
+                {t('cta.description')}
               </p>
               
               <div className="space-y-6">
-                <Link 
+                <LocalizedLink 
                   to="/urantia-papers"
                   className="inline-flex items-center px-8 py-4 bg-gold text-navy-dark rounded-full 
                             hover:bg-gold-light transition-all duration-300 font-bold text-lg shadow-lg shadow-gold/20 group"
                 >
-                  Explore The Papers
+                  {t('cta.button')}
                   <span className="ml-2 group-hover:translate-x-1 transition-transform">
                     →
                   </span>
-                </Link>
+                </LocalizedLink>
               </div>
             </div>
           </div>
@@ -203,35 +236,3 @@ function StepCard({ number, title, description }: StepProps & { number: number }
   );
 }
 
-const features: FeatureProps[] = [
-  {
-    icon: <MessageCircle className="w-10 h-10" />,
-    title: "AI-Crafted Audio Journeys",
-    description: "Listen to engaging podcast-style narrations that explore the Urantia Book's concepts with fresh perspectives and insights."
-  },
-  {
-    icon: <Sparkles className="w-10 h-10" />,
-    title: "Complex Concepts Simplified",
-    description: "Difficult cosmic teachings broken down into accessible conversations that anyone can understand and appreciate."
-  },
-  {
-    icon: <Download className="w-10 h-10" />,
-    title: "Offline Access",
-    description: "Download episodes for offline listening, perfect for commutes, walks, or times without internet access."
-  }
-];
-
-const steps: StepProps[] = [
-  {
-    title: "Browse Episodes",
-    description: "Navigate through our collection of podcast episodes, organized by Urantia Book papers and topics."
-  },
-  {
-    title: "Select a Discussion",
-    description: "Choose a podcast episode that interests you and click to access the audio discussion."
-  },
-  {
-    title: "Listen & Engage",
-    description: "Play the podcast on any device, download for offline listening, or share with friends."
-  }
-];

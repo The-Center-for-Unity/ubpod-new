@@ -1,0 +1,48 @@
+{
+  "hero": {
+    "title": "Découvrez la sagesse cosmique qui change la vie",
+    "subtitle": "Plongez-vous dans les enseignements profonds du Livre d'Urantia grâce à des séries audio {{count}} narrées par des experts",
+    "description": "De la vie de Jésus aux origines cosmiques, chaque série transforme des concepts complexes en idées accessibles pour la croissance spirituelle"
+  },
+  "unavailableNotice": {
+    "title": "Série non disponible :",
+    "message": "La série \"{{seriesId}}\" n'est pas encore disponible dans {{language}}. Voici les séries actuellement disponibles dans la langue que vous avez sélectionnée :",
+    "dismiss": "Rejeter la notification"
+  },
+  "featured": {
+    "title": "Commencez votre voyage cosmique",
+    "description": "Nos séries les plus populaires offrent des points d'entrée parfaits pour comprendre les enseignements transformateurs du Livre d'Urantia :",
+    "badge": "Le favori des fans",
+    "episodeInfo": "5 épisodes - ~1 heure au total",
+    "startJourney": "Commencez votre voyage →"
+  },
+  "explore": {
+    "title": "Explorer toutes les collections de séries",
+    "description": "Parcourez notre bibliothèque complète d'enseignements audio ou recherchez des sujets spécifiques"
+  },
+  "filters": {
+    "allSeries": "Toutes les séries ({{count}})",
+    "jesusSeries": "Jésus ({{count}})",
+    "cosmicSeries": "Cosmique ({{count}})",
+    "searchPlaceholder": "Recherche de séries par titre ou description...",
+    "searchResults": "Trouvé {{count}} résultats pour \"{{query}}\"",
+    "clearSearch": "Recherche claire",
+    "structuredView": "Vue structurée",
+    "gridView": "Vue en grille",
+    "filterByCategory": "Filtrer les séries par catégorie"
+  },
+  "categories": {
+    "jesusTitle": "La vie et les enseignements de Jésus",
+    "cosmicTitle": "Série cosmique"
+  },
+  "seriesCard": {
+    "jesusLabel": "Jésus",
+    "cosmicLabel": "Cosmique",
+    "episodes": "5 épisodes",
+    "viewDetails": "Voir les détails →"
+  },
+  "noResults": {
+    "message": "Aucune série ne correspond à votre recherche. Essayez d'ajuster vos filtres.",
+    "clearFilters": "Effacer les filtres"
+  }
+}

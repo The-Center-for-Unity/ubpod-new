@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { LocalizedLink } from '../shared/LocalizedLink';
 import { Book, Library } from 'lucide-react';
 import type { SeriesInfo } from '../../utils/seriesUtils';
+import { getCategoryBadge, getSeriesCollectionsUILabels } from '../../utils/seriesCollectionsUtils';
 
 interface SeriesCardProps {
   series: SeriesInfo;
@@ -10,28 +11,11 @@ interface SeriesCardProps {
 export default function SeriesCard({ series }: SeriesCardProps) {
   const [imageError, setImageError] = useState(false);
   
-  // Get category badge text and color
-  const getCategoryBadge = () => {
-    switch (series.category) {
-      case 'jesus-focused':
-        return {
-          text: 'Jesus Series',
-          className: 'bg-gold/20 text-gold'
-        };
-      case 'parts-i-iii':
-        return {
-          text: 'Cosmic Series',
-          className: 'bg-blue-400/20 text-blue-400'
-        };
-      default:
-        return {
-          text: 'Series',
-          className: 'bg-primary/20 text-primary'
-        };
-    }
-  };
+  // Get translated UI labels
+  const labels = getSeriesCollectionsUILabels();
   
-  const badge = getCategoryBadge();
+  // Get category badge with translations
+  const badge = getCategoryBadge(series.category);
   
   // Get appropriate icon based on category
   const getPlaceholderIcon = () => {
@@ -45,8 +29,16 @@ export default function SeriesCard({ series }: SeriesCardProps) {
     ? 'bg-gradient-to-br from-rose-900/40 to-navy-dark'
     : 'bg-gradient-to-br from-blue-900/40 to-navy-dark';
   
+  // Determine the correct URL path based on series type
+  const getSeriesPath = () => {
+    if (series.id === 'urantia-papers') {
+      return '/urantia-papers';
+    }
+    return `/series/${series.id}`;
+  };
+  
   return (
-    <Link to={`/series/${series.id}`} className="group">
+    <LocalizedLink to={getSeriesPath()} className="group">
       <div className="rounded-lg overflow-hidden bg-navy-light/20 border border-white/5 hover:border-white/20 transition-all h-full flex flex-col shadow-md hover:shadow-lg">
         <div className={`aspect-video relative overflow-hidden ${imageError ? placeholderImageStyle : ''}`}>
           {!imageError && series.imageSrc ? (
@@ -74,11 +66,11 @@ export default function SeriesCard({ series }: SeriesCardProps) {
           </p>
           <div className="mt-4 flex items-center justify-between">
             <span className="text-primary text-sm font-medium group-hover:underline">
-              View Episodes
+              {labels.actions.viewEpisodes}
             </span>
           </div>
         </div>
-      </div>
-    </Link>
+              </div>
+      </LocalizedLink>
   );
 } 

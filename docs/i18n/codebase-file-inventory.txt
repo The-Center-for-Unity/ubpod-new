@@ -1,0 +1,147 @@
+src
+├── __tests__
+│   ├── components
+│   │   └── SeriesCard.test.tsx
+│   ├── utils
+│   │   ├── test-utils.test.tsx
+│   │   └── test-utils.tsx
+│   └── setup.test.ts
+├── api
+│   └── send.ts
+├── components
+│   ├── analytics
+│   │   ├── GoogleAnalytics.tsx
+│   │   ├── GoogleTagManager.tsx
+│   │   ├── HotjarAnalytics.tsx
+│   │   └── OptinMonster.tsx
+│   ├── audio
+│   │   └── AudioPlayer.tsx
+│   ├── contact
+│   ├── layout
+│   │   ├── Footer.tsx
+│   │   ├── Header.tsx
+│   │   ├── Layout.tsx
+│   │   ├── MetaTags.tsx
+│   │   └── ScrollToTop.tsx
+│   ├── series
+│   │   └── SeriesContent.tsx
+│   ├── shared
+│   │   ├── ErrorBoundary.tsx
+│   │   ├── Icons.tsx
+│   │   └── LocalizedLink.tsx
+│   ├── ui
+│   │   ├── EpisodeCard.tsx
+│   │   ├── LoadingSpinner.tsx
+│   │   ├── SeriesCard.tsx
+│   │   ├── SeriesCardGrid.tsx
+│   │   ├── SeriesNavigation.tsx
+│   │   └── SocialShareMenu.tsx
+│   ├── utils
+│   │   └── ScrollToTopOnNavigate.tsx
+│   └── ScrollToTop.tsx
+├── config
+│   ├── assets.ts
+│   └── audio.ts
+├── constants
+│   └── animations.ts
+├── data
+│   ├── json
+│   │   ├── cosmic-series-mappings.json
+│   │   ├── episodes.json
+│   │   ├── jesus-series-mappings.json
+│   │   ├── summaries-check.ts
+│   │   ├── summaries.json
+│   │   ├── urantia_summaries_es.json
+│   │   └── urantia_summaries.json
+│   ├── scraper
+│   │   ├── README.md
+│   │   ├── requirements.txt
+│   │   ├── scrape_discover_jesus.py
+│   │   ├── summaries.json
+│   │   └── valid_urls.json
+│   ├── content.ts
+│   ├── discoverJesusSummaries.ts
+│   ├── episodes.ts
+│   └── series-availability.json
+├── hooks
+│   └── useAudioAnalytics.ts
+├── i18n
+│   ├── i18n.ts
+│   ├── LanguageContext.tsx
+│   └── LanguageSwitcher.tsx
+├── pages
+│   ├── ContactPage.tsx
+│   ├── Debug.tsx
+│   ├── DisclaimerPage.tsx
+│   ├── EpisodePage.tsx
+│   ├── Home.tsx
+│   ├── ListenPage.tsx
+│   ├── SeriesPage.tsx
+│   └── UrantiaPapersPage.tsx
+├── styles
+│   ├── globals.css
+│   └── typography.css
+├── types
+│   ├── global.d.ts
+│   ├── index.ts
+│   ├── json.d.ts
+│   ├── r2.ts
+│   └── sacred-companions.ts
+├── utils
+│   ├── analytics.ts
+│   ├── emailService.ts
+│   ├── episodeUtils.ts
+│   ├── i18nRouteUtils.ts
+│   ├── mediaIntegration.ts
+│   ├── mediaUtils.ts
+│   ├── scrapeUtils.ts
+│   ├── seriesAvailabilityUtils.ts
+│   ├── seriesCollectionsUtils.ts
+│   ├── seriesUtils.ts
+│   └── urlUtils.ts
+├── App.tsx
+├── codebase-src.md
+├── index.css
+├── main.tsx
+└── vite-env.d.ts
+public/locales
+├── en
+│   ├── common.json
+│   ├── contact.json
+│   ├── debug.json
+│   ├── disclaimer.json
+│   ├── episode.json
+│   ├── home.json
+│   ├── series-collections.json
+│   ├── series-detail.json
+│   ├── series-page.json
+│   └── series.json
+└── es
+    ├── content
+    │   ├── episode-loglines.json
+    │   ├── episode-titles.json
+    │   ├── general-summaries.json
+    │   ├── jesus-summaries.json
+    │   ├── series-metadata.json
+    │   └── urantia-papers.json
+    ├── common.json
+    ├── contact.json
+    ├── content.json
+    ├── debug.json
+    ├── disclaimer.json
+    ├── episode.json
+    ├── home.json
+    ├── series-collections.json
+    ├── series-detail.json
+    ├── series-page.json
+    └── series.json
+scripts
+├── convert-translations.js
+├── generateMappings.ts
+├── push-pdfs.sh
+├── README.md
+├── rename-and-push.sh
+├── test-i18n-format.js
+└── translate-content.js
+
+30 directories, 115 files

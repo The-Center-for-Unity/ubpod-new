@@ -1,0 +1,65 @@
+{
+  "title": "CLAUSE DE NON-RESPONSABILITÉ IMPORTANTE",
+  "subtitle": "À LIRE AVANT D'ÉCOUTER",
+  "introduction": "UrantiaBookPod.com fournit des épisodes de podcast audio générés par l'intelligence artificielle et basés sur les fascicules contenus dans le Livre d'Urantia. Chaque épisode correspond à un article spécifique du texte original.",
+  "sections": {
+    "copyright": {
+      "title": "Droits d'auteur et attribution",
+      "items": [
+        "Le texte original du Livre d'Urantia est la propriété de la Fondation Urantia.",
+        "Le contenu audio fourni sur ce site est dérivé du texte à l'aide de la technologie de l'IA et est destiné à des fins éducatives et d'accessibilité.",
+        "Ce service n'est pas affilié, approuvé ou officiellement connecté à la Fondation Urantia ou à toute autre organisation officielle de publication du Livre d'Urantia."
+      ]
+    },
+    "aiContent": {
+      "title": "Avis important concernant le contenu généré par l'IA",
+      "warning": "ATTENTION : Ce contenu est généré à l'aide de la technologie de l'IA qui a des limites inhérentes.",
+      "description": "L'IA peut commettre et commet des erreurs d'omission et de commission, ce qui signifie qu'elle peut.. :",
+      "limitations": [
+        "Omettre des détails importants ou des informations contextuelles",
+        "Mauvaise interprétation des concepts philosophiques",
+        "Simplifier à l'extrême des récits spirituels complexes",
+        "Produire occasionnellement des déclarations inexactes"
+      ],
+      "disclaimer": "Ces épisodes de podcast doivent être considérés comme une introduction imparfaite seulement et NON comme une représentation faisant autorité des enseignements du Livre d'Urantia.",
+      "requirement": "Pour une étude sérieuse, les utilisateurs DOIVENT se référer à la version officielle publiée du Livre d'Urantia.",
+      "purpose": "Les épisodes sont fournis malgré leurs imperfections parce que nous pensons qu'ils offrent une valeur ajoutée en tant que ressource supplémentaire."
+    },
+    "fairUse": {
+      "title": "Déclaration d'utilisation équitable",
+      "content": "Le contenu de UrantiaBookPod.com est fourni selon les principes de l'utilisation équitable à des fins de commentaire, de critique, de recherche, d'enseignement et d'amélioration de l'accessibilité aux idées contenues dans le Livre d'Urantia."
+    },
+    "technical": {
+      "title": "Limites techniques de la technologie de l'IA",
+      "description": "Le contenu audio a été créé à l'aide d'une technologie d'intelligence artificielle qui présente des limites importantes lorsqu'il s'agit de traiter des concepts spirituels et philosophiques complexes.",
+      "feedback": "Les réactions des étudiants de longue date du Livre d'Urantia ont permis d'identifier que ces épisodes générés par l'IA :",
+      "issues": [
+        "Peut manquer des nuances et des significations importantes",
+        "Peut ne pas transmettre de manière adéquate la profondeur des concepts spirituels",
+        "Présenter parfois des versions simplifiées de récits complexes",
+        "Sont particulièrement mis à l'épreuve lorsqu'ils abordent des sujets profonds tels que la rébellion de Lucifer"
+      ],
+      "inherent": "Ces limites sont inhérentes aux systèmes d'IA actuels.",
+      "acknowledgment": "Nous reconnaissons ces lacunes tout en proposant ces épisodes comme une ressource facultative."
+    },
+    "responsibility": {
+      "title": "Responsabilité et reconnaissance de l'utilisateur",
+      "acknowledgment": "En accédant à ce contenu, les utilisateurs reconnaissent explicitement qu'ils comprennent que ces épisodes de podcast contiennent des erreurs, des omissions et des simplifications.",
+      "acceptance": "Les utilisateurs acceptent la pleine responsabilité de vérifier TOUTES les informations par rapport au texte original du Livre d'Urantia.",
+      "neverUse": "Ces interprétations générées par l'IA ne devraient JAMAIS l'être :",
+      "restrictions": [
+        "Utilisé comme seule source pour comprendre les concepts du Livre d'Urantia",
+        "Citée ou référencée comme faisant autorité",
+        "On s'y fie pour une compréhension spirituelle, philosophique ou religieuse sans vérification"
+      ],
+      "recommendation": "Nous recommandons vivement la lecture du texte original pour une étude sérieuse de ces enseignements profonds."
+    },
+    "contact": {
+      "title": "Informations sur le contact",
+      "content": "Pour toute question, préoccupation ou demande concernant ce contenu, veuillez nous contacter à l'adresse suivante",
+      "email": "contact@thecenterforunity.org"
+    }
+  },
+  "lastUpdated": "Dernière mise à jour : 14 mars 2024",
+  "returnButton": "Retour à l'accueil"
+}

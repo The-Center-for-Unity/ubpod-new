@@ -308,28 +308,51 @@ const seriesData: SeriesInfo[] = [
 
 /**
  * Get all series information
+ * @param language The language code for translations (optional)
  * @returns Array of all series
  */
-export function getAllSeries(): SeriesInfo[] {
+export function getAllSeries(language: string = 'en'): SeriesInfo[] {
+  if (language === 'en') {
+    return seriesData;
+  }
+  
+  // For non-English languages, we need to apply translations
+  // Note: We can't use the hook here, so translations will be applied at component level
   return seriesData;
 }
 
 /**
  * Get series by category
  * @param category The category to filter by
+ * @param language The language code for translations (optional)
  * @returns Array of series in the specified category
  */
-export function getSeriesByCategory(category: 'jesus-focused' | 'parts-i-iii'): SeriesInfo[] {
-  return seriesData.filter(series => series.category === category);
+export function getSeriesByCategory(category: 'jesus-focused' | 'parts-i-iii', language: string = 'en'): SeriesInfo[] {
+  const filtered = seriesData.filter(series => series.category === category);
+  
+  if (language === 'en') {
+    return filtered;
+  }
+  
+  // For non-English languages, translations will be applied at component level
+  return filtered;
 }
 
 /**
  * Get series information by ID
  * @param seriesId The ID of the series
+ * @param language The language code for translations (optional)
  * @returns Series information or undefined if not found
  */
-export function getSeriesInfo(seriesId: string): SeriesInfo | undefined {
-  return seriesData.find(series => series.id === seriesId);
+export function getSeriesInfo(seriesId: string, language: string = 'en'): SeriesInfo | undefined {
+  const series = seriesData.find(series => series.id === seriesId);
+  
+  if (!series || language === 'en') {
+    return series;
+  }
+  
+  // For non-English languages, translations will be applied at component level
+  return series;
 }
 
 /**
@@ -366,19 +389,7 @@ export function getPreviousEpisode(seriesId: string, currentEpisode: number): nu
   return currentEpisode > 1 ? currentEpisode - 1 : null;
 }
 
-/**
- * Get episode title based on series and episode number
- * @param seriesId The series ID
- * @param episodeNumber The episode number
- * @returns The episode title
- */
-export function getEpisodeTitle(seriesId: string, episodeNumber: number): string {
-  const series = getSeriesInfo(seriesId);
-  if (!series) return `Episode ${episodeNumber}`;
-  
-  // Return a generic episode title
-  return `${series.title} - Episode ${episodeNumber}`;
-}
+// getEpisodeTitle function removed - titles now come from translation system only
 
 /**
  * Check if a series is Jesus-related (for asset handling)

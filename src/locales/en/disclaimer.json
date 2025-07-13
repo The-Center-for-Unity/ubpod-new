@@ -1,0 +1,65 @@
+{
+  "title": "IMPORTANT DISCLAIMER",
+  "subtitle": "PLEASE READ BEFORE LISTENING",
+  "introduction": "UrantiaBookPod.com provides AI-generated audio podcast episodes based on the papers contained in The Urantia Book. Each episode corresponds to a specific paper from the original text.",
+  "sections": {
+    "copyright": {
+      "title": "Copyright and Attribution",
+      "items": [
+        "The original text of The Urantia Book is the copyrighted property of Urantia Foundation.",
+        "The audio content provided on this site is derived from the text using AI technology and is intended for educational and accessibility purposes.",
+        "This service is not affiliated with, endorsed by, or officially connected to Urantia Foundation or any official Urantia Book publishing organization."
+      ]
+    },
+    "aiContent": {
+      "title": "Important Notice About AI-Generated Content",
+      "warning": "PLEASE BE AWARE: This content is generated using AI technology which has inherent limitations.",
+      "description": "The AI can and does make errors of both omission and commission - meaning it may:",
+      "limitations": [
+        "Leave out important details or contextual information",
+        "Misinterpret philosophical concepts",
+        "Oversimplify complex spiritual narratives",
+        "Occasionally generate inaccurate statements"
+      ],
+      "disclaimer": "These podcast episodes should be viewed as an imperfect introduction only and NOT as an authoritative representation of The Urantia Book's teachings.",
+      "requirement": "For serious study, users MUST refer to the official published version of The Urantia Book.",
+      "purpose": "The episodes are provided despite their imperfections because we believe they offer value as a supplementary resource."
+    },
+    "fairUse": {
+      "title": "Fair Use Statement",
+      "content": "The content on UrantiaBookPod.com is provided under the principles of fair use for purposes of commentary, criticism, research, teaching, and improving accessibility to the ideas contained in The Urantia Book."
+    },
+    "technical": {
+      "title": "Technical Limitations of AI Technology",
+      "description": "The audio content has been created using AI technology that has significant limitations when handling complex spiritual and philosophical concepts.",
+      "feedback": "Feedback from long-time students of The Urantia Book has identified that these AI-generated episodes:",
+      "issues": [
+        "Can miss important nuances and meanings",
+        "May not adequately convey the depth of spiritual concepts",
+        "Sometimes present simplified versions of complex narratives",
+        "Are particularly challenged when addressing profound topics like The Lucifer Rebellion"
+      ],
+      "inherent": "These limitations are inherent to current AI systems.",
+      "acknowledgment": "We acknowledge these shortcomings while still providing these episodes as an optional resource."
+    },
+    "responsibility": {
+      "title": "User Responsibility and Acknowledgment",
+      "acknowledgment": "By accessing this content, users explicitly acknowledge they understand these podcast episodes contain errors, omissions, and simplifications.",
+      "acceptance": "Users accept full responsibility for verifying ALL information against the original text of The Urantia Book.",
+      "neverUse": "These AI-generated interpretations should NEVER be:",
+      "restrictions": [
+        "Used as the sole source for understanding Urantia Book concepts",
+        "Quoted or referenced as authoritative",
+        "Relied upon for spiritual, philosophical, or religious understanding without verification"
+      ],
+      "recommendation": "We strongly recommend reading the original text for serious study of these profound teachings."
+    },
+    "contact": {
+      "title": "Contact Information",
+      "content": "For questions, concerns, or requests regarding this content, please contact us at",
+      "email": "contact@thecenterforunity.org"
+    }
+  },
+  "lastUpdated": "Last updated: March 14, 2024",
+  "returnButton": "Return to Home"
+} 

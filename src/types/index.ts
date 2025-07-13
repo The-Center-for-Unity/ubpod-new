@@ -1,9 +1,4 @@
-// Platform series
-export type PlatformSeriesType = 
-  'series-platform-1' | 
-  'series-platform-2' | 
-  'series-platform-3' | 
-  'series-platform-4';
+// Platform series (removed - consolidated into urantia-papers)
 
 // Jesus-focused series
 export type JesusFocusedSeriesType = 
@@ -34,7 +29,6 @@ export type PartsSeriesType =
 export type LegacySeriesType = 
   'urantia-papers' | 
   'discover-jesus' | 
-  'history' | 
   'sadler-workbooks';
 
 // Combined series type
@@ -50,12 +44,21 @@ export type SeriesType =
   | 'cosmic-11' | 'cosmic-12' | 'cosmic-13' | 'cosmic-14'
   
   // Legacy series IDs (for backward compatibility)
-  | 'urantia-papers' | 'discover-jesus' | 'history' | 'sadler-workbooks'
+  | 'urantia-papers' | 'discover-jesus' | 'sadler-workbooks'
   
-  // Platform-specific series (may be removed later)
-  | 'series-platform-1' | 'series-platform-2' | 'series-platform-3' | 'series-platform-4';
+  // Platform-specific series removed - consolidated into urantia-papers
 
 export type EpisodeSeries = SeriesType;
+
+export interface EpisodeTranslations {
+  [language: string]: {
+    title: string;
+    description?: string;
+    summary?: string;
+    cardSummary?: string;
+    shortSummary?: string;
+  };
+}
 
 export interface Episode {
   id: number;
@@ -70,6 +73,8 @@ export interface Episode {
   sourceUrl?: string;
   imageUrl?: string;
   transcriptUrl?: string;
+  summaryKey?: string;    // Link to translation content
+  translations?: EpisodeTranslations; // Added translations support
 }
 
 export interface AnimationVariants {

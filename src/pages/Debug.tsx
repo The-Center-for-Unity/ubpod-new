@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { getMediaUrl } from '../utils/mediaUtils';
+import { useTranslation } from 'react-i18next';
 
 // Create a component to test the mediaUtils functionality
 const MediaDebugger: React.FC = () => {
+  const { t } = useTranslation('debug');
   const [seriesId, setSeriesId] = useState('urantia-papers');
   const [episodeNumber, setEpisodeNumber] = useState(1);
   const [fileType, setFileType] = useState<'mp3' | 'pdf'>('mp3');
@@ -42,10 +44,10 @@ const MediaDebugger: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-white text-black container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Media URL Debugger</h1>
+      <h1 className="text-2xl font-bold mb-4">{t('title')}</h1>
       
       <div className="mb-4">
-        <label className="block mb-2 text-black">Series:</label>
+        <label className="block mb-2 text-black">{t('fields.series')}</label>
         <select 
           className="border border-gray-300 p-2 w-full mb-2 text-black bg-white"
           value={seriesId} 
@@ -56,7 +58,7 @@ const MediaDebugger: React.FC = () => {
           ))}
         </select>
         
-        <label className="block mb-2 text-black">Episode Number:</label>
+        <label className="block mb-2 text-black">{t('fields.episodeNumber')}</label>
         <input 
           type="number" 
           className="border border-gray-300 p-2 w-full mb-2 text-black bg-white"
@@ -65,27 +67,27 @@ const MediaDebugger: React.FC = () => {
           min="0"
         />
         
-        <label className="block mb-2 text-black">File Type:</label>
+        <label className="block mb-2 text-black">{t('fields.fileType')}</label>
         <select 
           className="border border-gray-300 p-2 w-full mb-4 text-black bg-white"
           value={fileType} 
           onChange={e => setFileType(e.target.value as 'mp3' | 'pdf')}
         >
-          <option value="mp3">MP3</option>
-          <option value="pdf">PDF</option>
+          <option value="mp3">{t('fileTypes.mp3')}</option>
+          <option value="pdf">{t('fileTypes.pdf')}</option>
         </select>
         
         <button 
           className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
           onClick={testUrl}
         >
-          Test URL
+          {t('fields.testButton')}
         </button>
       </div>
       
       {results.url && (
         <div className="mt-4 p-4 bg-green-50 border border-green-200 rounded">
-          <h2 className="font-semibold mb-2">Generated URL:</h2>
+          <h2 className="font-semibold mb-2">{t('results.generatedUrl')}</h2>
           <div className="break-all">
             <a href={results.url} target="_blank" rel="noopener noreferrer" className="text-blue-500 underline">
               {results.url}
@@ -96,7 +98,7 @@ const MediaDebugger: React.FC = () => {
       
       {results.error && (
         <div className="mt-4 p-4 bg-red-50 border border-red-200 rounded">
-          <h2 className="font-semibold mb-2">Error:</h2>
+          <h2 className="font-semibold mb-2">{t('results.error')}</h2>
           <div className="text-red-500">{results.error}</div>
         </div>
       )}

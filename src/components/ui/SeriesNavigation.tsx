@@ -1,8 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { SeriesType } from '../../types/index';
 import { getAllSeries, getSeriesInfo } from '../../utils/seriesUtils';
+import { filterSeriesByLanguage, getAvailableCategories } from '../../utils/seriesAvailabilityUtils';
+import { useLanguage } from '../../i18n/LanguageContext';
 import { ChevronDown, Users, Globe, LayoutGrid } from 'lucide-react';
+import { LocalizedLink } from '../shared/LocalizedLink';
 
 interface SeriesNavigationProps {
   currentSeries?: SeriesType;
@@ -10,11 +13,40 @@ interface SeriesNavigationProps {
 }
 
 export default function SeriesNavigation({ currentSeries, hideTitle = false }: SeriesNavigationProps) {
-  const allSeries = getAllSeries();
-  const currentSeriesInfo = currentSeries ? getSeriesInfo(currentSeries) : null;
+  const { language } = useLanguage();
+  const { t } = useTranslation(['series-detail', 'series-collections']);
+  
+  // Get all series with language awareness
+  const allSeriesRaw = getAllSeries();
+  const availableCategories = getAvailableCategories(language);
+  
+  // Apply language filtering and translations
+  const allSeries = filterSeriesByLanguage(allSeriesRaw, language).map(series => ({
+    ...series,
+    title: t(`series-collections:series.${series.id}.title`, { defaultValue: series.title }),
+    description: t(`series-collections:series.${series.id}.description`, { defaultValue: series.description }),
+    logline: t(`series-collections:series.${series.id}.logline`, { defaultValue: series.logline })
+  }));
+  
+  // Get current series info with translations
+  const baseCurrentSeriesInfo = currentSeries ? getSeriesInfo(currentSeries) : null;
+  const currentSeriesInfo = baseCurrentSeriesInfo ? {
+    ...baseCurrentSeriesInfo,
+    title: t(`series-collections:series.${currentSeries}.title`, { defaultValue: baseCurrentSeriesInfo.title }),
+    description: t(`series-collections:series.${currentSeries}.description`, { defaultValue: baseCurrentSeriesInfo.description }),
+    logline: t(`series-collections:series.${currentSeries}.logline`, { defaultValue: baseCurrentSeriesInfo.logline })
+  } : null;
+  
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const [categoryFilter, setCategoryFilter] = useState<'all' | 'jesus' | 'cosmic'>('all');
+
+  // Reset filter if Jesus becomes unavailable
+  useEffect(() => {
+    if (categoryFilter === 'jesus' && !availableCategories.hasJesusSeries) {
+      setCategoryFilter('all');
+    }
+  }, [categoryFilter, availableCategories.hasJesusSeries]);
 
   // Filter series based on selected category
   const filteredSeries = allSeries.filter(series => {
@@ -41,7 +73,7 @@ export default function SeriesNavigation({ currentSeries, hideTitle = false }: S
     <div className="mb-6">
       {!hideTitle && (
         <h2 className="title-subtitle text-lg tracking-[0.15em] text-gold mb-3">
-          PODCAST SERIES
+          {t('series-detail:navigation.title')}
         </h2>
       )}
 
@@ -56,19 +88,21 @@ export default function SeriesNavigation({ currentSeries, hideTitle = false }: S
           }`}
         >
           <LayoutGrid className="w-3 h-3 mr-1" />
-          All
+          {t('series-detail:navigation.filters.all')}
         </button>
-        <button 
-          onClick={() => setCategoryFilter('jesus')}
-          className={`flex-1 flex items-center justify-center py-2 px-1 text-xs sm:text-sm rounded-md transition-colors ${
-            categoryFilter === 'jesus' 
-              ? 'bg-navy-dark text-rose-400 font-medium' 
-              : 'text-white/70 hover:text-white hover:bg-navy-dark/50'
-          }`}
-        >
-          <Users className="w-3 h-3 mr-1" />
-          Jesus
-        </button>
+        {availableCategories.hasJesusSeries && (
+          <button 
+            onClick={() => setCategoryFilter('jesus')}
+            className={`flex-1 flex items-center justify-center py-2 px-1 text-xs sm:text-sm rounded-md transition-colors ${
+              categoryFilter === 'jesus' 
+                ? 'bg-navy-dark text-rose-400 font-medium' 
+                : 'text-white/70 hover:text-white hover:bg-navy-dark/50'
+            }`}
+          >
+            <Users className="w-3 h-3 mr-1" />
+            {t('series-detail:navigation.filters.jesus')}
+          </button>
+        )}
         <button 
           onClick={() => setCategoryFilter('cosmic')}
           className={`flex-1 flex items-center justify-center py-2 px-1 text-xs sm:text-sm rounded-md transition-colors ${
@@ -78,7 +112,7 @@ export default function SeriesNavigation({ currentSeries, hideTitle = false }: S
           }`}
         >
           <Globe className="w-3 h-3 mr-1" />
-          Cosmic
+          {t('series-detail:navigation.filters.cosmic')}
         </button>
       </div>
 
@@ -96,11 +130,11 @@ export default function SeriesNavigation({ currentSeries, hideTitle = false }: S
           <div className="absolute top-full left-0 right-0 mt-1 bg-navy-dark/95 backdrop-blur-lg border border-white/20 rounded-lg shadow-xl z-20 max-h-[60vh] overflow-y-auto custom-scrollbar">
             {filteredSeries.length === 0 ? (
               <div className="py-4 px-4 text-white/70 text-center">
-                No series found in this category
+                {t('series-detail:navigation.noSeries')}
               </div>
             ) : (
               filteredSeries.map(series => (
-                <Link 
+                <LocalizedLink 
                   key={series.id}
                   to={`/series/${series.id}`}
                   className={`block py-3 px-4 hover:bg-navy-light/70 transition-colors ${
@@ -117,7 +151,7 @@ export default function SeriesNavigation({ currentSeries, hideTitle = false }: S
                     }
                     <span>{series.title}</span>
                   </div>
-                </Link>
+                </LocalizedLink>
               ))
             )}
           </div>
@@ -130,11 +164,11 @@ export default function SeriesNavigation({ currentSeries, hideTitle = false }: S
           <div className="space-y-1 max-h-[calc(100vh-240px)] overflow-y-auto pr-1 custom-scrollbar">
             {filteredSeries.length === 0 ? (
               <div className="py-4 px-2 text-white/70 text-center">
-                No series found in this category
+                {t('series-detail:navigation.noSeries')}
               </div>
             ) : (
               filteredSeries.map(series => (
-                <Link 
+                <LocalizedLink 
                   key={series.id}
                   to={`/series/${series.id}`}
                   className={`block py-2 px-3 rounded transition-colors ${
@@ -150,7 +184,7 @@ export default function SeriesNavigation({ currentSeries, hideTitle = false }: S
                     }
                     <span>{series.title}</span>
                   </div>
-                </Link>
+                </LocalizedLink>
               ))
             )}
           </div>

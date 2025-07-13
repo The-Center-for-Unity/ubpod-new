@@ -1,8 +1,10 @@
 import { Episode } from '../types/index';
 import urantiaSummaries from './json/urantia_summaries.json';
+import urantiaSummariesEs from './json/urantia_summaries_es.json';
 import scraperSummaries from './json/summaries.json';  // Import the scraped summaries
 import { getAudioUrl, getPdfUrl } from '../config/audio';
 import { getEpisode as getEpisodeUtil, getDiscoverJesusSummary } from '../utils/episodeUtils';
+import { loadUrantiaPaperTranslations, getSpanishPaperTitle, getSpanishPaperCard, getSpanishPaperPage, getEnglishPaperTitle } from '../utils/translationLoaders';
 
 // Create a map from the scraped summaries for fast lookup by ID
 interface ScrapedSummary {
@@ -46,10 +48,8 @@ console.log('Raw summary data (first 5 entries):',
   }))
 );
 
-// Create a map of summaries for quick lookup
+// Create a map of English summaries for quick lookup
 const summaryMap = new Map<number, { episodeCard: string, episodePage: string }>();
-
-// Process the summaries from the JSON file
 (urantiaSummaries as UrantiaSummary[]).forEach((summary) => {
   summaryMap.set(summary.paper_number, {
     episodeCard: summary.episode_card,
@@ -57,17 +57,18 @@ const summaryMap = new Map<number, { episodeCard: string, episodePage: string }>
   });
 });
 
+// Create a map of Spanish summaries for quick lookup
+const summaryMapEs = new Map<number, { title: string, episodeCard: string, episodePage: string }>();
+(urantiaSummariesEs as UrantiaSummary[]).forEach((summary) => {
+  summaryMapEs.set(summary.paper_number, {
+    title: summary.title,
+    episodeCard: summary.episode_card,
+    episodePage: summary.episode_page
+  });
+});
+
 // Debug: Check how many summaries were loaded
-console.log(`Loaded ${summaryMap.size} summaries from JSON file`);
-console.log(`First few summaries in map:`, 
-  Array.from(summaryMap.entries())
-    .slice(0, 5)
-    .map(([id, summary]) => ({ 
-      id, 
-      episodeCard: summary.episodeCard.substring(0, 30) + '...',
-      episodePage: summary.episodePage.substring(0, 30) + '...'
-    }))
-);
+console.log(`Loaded ${summaryMap.size} English summaries and ${summaryMapEs.size} Spanish summaries from JSON files`);
 
 // Helper function to get summary for a paper
 function getSummaryForPaper(paperId: number): { episodeCard: string, episodePage: string } | undefined {
@@ -85,8 +86,18 @@ function getSummaryForPaper(paperId: number): { episodeCard: string, episodePage
 function createUrantiaPaper(id: number, title: string): Episode {
   const paperSummary = getSummaryForPaper(id);
   
+  // Load Spanish translations using the new translation loader
+  const spanishTitle = getSpanishPaperTitle(id);
+  const spanishCard = getSpanishPaperCard(id);
+  const spanishPage = getSpanishPaperPage(id);
+  
   // Format the title with "Paper X:" prefix for all papers except the Foreword
   const formattedTitle = id === 0 ? "Foreword" : `Paper ${id}: ${title}`;
+  
+  // Format Spanish title appropriately
+  const formattedSpanishTitle = spanishTitle 
+    ? (id === 0 ? spanishTitle : `Documento ${id}: ${spanishTitle}`)
+    : formattedTitle; // Fallback to English if no Spanish translation
   
   // Create the episode object with summaries if available
   const episode: Episode = {
@@ -95,7 +106,25 @@ function createUrantiaPaper(id: number, title: string): Episode {
     audioUrl: getAudioUrl('urantia-papers', id),
     pdfUrl: getPdfUrl('urantia-papers', id),
     series: "urantia-papers",
-    description: id === 0 ? "An introduction to the Urantia Papers, covering Deity, reality, universe definitions, and an outline of the structure of the cosmos." : `Paper ${id}: ${title}`,
+    // The main description should be the shorter card summary (logline)
+    description: paperSummary?.episodeCard, 
+    // The collapsible summary should be the longer page summary
+    summary: paperSummary?.episodePage,
+    cardSummary: paperSummary?.episodeCard, // Keep for other uses
+    translations: {
+      en: {
+        title: formattedTitle,
+        description: paperSummary?.episodeCard, // Short logline
+        summary: paperSummary?.episodePage,     // Long description
+        cardSummary: paperSummary?.episodeCard
+      },
+      es: {
+        title: formattedSpanishTitle,
+        description: spanishCard || paperSummary?.episodeCard,
+        summary: spanishPage || paperSummary?.episodePage,
+        cardSummary: spanishCard || paperSummary?.episodeCard,
+      },
+    }
   };
   
   // Add summaries if available
@@ -119,213 +148,13 @@ function createUrantiaPaper(id: number, title: string): Episode {
 
 // Function to generate all Urantia Papers with summaries
 function generateUrantiaPapers(): Episode[] {
-  // Complete list of paper titles
-  const paperTitles: Record<number, string> = {
-    0: "Foreword",
-    1: "The Universal Father",
-    2: "The Nature of God",
-    3: "The Attributes of God",
-    4: "God's Relation to the Universe",
-    5: "God's Relation to the Individual",
-    6: "The Eternal Son",
-    7: "Relation of the Eternal Son to the Universe",
-    8: "The Infinite Spirit",
-    9: "Relation of the Infinite Spirit to the Universe",
-    10: "The Paradise Trinity",
-    11: "The Eternal Isle of Paradise",
-    12: "The Universe of Universes",
-    13: "The Sacred Spheres of Paradise",
-    14: "The Central and Divine Universe",
-    15: "The Seven Superuniverses",
-    16: "The Seven Master Spirits",
-    17: "The Seven Supreme Spirit Groups",
-    18: "The Supreme Trinity Personalities",
-    19: "The Co-ordinate Trinity-Origin",
-    20: "The Paradise Sons of God",
-    21: "The Paradise Creator Sons",
-    22: "The Trinitized Sons of God",
-    23: "The Solitary Messengers",
-    24: "Higher Personalities of the Infinite",
-    25: "The Messenger Hosts of Space",
-    26: "Ministering Spirits of the Central",
-    27: "Ministry of the Primary Supernaphim",
-    28: "Ministering Spirits of the Superuniverses",
-    29: "The Universe Power Directors",
-    30: "Personalities of the Grand Universe",
-    31: "The Corps of the Finality",
-    32: "The Evolution of Local Universes",
-    33: "Administration of the Local Universe",
-    34: "The Local Universe Mother Spirit",
-    35: "The Local Universe Sons of God",
-    36: "The Life Carriers",
-    37: "Personalities of the Local Universe",
-    38: "Ministering Spirits of the Local Universe",
-    39: "The Seraphic Hosts",
-    40: "The Ascending Sons of God",
-    41: "Physical Aspects of the Local Universe",
-    42: "Energy—Mind and Matter",
-    43: "The Constellations",
-    44: "The Celestial Artisans",
-    45: "The Local System Administration",
-    46: "The Local System Headquarters",
-    47: "The Seven Mansion Worlds",
-    48: "The Morontia Life",
-    49: "The Inhabited Worlds",
-    50: "The Planetary Princes",
-    51: "The Planetary Adams",
-    52: "Planetary Mortal Epochs",
-    53: "The Lucifer Rebellion",
-    54: "Problems of the Lucifer Rebellion",
-    55: "The Spheres of Light and Life",
-    56: "Universal Unity",
-    57: "The Origin of Urantia",
-    58: "Life Establishment on Urantia",
-    59: "The Marine-Life Era on Urantia",
-    60: "Urantia During the Early Land-Life Era",
-    61: "The Mammalian Era on Urantia",
-    62: "The Dawn Races of Early Man",
-    63: "The First Human Family",
-    64: "The Evolutionary Races of Color",
-    65: "The Overcontrol of Evolution",
-    66: "The Planetary Prince of Urantia",
-    67: "The Planetary Rebellion",
-    68: "The Dawn of Civilization",
-    69: "Primitive Human Institutions",
-    70: "The Evolution of Human Government",
-    71: "Development of the State",
-    72: "Government on a Neighboring Planet",
-    73: "The Garden of Eden",
-    74: "Adam and Eve",
-    75: "The Default of Adam and Eve",
-    76: "The Second Garden",
-    77: "The Midway Creatures",
-    78: "The Violet Race After the Days of Adam",
-    79: "Andite Expansion in the Orient",
-    80: "Andite Expansion in the Occident",
-    81: "Development of Modern Civilization",
-    82: "The Evolution of Marriage",
-    83: "The Marriage Institution",
-    84: "Marriage and Family Life",
-    85: "The Origins of Worship",
-    86: "Early Evolution of Religion",
-    87: "The Ghost Cults",
-    88: "Fetishes, Charms, and Magic",
-    89: "Sin, Sacrifice, and Atonement",
-    90: "Shamanism—Medicine Men and Priests",
-    91: "The Evolution of Prayer",
-    92: "The Later Evolution of Religion",
-    93: "Machiventa Melchizedek",
-    94: "The Melchizedek Teachings in the Orient",
-    95: "The Melchizedek Teachings in the Levant",
-    96: "Yahweh—God of the Hebrews",
-    97: "Evolution of the God Concept",
-    98: "The Melchizedek Teachings in the Occident",
-    99: "The Social Problems of Religion",
-    100: "Religion in Human Experience",
-    101: "The Real Nature of Religion",
-    102: "The Foundations of Religious Faith",
-    103: "The Reality of Religious Experience",
-    104: "Growth of the Trinity Concept",
-    105: "Deity and Reality",
-    106: "Universe Levels of Reality",
-    107: "Origin and Nature of Thought Adjusters",
-    108: "Mission and Ministry of Thought Adjusters",
-    109: "Relation of Adjusters to Universe Creatures",
-    110: "Relation of Adjusters to Individual Mortals",
-    111: "The Adjuster and the Soul",
-    112: "Personality Survival",
-    113: "Seraphic Guardians of Destiny",
-    114: "Seraphic Planetary Government",
-    115: "The Supreme Being",
-    116: "The Almighty Supreme",
-    117: "God the Supreme",
-    118: "Supreme and Ultimate—Time and Space",
-    119: "The Bestowals of Christ Michael",
-    120: "The Bestowal of Michael on Urantia",
-    121: "The Times of Michael's Bestowal",
-    122: "Birth and Infancy of Jesus",
-    123: "The Early Childhood of Jesus",
-    124: "The Later Childhood of Jesus",
-    125: "Jesus at Jerusalem",
-    126: "The Two Crucial Years",
-    127: "The Adolescent Years",
-    128: "Jesus' Early Manhood",
-    129: "The Later Adult Life of Jesus",
-    130: "On the Way to Rome",
-    131: "The World's Religions",
-    132: "The Sojourn at Rome",
-    133: "The Return from Rome",
-    134: "The Transition Years",
-    135: "John the Baptist",
-    136: "Baptism and the Forty Days",
-    137: "Tarrying Time in Galilee",
-    138: "Training the Kingdom's Messengers",
-    139: "The Twelve Apostles",
-    140: "The Ordination of the Twelve",
-    141: "Beginning the Public Work",
-    142: "The Passover at Jerusalem",
-    143: "Going Through Samaria",
-    144: "At Gilboa and in the Decapolis",
-    145: "Four Eventful Days at Capernaum",
-    146: "First Preaching Tour of Galilee",
-    147: "The Interlude Visit to Jerusalem",
-    148: "Training Evangelists at Bethsaida",
-    149: "The Second Preaching Tour",
-    150: "The Third Preaching Tour",
-    151: "Tarrying and Teaching by the Seaside",
-    152: "Events Leading up to the Capernaum Crisis",
-    153: "The Crisis at Capernaum",
-    154: "Last Days at Capernaum",
-    155: "Fleeing Through Northern Galilee",
-    156: "The Sojourn at Tyre and Sidon",
-    157: "At Caesarea-Philippi",
-    158: "The Mount of Transfiguration",
-    159: "The Decapolis Tour",
-    160: "Rodan of Alexandria",
-    161: "Further Discussions with Rodan",
-    162: "At the Feast of Tabernacles",
-    163: "Ordination of the Seventy at Magadan",
-    164: "At the Feast of Dedication",
-    165: "The Perean Mission Begins",
-    166: "Last Visit to Northern Perea",
-    167: "The Visit to Philadelphia",
-    168: "The Resurrection of Lazarus",
-    169: "Last Teaching at Pella",
-    170: "The Kingdom of Heaven",
-    171: "On the Way to Jerusalem",
-    172: "Going into Jerusalem",
-    173: "Monday in Jerusalem",
-    174: "Tuesday Morning in the Temple",
-    175: "The Last Temple Discourse",
-    176: "Tuesday Evening on Mount Olivet",
-    177: "Wednesday, the Rest Day",
-    178: "Last Day at the Camp",
-    179: "The Last Supper",
-    180: "The Farewell Discourse",
-    181: "Final Admonitions and Warnings",
-    182: "In Gethsemane",
-    183: "The Betrayal and Arrest of Jesus",
-    184: "Before the Sanhedrin Court",
-    185: "The Trial Before Pilate",
-    186: "Just Before the Crucifixion",
-    187: "The Crucifixion",
-    188: "The Time of the Tomb",
-    189: "The Resurrection",
-    190: "Morontia Appearances of Jesus",
-    191: "Appearances to the Apostles and Other Leaders",
-    192: "Appearances in Galilee",
-    193: "Final Appearances and Ascension",
-    194: "Bestowal of the Spirit of Truth",
-    195: "After Pentecost",
-    196: "The Faith of Jesus"
-  };
   
   const papers: Episode[] = [];
   
   // Create all papers from 0 to 196
   for (let paperId = 0; paperId <= 196; paperId++) {
-    // Get the title from our mapping, or use a generic title if not found
-    const title = paperTitles[paperId] || `Paper ${paperId}`;
+    // Get the title from our translation loader, or use a generic title if not found
+    const title = getEnglishPaperTitle(paperId) || `Paper ${paperId}`;
     
     // Create the episode with or without summary
     const episode = createUrantiaPaper(paperId, title);
@@ -358,7 +187,16 @@ const discoverJesusEpisodes: Episode[] = [
     series: "discover-jesus",
     sourceUrl: "https://discoverjesus.com/topic/the-personality-of-god",
     description: "God isn't an abstract force but a personality who seeks relationship—meet the Universal Father who knows you personally.",
-    cardSummary: discoverJesusSummaries["topic/the-personality-of-god"]?.shortSummary,
+    cardSummary: (() => {
+      const lookupKey = "topic/the-personality-of-god";
+      const summary = discoverJesusSummaries[lookupKey];
+      console.log(`[JESUS DEBUG] Episode 1 lookup: "${lookupKey}" -> ${summary ? 'FOUND' : 'NOT FOUND'}`);
+      if (summary) {
+        console.log(`[JESUS DEBUG] Episode 1 shortSummary length:`, summary.shortSummary?.length);
+        console.log(`[JESUS DEBUG] Episode 1 shortSummary preview:`, summary.shortSummary?.substring(0, 100));
+      }
+      return summary?.shortSummary;
+    })(),
     summary: discoverJesusSummaries["topic/the-personality-of-god"]?.fullSummary
   },
   {
@@ -476,19 +314,21 @@ export function getSadlerWorkbooks(): Episode[] {
  * Get an episode by ID and series
  * @param id The episode ID
  * @param series The series ID
+ * @param language Optional language code (e.g., 'es' for Spanish)
  * @returns The episode or undefined if not found
  */
-export function getEpisodeById(id: number, series: string): Episode | undefined {
+export function getEpisodeById(id: number, series: string, language: string = 'en'): Episode | undefined {
   // Debug for the specific series we're working with
-  console.log('DEBUG getEpisodeById:', { id, series, isJesusSeries: series.startsWith('jesus-') });
+  console.log('DEBUG getEpisodeById:', { id, series, language, isJesusSeries: series.startsWith('jesus-') });
   
   // Check for new series IDs (jesus-1, jesus-2, cosmic-1, etc.)
   if (series.startsWith('jesus-') || series.startsWith('cosmic-') || series.startsWith('series-platform-')) {
     try {
-      // For new series IDs, use the utility function from episodeUtils
-      const episodeData = getEpisodeUtil(series, id);
+      // For new series IDs, use the utility function from episodeUtils with language support
+      const episodeData = getEpisodeUtil(series, id, language);
       console.log('DEBUG jesus series episode:', { 
         episodeFound: !!episodeData,
+        language,
         hasSummary: episodeData?.summary ? true : false,
         hasCardSummary: episodeData?.cardSummary ? true : false,
         cardSummary: episodeData?.cardSummary?.substring(0, 50),
@@ -496,14 +336,38 @@ export function getEpisodeById(id: number, series: string): Episode | undefined 
       });
       return episodeData;
     } catch (err) {
-      console.error(`Error getting episode for ${series}:${id}`, err);
+      console.error(`Error getting episode for ${series}:${id} in language ${language}`, err);
       return undefined;
     }
   }
   
   // Handle Urantia Papers specifically
   if (series === 'urantia-papers') {
-    return urantiaEpisodes.find(ep => ep.id === id);
+    const episode = urantiaEpisodes.find(ep => ep.id === id);
+    
+    // If we found the episode and language is not English, apply language-specific adjustments
+    if (episode && language !== 'en') {
+      const translatedEpisode: Episode = {
+        ...episode,
+        // Apply language-specific paths to URLs
+        audioUrl: language === 'en' ? episode.audioUrl : episode.audioUrl.replace(/\/([^/]+)$/, `/${language}/$1`),
+        pdfUrl: episode.pdfUrl ? (language === 'en' ? episode.pdfUrl : episode.pdfUrl.replace(/\/([^/]+)$/, `/${language}/$1`)) : undefined,
+        transcriptUrl: episode.transcriptUrl ? (language === 'en' ? episode.transcriptUrl : episode.transcriptUrl.replace(/\/([^/]+)$/, `/${language}/$1`)) : undefined,
+        
+        // Apply translations if available
+        ...(episode.translations && episode.translations[language] ? {
+          title: episode.translations[language].title || episode.title,
+          description: episode.translations[language].description || episode.description,
+          summary: episode.translations[language].summary || episode.summary,
+          cardSummary: episode.translations[language].cardSummary || episode.cardSummary,
+          shortSummary: episode.translations[language].shortSummary || episode.shortSummary,
+        } : {})
+      };
+      
+      return translatedEpisode;
+    }
+    
+    return episode;
   }
   
   // Handle discover-jesus episodes
@@ -514,6 +378,7 @@ export function getEpisodeById(id: number, series: string): Episode | undefined 
     console.log('DEBUG GET_EPISODE_BY_ID:', {
       requestedId: id,
       requestedSeries: series,
+      language,
       episodeFound: !!episode,
       episodeDetails: episode ? {
         id: episode.id,
@@ -523,9 +388,11 @@ export function getEpisodeById(id: number, series: string): Episode | undefined 
       } : null
     });
     
+    if (!episode) return undefined;
+    
     // If the episode exists but doesn't have summaries (cardSummary/summary), 
     // try to add them directly from the JSON
-    if (episode && episode.sourceUrl && (!episode.cardSummary || !episode.summary)) {
+    if (episode.sourceUrl && (!episode.cardSummary || !episode.summary)) {
       // Extract the path part from the URL (everything after discoverjesus.com/)
       const urlPath = episode.sourceUrl.split('discoverjesus.com/')[1];
       
@@ -540,19 +407,61 @@ export function getEpisodeById(id: number, series: string): Episode | undefined 
       const summaryData = discoverJesusSummaries[urlPath];
       
       if (summaryData) {
-        return {
-          ...episode,
-          cardSummary: episode.cardSummary || summaryData.shortSummary,
-          summary: episode.summary || summaryData.fullSummary
-        };
+        episode.cardSummary = episode.cardSummary || summaryData.shortSummary;
+        episode.summary = episode.summary || summaryData.fullSummary;
       }
+    }
+    
+    // If language is not English, apply language-specific adjustments
+    if (language !== 'en') {
+      const translatedEpisode: Episode = {
+        ...episode,
+        // Apply language-specific paths to URLs
+        audioUrl: language === 'en' ? episode.audioUrl : episode.audioUrl.replace(/\/([^/]+)$/, `/${language}/$1`),
+        
+        // Apply translations if available
+        ...(episode.translations && episode.translations[language] ? {
+          title: episode.translations[language].title || episode.title,
+          description: episode.translations[language].description || episode.description,
+          summary: episode.translations[language].summary || episode.summary,
+          cardSummary: episode.translations[language].cardSummary || episode.cardSummary,
+          shortSummary: episode.translations[language].shortSummary || episode.shortSummary,
+        } : {})
+      };
+      
+      return translatedEpisode;
     }
     
     return episode;
   }
   
-  // For other legacy series types
-  // (Implementation would depend on what other legacy series are available)
+  // For other legacy series types (history, sadler-workbooks)
+  if (series === 'history' || series === 'sadler-workbooks') {
+    const seriesData = series === 'history' ? historyEpisodes : sadlerWorkbooksEpisodes;
+    const episode = seriesData.find(ep => ep.id === id);
+    
+    if (episode && language !== 'en') {
+      // Apply language-specific adjustments
+      const translatedEpisode: Episode = {
+        ...episode,
+        // Apply language-specific paths to URLs
+        audioUrl: language === 'en' ? episode.audioUrl : episode.audioUrl.replace(/\/([^/]+)$/, `/${language}/$1`),
+        
+        // Apply translations if available
+        ...(episode.translations && episode.translations[language] ? {
+          title: episode.translations[language].title || episode.title,
+          description: episode.translations[language].description || episode.description,
+          summary: episode.translations[language].summary || episode.summary,
+          cardSummary: episode.translations[language].cardSummary || episode.cardSummary,
+          shortSummary: episode.translations[language].shortSummary || episode.shortSummary,
+        } : {})
+      };
+      
+      return translatedEpisode;
+    }
+    
+    return episode;
+  }
   
   // If we get here, we couldn't find the episode
   return undefined;

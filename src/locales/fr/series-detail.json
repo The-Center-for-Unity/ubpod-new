@@ -1,0 +1,41 @@
+{
+  "header": {
+    "badges": {
+      "jesusFocused": "Série centrée sur Jésus",
+      "cosmicSeries": "Série cosmique"
+    },
+    "actions": {
+      "startListening": "Commencer à écouter"
+    }
+  },
+  "navigation": {
+    "title": "SÉRIE PODCAST",
+    "mobileTitle": "SÉRIE SELECT",
+    "filters": {
+      "all": "Tous",
+      "jesus": "Jésus",
+      "cosmic": "Cosmique"
+    },
+    "noSeries": "Aucune série trouvée dans cette catégorie"
+  },
+  "episodes": {
+    "title": "EPISODES",
+    "loading": "Chargement des épisodes...",
+    "noEpisodes": {
+      "title": "Pas d'épisodes disponibles",
+      "message": "Cette série n'a pas encore d'épisodes. Veuillez revenir plus tard."
+    },
+    "error": {
+      "title": "Erreur",
+      "message": "Échec du chargement des épisodes. Veuillez réessayer plus tard."
+    }
+  },
+  "episodeCard": {
+    "episodePrefix": "Épisode",
+    "actions": {
+      "listen": "Écouter",
+      "read": "Lire",
+      "download": "Télécharger"
+    }
+  }
+}

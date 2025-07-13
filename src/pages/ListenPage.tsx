@@ -1,26 +1,54 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import Layout from '../components/layout/Layout';
 import EpisodeCard from '../components/ui/EpisodeCard';
 import SeriesNavigation from '../components/ui/SeriesNavigation';
 import { Episode, SeriesType } from '../types/index';
 import { getSeriesInfo } from '../utils/seriesUtils';
 import { getEpisodesForSeries } from '../utils/episodeUtils';
+import { getAvailableSeriesIds } from '../utils/seriesAvailabilityUtils';
+import { useLanguage } from '../i18n/LanguageContext';
 import { PlayCircle } from 'lucide-react';
+import { getLocalizedPath } from '../utils/i18nRouteUtils';
 
 export default function ListenPage() {
   const { seriesId } = useParams<{ seriesId: string }>();
   const navigate = useNavigate();
+  const { language } = useLanguage();
+  const { t } = useTranslation(['series-detail', 'series-collections']);
   const [episodes, setEpisodes] = useState<Episode[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  // Check if current series is available in the selected language
   useEffect(() => {
     if (!seriesId) return;
     
+    const availableSeriesIds = getAvailableSeriesIds(language);
+    const isSeriesAvailable = availableSeriesIds.includes(seriesId);
+    
+    if (!isSeriesAvailable) {
+      // Redirect to series page - the series page will show available content
+      // and can display a message explaining why they were redirected
+      const localizedPath = getLocalizedPath(`/series?unavailable=${seriesId}`, language);
+      navigate(localizedPath, { replace: true });
+      return;
+    }
+  }, [seriesId, language, navigate]);
+
+  useEffect(() => {
+    if (!seriesId) return;
+    
+    // Only proceed if series is available (the redirect effect above will handle unavailable series)
+    const availableSeriesIds = getAvailableSeriesIds(language);
+    const isSeriesAvailable = availableSeriesIds.includes(seriesId);
+    
+    if (!isSeriesAvailable) return;
+    
     try {
       setLoading(true);
-      const seriesEpisodes = getEpisodesForSeries(seriesId);
+      const seriesEpisodes = getEpisodesForSeries(seriesId, language);
       setEpisodes(seriesEpisodes);
       setError(null);
     } catch (err) {
@@ -29,26 +57,33 @@ export default function ListenPage() {
     } finally {
       setLoading(false);
     }
-  }, [seriesId]);
+  }, [seriesId, language]);
 
   const handlePlay = (episode: Episode) => {
-    navigate(`/series/${seriesId}/${episode.id}`);
+    const localizedPath = getLocalizedPath(`/series/${seriesId}/${episode.id}`, language);
+    navigate(localizedPath);
   };
 
-  // Get series information
-  const seriesInfo = seriesId ? getSeriesInfo(seriesId) : undefined;
+  // Get series information with translations
+  const baseSeriesInfo = seriesId ? getSeriesInfo(seriesId) : undefined;
+  const seriesInfo = baseSeriesInfo ? {
+    ...baseSeriesInfo,
+    title: t(`series-collections:series.${seriesId}.title`, { defaultValue: baseSeriesInfo.title }),
+    description: t(`series-collections:series.${seriesId}.description`, { defaultValue: baseSeriesInfo.description }),
+    logline: t(`series-collections:series.${seriesId}.logline`, { defaultValue: baseSeriesInfo.logline })
+  } : undefined;
 
   // Determine category badge text and class
   const getCategoryBadgeText = () => {
-    if (!seriesInfo) return 'Series';
+    if (!seriesInfo) return t('series-detail:header.badges.cosmicSeries');
     
     switch(seriesInfo.category) {
       case 'jesus-focused':
-        return 'Jesus-Focused Series';
+        return t('series-detail:header.badges.jesusFocused');
       case 'parts-i-iii':
-        return 'Cosmic Series';
+        return t('series-detail:header.badges.cosmicSeries');
       default:
-        return 'Series';
+        return t('series-detail:header.badges.cosmicSeries');
     }
   };
 
@@ -92,7 +127,7 @@ export default function ListenPage() {
                       disabled={loading || episodes.length === 0}
                     >
                       <PlayCircle className="mr-2 h-5 w-5" />
-                      Start Listening
+                      {t('series-detail:header.actions.startListening')}
                     </button>
                   </div>
                 </div>
@@ -106,12 +141,12 @@ export default function ListenPage() {
           <div className="hidden lg:flex mb-6">
             <div className="lg:w-1/4 xl:w-1/5">
               <h2 className="title-subtitle text-xl tracking-[0.15em] text-gold">
-                PODCAST SERIES
+                {t('series-detail:navigation.title')}
               </h2>
             </div>
             <div className="lg:w-3/4 xl:w-4/5">
               <h2 className="title-subtitle text-xl tracking-[0.15em] text-gold">
-                EPISODES
+                {t('series-detail:episodes.title')}
               </h2>
             </div>
           </div>
@@ -122,11 +157,12 @@ export default function ListenPage() {
               {/* Mobile Series Title - Only shown on mobile */}
               <div className="mb-3 lg:hidden">
                 <h2 className="title-subtitle text-lg tracking-[0.15em] text-gold">
-                  SELECT SERIES
+                  {t('series-detail:navigation.mobileTitle')}
                 </h2>
               </div>
               
               <SeriesNavigation 
+                key={`${language}-${seriesId}`}
                 currentSeries={seriesId as SeriesType} 
                 hideTitle={true} 
               />
@@ -137,7 +173,7 @@ export default function ListenPage() {
               {/* Mobile Episodes Title - Only shown on mobile */}
               <div className="mb-4 lg:hidden">
                 <h2 className="title-subtitle text-xl tracking-[0.15em] text-gold">
-                  EPISODES
+                  {t('series-detail:episodes.title')}
                 </h2>
               </div>
               
@@ -147,14 +183,14 @@ export default function ListenPage() {
                 </div>
               ) : error ? (
                 <div className="bg-red-900/20 border border-red-700 rounded-lg p-6 text-white">
-                  <h3 className="text-xl font-bold mb-2">Error</h3>
-                  <p>{error}</p>
+                  <h3 className="text-xl font-bold mb-2">{t('series-detail:episodes.error.title')}</h3>
+                  <p>{t('series-detail:episodes.error.message')}</p>
                 </div>
               ) : episodes.length === 0 ? (
                 <div className="bg-navy-light rounded-lg p-8 text-center">
-                  <h3 className="text-xl font-bold mb-3">No Episodes Available</h3>
+                  <h3 className="text-xl font-bold mb-3">{t('series-detail:episodes.noEpisodes.title')}</h3>
                   <p className="text-white/80">
-                    This series doesn't have any episodes yet. Please check back later.
+                    {t('series-detail:episodes.noEpisodes.message')}
                   </p>
                 </div>
               ) : (

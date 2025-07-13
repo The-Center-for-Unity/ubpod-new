@@ -1,217 +1,311 @@
-# UrantiaBookPod i18n Implementation Recommendations
+# Internationalization (i18n) Implementation Recommendations
 
-## Overview
+## Library Selection
 
-After reviewing the existing i18n plan and examining the codebase, this document provides specific recommendations for implementing internationalization in the UrantiaBookPod application, with a focus on Spanish support for the Urantia Papers series.
+Recommendation: **react-i18next with i18next**
 
-## Current Plan Assessment
+Rationale:
+- Excellent React integration
+- Active maintenance and community support
+- Strong TypeScript support
+- Supports dynamic loading of translations
+- Comprehensive features including pluralization, formatting, etc.
 
-The existing plan in `i18n-plan.md` provides a good high-level approach to adding internationalization. However, given the focused scope (Urantia Papers in Spanish), we can streamline the implementation to minimize changes to the codebase while still providing a robust solution.
+## Implementation Approach
 
-## Recommended Approach
+### 1. Language Context and Routing
 
-### 1. Focused Implementation Scope
-
-Rather than implementing a full-site internationalization immediately, we recommend a focused approach:
-
-- Target only the Urantia Papers series initially
-- Implement Spanish language support as the first priority
-- Add language switching capabilities only where needed
-- Defer French and Portuguese implementation to a later phase
-
-This approach will minimize risk and provide a working Spanish version more quickly.
-
-### 2. Specific Technical Recommendations
-
-#### URL Structure
-
-We recommend using a URL-based approach for language selection:
-
-```
-/es/series/urantia-papers/:episodeId  # Spanish version
-/series/urantia-papers/:episodeId     # Default English version
-```
-
-Benefits:
-- Clear language identification in URLs
-- Better SEO for language-specific content
-- Simpler redirects and bookmarking
-- No complex state management needed
-
-#### Audio File Organization
-
-Since we already have the Spanish audio files for all 197 Urantia Papers episodes:
-
-1. Create a predictable naming pattern:
-   ```
-   /audio/urantia-papers/paper-{number}.mp3           # English
-   /audio/urantia-papers/es/paper-{number}.mp3        # Spanish
-   ```
-
-2. Update the `getAudioUrl` function in `config/audio.ts`:
-   ```typescript
-   export function getAudioUrl(series: string, id: number, lang: string = 'en'): string {
-     if (series === 'urantia-papers') {
-       const filename = id === 0 ? 'foreword' : `paper-${id}`;
-       return lang === 'en' 
-         ? `https://pub-69ae36e16d64438e9bb56350459d5c7d.r2.dev/${filename}.mp3`
-         : `https://pub-69ae36e16d64438e9bb56350459d5c7d.r2.dev/${lang}/${filename}.mp3`;
-     }
-     // ...rest of function
-   }
-   ```
-
-#### Translation Files
-
-Create the following structure:
-
-```
-/public/locales/
-  /en/
-    common.json     # Shared UI strings
-    episodes.json   # Episode-specific translations
-  /es/
-    common.json
-    episodes.json
-```
-
-For Spanish episode titles and descriptions, two approaches are possible:
-1. Store in JSON files (better for smaller amount of content)
-2. Create a parallel data structure in `episodes.ts` (better for larger content)
-
-Given that we have 197 episodes, the second approach is recommended:
+Implement a React context to manage the current language and provide a mechanism for switching languages. Use URL prefixes to indicate the language:
 
 ```typescript
-// In episodes.ts
-const urantiaPaperTitles = {
-  en: {
-    0: "Foreword",
-    1: "The Universal Father",
-    // ...
-  },
-  es: {
-    0: "Prólogo",
-    1: "El Padre Universal",
-    // ...
-  }
+// src/i18n/LanguageContext.tsx
+import React, { createContext, useState, useContext, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import i18n from './i18n';
+
+type LanguageContextType = {
+  language: string;
+  changeLanguage: (lang: string) => void;
 };
-```
 
-#### Language Detection and Switching
-
-1. Implement a minimal language context:
-
-```typescript
-// src/contexts/LanguageContext.tsx
-export const LanguageContext = createContext({
+const LanguageContext = createContext<LanguageContextType>({
   language: 'en',
-  setLanguage: (lang: string) => {}
+  changeLanguage: () => {}
 });
 
-export const LanguageProvider = ({ children }) => {
+export const LanguageProvider: React.FC<{children: React.ReactNode}> = ({ children }) => {
+  const navigate = useNavigate();
+  const location = useLocation();
   const [language, setLanguage] = useState('en');
-  
+
+  // Initialize from URL
+  useEffect(() => {
+    const path = location.pathname;
+    const langMatch = path.match(/^\/([a-z]{2})\//); 
+    if (langMatch && ['es', 'fr', 'pt'].includes(langMatch[1])) {
+      setLanguage(langMatch[1]);
+      i18n.changeLanguage(langMatch[1]);
+    }
+  }, [location]);
+
+  const changeLanguage = (lang: string) => {
+    setLanguage(lang);
+    i18n.changeLanguage(lang);
+    
+    // Update URL to reflect language change
+    const path = location.pathname;
+    const currentLangMatch = path.match(/^\/([a-z]{2})\//); 
+    
+    if (lang === 'en') {
+      // Remove language prefix for English
+      if (currentLangMatch) {
+        navigate(path.replace(/^\/[a-z]{2}\//, '/'));
+      }
+    } else {
+      // Add or replace language prefix
+      if (currentLangMatch) {
+        navigate(path.replace(/^\/[a-z]{2}\//, `/${lang}/`));
+      } else {
+        navigate(`/${lang}${path}`);
+      }
+    }
+  };
+
   return (
-    <LanguageContext.Provider value={{ language, setLanguage }}>
+    <LanguageContext.Provider value={{ language, changeLanguage }}>
       {children}
     </LanguageContext.Provider>
   );
 };
+
+export const useLanguage = () => useContext(LanguageContext);
 ```
 
-2. Add a simple language switcher component:
+### 2. i18next Configuration
 
 ```typescript
-// src/components/ui/LanguageSwitcher.tsx
-export default function LanguageSwitcher() {
-  const { language, setLanguage } = useContext(LanguageContext);
-  const navigate = useNavigate();
-  const location = useLocation();
+// src/i18n/i18n.ts
+import i18n from 'i18next';
+import { initReactI18next } from 'react-i18next';
+import Backend from 'i18next-http-backend';
+import LanguageDetector from 'i18next-browser-languagedetector';
 
-  const handleLanguageChange = (newLang) => {
-    setLanguage(newLang);
-    
-    // Update URL to reflect language change
-    const pathWithoutLang = location.pathname.replace(/^\/(en|es)\//, '/');
-    navigate(newLang === 'en' ? pathWithoutLang : `/${newLang}${pathWithoutLang}`);
-  };
+i18n
+  .use(Backend) // loads translations from /public/locales/{lng}/{ns}.json
+  .use(LanguageDetector) // detects user language
+  .use(initReactI18next) // passes i18n down to react-i18next
+  .init({
+    fallbackLng: 'en',
+    supportedLngs: ['en', 'es', 'fr', 'pt'],
+    debug: process.env.NODE_ENV === 'development',
+    interpolation: {
+      escapeValue: false, // not needed for react as it escapes by default
+    },
+    detection: {
+      order: ['path', 'navigator'],
+      lookupFromPathIndex: 0,
+    },
+    backend: {
+      loadPath: '/locales/{{lng}}/{{ns}}.json',
+    },
+    ns: ['common', 'episode', 'home'],
+    defaultNS: 'common',
+  });
+
+export default i18n;
+```
+
+### 3. Language Switcher Component
+
+```typescript
+// src/i18n/LanguageSwitcher.tsx
+import React from 'react';
+import { useLanguage } from './LanguageContext';
+
+type Language = {
+  code: string;
+  name: string;
+  flag: string;
+};
+
+const languages: Language[] = [
+  { code: 'en', name: 'English', flag: '🇺🇸' },
+  { code: 'es', name: 'Español', flag: '🇪🇸' },
+  { code: 'fr', name: 'Français', flag: '🇫🇷' },
+  { code: 'pt', name: 'Português', flag: '🇵🇹' },
+];
+
+export const LanguageSwitcher: React.FC = () => {
+  const { language, changeLanguage } = useLanguage();
 
   return (
-    <div className="flex space-x-2">
-      <button 
-        onClick={() => handleLanguageChange('en')}
-        className={`px-2 py-1 rounded ${language === 'en' ? 'bg-primary text-white' : 'bg-gray-200'}`}
+    <div className="language-switcher">
+      <select 
+        value={language} 
+        onChange={(e) => changeLanguage(e.target.value)}
+        className="border rounded-md py-1 px-2 bg-white"
       >
-        EN
-      </button>
-      <button 
-        onClick={() => handleLanguageChange('es')}
-        className={`px-2 py-1 rounded ${language === 'es' ? 'bg-primary text-white' : 'bg-gray-200'}`}
-      >
-        ES
-      </button>
+        {languages.map((lang) => (
+          <option key={lang.code} value={lang.code}>
+            {lang.flag} {lang.name}
+          </option>
+        ))}
+      </select>
     </div>
   );
+};
+```
+
+### 4. Adapting URL Utilities
+
+Update the `mediaUtils.ts` file to handle language-specific audio paths:
+
+```typescript
+// Modified function in src/utils/mediaUtils.ts
+export function getMediaUrl(
+  seriesId: string,
+  episodeNumber: number | string, 
+  fileType: 'mp3' | 'pdf' = 'mp3',
+  language: string = 'en'
+): string {
+  const baseUrl = 'https://cdn.example.com';
+  
+  // If language is English, use the default path structure
+  if (language === 'en') {
+    return `${baseUrl}/audio/${seriesId}/paper-${episodeNumber}.${fileType}`;
+  }
+  
+  // For other languages, insert the language code
+  return `${baseUrl}/audio/${seriesId}/${language}/paper-${episodeNumber}.${fileType}`;
 }
 ```
 
-### 3. Routing Changes
+## Translation File Structure
 
-Update `App.tsx` to handle language prefixes in routes:
+### UI Strings
+
+```json
+// public/locales/en/common.json
+{
+  "nav": {
+    "home": "Home",
+    "episodes": "Episodes",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "footer": {
+    "copyright": "© 2023 UBPod. All rights reserved.",
+    "terms": "Terms of Service",
+    "privacy": "Privacy Policy"
+  }
+}
+```
+
+```json
+// public/locales/es/common.json
+{
+  "nav": {
+    "home": "Inicio",
+    "episodes": "Episodios",
+    "about": "Acerca de",
+    "contact": "Contacto"
+  },
+  "footer": {
+    "copyright": "© 2023 UBPod. Todos los derechos reservados.",
+    "terms": "Términos de Servicio",
+    "privacy": "Política de Privacidad"
+  }
+}
+```
+
+### Episode Data
+
+Consider updating the episode data structure to support translations:
 
 ```typescript
-function App() {
-  return (
-    <LanguageProvider>
-      <BrowserRouter>
-        <ScrollToTopOnNavigate />
-        <Suspense fallback={<LoadingSpinner />}>
-          <Routes>
-            {/* Default English routes */}
-            <Route path="/" element={<HomePage />} />
-            <Route path="/urantia-papers" element={<UrantiaPapersPage />} />
-            <Route path="/series/:seriesId/:episodeId" element={<EpisodePage />} />
-            {/* ...other existing routes */}
-            
-            {/* Spanish routes */}
-            <Route path="/es" element={<HomePage />} />
-            <Route path="/es/urantia-papers" element={<UrantiaPapersPage />} />
-            <Route path="/es/series/:seriesId/:episodeId" element={<EpisodePage />} />
-            {/* ...other routes with language prefix */}
-            
-            <Route path="*" element={<NotFoundPage />} />
-          </Routes>
-        </Suspense>
-        <Analytics />
-      </BrowserRouter>
-    </LanguageProvider>
-  );
+// Modified structure in src/data/episodes.ts
+type EpisodeTranslations = {
+  [language: string]: {
+    title: string;
+    description: string;
+  };
+};
+
+type Episode = {
+  id: string;
+  number: number;
+  translations: EpisodeTranslations;
+  // other fields...
+};
+
+// Example usage
+const episodes: Episode[] = [
+  {
+    id: 'paper-1',
+    number: 1,
+    translations: {
+      en: {
+        title: 'The Universal Father',
+        description: 'Explores the nature of the Universal Father...',
+      },
+      es: {
+        title: 'El Padre Universal',
+        description: 'Explora la naturaleza del Padre Universal...',
+      },
+    },
+    // other fields...
+  },
+  // other episodes...
+];
+```
+
+## SEO Considerations
+
+Update the MetaTags component to include language information:
+
+```tsx
+// src/components/layout/MetaTags.tsx
+import React from 'react';
+import { Helmet } from 'react-helmet-async';
+import { useLanguage } from '../../i18n/LanguageContext';
+
+interface MetaTagsProps {
+  title: string;
+  description: string;
+  // other props...
 }
+
+export const MetaTags: React.FC<MetaTagsProps> = ({ title, description, /* other props */ }) => {
+  const { language } = useLanguage();
+  
+  return (
+    <Helmet>
+      <html lang={language} />
+      <title>{title}</title>
+      <meta name="description" content={description} />
+      <link rel="alternate" hrefLang="en" href="https://ubpod.org/..." />
+      <link rel="alternate" hrefLang="es" href="https://ubpod.org/es/..." />
+      {/* other meta tags */}
+    </Helmet>
+  );
+};
 ```
 
 ## Implementation Priority
 
-We recommend the following implementation order:
+1. Set up the basic i18n infrastructure
+2. Implement the language switcher and URL-based routing
+3. Extract and translate UI strings for core components
+4. Update media utilities to handle language-specific paths
+5. Implement translated episode data
+6. Add SEO language meta tags
+7. Test with Spanish audio files
 
-1. Clean up the codebase as outlined in `podcast-cleanup-plan.md`
-2. Set up the language context and URL-based routing
-3. Implement the language switcher component
-4. Create translation files and update the audio URL function
-5. Test with Spanish audio files
-6. Add translated content for UI elements
-7. Add translated episode data
+## Recommended Testing Strategy
 
-## Key Considerations
-
-1. **Performance**: The URL-based approach avoids page reloads when switching languages
-2. **SEO**: Language-specific URLs help search engines index content correctly
-3. **Maintenance**: Separating translations into JSON files makes updates easier
-4. **User Experience**: Users can bookmark language-specific pages
-5. **Fallback**: Default to English when translations are missing
-
-## Next Steps After Spanish Implementation
-
-1. Review user feedback on the Spanish version
-2. Implement analytics to track language usage
-3. Prepare for French and Portuguese implementation using the same pattern
-4. Consider adding language selection based on browser preferences
+1. Test language switching via UI and URL
+2. Verify correct loading of translated UI strings
+3. Test audio playback for different languages
+4. Check SEO meta tags
+5. Test navigation between languages
+6. Verify URLs maintain language preference during navigation

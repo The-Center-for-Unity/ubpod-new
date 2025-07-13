@@ -1,0 +1,84 @@
+{
+  "hero": {
+    "title": "Connect With Us",
+    "subtitle": "Share your experience, ask questions, or request resources"
+  },
+  "form": {
+    "title": "Get in Touch",
+    "description": "Whether you have questions about the Urantia Book Podcast, need technical assistance, or want to share your experience, we're here to help.",
+    "devNotice": "Development Mode: In this environment, emails will be sent to the development team for testing. In production, emails will be sent to the official contact address.",
+    "fields": {
+      "name": {
+        "label": "Your Name",
+        "placeholder": "Enter your full name"
+      },
+      "email": {
+        "label": "Email Address",
+        "placeholder": "Enter your email address"
+      },
+      "inquiryType": {
+        "label": "Inquiry Type",
+        "placeholder": "Select an inquiry type",
+        "options": {
+          "general": "General Question",
+          "technical": "Technical Support",
+          "content": "Content Suggestion",
+          "narration": "Narration Feedback",
+          "studyGroup": "Study Group Interest",
+          "accessibility": "Accessibility Request",
+          "translation": "Translation Inquiry",
+          "spiritual": "Spiritual Question",
+          "resource": "Resource Request",
+          "experience": "Share My Experience"
+        }
+      },
+      "message": {
+        "label": "Your Message",
+        "placeholder": "Enter your message or question here..."
+      },
+      "photos": {
+        "label": "Share Photos (Optional)",
+        "placeholder": "Upload photos related to your inquiry",
+        "note": "Note: Maximum 3 photos, 5MB each."
+      }
+    },
+    "submit": {
+      "sending": "Sending...",
+      "send": "Send Message"
+    },
+    "validation": {
+      "required": "Please fill out all required fields.",
+      "photoSize": "Total photo size exceeds 10MB. Please choose smaller photos.",
+      "photoLimit": "Total photo size exceeds 10MB limit"
+    },
+    "success": "Your message has been sent! We will get back to you soon.",
+    "error": "Failed to send message. Please try again later."
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Find answers to common questions about the Urantia Book Podcast.",
+    "questions": {
+      "what": {
+        "question": "What is the Urantia Book Podcast?",
+        "answer": "The Urantia Book Podcast is an audio experience of the Urantia Book, allowing you to listen to its teachings while following along with the text. Our goal is to make this profound spiritual content more accessible through high-quality narration."
+      },
+      "how": {
+        "question": "How do I listen to the podcast?",
+        "answer": "Simply navigate to the Papers section, select a paper that interests you, and press play. You can read along with the text as you listen, and track your progress through the book. The podcast can be accessed from any device with a web browser."
+      },
+      "download": {
+        "question": "Can I download episodes for offline listening?",
+        "answer": "Yes! Each episode can be downloaded for offline listening. Simply navigate to the paper you want to listen to, and use the download button to save the audio file to your device. This allows you to study the teachings even when you don't have an internet connection."
+      },
+      "suggestions": {
+        "question": "How can I suggest improvements?",
+        "answer": "We welcome your feedback and suggestions! Use the contact form above to share your ideas for improving the podcast, suggest new features, or report any technical issues you encounter. Your input helps us make the Urantia Book more accessible to everyone."
+      }
+    }
+  },
+  "cta": {
+    "title": "Start Your Journey",
+    "description": "Begin your exploration of the Urantia Book through our podcast. Experience the teachings in a new way and deepen your understanding of its cosmic concepts.",
+    "button": "Explore Urantia Papers"
+  }
+} 

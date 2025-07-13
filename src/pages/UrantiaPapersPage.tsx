@@ -2,17 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Search, Book, Headphones, Download, ChevronDown, ChevronUp, Play, Pause, BookOpen } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { Episode } from '../types/index';
-import { getUrantiaPapers, getUrantiaPaperPart } from '../data/episodes';
+import { getEpisodesForSeries, getUrantiaPaperPart } from '../utils/episodeUtils';
 import Layout from '../components/layout/Layout';
-
-// Define the parts of the Urantia Book
-const URANTIA_PARTS = [
-  { id: 1, title: "The Central and Superuniverses", papers: [1, 31], color: "from-blue-500/20" },
-  { id: 2, title: "The Local Universe", papers: [32, 56], color: "from-green-500/20" },
-  { id: 3, title: "The History of Urantia", papers: [57, 119], color: "from-amber-500/20" },
-  { id: 4, title: "The Life and Teachings of Jesus", papers: [120, 196], color: "from-rose-500/20" }
-];
+import { LocalizedLink } from '../components/shared/LocalizedLink';
+import { useLanguage } from '../i18n/LanguageContext';
 
 // Paper Card Component
 interface PaperCardProps {
@@ -20,6 +15,7 @@ interface PaperCardProps {
 }
 
 const PaperCard: React.FC<PaperCardProps> = ({ paper }) => {
+  const { t } = useTranslation('series');
   // Get part color based on paper ID
   const getPartColor = (paperId: number) => {
     const part = getUrantiaPaperPart(paperId);
@@ -53,19 +49,19 @@ const PaperCard: React.FC<PaperCardProps> = ({ paper }) => {
       <div className="p-5">
         <div className="flex justify-between items-start mb-3">
           <span className="text-primary font-bold">{paper.id}</span>
-          <span className="text-xs text-white/50">Part {getUrantiaPaperPart(paper.id)}</span>
+          <span className="text-xs text-white/50">{t('part_label', { id: getUrantiaPaperPart(paper.id) })}</span>
         </div>
         <h3 className="text-lg font-semibold mb-2 text-white">{paper.title}</h3>
         <p className="text-white/70 text-sm mb-4 line-clamp-2">{displaySummary}</p>
         
         <div className="flex space-x-3 mt-auto">
-          <Link
-            to={`/listen/urantia-papers/${paper.id}`}
+          <LocalizedLink
+            to={`/series/urantia-papers/${paper.id}`}
             className="flex items-center gap-1.5 px-3 py-1.5 bg-primary text-white rounded-md hover:bg-primary-dark transition-colors text-sm"
           >
             <Play size={14} />
-            <span>Listen</span>
-          </Link>
+            <span>{t('listen_button')}</span>
+          </LocalizedLink>
           
           {paper.pdfUrl && (
             <a
@@ -75,7 +71,7 @@ const PaperCard: React.FC<PaperCardProps> = ({ paper }) => {
               className="flex items-center gap-1.5 px-3 py-1.5 bg-navy-light text-white/80 rounded-md hover:bg-navy transition-colors text-sm"
             >
               <BookOpen size={14} />
-              <span>Read</span>
+              <span>{t('read_button')}</span>
             </a>
           )}
           
@@ -85,7 +81,7 @@ const PaperCard: React.FC<PaperCardProps> = ({ paper }) => {
             className="flex items-center gap-1.5 px-3 py-1.5 bg-navy-light text-white/80 rounded-md hover:bg-navy transition-colors text-sm"
           >
             <Download size={14} />
-            <span>Download</span>
+            <span>{t('download_button')}</span>
           </a>
         </div>
       </div>
@@ -95,18 +91,29 @@ const PaperCard: React.FC<PaperCardProps> = ({ paper }) => {
 
 // Main Page Component
 export default function UrantiaPapersPage() {
+  const { t } = useTranslation('series');
+  const { language } = useLanguage();
+
+  const URANTIA_PARTS = [
+    { id: 0, title: t("foreword_title"), papers: [0, 0], color: "from-purple-500/20" },
+    { id: 1, title: t("part_1_title"), papers: [1, 31], color: "from-blue-500/20" },
+    { id: 2, title: t("part_2_title"), papers: [32, 56], color: "from-green-500/20" },
+    { id: 3, title: t("part_3_title"), papers: [57, 119], color: "from-amber-500/20" },
+    { id: 4, title: t("part_4_title"), papers: [120, 196], color: "from-rose-500/20" }
+  ];
+
   const [papers, setPapers] = useState<Episode[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [filteredPapers, setFilteredPapers] = useState<Episode[]>([]);
-  const [expandedParts, setExpandedParts] = useState<number[]>([1]); // Start with Part 1 expanded
+  const [expandedParts, setExpandedParts] = useState<number[]>([0, 1]); // Start with Foreword and Part 1 expanded
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   
   // Load papers on component mount
   useEffect(() => {
-    const allPapers = getUrantiaPapers();
+    const allPapers = getEpisodesForSeries('urantia-papers', language);
     setPapers(allPapers);
     setFilteredPapers(allPapers);
-  }, []);
+  }, [language]);
   
   // Filter papers when search query changes
   useEffect(() => {
@@ -152,17 +159,16 @@ export default function UrantiaPapersPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h1 className="title-main text-xl md:text-2xl lg:text-3xl mb-4">The Urantia Papers</h1>
+          <h1 className="title-main text-xl md:text-2xl lg:text-3xl mb-4">{t('title')}</h1>
           <p className="body-lg max-w-3xl">
-            Immerse yourself in cosmic wisdom through AI-crafted audio journeys of the Urantia Book.
-            Experience profound teachings in a new, accessible format.
+            {t('description')}
           </p>
           
           {/* Search Bar */}
           <div className="relative max-w-md mt-6">
             <input
               type="text"
-              placeholder="Search papers by title, number, or keyword..."
+              placeholder={t('search_placeholder')}
               className="w-full pl-10 pr-4 py-2 bg-navy-light/50 border border-white/10 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
@@ -176,13 +182,13 @@ export default function UrantiaPapersPage() {
               className={`px-3 py-1 rounded text-sm ${viewMode === 'grid' ? 'bg-primary text-white' : 'bg-navy-light/50 text-white/70'}`}
               onClick={() => setViewMode('grid')}
             >
-              Grid View
+              {t('grid_view')}
             </button>
             <button 
               className={`px-3 py-1 rounded text-sm ${viewMode === 'list' ? 'bg-primary text-white' : 'bg-navy-light/50 text-white/70'}`}
               onClick={() => setViewMode('list')}
             >
-              List View
+              {t('list_view')}
             </button>
           </div>
         </motion.div>
@@ -190,12 +196,12 @@ export default function UrantiaPapersPage() {
         {/* Search Results Count */}
         {isSearchActive && (
           <div className="mb-6 text-white/70">
-            Found {filteredPapers.length} papers matching "{searchQuery}"
+            {t('search_results', { count: filteredPapers.length, query: searchQuery })}
             <button 
-              className="ml-2 text-primary hover:underline"
               onClick={() => setSearchQuery('')}
+              className="ml-2 text-primary hover:underline text-sm"
             >
-              Clear
+              {t('clear_search')}
             </button>
           </div>
         )}
@@ -205,36 +211,30 @@ export default function UrantiaPapersPage() {
           // Organized by parts when not searching
           URANTIA_PARTS.map(part => (
             <div key={part.id} className="mb-8">
-              {/* Part Header */}
               <div 
-                className={`flex justify-between items-center p-4 rounded-lg bg-gradient-to-r ${part.color} to-transparent cursor-pointer mb-4`}
+                className={`p-4 rounded-t-lg cursor-pointer bg-gradient-to-r ${part.color} transition-all hover:brightness-125 flex justify-between items-center`}
                 onClick={() => togglePartExpansion(part.id)}
               >
                 <h2 className="text-xl font-semibold text-white">
-                  Part {part.id}: {part.title}
+                  {part.id === 0 ? part.title : t('part_header', { id: part.id, title: part.title })}
                 </h2>
                 <button className="text-white/80 hover:text-white">
-                  {expandedParts.includes(part.id) ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+                  {expandedParts.includes(part.id) ? <ChevronUp size={24} /> : <ChevronDown size={24} />}
                 </button>
               </div>
               
-              {/* Papers Grid/List */}
               {expandedParts.includes(part.id) && (
-                <motion.div 
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: 'auto' }}
-                  exit={{ opacity: 0, height: 0 }}
-                  transition={{ duration: 0.3 }}
-                  className={viewMode === 'grid' ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4' : 'space-y-3'}
-                >
-                  {getPapersForPart(part.id).map(paper => (
-                    viewMode === 'grid' ? (
-                      <PaperCard key={paper.id} paper={paper} />
-                    ) : (
-                      <PaperListItem key={paper.id} paper={paper} />
-                    )
-                  ))}
-                </motion.div>
+                <div className={`p-4 rounded-b-lg ${part.color.replace('from-', 'bg-')}`}>
+                  <div className={viewMode === 'grid' ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4' : 'space-y-3'}>
+                    {getPapersForPart(part.id).map(paper => (
+                      viewMode === 'grid' ? (
+                        <PaperCard key={paper.id} paper={paper} />
+                      ) : (
+                        <PaperListItem key={paper.id} paper={paper} />
+                      )
+                    ))}
+                  </div>
+                </div>
               )}
             </div>
           ))
@@ -250,19 +250,6 @@ export default function UrantiaPapersPage() {
             ))}
           </div>
         )}
-        
-        {/* Empty State */}
-        {filteredPapers.length === 0 && (
-          <div className="text-center py-12">
-            <p className="text-xl text-white/70">No papers found matching your search.</p>
-            <button 
-              className="mt-4 text-primary hover:underline"
-              onClick={() => setSearchQuery('')}
-            >
-              Clear search
-            </button>
-          </div>
-        )}
       </div>
     </Layout>
   );
@@ -270,57 +257,53 @@ export default function UrantiaPapersPage() {
 
 // Paper List Item Component
 const PaperListItem: React.FC<PaperCardProps> = ({ paper }) => {
-  // Determine which summary to display, with fallbacks
-  const displaySummary = paper.cardSummary || paper.summary || paper.description || '';
-  
+  const { t } = useTranslation('series');
+  const displaySummary = paper.summary || paper.description || '';
+
   return (
-    <motion.div
-      className="bg-navy-light/30 rounded-lg overflow-hidden border border-white/5 hover:border-primary/30 transition-all"
-      whileHover={{ x: 5, boxShadow: '0 4px 20px -10px rgba(0, 174, 239, 0.2)' }}
-    >
-      <div className="p-4 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
-        <div className="flex items-start space-x-4 flex-1">
-          <span className="text-primary font-bold w-8 mt-0.5">{paper.id}</span>
-          <div className="flex-1">
-            <h3 className="text-white font-medium mb-1">{paper.title}</h3>
-            <p className="text-white/70 text-sm line-clamp-2">
-              {displaySummary.substring(0, 150)}
-              {displaySummary.length > 150 && '...'}
-            </p>
+    <LocalizedLink to={`/series/urantia-papers/${paper.id}`}>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        className="p-4 bg-navy-light/30 rounded-lg border border-transparent hover:border-primary/30 transition-all flex items-center justify-between"
+      >
+        <div className="flex-grow">
+          <div className="flex items-center gap-4">
+            <span className="text-primary font-bold text-lg">{paper.id}</span>
+            <h3 className="text-md font-semibold text-white">{paper.title}</h3>
           </div>
+          <p className="text-white/70 text-sm mt-1 ml-9">{displaySummary}</p>
         </div>
-        
-        <div className="flex space-x-2 ml-12 md:ml-0">
-          <Link
-            to={`/listen/urantia-papers/${paper.id}`}
-            className="flex items-center gap-1 px-2 py-1 bg-primary text-white rounded hover:bg-primary-dark transition-colors text-sm"
+        <div className="flex items-center space-x-2 flex-shrink-0 ml-4">
+          <LocalizedLink
+            to={`/series/urantia-papers/${paper.id}`}
+            className="p-2 bg-navy-light rounded-md hover:bg-navy transition-colors"
+            title={t('listen_button')}
           >
-            <Play size={14} />
-            <span className="hidden md:inline">Listen</span>
-          </Link>
-          
+            <Headphones size={18} className="text-white" />
+          </LocalizedLink>
           {paper.pdfUrl && (
             <a
               href={paper.pdfUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1 px-2 py-1 bg-navy-light text-white/80 rounded hover:bg-navy transition-colors text-sm"
+              className="p-2 bg-navy-light rounded-md hover:bg-navy transition-colors"
+              title={t('read_button')}
             >
-              <Book size={14} />
-              <span className="hidden md:inline">Read</span>
+              <BookOpen size={18} className="text-white" />
             </a>
           )}
-          
           <a
             href={paper.audioUrl}
             download
-            className="flex items-center gap-1 px-2 py-1 bg-navy-light text-white/80 rounded hover:bg-navy transition-colors text-sm"
+            className="p-2 bg-navy-light rounded-md hover:bg-navy transition-colors"
+            title={t('download_button')}
           >
-            <Download size={14} />
-            <span className="hidden md:inline">Download</span>
+            <Download size={18} className="text-white" />
           </a>
         </div>
-      </div>
-    </motion.div>
+      </motion.div>
+    </LocalizedLink>
   );
 }; 

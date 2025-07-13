@@ -1,0 +1,102 @@
+{
+  "ui": {
+    "buttons": {
+      "allSeries": "Todas las Series",
+      "jesusSeries": "Series de Jesús",
+      "cosmicSeries": "Series Cósmicas"
+    },
+    "sections": {
+      "jesusTitle": "La Vida y las Enseñanzas de Jesús",
+      "jesusDescription": "Explora la historia completa de la vida y las enseñanzas de Jesús como se revela en El Libro de Urantia, desde su nacimiento hasta la resurrección, con perspectivas más allá de los relatos bíblicos tradicionales.",
+      "cosmicTitle": "Series Cósmicas",
+      "cosmicDescription": "Descubre las enseñanzas cósmicas de las primeras tres partes de El Libro de Urantia, que cubren todo desde la naturaleza de Dios hasta la estructura del universo y la historia planetaria de la Tierra."
+    },
+    "badges": {
+      "jesus": "Serie de Jesús",
+      "cosmic": "Serie Cósmica"
+    },
+    "status": {
+      "showingCount": "Mostrando {{count}} series",
+      "noSeries": "No se encontraron series en esta categoría.",
+      "searchNoResults": "No se encontraron series que coincidan con tu búsqueda. Intenta ajustar tus filtros.",
+      "clearFilters": "Limpiar filtros"
+    },
+    "actions": {
+      "viewEpisodes": "Ver Episodios",
+      "viewDetails": "Ver Detalles",
+      "episodes": "{{count}} episodios"
+    }
+  },
+  "series": {
+    "cosmic-1": {
+      "title": "Orígenes Cósmicos: Comprendiendo la Creación del Universo",
+      "description": "Introduciendo la cosmología fundamental de la revelación de Urantia",
+      "logline": "Explora la magnífica arquitectura de la creación—desde el Paraíso eterno hasta los universos evolutivos del tiempo y el espacio."
+    },
+    "cosmic-2": {
+      "title": "Personalidades Divinas: Los Seres Más Allá de la Religión Tradicional",
+      "description": "Introduciendo las personalidades celestiales y la jerarquía",
+      "logline": "Conoce las personalidades divinas que sostienen el universo—desde la Trinidad del Paraíso hasta las muchas órdenes de ministros celestiales."
+    },
+    "cosmic-3": {
+      "title": "El Ajustador del Pensamiento: Tu Brújula Divina Interior",
+      "description": "Comprendiendo la presencia interior de Dios",
+      "logline": "Descubre el fragmento notable de Dios que vive dentro de tu mente—tu piloto divino que guía tu evolución espiritual."
+    },
+    "cosmic-4": {
+      "title": "Nuestro Universo Local: La Organización de Nebadon",
+      "description": "Comprendiendo nuestro vecindario cósmico",
+      "logline": "Aprende sobre nuestro universo local Nebadon—su creación, administración, y las personalidades que manejan nuestro vecindario cósmico."
+    },
+    "cosmic-5": {
+      "title": "Ángeles Entre Nosotros: Las Huestes Seráficas",
+      "description": "Comprendiendo los ministerios angélicos",
+      "logline": "Explora la fascinante realidad de los ángeles—su naturaleza, propósito, y cómo interactúan con los humanos a lo largo de nuestras vidas."
+    },
+    "cosmic-6": {
+      "title": "La Vida Después de la Muerte: La Carrera de Ascensión",
+      "description": "Comprendiendo el viaje progresivo después de la vida mortal",
+      "logline": "Los mundos mansión son solo el comienzo—descubre tu viaje épico a través del universo después de la muerte mortal."
+    },
+    "cosmic-7": {
+      "title": "La Historia Notable de Urantia",
+      "description": "Comprendiendo el desarrollo planetario único de la Tierra",
+      "logline": "La historia no contada de la formación de la Tierra (Urantia), el desarrollo temprano de la vida, y el surgimiento de la humanidad."
+    },
+    "cosmic-8": {
+      "title": "La Rebelión de Lucifer: Crisis Cósmica",
+      "description": "Comprendiendo el impacto de la rebelión en el desarrollo espiritual de la Tierra",
+      "logline": "La rebelión cósmica que aisló nuestro mundo y continúa influyendo en los asuntos humanos—descubre la verdad detrás de los mitos de Satanás."
+    },
+    "cosmic-9": {
+      "title": "Adán y Eva: La Historia Verdadera",
+      "description": "Revelando la misión real y el impacto de Adán y Eva",
+      "logline": "La verdadera misión de Adán y Eva en nuestro mundo fue mucho más allá de la historia bíblica del jardín—descubre su verdadero propósito y legado."
+    },
+    "cosmic-10": {
+      "title": "Misiones de Melquisedec: Intervenciones Divinas",
+      "description": "Comprendiendo las intervenciones espirituales clave en la historia humana",
+      "logline": "Explora cómo la misión de emergencia de Melquisedec en Salem se convirtió en la fundación del judaísmo, cristianismo e islam."
+    },
+    "cosmic-11": {
+      "title": "Evolución de la Religión: Del Miedo a la Fe",
+      "description": "Trazando el desarrollo de los conceptos religiosos humanos",
+      "logline": "Sigue la evolución religiosa de la humanidad desde el miedo primitivo a la naturaleza a través de cultos fantasmales hasta la comprensión espiritual iluminada."
+    },
+    "cosmic-12": {
+      "title": "Espiritualidad Genuina: La Realidad de la Experiencia Religiosa",
+      "description": "Comprendiendo el crecimiento espiritual auténtico",
+      "logline": "Ve más allá de la doctrina y el ritual para descubrir la realidad auténtica de la experiencia religiosa personal y el crecimiento espiritual."
+    },
+    "cosmic-13": {
+      "title": "El Ser Supremo: Deidad Evolutiva",
+      "description": "Comprendiendo el concepto de Deidad experiencial",
+      "logline": "Descubre a Dios el Supremo—la Deidad evolutiva cuyo crecimiento depende de todas nuestras experiencias y logros en el tiempo y el espacio."
+    },
+    "cosmic-14": {
+      "title": "La Familia Divina: Comprendiendo las Relaciones Eternas",
+      "description": "Explorando las relaciones entre las personalidades divinas",
+      "logline": "Explora las relaciones entre el Padre Universal, el Hijo Eterno, y el Espíritu Infinito—la familia divina en el núcleo de toda realidad."
+    }
+  }
+} 

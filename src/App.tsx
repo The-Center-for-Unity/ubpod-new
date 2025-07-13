@@ -5,6 +5,8 @@ import './index.css';
 import ScrollToTopOnNavigate from './components/utils/ScrollToTopOnNavigate';
 import HotjarAnalytics from './components/analytics/HotjarAnalytics';
 import OptinMonster from './components/analytics/OptinMonster';
+import { LanguageProvider } from './i18n/LanguageContext';
+import './i18n/i18n'; // Import i18n configuration
 
 // Lazy load pages for better performance
 const HomePage = React.lazy(() => import('./pages/Home'));
@@ -15,6 +17,7 @@ const DisclaimerPage = React.lazy(() => import('./pages/DisclaimerPage'));
 const ContactPage = React.lazy(() => import('./pages/ContactPage'));
 const SeriesPage = React.lazy(() => import('./pages/SeriesPage'));
 const DebugPage = React.lazy(() => import('./pages/Debug'));
+const LegacyRedirect = React.lazy(() => import('./components/shared/LegacyRedirect'));
 
 // Analytics IDs
 const HOTJAR_ID = '5205817';
@@ -43,32 +46,55 @@ const LoadingSpinner = () => (
 function App() {
   return (
     <BrowserRouter>
-      <ScrollToTopOnNavigate />
-      <Suspense fallback={<LoadingSpinner />}>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/urantia-papers" element={<UrantiaPapersPage />} />
-          <Route path="/episode/:id" element={<EpisodePage />} />
-          
-          {/* Series routes - both old and new formats */}
-          <Route path="/listen/:series/:id" element={<EpisodePage />} />
-          <Route path="/listen/:series" element={<ListenPage />} />
-          
-          {/* New series routes */}
-          <Route path="/series" element={<SeriesPage />} />
-          <Route path="/series/:seriesId" element={<ListenPage />} />
-          <Route path="/series/:seriesId/:episodeId" element={<EpisodePage />} />
-          
-          {/* Other pages */}
-          <Route path="/disclaimer" element={<DisclaimerPage />} />
-          <Route path="/contact" element={<ContactPage />} />
-          <Route path="/debug" element={<DebugPage />} />
-          <Route path="*" element={<NotFoundPage />} />
-        </Routes>
-      </Suspense>
-      <Analytics />
-      <HotjarAnalytics HOTJAR_ID={HOTJAR_ID} />
-      <OptinMonster userId={OPTINMONSTER_USER_ID} accountId={OPTINMONSTER_ACCOUNT_ID} />
+      <LanguageProvider>
+        <ScrollToTopOnNavigate />
+        <Suspense fallback={<LoadingSpinner />}>
+          <Routes>
+            {/* English routes (default) */}
+            <Route path="/" element={<HomePage />} />
+            <Route path="/urantia-papers" element={<UrantiaPapersPage />} />
+            <Route path="/episode/:id" element={<EpisodePage />} />
+            <Route path="/listen/:series/:id" element={<LegacyRedirect />} />
+            <Route path="/listen/:series" element={<ListenPage />} />
+            <Route path="/series" element={<SeriesPage />} />
+            <Route path="/series/:seriesId" element={<ListenPage />} />
+            <Route path="/series/:seriesId/:episodeId" element={<EpisodePage />} />
+            <Route path="/disclaimer" element={<DisclaimerPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/debug" element={<DebugPage />} />
+            
+            {/* Spanish routes */}
+            <Route path="/es" element={<HomePage />} />
+            <Route path="/es/urantia-papers" element={<UrantiaPapersPage />} />
+            <Route path="/es/episode/:id" element={<EpisodePage />} />
+            <Route path="/es/listen/:series/:id" element={<LegacyRedirect />} />
+            <Route path="/es/listen/:series" element={<ListenPage />} />
+            <Route path="/es/series" element={<SeriesPage />} />
+            <Route path="/es/series/:seriesId" element={<ListenPage />} />
+            <Route path="/es/series/:seriesId/:episodeId" element={<EpisodePage />} />
+            <Route path="/es/disclaimer" element={<DisclaimerPage />} />
+            <Route path="/es/contact" element={<ContactPage />} />
+            
+            {/* French routes */}
+            <Route path="/fr" element={<HomePage />} />
+            <Route path="/fr/urantia-papers" element={<UrantiaPapersPage />} />
+            <Route path="/fr/episode/:id" element={<EpisodePage />} />
+            <Route path="/fr/listen/:series/:id" element={<LegacyRedirect />} />
+            <Route path="/fr/listen/:series" element={<ListenPage />} />
+            <Route path="/fr/series" element={<SeriesPage />} />
+            <Route path="/fr/series/:seriesId" element={<ListenPage />} />
+            <Route path="/fr/series/:seriesId/:episodeId" element={<EpisodePage />} />
+            <Route path="/fr/disclaimer" element={<DisclaimerPage />} />
+            <Route path="/fr/contact" element={<ContactPage />} />
+            
+            {/* 404 route */}
+            <Route path="*" element={<NotFoundPage />} />
+          </Routes>
+        </Suspense>
+        <Analytics />
+        <HotjarAnalytics HOTJAR_ID={HOTJAR_ID} />
+        <OptinMonster userId={OPTINMONSTER_USER_ID} accountId={OPTINMONSTER_ACCOUNT_ID} />
+      </LanguageProvider>
     </BrowserRouter>
   );
 }

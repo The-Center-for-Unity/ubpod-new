@@ -1,0 +1,1303 @@
+{
+  "summary": {
+    "totalFiles": 112,
+    "activeFiles": 79,
+    "legacyFiles": 33,
+    "i18nFiles": 32,
+    "analysisDate": "2025-06-12T06:36:53.186Z"
+  },
+  "activeFiles": [
+    {
+      "path": "index.html",
+      "imports": [
+        "src/main.tsx"
+      ],
+      "importedBy": [],
+      "size": 2903,
+      "isI18n": false
+    },
+    {
+      "path": "public/locales/en/common.json",
+      "imports": [],
+      "importedBy": [],
+      "size": 1828,
+      "isI18n": true
+    },
+    {
+      "path": "public/locales/en/contact.json",
+      "imports": [],
+      "importedBy": [],
+      "size": 3986,
+      "isI18n": true
+    },
+    {
+      "path": "public/locales/en/debug.json",
+      "imports": [],
+      "importedBy": [],
+      "size": 316,
+      "isI18n": true
+    },
+    {
+      "path": "public/locales/en/disclaimer.json",
+      "imports": [],
+      "importedBy": [],
+      "size": 4124,
+      "isI18n": true
+    },
+    {
+      "path": "public/locales/en/episode.json",
+      "imports": [],
+      "importedBy": [],
+      "size": 1516,
+      "isI18n": true
+    },
+    {
+      "path": "public/locales/en/home.json",
+      "imports": [],
+      "importedBy": [],
+      "size": 2464,
+      "isI18n": true
+    },
+    {
+      "path": "public/locales/en/series-collections.json",
+      "imports": [],
+      "importedBy": [],
+      "size": 10165,
+      "isI18n": true
+    },
+    {
+      "path": "public/locales/en/series-detail.json",
+      "imports": [],
+      "importedBy": [],
+      "size": 937,
+      "isI18n": true
+    },
+    {
+      "path": "public/locales/en/series-page.json",
+      "imports": [],
+      "importedBy": [],
+      "size": 1930,
+      "isI18n": true
+    },
+    {
+      "path": "public/locales/en/series.json",
+      "imports": [],
+      "importedBy": [],
+      "size": 779,
+      "isI18n": true
+    },
+    {
+      "path": "public/locales/es/common.json",
+      "imports": [],
+      "importedBy": [],
+      "size": 2015,
+      "isI18n": true
+    },
+    {
+      "path": "public/locales/es/contact.json",
+      "imports": [],
+      "importedBy": [],
+      "size": 4443,
+      "isI18n": true
+    },
+    {
+      "path": "public/locales/es/content.json",
+      "imports": [],
+      "importedBy": [],
+      "size": 261,
+      "isI18n": true
+    },
+    {
+      "path": "public/locales/es/content/episode-loglines.json",
+      "imports": [],
+      "importedBy": [],
+      "size": 21920,
+      "isI18n": true
+    },
+    {
+      "path": "public/locales/es/content/episode-titles.json",
+      "imports": [],
+      "importedBy": [],
+      "size": 5903,
+      "isI18n": true
+    },
+    {
+      "path": "public/locales/es/content/general-summaries.json",
+      "imports": [],
+      "importedBy": [],
+      "size": 253884,
+      "isI18n": true
+    },
+    {
+      "path": "public/locales/es/content/jesus-summaries.json",
+      "imports": [],
+      "importedBy": [],
+      "size": 246498,
+      "isI18n": true
+    },
+    {
+      "path": "public/locales/es/content/series-metadata.json",
+      "imports": [],
+      "importedBy": [],
+      "size": 38838,
+      "isI18n": true
+    },
+    {
+      "path": "public/locales/es/content/urantia-papers.json",
+      "imports": [],
+      "importedBy": [],
+      "size": 165807,
+      "isI18n": true
+    },
+    {
+      "path": "public/locales/es/debug.json",
+      "imports": [],
+      "importedBy": [],
+      "size": 335,
+      "isI18n": true
+    },
+    {
+      "path": "public/locales/es/disclaimer.json",
+      "imports": [],
+      "importedBy": [],
+      "size": 4540,
+      "isI18n": true
+    },
+    {
+      "path": "public/locales/es/episode.json",
+      "imports": [],
+      "importedBy": [],
+      "size": 1724,
+      "isI18n": true
+    },
+    {
+      "path": "public/locales/es/home.json",
+      "imports": [],
+      "importedBy": [],
+      "size": 2711,
+      "isI18n": true
+    },
+    {
+      "path": "public/locales/es/series-collections.json",
+      "imports": [],
+      "importedBy": [],
+      "size": 5988,
+      "isI18n": true
+    },
+    {
+      "path": "public/locales/es/series-detail.json",
+      "imports": [],
+      "importedBy": [],
+      "size": 1004,
+      "isI18n": true
+    },
+    {
+      "path": "public/locales/es/series-page.json",
+      "imports": [],
+      "importedBy": [],
+      "size": 2103,
+      "isI18n": true
+    },
+    {
+      "path": "public/locales/es/series.json",
+      "imports": [],
+      "importedBy": [],
+      "size": 880,
+      "isI18n": true
+    },
+    {
+      "path": "src/App.tsx",
+      "imports": [
+        "react-router-dom",
+        "@vercel/analytics/react",
+        "./components/utils/ScrollToTopOnNavigate",
+        "./components/analytics/HotjarAnalytics",
+        "./components/analytics/OptinMonster",
+        "./i18n/LanguageContext",
+        "./pages/Home",
+        "./pages/UrantiaPapersPage",
+        "./pages/EpisodePage",
+        "./pages/ListenPage",
+        "./pages/DisclaimerPage",
+        "./pages/ContactPage",
+        "./pages/SeriesPage",
+        "./pages/Debug",
+        "./pages/Home",
+        "./pages/UrantiaPapersPage",
+        "./pages/EpisodePage",
+        "./pages/ListenPage",
+        "./pages/DisclaimerPage",
+        "./pages/ContactPage",
+        "./pages/SeriesPage",
+        "./pages/Debug"
+      ],
+      "importedBy": [
+        "src/main.tsx"
+      ],
+      "size": 4097,
+      "isI18n": false
+    },
+    {
+      "path": "src/components/analytics/HotjarAnalytics.tsx",
+      "imports": [
+        "react"
+      ],
+      "importedBy": [
+        "src/App.tsx"
+      ],
+      "size": 831,
+      "isI18n": false
+    },
+    {
+      "path": "src/components/analytics/OptinMonster.tsx",
+      "imports": [
+        "react"
+      ],
+      "importedBy": [
+        "src/App.tsx"
+      ],
+      "size": 886,
+      "isI18n": false
+    },
+    {
+      "path": "src/components/layout/Footer.tsx",
+      "imports": [
+        "lucide-react",
+        "react-i18next",
+        "../../i18n/LanguageContext",
+        "../shared/LocalizedLink"
+      ],
+      "importedBy": [
+        "src/components/layout/Layout.tsx"
+      ],
+      "size": 7352,
+      "isI18n": false
+    },
+    {
+      "path": "src/components/layout/Header.tsx",
+      "imports": [
+        "react-router-dom",
+        "lucide-react",
+        "../../i18n/LanguageSwitcher",
+        "react-i18next",
+        "../../i18n/LanguageContext",
+        "../shared/LocalizedLink"
+      ],
+      "importedBy": [
+        "src/components/layout/Layout.tsx"
+      ],
+      "size": 7856,
+      "isI18n": false
+    },
+    {
+      "path": "src/components/layout/Layout.tsx",
+      "imports": [
+        "framer-motion",
+        "./Header",
+        "./Footer",
+        "./ScrollToTop"
+      ],
+      "importedBy": [
+        "src/pages/Home.tsx",
+        "src/pages/UrantiaPapersPage.tsx",
+        "src/pages/EpisodePage.tsx",
+        "src/pages/ListenPage.tsx",
+        "src/pages/DisclaimerPage.tsx",
+        "src/pages/ContactPage.tsx",
+        "src/pages/SeriesPage.tsx"
+      ],
+      "size": 1767,
+      "isI18n": false
+    },
+    {
+      "path": "src/components/layout/MetaTags.tsx",
+      "imports": [
+        "react",
+        "react-helmet-async"
+      ],
+      "importedBy": [
+        "src/pages/EpisodePage.tsx"
+      ],
+      "size": 3060,
+      "isI18n": false
+    },
+    {
+      "path": "src/components/layout/ScrollToTop.tsx",
+      "imports": [
+        "framer-motion",
+        "lucide-react"
+      ],
+      "importedBy": [
+        "src/components/layout/Layout.tsx"
+      ],
+      "size": 1357,
+      "isI18n": false
+    },
+    {
+      "path": "src/components/shared/LocalizedLink.tsx",
+      "imports": [
+        "react",
+        "react-router-dom",
+        "../../i18n/LanguageContext",
+        "../../utils/i18nRouteUtils"
+      ],
+      "importedBy": [
+        "src/components/layout/Header.tsx",
+        "src/components/layout/Footer.tsx",
+        "src/pages/UrantiaPapersPage.tsx",
+        "src/pages/EpisodePage.tsx"
+      ],
+      "size": 899,
+      "isI18n": true
+    },
+    {
+      "path": "src/components/ui/EpisodeCard.tsx",
+      "imports": [
+        "lucide-react",
+        "react-router-dom",
+        "react-i18next",
+        "../../i18n/LanguageContext",
+        "../../types/index"
+      ],
+      "importedBy": [
+        "src/pages/ListenPage.tsx"
+      ],
+      "size": 4864,
+      "isI18n": false
+    },
+    {
+      "path": "src/components/ui/SeriesCard.tsx",
+      "imports": [
+        "react-router-dom",
+        "lucide-react",
+        "../../utils/seriesCollectionsUtils"
+      ],
+      "importedBy": [
+        "src/components/ui/SeriesCardGrid.tsx"
+      ],
+      "size": 2732,
+      "isI18n": false
+    },
+    {
+      "path": "src/components/ui/SeriesCardGrid.tsx",
+      "imports": [
+        "react-i18next",
+        "../../i18n/LanguageContext",
+        "../../utils/seriesUtils",
+        "../../utils/seriesAvailabilityUtils",
+        "../../utils/seriesCollectionsUtils",
+        "./SeriesCard"
+      ],
+      "importedBy": [
+        "src/pages/Home.tsx",
+        "src/pages/SeriesPage.tsx"
+      ],
+      "size": 4166,
+      "isI18n": false
+    },
+    {
+      "path": "src/components/ui/SeriesNavigation.tsx",
+      "imports": [
+        "react-router-dom",
+        "react-i18next",
+        "../../types/index",
+        "../../utils/seriesUtils",
+        "../../utils/seriesAvailabilityUtils",
+        "../../i18n/LanguageContext",
+        "lucide-react"
+      ],
+      "importedBy": [
+        "src/pages/ListenPage.tsx"
+      ],
+      "size": 8560,
+      "isI18n": false
+    },
+    {
+      "path": "src/components/ui/SocialShareMenu.tsx",
+      "imports": [
+        "lucide-react",
+        "react-i18next"
+      ],
+      "importedBy": [
+        "src/pages/EpisodePage.tsx"
+      ],
+      "size": 8784,
+      "isI18n": false
+    },
+    {
+      "path": "src/components/utils/ScrollToTopOnNavigate.tsx",
+      "imports": [
+        "react",
+        "react-router-dom"
+      ],
+      "importedBy": [
+        "src/App.tsx"
+      ],
+      "size": 507,
+      "isI18n": false
+    },
+    {
+      "path": "src/config/audio.ts",
+      "imports": [
+        "../utils/mediaUtils"
+      ],
+      "importedBy": [
+        "src/data/episodes.ts",
+        "src/utils/episodeUtils.ts"
+      ],
+      "size": 1463,
+      "isI18n": false
+    },
+    {
+      "path": "src/constants/animations.ts",
+      "imports": [
+        "../types"
+      ],
+      "importedBy": [
+        "src/pages/EpisodePage.tsx"
+      ],
+      "size": 950,
+      "isI18n": false
+    },
+    {
+      "path": "src/data/discoverJesusSummaries.ts",
+      "imports": [],
+      "importedBy": [
+        "src/utils/episodeUtils.ts"
+      ],
+      "size": 233461,
+      "isI18n": false
+    },
+    {
+      "path": "src/data/episodes.ts",
+      "imports": [
+        "../types/index",
+        "./json/urantia_summaries.json",
+        "./json/urantia_summaries_es.json",
+        "./json/summaries.json",
+        "../config/audio",
+        "../utils/episodeUtils",
+        "./json/urantia_summaries.json",
+        "./json/urantia_summaries_es.json",
+        "./json/summaries.json"
+      ],
+      "importedBy": [
+        "src/pages/UrantiaPapersPage.tsx",
+        "src/utils/episodeUtils.ts",
+        "src/pages/EpisodePage.tsx"
+      ],
+      "size": 41845,
+      "isI18n": false
+    },
+    {
+      "path": "src/data/json/cosmic-series-mappings.json",
+      "imports": [],
+      "importedBy": [
+        "src/utils/mediaUtils.ts",
+        "src/utils/episodeUtils.ts"
+      ],
+      "size": 3635,
+      "isI18n": false
+    },
+    {
+      "path": "src/data/json/episodes.json",
+      "imports": [],
+      "importedBy": [
+        "src/utils/episodeUtils.ts"
+      ],
+      "size": 95723,
+      "isI18n": false
+    },
+    {
+      "path": "src/data/json/jesus-series-mappings.json",
+      "imports": [],
+      "importedBy": [
+        "src/utils/mediaUtils.ts"
+      ],
+      "size": 5403,
+      "isI18n": false
+    },
+    {
+      "path": "src/data/json/summaries.json",
+      "imports": [],
+      "importedBy": [
+        "src/data/episodes.ts"
+      ],
+      "size": 259103,
+      "isI18n": false
+    },
+    {
+      "path": "src/data/json/urantia_summaries.json",
+      "imports": [],
+      "importedBy": [
+        "src/data/episodes.ts",
+        "src/utils/episodeUtils.ts"
+      ],
+      "size": 154475,
+      "isI18n": false
+    },
+    {
+      "path": "src/data/json/urantia_summaries_es.json",
+      "imports": [],
+      "importedBy": [
+        "src/data/episodes.ts"
+      ],
+      "size": 174563,
+      "isI18n": false
+    },
+    {
+      "path": "src/data/series-availability.json",
+      "imports": [],
+      "importedBy": [
+        "src/utils/seriesAvailabilityUtils.ts"
+      ],
+      "size": 572,
+      "isI18n": false
+    },
+    {
+      "path": "src/hooks/useAudioAnalytics.ts",
+      "imports": [
+        "react",
+        "../utils/analytics"
+      ],
+      "importedBy": [
+        "src/pages/EpisodePage.tsx"
+      ],
+      "size": 2220,
+      "isI18n": false
+    },
+    {
+      "path": "src/i18n/LanguageContext.tsx",
+      "imports": [
+        "react-router-dom",
+        "./i18n"
+      ],
+      "importedBy": [
+        "src/App.tsx",
+        "src/i18n/LanguageSwitcher.tsx",
+        "src/components/layout/Header.tsx",
+        "src/components/shared/LocalizedLink.tsx",
+        "src/components/layout/Footer.tsx",
+        "src/components/ui/SeriesCardGrid.tsx",
+        "src/pages/UrantiaPapersPage.tsx",
+        "src/pages/EpisodePage.tsx",
+        "src/components/ui/EpisodeCard.tsx",
+        "src/components/ui/SeriesNavigation.tsx",
+        "src/pages/ListenPage.tsx",
+        "src/pages/DisclaimerPage.tsx",
+        "src/pages/SeriesPage.tsx"
+      ],
+      "size": 2353,
+      "isI18n": true
+    },
+    {
+      "path": "src/i18n/LanguageSwitcher.tsx",
+      "imports": [
+        "react",
+        "./LanguageContext"
+      ],
+      "importedBy": [
+        "src/components/layout/Header.tsx"
+      ],
+      "size": 1056,
+      "isI18n": true
+    },
+    {
+      "path": "src/i18n/i18n.ts",
+      "imports": [
+        "i18next",
+        "react-i18next",
+        "i18next-http-backend",
+        "i18next-browser-languagedetector"
+      ],
+      "importedBy": [
+        "src/i18n/LanguageContext.tsx"
+      ],
+      "size": 938,
+      "isI18n": true
+    },
+    {
+      "path": "src/main.tsx",
+      "imports": [
+        "react",
+        "react-dom/client",
+        "react-helmet-async",
+        "./App"
+      ],
+      "importedBy": [
+        "index.html"
+      ],
+      "size": 362,
+      "isI18n": false
+    },
+    {
+      "path": "src/pages/ContactPage.tsx",
+      "imports": [
+        "framer-motion",
+        "lucide-react",
+        "../utils/emailService",
+        "react-router-dom",
+        "../components/layout/Layout",
+        "react-i18next"
+      ],
+      "importedBy": [
+        "src/App.tsx"
+      ],
+      "size": 27242,
+      "isI18n": false
+    },
+    {
+      "path": "src/pages/Debug.tsx",
+      "imports": [
+        "../utils/mediaUtils",
+        "react-i18next"
+      ],
+      "importedBy": [
+        "src/App.tsx"
+      ],
+      "size": 4043,
+      "isI18n": false
+    },
+    {
+      "path": "src/pages/DisclaimerPage.tsx",
+      "imports": [
+        "react",
+        "../components/layout/Layout",
+        "react-router-dom",
+        "react-i18next",
+        "../i18n/LanguageContext"
+      ],
+      "importedBy": [
+        "src/App.tsx"
+      ],
+      "size": 4430,
+      "isI18n": false
+    },
+    {
+      "path": "src/pages/EpisodePage.tsx",
+      "imports": [
+        "react-router-dom",
+        "framer-motion",
+        "lucide-react",
+        "react-i18next",
+        "../i18n/LanguageContext",
+        "../components/layout/Layout",
+        "../data/episodes",
+        "../types/index",
+        "../hooks/useAudioAnalytics",
+        "../utils/episodeUtils",
+        "../utils/seriesUtils",
+        "../utils/urlUtils",
+        "../constants/animations",
+        "../components/ui/SocialShareMenu",
+        "../components/layout/MetaTags",
+        "../components/shared/LocalizedLink",
+        "../utils/i18nRouteUtils"
+      ],
+      "importedBy": [
+        "src/App.tsx"
+      ],
+      "size": 42282,
+      "isI18n": false
+    },
+    {
+      "path": "src/pages/Home.tsx",
+      "imports": [
+        "react",
+        "react-router-dom",
+        "react-i18next",
+        "../components/layout/Layout",
+        "lucide-react",
+        "../components/ui/SeriesCardGrid"
+      ],
+      "importedBy": [
+        "src/App.tsx"
+      ],
+      "size": 8619,
+      "isI18n": false
+    },
+    {
+      "path": "src/pages/ListenPage.tsx",
+      "imports": [
+        "react-router-dom",
+        "react-i18next",
+        "../components/layout/Layout",
+        "../components/ui/EpisodeCard",
+        "../components/ui/SeriesNavigation",
+        "../types/index",
+        "../utils/seriesUtils",
+        "../utils/episodeUtils",
+        "../utils/seriesAvailabilityUtils",
+        "../i18n/LanguageContext",
+        "lucide-react"
+      ],
+      "importedBy": [
+        "src/App.tsx"
+      ],
+      "size": 8730,
+      "isI18n": false
+    },
+    {
+      "path": "src/pages/SeriesPage.tsx",
+      "imports": [
+        "../components/layout/Layout",
+        "../components/ui/SeriesCardGrid",
+        "../utils/seriesUtils",
+        "../utils/seriesAvailabilityUtils",
+        "lucide-react",
+        "react-router-dom",
+        "react-i18next",
+        "../i18n/LanguageContext"
+      ],
+      "importedBy": [
+        "src/App.tsx"
+      ],
+      "size": 26134,
+      "isI18n": false
+    },
+    {
+      "path": "src/pages/UrantiaPapersPage.tsx",
+      "imports": [
+        "framer-motion",
+        "react-router-dom",
+        "lucide-react",
+        "react-i18next",
+        "../types/index",
+        "../data/episodes",
+        "../components/layout/Layout",
+        "../components/shared/LocalizedLink",
+        "../i18n/LanguageContext"
+      ],
+      "importedBy": [
+        "src/App.tsx"
+      ],
+      "size": 13188,
+      "isI18n": false
+    },
+    {
+      "path": "src/types",
+      "imports": [],
+      "importedBy": [
+        "src/constants/animations.ts"
+      ],
+      "size": 224,
+      "isI18n": false
+    },
+    {
+      "path": "src/types/index.ts",
+      "imports": [],
+      "importedBy": [
+        "src/utils/seriesUtils.ts",
+        "src/pages/UrantiaPapersPage.tsx",
+        "src/data/episodes.ts",
+        "src/utils/episodeUtils.ts",
+        "src/pages/EpisodePage.tsx",
+        "src/utils/urlUtils.ts",
+        "src/components/ui/EpisodeCard.tsx",
+        "src/components/ui/SeriesNavigation.tsx",
+        "src/pages/ListenPage.tsx"
+      ],
+      "size": 3417,
+      "isI18n": false
+    },
+    {
+      "path": "src/utils/analytics.ts",
+      "imports": [
+        "@vercel/analytics"
+      ],
+      "importedBy": [
+        "src/hooks/useAudioAnalytics.ts"
+      ],
+      "size": 743,
+      "isI18n": false
+    },
+    {
+      "path": "src/utils/emailService.ts",
+      "imports": [],
+      "importedBy": [
+        "src/pages/ContactPage.tsx"
+      ],
+      "size": 4637,
+      "isI18n": false
+    },
+    {
+      "path": "src/utils/episodeUtils.ts",
+      "imports": [
+        "../types/index",
+        "./seriesUtils",
+        "../config/audio",
+        "../data/discoverJesusSummaries",
+        "../data/json/episodes.json",
+        "../data/json/urantia_summaries.json",
+        "../data/json/cosmic-series-mappings.json",
+        "./mediaUtils",
+        "../data/episodes",
+        "../data/json/episodes.json",
+        "../data/json/urantia_summaries.json",
+        "../data/json/cosmic-series-mappings.json"
+      ],
+      "importedBy": [
+        "src/data/episodes.ts",
+        "src/pages/EpisodePage.tsx",
+        "src/pages/ListenPage.tsx"
+      ],
+      "size": 36007,
+      "isI18n": false
+    },
+    {
+      "path": "src/utils/i18nRouteUtils.ts",
+      "imports": [],
+      "importedBy": [
+        "src/components/shared/LocalizedLink.tsx",
+        "src/pages/EpisodePage.tsx"
+      ],
+      "size": 1987,
+      "isI18n": true
+    },
+    {
+      "path": "src/utils/mediaUtils.ts",
+      "imports": [
+        "../data/json/jesus-series-mappings.json",
+        "../data/json/cosmic-series-mappings.json",
+        "../data/json/jesus-series-mappings.json",
+        "../data/json/cosmic-series-mappings.json"
+      ],
+      "importedBy": [
+        "src/config/audio.ts",
+        "src/utils/episodeUtils.ts",
+        "src/pages/Debug.tsx"
+      ],
+      "size": 14498,
+      "isI18n": false
+    },
+    {
+      "path": "src/utils/seriesAvailabilityUtils.ts",
+      "imports": [
+        "../data/series-availability.json",
+        "./seriesUtils",
+        "../data/series-availability.json"
+      ],
+      "importedBy": [
+        "src/components/ui/SeriesCardGrid.tsx",
+        "src/components/ui/SeriesNavigation.tsx",
+        "src/pages/ListenPage.tsx",
+        "src/pages/SeriesPage.tsx"
+      ],
+      "size": 1622,
+      "isI18n": false
+    },
+    {
+      "path": "src/utils/seriesCollectionsUtils.ts",
+      "imports": [
+        "react-i18next",
+        "./seriesUtils"
+      ],
+      "importedBy": [
+        "src/components/ui/SeriesCardGrid.tsx",
+        "src/components/ui/SeriesCard.tsx"
+      ],
+      "size": 2653,
+      "isI18n": false
+    },
+    {
+      "path": "src/utils/seriesUtils.ts",
+      "imports": [
+        "../types/index"
+      ],
+      "importedBy": [
+        "src/components/ui/SeriesCardGrid.tsx",
+        "src/utils/seriesAvailabilityUtils.ts",
+        "src/utils/seriesCollectionsUtils.ts",
+        "src/utils/episodeUtils.ts",
+        "src/pages/EpisodePage.tsx",
+        "src/components/ui/SeriesNavigation.tsx",
+        "src/pages/ListenPage.tsx",
+        "src/pages/SeriesPage.tsx"
+      ],
+      "size": 17308,
+      "isI18n": false
+    },
+    {
+      "path": "src/utils/urlUtils.ts",
+      "imports": [
+        "../types/index"
+      ],
+      "importedBy": [
+        "src/pages/EpisodePage.tsx"
+      ],
+      "size": 2886,
+      "isI18n": false
+    },
+    {
+      "path": "vite.config.ts",
+      "imports": [
+        "vite",
+        "@vitejs/plugin-react"
+      ],
+      "importedBy": [],
+      "size": 220,
+      "isI18n": false
+    }
+  ],
+  "legacyFiles": [
+    {
+      "path": "package.json",
+      "size": 1962,
+      "reason": "No active imports found"
+    },
+    {
+      "path": "scripts/audit-content-simple.js",
+      "size": 8493,
+      "reason": "No active imports found"
+    },
+    {
+      "path": "scripts/audit-content.js",
+      "size": 18237,
+      "reason": "No active imports found"
+    },
+    {
+      "path": "scripts/convert-translations.js",
+      "size": 1212,
+      "reason": "No active imports found"
+    },
+    {
+      "path": "scripts/generateMappings.ts",
+      "size": 7638,
+      "reason": "No active imports found"
+    },
+    {
+      "path": "scripts/test-i18n-format.js",
+      "size": 11325,
+      "reason": "Test file"
+    },
+    {
+      "path": "scripts/translate-content.js",
+      "size": 21966,
+      "reason": "No active imports found"
+    },
+    {
+      "path": "src/__tests__/components/SeriesCard.test.tsx",
+      "size": 2720,
+      "reason": "Test file"
+    },
+    {
+      "path": "src/__tests__/setup.test.ts",
+      "size": 111,
+      "reason": "Test file"
+    },
+    {
+      "path": "src/__tests__/utils/test-utils.test.tsx",
+      "size": 849,
+      "reason": "Test file"
+    },
+    {
+      "path": "src/__tests__/utils/test-utils.tsx",
+      "size": 955,
+      "reason": "Test file"
+    },
+    {
+      "path": "src/api/send.ts",
+      "size": 2961,
+      "reason": "No active imports found"
+    },
+    {
+      "path": "src/components/ScrollToTop.tsx",
+      "size": 1502,
+      "reason": "No active imports found"
+    },
+    {
+      "path": "src/components/analytics/GoogleAnalytics.tsx",
+      "size": 631,
+      "reason": "No active imports found"
+    },
+    {
+      "path": "src/components/analytics/GoogleTagManager.tsx",
+      "size": 1043,
+      "reason": "No active imports found"
+    },
+    {
+      "path": "src/components/audio/AudioPlayer.tsx",
+      "size": 17224,
+      "reason": "No active imports found"
+    },
+    {
+      "path": "src/components/series/SeriesContent.tsx",
+      "size": 5845,
+      "reason": "No active imports found"
+    },
+    {
+      "path": "src/components/shared/ErrorBoundary.tsx",
+      "size": 1067,
+      "reason": "No active imports found"
+    },
+    {
+      "path": "src/components/shared/Icons.tsx",
+      "size": 2132,
+      "reason": "No active imports found"
+    },
+    {
+      "path": "src/components/ui/LoadingSpinner.tsx",
+      "size": 292,
+      "reason": "No active imports found"
+    },
+    {
+      "path": "src/config/assets.ts",
+      "size": 2081,
+      "reason": "No active imports found"
+    },
+    {
+      "path": "src/data/content.ts",
+      "size": 1762,
+      "reason": "No active imports found"
+    },
+    {
+      "path": "src/data/json/summaries-check.ts",
+      "size": 1382,
+      "reason": "No active imports found"
+    },
+    {
+      "path": "src/data/scraper/summaries.json",
+      "size": 259103,
+      "reason": "Scraper/development tool"
+    },
+    {
+      "path": "src/data/scraper/valid_urls.json",
+      "size": 10929,
+      "reason": "Scraper/development tool"
+    },
+    {
+      "path": "src/types/global.d.ts",
+      "size": 108,
+      "reason": "No active imports found"
+    },
+    {
+      "path": "src/types/json.d.ts",
+      "size": 72,
+      "reason": "No active imports found"
+    },
+    {
+      "path": "src/types/r2.ts",
+      "size": 220,
+      "reason": "No active imports found"
+    },
+    {
+      "path": "src/types/sacred-companions.ts",
+      "size": 1636,
+      "reason": "No active imports found"
+    },
+    {
+      "path": "src/utils/mediaIntegration.ts",
+      "size": 4169,
+      "reason": "No active imports found"
+    },
+    {
+      "path": "src/utils/scrapeUtils.ts",
+      "size": 2287,
+      "reason": "No active imports found"
+    },
+    {
+      "path": "src/vite-env.d.ts",
+      "size": 38,
+      "reason": "No active imports found"
+    },
+    {
+      "path": "tsconfig.json",
+      "size": 119,
+      "reason": "No active imports found"
+    }
+  ],
+  "contentFiles": {
+    "active": [
+      "src/components/ui/SeriesCard.tsx",
+      "src/components/ui/SeriesCardGrid.tsx",
+      "src/components/ui/SeriesNavigation.tsx",
+      "src/data/discoverJesusSummaries.ts",
+      "src/data/episodes.ts",
+      "src/data/json/cosmic-series-mappings.json",
+      "src/data/json/episodes.json",
+      "src/data/json/jesus-series-mappings.json",
+      "src/data/json/summaries.json",
+      "src/data/json/urantia_summaries.json",
+      "src/data/json/urantia_summaries_es.json",
+      "src/data/series-availability.json",
+      "src/pages/SeriesPage.tsx",
+      "src/utils/episodeUtils.ts",
+      "src/utils/mediaUtils.ts",
+      "src/utils/seriesAvailabilityUtils.ts",
+      "src/utils/seriesCollectionsUtils.ts",
+      "src/utils/seriesUtils.ts",
+      "src/utils/urlUtils.ts"
+    ],
+    "legacy": [
+      "src/__tests__/components/SeriesCard.test.tsx",
+      "src/components/series/SeriesContent.tsx",
+      "src/data/content.ts",
+      "src/data/json/summaries-check.ts",
+      "src/data/scraper/summaries.json",
+      "src/data/scraper/valid_urls.json",
+      "src/utils/scrapeUtils.ts"
+    ]
+  },
+  "i18nFiles": [
+    {
+      "path": "public/locales/en/common.json",
+      "size": 1828,
+      "type": "Translation file"
+    },
+    {
+      "path": "public/locales/en/contact.json",
+      "size": 3986,
+      "type": "Translation file"
+    },
+    {
+      "path": "public/locales/en/debug.json",
+      "size": 316,
+      "type": "Translation file"
+    },
+    {
+      "path": "public/locales/en/disclaimer.json",
+      "size": 4124,
+      "type": "Translation file"
+    },
+    {
+      "path": "public/locales/en/episode.json",
+      "size": 1516,
+      "type": "Translation file"
+    },
+    {
+      "path": "public/locales/en/home.json",
+      "size": 2464,
+      "type": "Translation file"
+    },
+    {
+      "path": "public/locales/en/series-collections.json",
+      "size": 10165,
+      "type": "Translation file"
+    },
+    {
+      "path": "public/locales/en/series-detail.json",
+      "size": 937,
+      "type": "Translation file"
+    },
+    {
+      "path": "public/locales/en/series-page.json",
+      "size": 1930,
+      "type": "Translation file"
+    },
+    {
+      "path": "public/locales/en/series.json",
+      "size": 779,
+      "type": "Translation file"
+    },
+    {
+      "path": "public/locales/es/common.json",
+      "size": 2015,
+      "type": "Translation file"
+    },
+    {
+      "path": "public/locales/es/contact.json",
+      "size": 4443,
+      "type": "Translation file"
+    },
+    {
+      "path": "public/locales/es/content.json",
+      "size": 261,
+      "type": "Translation file"
+    },
+    {
+      "path": "public/locales/es/content/episode-loglines.json",
+      "size": 21920,
+      "type": "Translation file"
+    },
+    {
+      "path": "public/locales/es/content/episode-titles.json",
+      "size": 5903,
+      "type": "Translation file"
+    },
+    {
+      "path": "public/locales/es/content/general-summaries.json",
+      "size": 253884,
+      "type": "Translation file"
+    },
+    {
+      "path": "public/locales/es/content/jesus-summaries.json",
+      "size": 246498,
+      "type": "Translation file"
+    },
+    {
+      "path": "public/locales/es/content/series-metadata.json",
+      "size": 38838,
+      "type": "Translation file"
+    },
+    {
+      "path": "public/locales/es/content/urantia-papers.json",
+      "size": 165807,
+      "type": "Translation file"
+    },
+    {
+      "path": "public/locales/es/debug.json",
+      "size": 335,
+      "type": "Translation file"
+    },
+    {
+      "path": "public/locales/es/disclaimer.json",
+      "size": 4540,
+      "type": "Translation file"
+    },
+    {
+      "path": "public/locales/es/episode.json",
+      "size": 1724,
+      "type": "Translation file"
+    },
+    {
+      "path": "public/locales/es/home.json",
+      "size": 2711,
+      "type": "Translation file"
+    },
+    {
+      "path": "public/locales/es/series-collections.json",
+      "size": 5988,
+      "type": "Translation file"
+    },
+    {
+      "path": "public/locales/es/series-detail.json",
+      "size": 1004,
+      "type": "Translation file"
+    },
+    {
+      "path": "public/locales/es/series-page.json",
+      "size": 2103,
+      "type": "Translation file"
+    },
+    {
+      "path": "public/locales/es/series.json",
+      "size": 880,
+      "type": "Translation file"
+    },
+    {
+      "path": "src/components/shared/LocalizedLink.tsx",
+      "size": 899,
+      "type": "i18n-related"
+    },
+    {
+      "path": "src/i18n/LanguageContext.tsx",
+      "size": 2353,
+      "type": "i18n configuration"
+    },
+    {
+      "path": "src/i18n/LanguageSwitcher.tsx",
+      "size": 1056,
+      "type": "i18n configuration"
+    },
+    {
+      "path": "src/i18n/i18n.ts",
+      "size": 938,
+      "type": "i18n configuration"
+    },
+    {
+      "path": "src/utils/i18nRouteUtils.ts",
+      "size": 1987,
+      "type": "i18n-related"
+    }
+  ]
+}

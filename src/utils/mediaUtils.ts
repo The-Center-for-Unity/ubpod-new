@@ -7,7 +7,7 @@
  * - Jesus Series MP3s 
  * - Cosmic Series MP3s
  * - Discover Jesus series
- * - History series
+
  * - Sadler Workbooks series
  */
 
@@ -42,20 +42,45 @@ export const cosmicSeriesMapping: SeriesMapping =
  * @param seriesId The series identifier (e.g., 'urantia-papers', 'jesus-1', 'cosmic-2')
  * @param episodeNumber The episode number within the series
  * @param fileType The type of file to retrieve ('mp3' or 'pdf')
+ * @param language The language code for the media file ('en', 'es', etc.)
  * @returns The complete URL to the media file, or null if not available
  */
 export function getMediaUrl(
   seriesId: string, 
   episodeNumber: number, 
-  fileType: 'mp3' | 'pdf' = 'mp3'
+  fileType: 'mp3' | 'pdf' = 'mp3',
+  language: string = 'en'
 ): string | null {
   try {
     // For Urantia Papers (simple pattern)
     if (seriesId === 'urantia-papers' || seriesId.startsWith('FER')) {
-      const filename = episodeNumber === 0 
-        ? `foreword.${fileType}`
-        : `paper-${episodeNumber}.${fileType}`;
-      return `${URANTIA_BUCKET_URL}/${filename}`;
+      let actualPaperNumber: number;
+      
+      if (episodeNumber === 0) {
+        // Episode 0 is always the foreword
+        const baseFilename = `foreword.${fileType}`;
+        if (language === 'en') {
+          return `${URANTIA_BUCKET_URL}/${baseFilename}`;
+        } else {
+          const localizedFilename = baseFilename.replace(/\.([^.]+)$/, `-${language}.$1`);
+          return `${URANTIA_BUCKET_URL}/${localizedFilename}`;
+        }
+      } else {
+        // For urantia-papers, paper number equals episode number
+        if (seriesId === 'urantia-papers') {
+          actualPaperNumber = episodeNumber;
+        } else {
+          actualPaperNumber = episodeNumber; // Fallback for FER series
+        }
+        
+        const baseFilename = `paper-${actualPaperNumber}.${fileType}`;
+        if (language === 'en') {
+          return `${URANTIA_BUCKET_URL}/${baseFilename}`;
+        } else {
+          const localizedFilename = baseFilename.replace(/\.([^.]+)$/, `-${language}.$1`);
+          return `${URANTIA_BUCKET_URL}/${localizedFilename}`;
+        }
+      }
     }
     
     // For discover-jesus series
@@ -66,19 +91,14 @@ export function getMediaUrl(
       }
       
       // Use the specific format for discover-jesus
-      return `${JESUS_BUCKET_URL}/audio/discover-jesus/episode-${episodeNumber}.mp3`;
+      if (language === 'en') {
+        return `${JESUS_BUCKET_URL}/audio/discover-jesus/episode-${episodeNumber}.mp3`;
+      } else {
+        return `${JESUS_BUCKET_URL}/audio/discover-jesus/${language}/episode-${episodeNumber}.mp3`;
+      }
     }
     
-    // For history series
-    if (seriesId === 'history') {
-      // Only mp3 files are available
-      if (fileType === 'pdf') {
-        return null;
-      }
-      
-      // Use the same format as discover-jesus but with history path
-      return `${JESUS_BUCKET_URL}/audio/history/episode-${episodeNumber}.mp3`;
-    }
+
     
     // For sadler-workbooks series
     if (seriesId === 'sadler-workbooks') {
@@ -88,7 +108,11 @@ export function getMediaUrl(
       }
       
       // Use the same format as discover-jesus but with sadler-workbooks path
-      return `${JESUS_BUCKET_URL}/audio/sadler-workbooks/episode-${episodeNumber}.mp3`;
+      if (language === 'en') {
+        return `${JESUS_BUCKET_URL}/audio/sadler-workbooks/episode-${episodeNumber}.mp3`;
+      } else {
+        return `${JESUS_BUCKET_URL}/audio/sadler-workbooks/${language}/episode-${episodeNumber}.mp3`;
+      }
     }
     
     // For Jesus Series (direct mapping)
@@ -102,7 +126,14 @@ export function getMediaUrl(
       const mapping = jesusSeriesMapping[mappingKey];
       
       if (mapping && mapping.filename) {
-        return `${JESUS_BUCKET_URL}/${encodeURIComponent(mapping.filename)}`;
+        if (language === 'en') {
+          return `${JESUS_BUCKET_URL}/${encodeURIComponent(mapping.filename)}`;
+        } else {
+          // Handle language-specific path
+          // Assuming the language folder is at the same level
+          const baseFilename = mapping.filename;
+          return `${JESUS_BUCKET_URL}/${language}/${encodeURIComponent(baseFilename)}`;
+        }
       }
       
       console.error(`[MediaUtils] No mapping found for Jesus Series: ${mappingKey}`);
@@ -117,7 +148,13 @@ export function getMediaUrl(
         const mapping = cosmicSeriesMapping[mappingKey];
         
         if (mapping && mapping.filename) {
-          return `${URANTIA_BUCKET_URL}/${mapping.filename}`;
+          if (language === 'en') {
+            return `${URANTIA_BUCKET_URL}/${mapping.filename}`;
+          } else {
+            // Use suffix-based pattern consistent with other series
+            const localizedFilename = mapping.filename.replace(/\.([^.]+)$/, `-${language}.$1`);
+            return `${URANTIA_BUCKET_URL}/${localizedFilename}`;
+          }
         }
       } else if (fileType === 'pdf') {
         // Use the same pattern as Urantia papers for PDFs
@@ -126,7 +163,13 @@ export function getMediaUrl(
         if (mapping) {
           const paperNumberMatch = mapping.filename.match(/paper-(\d+)\.mp3/);
           if (paperNumberMatch && paperNumberMatch[1]) {
-            return `${URANTIA_BUCKET_URL}/paper-${paperNumberMatch[1]}.pdf`;
+            const baseFilename = `paper-${paperNumberMatch[1]}.pdf`;
+            if (language === 'en') {
+              return `${URANTIA_BUCKET_URL}/${baseFilename}`;
+            } else {
+              const localizedFilename = baseFilename.replace(/\.([^.]+)$/, `-${language}.$1`);
+              return `${URANTIA_BUCKET_URL}/${localizedFilename}`;
+            }
           }
         }
       }
@@ -135,7 +178,7 @@ export function getMediaUrl(
       return null;
     }
     
-    console.error(`[MediaUtils] Unknown series type: ${seriesId} (Known series types: urantia-papers, discover-jesus, history, sadler-workbooks, jesus-*, cosmic-*)`);
+    console.error(`[MediaUtils] Unknown series type: ${seriesId} (Known series types: urantia-papers, discover-jesus, sadler-workbooks, jesus-*, cosmic-*)`);
     return null;
   } catch (error) {
     console.error(`[MediaUtils] Error generating media URL:`, error);
@@ -147,12 +190,20 @@ export function getMediaUrl(
  * Get transcript URL for any episode type
  * @param seriesId The series identifier (e.g., 'urantia-papers', 'jesus-1', 'cosmic-2')
  * @param episodeNumber The episode number within the series
+ * @param language The language code for the transcript ('en', 'es', etc.)
  * @returns The complete URL to the transcript file, or null if not available
  */
 export function getTranscriptUrl(
   seriesId: string, 
-  episodeNumber: number | string
+  episodeNumber: number | string,
+  language: string = 'en'
 ): string | null {
+  // As of June 2024, no Spanish transcripts are available.
+  // To prevent showing a button that leads to a 404, we return null.
+  if (language === 'es') {
+    return null; 
+  }
+
   try {
     // Ensure episodeNumber is a number
     const episodeNum = typeof episodeNumber === 'string' ? parseInt(episodeNumber, 10) : episodeNumber;
@@ -161,11 +212,27 @@ export function getTranscriptUrl(
     
     // For Urantia Papers (correct pattern with PDFs)
     if (seriesId === 'urantia-papers' || seriesId.startsWith('FER')) {
-      // All papers have transcripts, so generate URLs for all
-      const filename = episodeNum === 0 
-        ? `foreword-transcript.pdf`
-        : `paper-${episodeNum}-transcript.pdf`;
-      const url = `${URANTIA_BUCKET_URL}/${filename}`;
+      let actualPaperNumber: number;
+      let baseFilename: string;
+      
+      if (episodeNum === 0) {
+        baseFilename = `foreword-transcript.pdf`;
+      } else {
+        // For urantia-papers, paper number equals episode number
+        if (seriesId === 'urantia-papers') {
+          actualPaperNumber = episodeNum;
+        } else {
+          actualPaperNumber = episodeNum; // Fallback for FER series
+        }
+        baseFilename = `paper-${actualPaperNumber}-transcript.pdf`;
+      }
+      
+      let finalFilename = baseFilename;
+      if (language !== 'en') {
+        finalFilename = baseFilename.replace(/\.([^.]+)$/, `-${language}.$1`);
+      }
+      
+      const url = `${URANTIA_BUCKET_URL}/${finalFilename}`;
       console.log(`[getTranscriptUrl] Generated Urantia URL: ${url}`);
       return url;
     }
@@ -173,23 +240,31 @@ export function getTranscriptUrl(
     // For discover-jesus series
     if (seriesId === 'discover-jesus') {
       // Use PDF format instead of TXT and proper path
-      const url = `${JESUS_BUCKET_URL}/discover-jesus-episode-${episodeNum}-transcript.pdf`;
+      let url;
+      const baseFilename = `discover-jesus-episode-${episodeNum}-transcript.pdf`;
+      if (language === 'en') {
+        url = `${JESUS_BUCKET_URL}/${baseFilename}`;
+      } else {
+        const localizedFilename = baseFilename.replace(/\.([^.]+)$/, `-${language}.$1`);
+        url = `${JESUS_BUCKET_URL}/${localizedFilename}`;
+      }
       console.log(`[getTranscriptUrl] Generated discover-jesus URL: ${url}`);
       return url;
     }
     
-    // For history series
-    if (seriesId === 'history') {
-      // Use PDF format instead of TXT and proper path
-      const url = `${JESUS_BUCKET_URL}/history-episode-${episodeNum}-transcript.pdf`;
-      console.log(`[getTranscriptUrl] Generated history URL: ${url}`);
-      return url;
-    }
+
     
     // For sadler-workbooks series
     if (seriesId === 'sadler-workbooks') {
       // Use PDF format instead of TXT and proper path
-      const url = `${JESUS_BUCKET_URL}/sadler-workbooks-episode-${episodeNum}-transcript.pdf`;
+      let url;
+      const baseFilename = `sadler-workbooks-episode-${episodeNum}-transcript.pdf`;
+      if (language === 'en') {
+        url = `${JESUS_BUCKET_URL}/${baseFilename}`;
+      } else {
+        const localizedFilename = baseFilename.replace(/\.([^.]+)$/, `-${language}.$1`);
+        url = `${JESUS_BUCKET_URL}/${localizedFilename}`;
+      }
       console.log(`[getTranscriptUrl] Generated sadler-workbooks URL: ${url}`);
       return url;
     }
@@ -202,7 +277,14 @@ export function getTranscriptUrl(
       if (mapping && mapping.filename) {
         // Use filename without .mp3 extension and add -transcript.pdf
         const transcriptFilename = mapping.filename.replace(/\.mp3$/, '-transcript.pdf');
-        const url = `${JESUS_BUCKET_URL}/${encodeURIComponent(transcriptFilename)}`;
+        let url;
+        
+        if (language === 'en') {
+          url = `${JESUS_BUCKET_URL}/${encodeURIComponent(transcriptFilename)}`;
+        } else {
+          url = `${JESUS_BUCKET_URL}/${language}/${encodeURIComponent(transcriptFilename)}`;
+        }
+        
         console.log(`[getTranscriptUrl] Generated Jesus Series URL: ${url} from mapping: ${mapping.filename}`);
         return url;
       }
@@ -219,15 +301,29 @@ export function getTranscriptUrl(
       if (mapping && mapping.filename) {
         // Extract paper number if available, then use proper format
         const paperNumberMatch = mapping.filename.match(/paper-(\d+)\.mp3/);
+        let url;
+        
         if (paperNumberMatch && paperNumberMatch[1]) {
           const paperNumber = paperNumberMatch[1];
-          const url = `${URANTIA_BUCKET_URL}/paper-${paperNumber}-transcript.pdf`;
+          
+          if (language === 'en') {
+            url = `${URANTIA_BUCKET_URL}/paper-${paperNumber}-transcript.pdf`;
+          } else {
+            url = `${URANTIA_BUCKET_URL}/${language}/paper-${paperNumber}-transcript.pdf`;
+          }
+          
           console.log(`[getTranscriptUrl] Generated Cosmic Series URL: ${url} from mapping: ${mapping.filename}`);
           return url;
         } else {
           // Fallback to using the filename directly
           const transcriptFilename = mapping.filename.replace(/\.mp3$/, '-transcript.pdf');
-          const url = `${URANTIA_BUCKET_URL}/${transcriptFilename}`;
+          
+          if (language === 'en') {
+            url = `${URANTIA_BUCKET_URL}/${transcriptFilename}`;
+          } else {
+            url = `${URANTIA_BUCKET_URL}/${language}/${transcriptFilename}`;
+          }
+          
           console.log(`[getTranscriptUrl] Generated Cosmic Series URL (fallback): ${url}`);
           return url;
         }
@@ -275,9 +371,7 @@ export function getMediaDisplayName(seriesId: string, episodeNumber: number): st
     return `Discover Jesus - Episode ${episodeNumber}`;
   }
   
-  if (seriesId === 'history') {
-    return `History - Episode ${episodeNumber}`;
-  }
+
   
   if (seriesId === 'sadler-workbooks') {
     return `Sadler Workbook - Episode ${episodeNumber}`;

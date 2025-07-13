@@ -1,0 +1,84 @@
+{
+  "hero": {
+    "title": "Connectez-vous avec nous",
+    "subtitle": "Partagez votre expérience, posez des questions ou demandez des ressources"
+  },
+  "form": {
+    "title": "Prendre contact",
+    "description": "Que vous ayez des questions sur le Podcast du Livre d'Urantia, que vous ayez besoin d'une assistance technique ou que vous souhaitiez partager votre expérience, nous sommes là pour vous aider.",
+    "devNotice": "Mode développement : Dans cet environnement, les courriels sont envoyés à l'équipe de développement à des fins de test. En production, les courriels seront envoyés à l'adresse de contact officielle.",
+    "fields": {
+      "name": {
+        "label": "Votre nom",
+        "placeholder": "Saisissez votre nom complet"
+      },
+      "email": {
+        "label": "Adresse électronique",
+        "placeholder": "Saisissez votre adresse électronique"
+      },
+      "inquiryType": {
+        "label": "Type d'enquête",
+        "placeholder": "Sélectionnez un type d'enquête",
+        "options": {
+          "general": "Question générale",
+          "technical": "Support technique",
+          "content": "Suggestion de contenu",
+          "narration": "Commentaires sur la narration",
+          "studyGroup": "Intérêt du groupe d'étude",
+          "accessibility": "Demande d'accessibilité",
+          "translation": "Enquête sur la traduction",
+          "spiritual": "Question spirituelle",
+          "resource": "Demande de ressources",
+          "experience": "Partager mon expérience"
+        }
+      },
+      "message": {
+        "label": "Votre message",
+        "placeholder": "Saisissez ici votre message ou votre question..."
+      },
+      "photos": {
+        "label": "Partager des photos (facultatif)",
+        "placeholder": "Téléchargez des photos en rapport avec votre demande",
+        "note": "Remarque : 3 photos au maximum, de 5 Mo chacune."
+      }
+    },
+    "submit": {
+      "sending": "Envoi...",
+      "send": "Envoyer un message"
+    },
+    "validation": {
+      "required": "Veuillez remplir tous les champs obligatoires.",
+      "photoSize": "La taille totale des photos dépasse 10 Mo. Veuillez choisir des photos plus petites.",
+      "photoLimit": "La taille totale des photos dépasse la limite de 10 Mo"
+    },
+    "success": "Votre message a été envoyé ! Nous vous répondrons dans les plus brefs délais.",
+    "error": "Échec de l'envoi du message. Veuillez réessayer plus tard."
+  },
+  "faq": {
+    "title": "Questions fréquemment posées",
+    "subtitle": "Trouvez les réponses aux questions les plus courantes sur le Podcast du Livre d'Urantia.",
+    "questions": {
+      "what": {
+        "question": "Qu'est-ce que le Podcast du Livre d'Urantia ?",
+        "answer": "Le Podcast du Livre d'Urantia est une expérience audio du Livre d'Urantia, vous permettant d'écouter ses enseignements tout en suivant le texte. Notre but est de rendre ce profond contenu spirituel plus accessible grâce à une narration de haute qualité."
+      },
+      "how": {
+        "question": "Comment écouter le podcast ?",
+        "answer": "Il vous suffit de vous rendre dans la section \"Articles\", de sélectionner un article qui vous intéresse et d'appuyer sur \"play\". Vous pouvez lire le texte en même temps que vous l'écoutez et suivre votre progression dans le livre. Le podcast est accessible à partir de n'importe quel appareil doté d'un navigateur web."
+      },
+      "download": {
+        "question": "Puis-je télécharger des épisodes pour les écouter hors ligne ?",
+        "answer": "Oui ! Chaque épisode peut être téléchargé pour une écoute hors ligne. Il vous suffit de naviguer jusqu'à Fascicule que vous souhaitez écouter et d'utiliser le bouton de téléchargement pour enregistrer le fichier audio sur votre appareil. Cela vous permet d'étudier les enseignements même lorsque vous n'avez pas de connexion internet."
+      },
+      "suggestions": {
+        "question": "Comment puis-je suggérer des améliorations ?",
+        "answer": "Vos commentaires et suggestions sont les bienvenus ! Utilisez le formulaire de contact ci-dessus pour partager vos idées pour améliorer le podcast, suggérer de nouvelles fonctionnalités, ou signaler tout problème technique que vous rencontrez. Votre contribution nous aide à rendre le Livre d'Urantia plus accessible à tous."
+      }
+    }
+  },
+  "cta": {
+    "title": "Commencez votre voyage",
+    "description": "Commencez votre exploration du Livre d'Urantia à travers notre podcast. Expérimentez les enseignements d'une nouvelle manière et approfondissez votre compréhension des concepts cosmiques.",
+    "button": "Explorer les Fascicules d'Urantia"
+  }
+}

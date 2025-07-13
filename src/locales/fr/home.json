@@ -1,0 +1,58 @@
+{
+  "hero": {
+    "title": "Le Livre d'Urantia\nLivre d'Urantia",
+    "subtitle": "Des voyages audio alimentés par l'IA à travers la sagesse cosmique",
+    "buttons": {
+      "startListening": "Commencer à écouter",
+      "browseSeries": "Parcourir la série"
+    }
+  },
+  "series": {
+    "subtitle": "SÉRIE PODCAST",
+    "title": "Découvrez nos collections",
+    "description": "Choisissez parmi notre bibliothèque croissante de séries thématiques, chacune explorant une facette unique des enseignements cosmiques du Livre d'Urantia."
+  },
+  "features": {
+    "subtitle": "CARACTÉRISTIQUES",
+    "title": "Une nouvelle façon d'expérimenter\nLe Livre d'Urantia",
+    "description": "UrantiaBookPod donne vie aux enseignements cosmiques grâce à des narrations audio conçues par l'IA qui rendent les concepts complexes accessibles et attrayants.",
+    "items": {
+      "aiAudio": {
+        "title": "Voyages audio conçus par l'IA",
+        "description": "Écoutez des narrations attrayantes de type podcast qui explorent les concepts du Livre d'Urantia avec des perspectives et des aperçus nouveaux."
+      },
+      "simplified": {
+        "title": "Des concepts complexes simplifiés",
+        "description": "Des enseignements cosmiques difficiles décomposés en conversations accessibles que tout le monde peut comprendre et apprécier."
+      },
+      "offline": {
+        "title": "Accès hors ligne",
+        "description": "Téléchargez les épisodes pour une écoute hors ligne, idéale pour les trajets quotidiens, les promenades ou les moments sans accès à Internet."
+      }
+    }
+  },
+  "howItWorks": {
+    "subtitle": "COMMENT ÇA MARCHE",
+    "title": "Simple et accessible",
+    "description": "Nous avons conçu UrantiaBookPod pour qu'il soit intuitif et accessible à tous, que vous soyez à la maison ou en déplacement.",
+    "steps": {
+      "browse": {
+        "title": "Parcourir les épisodes",
+        "description": "Naviguez à travers notre collection d'épisodes de podcasts, organisés par fascicules et sujets du Livre d'Urantia."
+      },
+      "select": {
+        "title": "Sélectionner une discussion",
+        "description": "Choisissez un épisode de podcast qui vous intéresse et cliquez pour accéder à la discussion audio."
+      },
+      "listen": {
+        "title": "Écouter et s'engager",
+        "description": "Lisez le podcast sur n'importe quel appareil, téléchargez-le pour l'écouter hors ligne ou partagez-le avec vos amis."
+      }
+    }
+  },
+  "cta": {
+    "title": "Commencez votre voyage",
+    "description": "Le Livre d'Urantia offre des perspectives profondes sur notre univers, notre monde et notre destinée spirituelle. Commencez dès aujourd'hui à explorer ces enseignements cosmiques à travers nos discussions passionnantes en podcast.",
+    "button": "Explorer les documents"
+  }
+}

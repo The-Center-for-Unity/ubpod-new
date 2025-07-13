@@ -2,18 +2,20 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate, Navigate, Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Play, Pause, SkipBack, SkipForward, Volume2, VolumeX, Download, ChevronLeft, BookOpen, Share2, AlertTriangle, ExternalLink, Clock, ChevronDown, ChevronUp, ChevronRight, FileText } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+import { useLanguage } from '../i18n/LanguageContext';
 import Layout from '../components/layout/Layout';
-import { getEpisodeById, getUrantiaPaperPart, discoverJesusLinks } from '../data/episodes';
+import { getEpisode as getEpisodeUtils, getUrantiaPaperPart, getEpisodeById } from '../utils/episodeUtils';
 import { Episode, SeriesType } from '../types/index';
 import { useAudioAnalytics } from '../hooks/useAudioAnalytics';
-import { getEpisode as getEpisodeUtils } from '../utils/episodeUtils';
 import { getSeriesInfo } from '../utils/seriesUtils';
 import { mapLegacyUrl, getPlatformSeriesForPaper } from '../utils/urlUtils';
-import { formatTitleWithoutNumber } from '../utils/formatTitle';
-import { fadeIn } from '../constants/animations';
-import { useAudioPlayer } from '../hooks/useAudioPlayer';
+import { getAvailableSeriesIds } from '../utils/seriesAvailabilityUtils';
+import { fadeInVariants } from '../constants/animations';
 import SocialShareMenu from '../components/ui/SocialShareMenu';
+import { getLocalizedPath } from '../utils/i18nRouteUtils';
 import MetaTags from '../components/layout/MetaTags';
+import { LocalizedLink } from '../components/shared/LocalizedLink';
 
 export default function EpisodePage() {
   // Support both old format (/listen/:series/:id) and new format (/series/:seriesId/:episodeId)
@@ -29,8 +31,15 @@ export default function EpisodePage() {
     episodeId?: string; 
   }>();
   
+  // IMMEDIATE DEBUG - this will execute as soon as the component renders
+  console.log(`[IMMEDIATE DEBUG] useParams result:`, { id, series, seriesId, episodeId });
+  console.log(`[IMMEDIATE DEBUG] URL:`, window.location.href);
+  
   const location = useLocation();
   const navigate = useNavigate();
+  const { t } = useTranslation('episode');
+  const { language, isInitialized } = useLanguage();
+  
   const [episode, setEpisode] = useState<Episode | null>(null);
   const [shouldRedirect, setShouldRedirect] = useState<boolean>(false);
   const [redirectUrl, setRedirectUrl] = useState<string>("");
@@ -61,137 +70,87 @@ export default function EpisodePage() {
     id: episode?.id?.toString() || id || episodeId || 'unknown'
   });
 
+  // Force audio reload when language or audioUrl changes
+  useEffect(() => {
+    if (audioRef.current && episode?.audioUrl) {
+      console.log(`[AUDIO RELOAD] Forcing audio reload for language: ${language}, URL: ${episode.audioUrl}`);
+      
+      // Stop current playback
+      audioRef.current.pause();
+      setIsPlaying(false);
+      setCurrentTime(0);
+      setAudioError(false);
+      
+      // Force reload with new source
+      audioRef.current.src = decodeAudioUrl(episode.audioUrl);
+      audioRef.current.load(); // This forces a complete reload
+      
+      console.log(`[AUDIO RELOAD] Audio element reloaded with new source`);
+    }
+  }, [language, episode?.audioUrl]); // Reload whenever language OR audioUrl changes
+
   // Load episode data
   useEffect(() => {
+    // Wait for language context to be initialized to prevent race conditions
+    if (!isInitialized) {
+      return;
+    }
+
     // Case 1: New URL format (/series/:seriesId/:episodeId)
     if (seriesId && episodeId) {
       try {
-        let episodeData = getEpisodeUtils(seriesId, parseInt(episodeId, 10));
+        // Check if the series is available in the current language
+        const availableSeriesIds = getAvailableSeriesIds(language);
+        const isSeriesAvailable = availableSeriesIds.includes(seriesId);
+        
+        if (!isSeriesAvailable) {
+          console.log(`[SERIES AVAILABILITY] Series ${seriesId} not available in ${language}. Available series:`, availableSeriesIds);
+          // Redirect to series page with unavailable notice
+          const localizedPath = getLocalizedPath(`/series?unavailable=${seriesId}`, language);
+          navigate(localizedPath, { replace: true });
+          return;
+        }
+
+        // Use language from the language context
+        console.log(`[CRITICAL DEBUG] URL PARAMS: seriesId=${seriesId}, episodeId=${episodeId}, parsed=${parseInt(episodeId, 10)}`);
+        let episodeData = getEpisodeUtils(seriesId, parseInt(episodeId, 10), language);
         
         // Debug transcript URL - use console.log that will show in browser
+        console.log("DEBUG - URL parsing:", {
+          seriesId,
+          episodeId,
+          episodeIdType: typeof episodeId,
+          parsedEpisodeId: parseInt(episodeId, 10),
+          urlParams: { seriesId, episodeId },
+          actualURL: window.location.href,
+          pathname: window.location.pathname
+        });
+        
         console.log("DEBUG - Episode data:", { 
           id: episodeData?.id,
           title: episodeData?.title,
+          language,
           episodeIdParam: episodeId,
           episodeIdType: typeof episodeId,
           parsedEpisodeId: parseInt(episodeId, 10),
           parsedEpisodeIdType: typeof parseInt(episodeId, 10),
           transcriptUrl: episodeData?.transcriptUrl,
-          hasTranscript: !!(episodeData?.transcriptUrl && episodeData?.transcriptUrl.trim() !== '')
+          hasTranscript: !!(episodeData?.transcriptUrl && episodeData?.transcriptUrl.trim() !== ''),
+          translations: episodeData?.translations,
+          audioUrl: episodeData?.audioUrl,
+          hasSpanishTranslation: episodeData?.translations?.es ? true : false,
+          spanishTitle: episodeData?.translations?.es?.title
         });
         
-        // Special handling for cosmic series - make them mirror the Urantia Papers exactly
-        if (seriesId.startsWith('cosmic-')) {
-          // Extract series number and episode number
-          const seriesNum = parseInt(seriesId.split('-')[1], 10);
-          const episodeNum = parseInt(episodeId, 10);
-          
-          // Map to the corresponding paper number
-          let mappedPaperNumber: number | null = null;
-          
-          // Use the same mapping as in episodeUtils.ts
-          switch(seriesId) {
-            case 'cosmic-1':
-              const paper1Mapping = [1, 12, 13, 15, 42];
-              mappedPaperNumber = episodeNum && episodeNum <= 5 ? paper1Mapping[episodeNum - 1] : null;
-              break;
-            case 'cosmic-2':
-              const paper2Mapping = [6, 8, 10, 20, 16];
-              mappedPaperNumber = episodeNum && episodeNum <= 5 ? paper2Mapping[episodeNum - 1] : null;
-              break;
-            case 'cosmic-3':
-              const paper3Mapping = [107, 108, 110, 111, 112];
-              mappedPaperNumber = episodeNum && episodeNum <= 5 ? paper3Mapping[episodeNum - 1] : null;
-              break;
-            case 'cosmic-4':
-              const paper4Mapping = [32, 33, 34, 35, 41];
-              mappedPaperNumber = episodeNum && episodeNum <= 5 ? paper4Mapping[episodeNum - 1] : null;
-              break;
-            case 'cosmic-5':
-              const paper5Mapping = [38, 39, 113, 114, 77];
-              mappedPaperNumber = episodeNum && episodeNum <= 5 ? paper5Mapping[episodeNum - 1] : null;
-              break;
-            case 'cosmic-6':
-              const paper6Mapping = [40, 47, 48, 31, 56];
-              mappedPaperNumber = episodeNum && episodeNum <= 5 ? paper6Mapping[episodeNum - 1] : null;
-              break;
-            case 'cosmic-7':
-              const paper7Mapping = [57, 58, 62, 64, 66];
-              mappedPaperNumber = episodeNum && episodeNum <= 5 ? paper7Mapping[episodeNum - 1] : null;
-              break;
-            case 'cosmic-8':
-              const paper8Mapping = [53, 54, 67, 75, 66];
-              mappedPaperNumber = episodeNum && episodeNum <= 5 ? paper8Mapping[episodeNum - 1] : null;
-              break;
-            case 'cosmic-9':
-              const paper9Mapping = [73, 74, 76, 78, 75];
-              mappedPaperNumber = episodeNum && episodeNum <= 5 ? paper9Mapping[episodeNum - 1] : null;
-              break;
-            case 'cosmic-10':
-              const paper10Mapping = [93, 94, 95, 96, 98];
-              mappedPaperNumber = episodeNum && episodeNum <= 5 ? paper10Mapping[episodeNum - 1] : null;
-              break;
-            case 'cosmic-11':
-              const paper11Mapping = [85, 86, 87, 89, 92];
-              mappedPaperNumber = episodeNum && episodeNum <= 5 ? paper11Mapping[episodeNum - 1] : null;
-              break;
-            case 'cosmic-12':
-              const paper12Mapping = [100, 101, 102, 103, 196];
-              mappedPaperNumber = episodeNum && episodeNum <= 5 ? paper12Mapping[episodeNum - 1] : null;
-              break;
-            case 'cosmic-13':
-              const paper13Mapping = [0, 105, 115, 116, 117];
-              mappedPaperNumber = episodeNum && episodeNum <= 5 ? paper13Mapping[episodeNum - 1] : null;
-              break;
-            case 'cosmic-14':
-              const paper14Mapping = [4, 5, 7, 9, 10];
-              mappedPaperNumber = episodeNum && episodeNum <= 5 ? paper14Mapping[episodeNum - 1] : null;
-              break;
-          }
-          
-          if (mappedPaperNumber !== null) {
-            // Get the corresponding Urantia paper
-            // Handle the foreword as a special case
-            if (mappedPaperNumber === 0) {
-              // For foreword (paper 0), we need to handle it specially
-              try {
-                // Try to get the foreword episode by ID 0
-                const forewordEpisode = getEpisodeUtils('urantia-papers', 0);
-                if (forewordEpisode) {
-                  const originalUrl = episodeData?.audioUrl;
-                  episodeData = {
-                    ...forewordEpisode,
-                    series: seriesId as SeriesType,
-                    id: episodeNum,
-                    audioUrl: originalUrl || forewordEpisode.audioUrl
-                  };
-                }
-              } catch (error) {
-                console.error("Error loading foreword:", error);
-              }
-            } else {
-              // For regular papers, use the paper number directly
-              const urantiaEpisode = getEpisodeUtils('urantia-papers', mappedPaperNumber);
-              
-              if (urantiaEpisode) {
-                // Override the episode data with the Urantia paper data, but keep the original URL
-                const originalUrl = episodeData?.audioUrl;
-                episodeData = {
-                  ...urantiaEpisode,
-                  series: seriesId as SeriesType,
-                  // Keep the original series ID for navigation purposes
-                  id: episodeNum,
-                  // Keep the cosmic URL pattern for consistency with nav links
-                  audioUrl: originalUrl || urantiaEpisode.audioUrl
-                };
-              }
-            }
-          }
-        }
+        // Note: Cosmic series now automatically load rich content from summaryKey in episodeUtils.ts
+        // No special handling needed here - the translation system handles it
         
         if (episodeData) {
           setEpisode(episodeData);
           setIsLoading(false);
+          setError(null); // Clear any previous errors
+          
+          // Audio will be reloaded by the useEffect above when episode.audioUrl changes
         } else {
           setError(`Episode not found in ${seriesId} series`);
           setIsLoading(false);
@@ -213,16 +172,14 @@ export default function EpisodePage() {
         }
         
         // Validate the series is recognized - include all valid series IDs
-        const validLegacySeries = ['urantia-papers', 'discover-jesus', 'history', 'sadler-workbooks'];
+        const validLegacySeries = ['urantia-papers', 'discover-jesus', 'sadler-workbooks'];
         const validJesusSeries = Array.from({ length: 14 }, (_, i) => `jesus-${i + 1}`);
         const validCosmicSeries = Array.from({ length: 14 }, (_, i) => `cosmic-${i + 1}`);
-        const validPlatformSeries = Array.from({ length: 4 }, (_, i) => `series-platform-${i + 1}`);
         
         const allValidSeries = [
           ...validLegacySeries,
           ...validJesusSeries,
-          ...validCosmicSeries,
-          ...validPlatformSeries
+          ...validCosmicSeries
         ];
         
         if (!allValidSeries.includes(series)) {
@@ -231,12 +188,29 @@ export default function EpisodePage() {
           return;
         }
         
-        // First, try to load the episode from the old data source
-        const oldEpisodeData = getEpisodeById(parseInt(id), series as string);
+        // Check if the series is available in the current language (for new series formats)
+        if (series.startsWith('jesus-') || series.startsWith('cosmic-')) {
+          const availableSeriesIds = getAvailableSeriesIds(language);
+          const isSeriesAvailable = availableSeriesIds.includes(series);
+          
+          if (!isSeriesAvailable) {
+            console.log(`[SERIES AVAILABILITY] Legacy series ${series} not available in ${language}. Available series:`, availableSeriesIds);
+            // Redirect to series page with unavailable notice
+            const localizedPath = getLocalizedPath(`/series?unavailable=${series}`, language);
+            navigate(localizedPath, { replace: true });
+            return;
+          }
+        }
+        
+        // First, try to load the episode from the old data source with language support
+        const oldEpisodeData = getEpisodeById(parseInt(id, 10), series as string, language);
         
         if (oldEpisodeData) {
           setEpisode(oldEpisodeData);
           setIsLoading(false);
+          setError(null); // Clear any previous errors
+          
+          // Audio will be reloaded by the useEffect above when episode.audioUrl changes
           
           // Don't redirect if it's the urantia-papers, jesus-series, or cosmic-series to preserve those links
           if (series === 'urantia-papers' || series.startsWith('jesus-') || series.startsWith('cosmic-')) {
@@ -245,11 +219,7 @@ export default function EpisodePage() {
           }
           
           // Set up redirection to new URL format for other series
-          const { seriesId: newSeriesId, episodeId: newEpisodeId } = mapLegacyUrl(
-            series as string, 
-            id as string
-          );
-          const newUrl = `/series/${newSeriesId}/${newEpisodeId}`;
+          const newUrl = `/series/${series}/${id}`;
           setRedirectUrl(newUrl);
           
           // Allow content to render first, then redirect
@@ -331,7 +301,7 @@ export default function EpisodePage() {
       setError('Invalid episode URL');
       setIsLoading(false);
     }
-  }, [id, series, seriesId, episodeId]);
+  }, [isInitialized, language, seriesId, episodeId, series, id]);
 
   // Perform redirection if needed
   useEffect(() => {
@@ -510,21 +480,19 @@ export default function EpisodePage() {
     if (seriesId && episodeId) {
       // New URL format (/series/:seriesId/:episodeId)
       const currentEpisodeNumber = parseInt(episodeId, 10);
-      const targetEpisodeNumber = direction === 'prev' 
-        ? currentEpisodeNumber - 1 
-        : currentEpisodeNumber + 1;
+      const totalEpisodes = getSeriesInfo(seriesId)?.totalEpisodes || 0;
       
-      const seriesInfo = getSeriesInfo(seriesId);
+      let nextEpisodeId;
+      if (direction === 'next') {
+        nextEpisodeId = currentEpisodeNumber < totalEpisodes ? currentEpisodeNumber + 1 : null;
+      } else {
+        nextEpisodeId = currentEpisodeNumber > 1 ? currentEpisodeNumber - 1 : null;
+      }
       
-      // Validate episode number is in range
-      if (direction === 'prev' && targetEpisodeNumber < 1) return;
-      if (direction === 'next' && seriesInfo && targetEpisodeNumber > seriesInfo.totalEpisodes) return;
-      
-      // Navigate to the new episode
-      const targetUrl = `/series/${seriesId}/${targetEpisodeNumber}`;
-      
-      // Force a hard navigation by not using React Router
-      window.location.href = targetUrl;
+      if (nextEpisodeId) {
+        const newUrl = `/series/${seriesId}/${nextEpisodeId}`;
+        navigate(getLocalizedPath(newUrl, language));
+      }
     } 
     else if (series && episode) {
       // Old URL format (/listen/:series/:id)
@@ -608,28 +576,51 @@ export default function EpisodePage() {
   
   // Calculate the next and previous episode for new URL format
   const getNextEpisodeUrl = () => {
-    if (!episodeId || !seriesId) return '';
+    // Handle both new format (/series/:seriesId/:episodeId) and old format (/listen/:series/:id)
+    const currentSeriesId = seriesId || series;
+    const currentEpisodeId = episodeId || id;
     
-    const currentEpisodeNumber = parseInt(episodeId, 10);
-    const seriesInfo = getSeriesInfo(seriesId);
+    if (!currentEpisodeId || !currentSeriesId) return '';
     
-    if (!seriesInfo || currentEpisodeNumber >= seriesInfo.totalEpisodes) {
-      return '';
+    const currentEpisodeNumber = parseInt(currentEpisodeId, 10);
+    const seriesInfo = getSeriesInfo(currentSeriesId);
+    const isUrantiaPapers = currentSeriesId === 'urantia-papers';
+
+    let totalEpisodes = seriesInfo?.totalEpisodes;
+    if (isUrantiaPapers && !totalEpisodes) {
+        totalEpisodes = 197; // Papers 0-196
+    }
+
+    if (!totalEpisodes) return '';
+
+    if (isUrantiaPapers) {
+        // 0-indexed
+        if (currentEpisodeNumber >= totalEpisodes - 1) return '';
+    } else {
+        // 1-indexed
+        if (currentEpisodeNumber >= totalEpisodes) return '';
     }
     
-    return `/series/${seriesId}/${currentEpisodeNumber + 1}`;
+    return `/series/${currentSeriesId}/${currentEpisodeNumber + 1}`;
   };
   
   const getPrevEpisodeUrl = () => {
-    if (!episodeId || !seriesId) return '';
+    // Handle both new format (/series/:seriesId/:episodeId) and old format (/listen/:series/:id)
+    const currentSeriesId = seriesId || series;
+    const currentEpisodeId = episodeId || id;
     
-    const currentEpisodeNumber = parseInt(episodeId, 10);
+    if (!currentEpisodeId || !currentSeriesId) return '';
     
-    if (currentEpisodeNumber <= 1) {
-      return '';
+    const currentEpisodeNumber = parseInt(currentEpisodeId, 10);
+    const isUrantiaPapers = currentSeriesId === 'urantia-papers';
+    
+    if (isUrantiaPapers) {
+      if (currentEpisodeNumber <= 0) return '';
+    } else {
+      if (currentEpisodeNumber <= 1) return '';
     }
     
-    return `/series/${seriesId}/${currentEpisodeNumber - 1}`;
+    return `/series/${currentSeriesId}/${currentEpisodeNumber - 1}`;
   };
   
   const nextUrl = getNextEpisodeUrl();
@@ -637,18 +628,13 @@ export default function EpisodePage() {
 
   // Get the appropriate back link based on series type
   const getBackLink = () => {
-    if (!series && !seriesId) return '/series';
-    
-    if (series === 'urantia-papers') {
+    const seriesType = seriesId || series;
+    if (!seriesType) return '/series';
+
+    if (seriesType === 'urantia-papers') {
       return '/urantia-papers';
-    } else if (series && series.startsWith('jesus-')) {
-      return `/series/${series}`;
-    } else if (seriesId && seriesId.startsWith('jesus-')) {
-      return `/series/${seriesId}`;
-    } else if (series && series.startsWith('cosmic-')) {
-      return `/series/${series}`;
-    } else if (seriesId && seriesId.startsWith('cosmic-')) {
-      return `/series/${seriesId}`;
+    } else if (seriesType.startsWith('jesus-') || seriesType.startsWith('cosmic-')) {
+      return `/series/${seriesType}`;
     } else {
       return '/series';
     }
@@ -656,14 +642,11 @@ export default function EpisodePage() {
   
   // Get back button text based on series type
   const getBackButtonText = () => {
-    if (series === 'urantia-papers') {
-      return 'Back to Papers';
-    } else if ((series && series.startsWith('jesus-')) || (seriesId && seriesId.startsWith('jesus-')) ||
-              (series && series.startsWith('cosmic-')) || (seriesId && seriesId.startsWith('cosmic-'))) {
-      return 'Back to Episodes';
-    } else {
-      return 'Back to Series';
+    const seriesType = seriesId || series;
+    if (seriesType === 'urantia-papers') {
+      return t('navigation.back_to_papers');
     }
+    return t('navigation.back_to_series');
   };
 
   const decodeAudioUrl = (url: string): string => {
@@ -703,88 +686,10 @@ export default function EpisodePage() {
     setSummaryExpanded(!summaryExpanded);
   };
 
-  // Near the top of the component, add a function to format the title:
-  const formatTitle = (title: string, seriesId: string | undefined, episodeId: string | number | undefined) => {
-    // For cosmic series, ensure we show the "PAPER X:" prefix if it's not already there
-    if (seriesId?.startsWith('cosmic-')) {
-      // Extract the mapped paper number
-      const seriesNum = parseInt(seriesId.split('-')[1], 10);
-      const episodeNum = parseInt(String(episodeId), 10);
-      let mappedPaperNumber: number | null = null;
-      
-      // Same mapping logic as above
-      switch(seriesId) {
-        case 'cosmic-1':
-          const paper1Mapping = [1, 12, 13, 15, 42];
-          mappedPaperNumber = episodeNum && episodeNum <= 5 ? paper1Mapping[episodeNum - 1] : null;
-          break;
-        case 'cosmic-2':
-          const paper2Mapping = [6, 8, 10, 20, 16];
-          mappedPaperNumber = episodeNum && episodeNum <= 5 ? paper2Mapping[episodeNum - 1] : null;
-          break;
-        case 'cosmic-3':
-          const paper3Mapping = [107, 108, 110, 111, 112];
-          mappedPaperNumber = episodeNum && episodeNum <= 5 ? paper3Mapping[episodeNum - 1] : null;
-          break;
-        case 'cosmic-4':
-          const paper4Mapping = [32, 33, 34, 35, 41];
-          mappedPaperNumber = episodeNum && episodeNum <= 5 ? paper4Mapping[episodeNum - 1] : null;
-          break;
-        case 'cosmic-5':
-          const paper5Mapping = [38, 39, 113, 114, 77];
-          mappedPaperNumber = episodeNum && episodeNum <= 5 ? paper5Mapping[episodeNum - 1] : null;
-          break;
-        case 'cosmic-6':
-          const paper6Mapping = [40, 47, 48, 31, 56];
-          mappedPaperNumber = episodeNum && episodeNum <= 5 ? paper6Mapping[episodeNum - 1] : null;
-          break;
-        case 'cosmic-7':
-          const paper7Mapping = [57, 58, 62, 64, 66];
-          mappedPaperNumber = episodeNum && episodeNum <= 5 ? paper7Mapping[episodeNum - 1] : null;
-          break;
-        case 'cosmic-8':
-          const paper8Mapping = [53, 54, 67, 75, 66];
-          mappedPaperNumber = episodeNum && episodeNum <= 5 ? paper8Mapping[episodeNum - 1] : null;
-          break;
-        case 'cosmic-9':
-          const paper9Mapping = [73, 74, 76, 78, 75];
-          mappedPaperNumber = episodeNum && episodeNum <= 5 ? paper9Mapping[episodeNum - 1] : null;
-          break;
-        case 'cosmic-10':
-          const paper10Mapping = [93, 94, 95, 96, 98];
-          mappedPaperNumber = episodeNum && episodeNum <= 5 ? paper10Mapping[episodeNum - 1] : null;
-          break;
-        case 'cosmic-11':
-          const paper11Mapping = [85, 86, 87, 89, 92];
-          mappedPaperNumber = episodeNum && episodeNum <= 5 ? paper11Mapping[episodeNum - 1] : null;
-          break;
-        case 'cosmic-12':
-          const paper12Mapping = [100, 101, 102, 103, 196];
-          mappedPaperNumber = episodeNum && episodeNum <= 5 ? paper12Mapping[episodeNum - 1] : null;
-          break;
-        case 'cosmic-13':
-          const paper13Mapping = [0, 105, 115, 116, 117];
-          mappedPaperNumber = episodeNum && episodeNum <= 5 ? paper13Mapping[episodeNum - 1] : null;
-          break;
-        case 'cosmic-14':
-          const paper14Mapping = [4, 5, 7, 9, 10];
-          mappedPaperNumber = episodeNum && episodeNum <= 5 ? paper14Mapping[episodeNum - 1] : null;
-          break;
-      }
-      
-      if (mappedPaperNumber) {
-        // Special case for foreword
-        if (mappedPaperNumber === 0) {
-          return "FOREWORD";
-        }
-        
-        // Check if title already has "PAPER X:" prefix
-        if (!title.toUpperCase().includes('PAPER')) {
-          return `PAPER ${mappedPaperNumber}: ${title}`;
-        }
-      }
-    }
-    return title;
+  const handleCopy = (textToCopy: string, type: 'link' | 'embed' = 'link') => {
+    navigator.clipboard.writeText(textToCopy).then(() => {
+      setShareNotification(type === 'link' ? t('share.linkCopied') : t('share.embedCopied'));
+    });
   };
 
   // Show error if any
@@ -795,9 +700,9 @@ export default function EpisodePage() {
           <div className="bg-red-50 border border-red-200 rounded-lg p-4 text-red-800">
             <p className="font-medium">Error</p>
             <p>{error}</p>
-            <Link to="/" className="mt-4 inline-block bg-primary text-white px-4 py-2 rounded-lg">
-              Return Home
-            </Link>
+            <LocalizedLink to="/" className="mt-4 inline-block bg-primary text-white px-4 py-2 rounded-lg">
+              {t('actions.return_home', { ns: 'common' })}
+            </LocalizedLink>
           </div>
         </div>
       </Layout>
@@ -809,6 +714,7 @@ export default function EpisodePage() {
       <Layout>
         <div className="container mx-auto px-4 py-8 min-h-screen flex items-center justify-center">
           <div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+          <span className="sr-only">{t('loading')}</span>
         </div>
       </Layout>
     );
@@ -820,185 +726,168 @@ export default function EpisodePage() {
 
   return (
     <Layout>
-      {episode && (
-        <MetaTags 
-          title={`${episode.title} | Urantia Book Podcast`}
-          description={`Listen to ${episode.title} from the Urantia Book Podcast: ${episode.description?.substring(0, 150)}...`}
-          url={window.location.href}
-          imageUrl={episode.imageUrl || "https://www.urantiabookpod.com/og-image.png"}
-          type="article"
-        />
-      )}
-      <main className="container mx-auto px-4 py-8 max-w-6xl" key={location.pathname}>
-        {/* Back Button */}
-        <button 
-          onClick={() => navigate(getBackLink())}
-          className="flex items-center text-white/70 hover:text-white mb-6"
-        >
-          <ChevronLeft size={20} className="mr-1" />
-          <span>
-            {getBackButtonText()}
-          </span>
-        </button>
+      <MetaTags 
+        title={t('meta.title', { title: episode.translations && episode.translations[language] 
+          ? episode.translations[language].title || episode.title
+          : episode.title })}
+        description={t('meta.description', { description: episode.summary || episode.description || '' })}
+        url={window.location.href}
+        imageUrl={episode.imageUrl || "https://www.urantiabookpod.com/og-image.png"}
+      />
+      <motion.div 
+        className="max-w-6xl mx-auto px-4 py-8"
+        initial="hidden"
+        animate="visible"
+        variants={fadeInVariants}
+      >
+        <div className="mb-6">
+          <LocalizedLink 
+            to={getBackLink()}
+            className="flex items-center text-white/70 hover:text-white mb-6"
+          >
+            <ChevronLeft size={20} className="mr-1" />
+            <span>
+              {getBackButtonText()}
+            </span>
+          </LocalizedLink>
+        </div>
         
-        {/* Episode Header */}
+        {/* Main Content Block */}
         <motion.div 
-          className={`rounded-xl p-8 mb-8 bg-gradient-to-r ${getPartColor(episode.id, episode.series)} to-transparent border border-white/10`}
+          className={`rounded-xl p-6 md:p-8 mb-8 bg-gradient-to-r ${getPartColor(episode.id, episode.series)} to-transparent border border-white/10`}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
           <div className="flex flex-col md:flex-row md:items-start md:justify-between">
-            <div>
-              <div className="flex items-center">
-                <span className="text-primary text-2xl font-bold mr-3">{episode.id}</span>
+            {/* Left Side: Title and Description */}
+            <div className="flex-1">
+              <div className="flex items-center mb-4">
+                <span className="text-primary text-4xl font-bold mr-4">{episode.id}</span>
                 <h1 className="title-main text-xl md:text-2xl lg:text-3xl">
-                  {formatTitle(episode.title, episode.series, episode.id)}
+                  {episode.translations && episode.translations[language] 
+                    ? episode.translations[language].title || episode.title
+                    : episode.title}
                 </h1>
               </div>
-              
-              {/* Add logline here */}
-              {episode.cardSummary && (
-                <p className="mt-4 text-lg text-white/80 italic leading-relaxed max-w-3xl">
-                  {episode.cardSummary}
-                </p>
-              )}
-              
-              {/* Only show description if it's not just repeating the title */}
-              {episode.description && !episode.description.includes(episode.title) && (
-                <p className="body-lg mt-2 max-w-3xl">{episode.description}</p>
-              )}
-              
-              {episode.summary && (
-                <div className="mt-4 p-4 bg-white/5 rounded-lg border border-white/10">
-                  <div className="flex justify-between items-center">
-                    <h3 className="text-lg font-semibold text-primary mb-2">Summary</h3>
-                    <button 
-                      onClick={toggleSummary}
-                      className="text-white/70 hover:text-white flex items-center gap-1 text-sm"
-                      aria-label={summaryExpanded ? "Collapse summary" : "Expand summary"}
-                    >
-                      {summaryExpanded ? (
-                        <>
-                          <span>Read Less</span>
-                          <ChevronUp size={16} />
-                        </>
-                      ) : (
-                        <>
-                          <span>Read More</span>
-                          <ChevronDown size={16} />
-                        </>
-                      )}
-                    </button>
-                  </div>
-                  
-                  <AnimatePresence initial={false}>
-                    {summaryExpanded ? (
-                      <motion.div
-                        key="full-summary"
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        <p className="text-white/90 leading-relaxed">{episode.summary}</p>
-                      </motion.div>
-                    ) : (
-                      <motion.div
-                        key="summary-preview"
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        <p className="text-white/90 leading-relaxed line-clamp-3">
-                          {episode.summary}
-                        </p>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
+              {episode.description && (
+                <p className="body-lg mt-4 italic text-white/80">{episode.description}</p>
               )}
             </div>
-            
-            <div className="mt-4 md:mt-0 flex flex-wrap gap-3">
-              {/* For Jesus series: Show "Read on DiscoverJesus.com" button */}
-              {episode.sourceUrl && episode.series.startsWith('jesus-') && (
-                <a
-                  href={episode.sourceUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-4 py-2 bg-gold text-navy-dark rounded-md hover:bg-gold-light transition-colors font-medium"
-                >
-                  <ExternalLink size={18} />
-                  <span>Read on DiscoverJesus.com</span>
-                </a>
-              )}
-              
-              {/* For other series: Show PDF button if available */}
-              {episode.pdfUrl && episode.pdfUrl.trim() !== '' && !episode.series.startsWith('jesus-') && (
-                <a
-                  href={episode.pdfUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-4 py-2 bg-navy-light/70 text-white/90 hover:bg-navy transition-colors"
-                >
-                  <BookOpen size={18} />
-                  <span>Read PDF</span>
-                </a>
-              )}
-              
-              {/* Show Transcript button for Urantia Papers - direct URL generation */}
-              {episode.series === 'urantia-papers' && (() => {
-                // Log the transcript URL for debugging
-                const transcriptUrl = `https://pub-69ae36e16d64438e9bb56350459d5c7d.r2.dev/${episode.id === 0 ? 'foreword' : `paper-${episode.id}`}-transcript.pdf`;
-                console.log(`Generating transcript URL for paper ${episode.id}: ${transcriptUrl}`);
-                
-                return (
+
+            {/* Right Side: Action Buttons */}
+            <div className="flex-shrink-0 mt-4 md:mt-0 md:ml-6">
+              <div className="flex flex-col space-y-3">
+                {/* DiscoverJesus button for Jesus episodes */}
+                {episode.series?.startsWith('jesus-') && episode.sourceUrl && (
                   <a
-                    href={transcriptUrl}
+                    href={episode.sourceUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2 bg-navy-light/70 text-white/90 hover:bg-navy transition-colors"
+                    className="flex items-center gap-2 px-4 py-2 bg-gold/80 text-navy rounded-md hover:bg-gold transition-colors"
+                  >
+                    <ExternalLink size={18} />
+                    <span>{t('external.read_on_dj')}</span>
+                  </a>
+                )}
+                
+                {/* PDF button - only for non-Jesus episodes */}
+                {!episode.series?.startsWith('jesus-') && episode.pdfUrl && (
+                  <a
+                    href={episode.pdfUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    download
+                    className="flex items-center gap-2 px-4 py-2 bg-navy-light/70 text-white/90 rounded-md hover:bg-navy-light/80 transition-colors"
+                  >
+                    <BookOpen size={18} />
+                    <span>{t('player.read_pdf')}</span>
+                  </a>
+                )}
+                
+                {/* Transcript button - only for non-Jesus episodes */}
+                {!episode.series?.startsWith('jesus-') && episode.transcriptUrl && (
+                  <a
+                    href={episode.transcriptUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    download
+                    className="flex items-center gap-2 px-4 py-3 bg-navy-light/50 text-white/90 rounded-md transition-colors hover:bg-navy-light/80"
+                    role="button"
                   >
                     <FileText size={18} />
-                    <span>Read Transcript</span>
+                    <span>{t('player.downloadTranscript')}</span>
                   </a>
-                );
-              })()}
-              
-              <a
-                href={episode.audioUrl}
-                download
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 px-4 py-2 bg-navy-light/70 text-white/90 hover:bg-navy transition-colors"
-              >
-                <Download size={18} />
-                <span>Download Audio</span>
-              </a>
-              
-              <SocialShareMenu 
-                url={window.location.href}
-                title={`Listen to ${episode.title} | Urantia Book Podcast`}
-                description={`Check out this episode of the Urantia Book Podcast: ${episode.title}`}
-              />
+                )}
+                
+                {/* Download Audio - always available */}
+                {episode.audioUrl && (
+                  <a
+                    href={episode.audioUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    download
+                    className="flex items-center gap-2 px-4 py-3 bg-navy-light/50 text-white/90 rounded-md transition-colors hover:bg-navy-light/80"
+                  >
+                    <Download size={18} />
+                    <span>{t('player.download')}</span>
+                  </a>
+                )}
+                
+                {/* Share - always available */}
+                <SocialShareMenu 
+                  url={window.location.href}
+                  title={`Listen to ${episode.translations && episode.translations[language] 
+                    ? episode.translations[language].title || episode.title
+                    : episode.title} | Urantia Book Podcast`}
+                  description={`Check out this episode of the Urantia Book Podcast: ${episode.translations && episode.translations[language] 
+                    ? episode.translations[language].title || episode.title
+                    : episode.title}`}
+                />
+              </div>
             </div>
           </div>
+
+          {/* Summary Box (inside main content block) */}
+          {episode.summary && (
+            <div className="mt-6 p-4 bg-black/20 rounded-lg border border-white/10">
+              <div className="flex justify-between items-center cursor-pointer" onClick={toggleSummary}>
+                <h3 className="text-lg font-semibold text-primary">{t('summary.title')}</h3>
+                <button className="text-white/70 hover:text-white flex items-center gap-1 text-sm" aria-label={summaryExpanded ? t('summary.read_less') : t('summary.read_more')}>
+                  {summaryExpanded ? (
+                    <><span>{t('summary.read_less')}</span><ChevronUp size={16} /></>
+                  ) : (
+                    <><span>{t('summary.read_more')}</span><ChevronDown size={16} /></>
+                  )}
+                </button>
+              </div>
+              <AnimatePresence initial={false}>
+                {summaryExpanded ? (
+                  <motion.div key="full-summary" initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1, marginTop: '1rem' }} exit={{ height: 0, opacity: 0, marginTop: 0 }} transition={{ duration: 0.3 }}>
+                    <p className="text-white/90 leading-relaxed">{episode.summary}</p>
+                  </motion.div>
+                ) : (
+                  <motion.div key="summary-preview" initial={false} animate={{ height: "auto", opacity: 1, marginTop: '1rem' }} exit={{ height: 0, opacity: 0, marginTop: 0 }} transition={{ duration: 0.3 }}>
+                    <p className="text-white/90 leading-relaxed line-clamp-3">{episode.summary}</p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          )}
         </motion.div>
         
-        {/* Audio Player */}
+        {/* Audio Player (outside main content block) */}
         <div className="bg-navy-light/30 rounded-xl border border-white/10 p-6 mb-8">
           {audioError ? (
             <div className="bg-orange-50 border border-orange-200 rounded-lg p-4 text-orange-800 mb-6">
               <div className="flex items-start">
                 <AlertTriangle className="h-5 w-5 mr-2 flex-shrink-0 mt-0.5" />
                 <div>
-                  <p className="font-medium">Audio Not Available</p>
+                  <p className="font-medium">{t('errors.audio_not_available')}</p>
                   <p>{error}</p>
                   {episode?.series?.startsWith('cosmic-') && (
                     <p className="mt-2 text-sm">
-                      The cosmic series audio files are still being created. You can continue exploring the text content below.
+                      {t('errors.cosmic_unavailable')}
                     </p>
                   )}
                 </div>
@@ -1044,7 +933,7 @@ export default function EpisodePage() {
                   <button 
                     onClick={skipBackward}
                     className="flex items-center justify-center w-10 h-10 bg-navy-light hover:bg-navy text-white/90 hover:text-white rounded-lg transition"
-                    aria-label="Rewind 10 seconds"
+                    aria-label={t('player.skipBackward')}
                   >
                     <SkipBack size={20} />
                   </button>
@@ -1052,6 +941,7 @@ export default function EpisodePage() {
                   <button 
                     onClick={togglePlayPause}
                     className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white hover:bg-primary-dark transition-colors"
+                    aria-label={isPlaying ? t('player.pause') : t('player.play')}
                   >
                     {isPlaying ? <Pause size={24} /> : <Play size={24} className="ml-1" />}
                   </button>
@@ -1059,7 +949,7 @@ export default function EpisodePage() {
                   <button 
                     onClick={skipForward}
                     className="flex items-center justify-center w-10 h-10 bg-navy-light hover:bg-navy text-white/90 hover:text-white rounded-lg transition"
-                    aria-label="Fast forward 10 seconds"
+                    aria-label={t('player.skipForward')}
                   >
                     <SkipForward size={20} />
                   </button>
@@ -1069,7 +959,7 @@ export default function EpisodePage() {
                     <button
                       onClick={toggleSpeedControls}
                       className="px-2 py-1 bg-navy-light/50 text-white/70 hover:text-white rounded flex items-center"
-                      aria-label="Playback Speed"
+                      aria-label={t('player.speed')}
                     >
                       <Clock size={16} className="mr-1" />
                       <span className="text-xs">{playbackSpeed}x</span>
@@ -1102,6 +992,7 @@ export default function EpisodePage() {
                   <button 
                     onClick={toggleMute}
                     className="text-white/70 hover:text-white p-2"
+                    aria-label={isMuted ? t('player.unmute') : t('player.mute')}
                   >
                     {isMuted ? <VolumeX size={20} /> : <Volume2 size={20} />}
                   </button>
@@ -1126,84 +1017,41 @@ export default function EpisodePage() {
           )}
         </div>
         
-        {/* DiscoverJesus.com related links for Urantia Papers */}
-        {episode.series === 'urantia-papers' && 
-         episode.id >= 120 && 
-         episode.id <= 196 && 
-         discoverJesusLinks[episode.id] && (
-          <motion.div 
-            className="bg-navy-light/30 rounded-xl border border-white/10 p-6 mb-8"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-          >
-            <h3 className="text-xl font-bold mb-4">Related Content on DiscoverJesus.com</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {discoverJesusLinks[episode.id].map((link, index) => (
-                <a 
-                  key={index}
-                  href={link.url} 
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 p-3 bg-navy-light/50 hover:bg-navy-light/80 text-white rounded-md transition-colors group"
-                >
-                  <ExternalLink size={16} className="flex-shrink-0 text-gold group-hover:text-gold-light transition-colors" />
-                  <span>{link.title}</span>
-                </a>
-              ))}
-            </div>
-          </motion.div>
-        )}
+
         
         {/* Episode Navigation */}
         <div className="flex justify-between items-center mb-12">
-          <button 
-            onClick={() => navigateToEpisode('prev')}
-            disabled={
-              seriesId && episodeId
-                ? parseInt(episodeId, 10) <= 1
-                : episode?.id <= 1
-            }
-            className={`flex items-center gap-2 px-5 py-3 rounded-lg font-medium transition
-              ${(seriesId && episodeId
-                  ? parseInt(episodeId, 10) <= 1
-                  : episode?.id <= 1)
-                ? 'bg-navy-light/30 text-white/30 cursor-not-allowed' 
-                : 'bg-navy-light hover:bg-navy text-white/90 hover:text-white'}`}
-          >
-            <ChevronLeft size={20} />
-            <span>Previous Episode</span>
-          </button>
+          {prevUrl ? (
+            <LocalizedLink
+              to={prevUrl}
+              className="flex items-center gap-2 px-5 py-3 rounded-lg font-medium transition bg-navy-light hover:bg-navy text-white/90 hover:text-white"
+            >
+              <ChevronLeft size={20} />
+              <span>{t('navigation.previous_episode')}</span>
+            </LocalizedLink>
+          ) : (
+            <span className="flex items-center gap-2 px-5 py-3 rounded-lg font-medium transition bg-navy-light/30 text-white/30 cursor-not-allowed">
+              <ChevronLeft size={20} />
+              <span>{t('navigation.previous_episode')}</span>
+            </span>
+          )}
           
-          <button 
-            onClick={() => navigateToEpisode('next')}
-            disabled={
-              seriesId && episodeId
-                ? !getNextEpisodeUrl()
-                : episode?.id >= (
-                    episode?.series === 'urantia-papers' ? 196 : 
-                    episode?.series?.startsWith('jesus-') ? 5 : 
-                    episode?.series?.startsWith('cosmic-') ? 5 :
-                    5 // Default max for most series is 5 episodes
-                  )
-            }
-            className={`flex items-center gap-2 px-5 py-3 rounded-lg font-medium transition
-              ${(seriesId && episodeId
-                  ? !getNextEpisodeUrl()
-                  : episode?.id >= (
-                      episode?.series === 'urantia-papers' ? 196 : 
-                      episode?.series?.startsWith('jesus-') ? 5 : 
-                      episode?.series?.startsWith('cosmic-') ? 5 :
-                      5 // Default max for most series is 5 episodes
-                    ))
-                ? 'bg-navy-light/30 text-white/30 cursor-not-allowed' 
-                : 'bg-navy-light hover:bg-navy text-white/90 hover:text-white'}`}
-          >
-            <span>Next Episode</span>
-            <ChevronRight size={20} />
-          </button>
+          {nextUrl ? (
+            <LocalizedLink
+              to={nextUrl}
+              className="flex items-center gap-2 px-5 py-3 rounded-lg font-medium transition bg-navy-light hover:bg-navy text-white/90 hover:text-white"
+            >
+              <span>{t('navigation.next_episode')}</span>
+              <ChevronRight size={20} />
+            </LocalizedLink>
+          ) : (
+            <span className="flex items-center gap-2 px-5 py-3 rounded-lg font-medium transition bg-navy-light/30 text-white/30 cursor-not-allowed">
+              <span>{t('navigation.next_episode')}</span>
+              <ChevronRight size={20} />
+            </span>
+          )}
         </div>
-      </main>
+      </motion.div>
     </Layout>
   );
 }
