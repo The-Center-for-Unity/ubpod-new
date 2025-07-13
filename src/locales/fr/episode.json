@@ -1,53 +1,53 @@
 {
   "player": {
-    "play": "Play",
+    "play": "Jouer",
     "pause": "Pause",
-    "mute": "Mute",
+    "mute": "Muet",
     "unmute": "Unmute",
-    "download": "Download Audio",
-    "transcript": "View Transcript",
-    "read_pdf": "Read PDF",
-    "speed": "Speed",
-    "skipForward": "Skip Forward 10s",
-    "skipBackward": "Skip Backward 10s",
-    "downloadTranscript": "Download Transcript"
+    "download": "Télécharger l'audio",
+    "transcript": "Voir la transcription",
+    "read_pdf": "Lire le PDF",
+    "speed": "Vitesse",
+    "skipForward": "Sauter en avant 10s",
+    "skipBackward": "Sauter en arrière 10s",
+    "downloadTranscript": "Télécharger la transcription"
   },
   "navigation": {
-    "back_to_papers": "Back to Papers",
-    "back_to_episodes": "Back to Episodes",
-    "back_to_series": "Back to Series",
-    "previous_episode": "Previous Episode",
-    "next_episode": "Next Episode"
+    "back_to_papers": "Retour à fascicules",
+    "back_to_episodes": "Retour aux épisodes",
+    "back_to_series": "Retour à la série",
+    "previous_episode": "Épisode précédent",
+    "next_episode": "Prochain épisode"
   },
   "related": {
-    "title": "Related Episodes",
-    "viewAll": "View All Episodes",
-    "related_content": "Related Content"
+    "title": "Episodes liés",
+    "viewAll": "Voir tous les épisodes",
+    "related_content": "Contenu connexe"
   },
   "share": {
-    "title": "Share",
-    "facebook": "Share on Facebook",
-    "twitter": "Share on Twitter",
-    "email": "Share via Email"
+    "title": "Partager",
+    "facebook": "Partager sur Facebook",
+    "twitter": "Partager sur Twitter",
+    "email": "Partager par e-mail"
   },
   "summary": {
-    "title": "Summary",
-    "read_more": "Read More",
-    "read_less": "Read Less"
+    "title": "Résumé",
+    "read_more": "Lire la suite",
+    "read_less": "Lire moins"
   },
   "errors": {
-    "audio_not_available": "Audio Not Available",
-    "cosmic_unavailable": "The audio for this cosmic series episode is not available yet. We are currently working on generating these files.",
-    "failed_to_load": "Failed to load episode",
-    "not_found": "Episode not found",
-    "invalid_url": "Invalid episode URL"
+    "audio_not_available": "Audio non disponible",
+    "cosmic_unavailable": "L'audio de cet épisode de la série cosmique n'est pas encore disponible. Nous travaillons actuellement à la génération de ces fichiers.",
+    "failed_to_load": "Échec du chargement de l'épisode",
+    "not_found": "Épisode non trouvé",
+    "invalid_url": "URL d'épisode invalide"
   },
   "meta": {
-    "title": "{{title}} | Urantia Book Podcast",
-    "description": "Listen to {{title}}: {{description}}"
+    "title": "{{title}} | Podcast du Livre d'Urantia",
+    "description": "Écouter {{title}} : {{description}}"
   },
   "external": {
-    "read_on_dj": "Read on DiscoverJesus.com"
+    "read_on_dj": "Lire sur DiscoverJesus.com"
   },
-  "loading": "Loading..."
+  "loading": "Chargement..."
 }

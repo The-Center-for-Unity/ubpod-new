@@ -1,41 +1,41 @@
 {
   "header": {
     "badges": {
-      "jesusFocused": "Jesus-Focused Series",
-      "cosmicSeries": "Cosmic Series"
+      "jesusFocused": "Série centrée sur Jésus",
+      "cosmicSeries": "Série cosmique"
     },
     "actions": {
-      "startListening": "Start Listening"
+      "startListening": "Commencer à écouter"
     }
   },
   "navigation": {
-    "title": "PODCAST SERIES",
-    "mobileTitle": "SELECT SERIES",
+    "title": "SÉRIE PODCAST",
+    "mobileTitle": "SÉRIE SELECT",
     "filters": {
-      "all": "All",
-      "jesus": "Jesus", 
-      "cosmic": "Cosmic"
+      "all": "Tous",
+      "jesus": "Jésus",
+      "cosmic": "Cosmique"
     },
-    "noSeries": "No series found in this category"
+    "noSeries": "Aucune série trouvée dans cette catégorie"
   },
   "episodes": {
     "title": "EPISODES",
-    "loading": "Loading episodes...",
+    "loading": "Chargement des épisodes...",
     "noEpisodes": {
-      "title": "No Episodes Available",
-      "message": "This series doesn't have any episodes yet. Please check back later."
+      "title": "Pas d'épisodes disponibles",
+      "message": "Cette série n'a pas encore d'épisodes. Veuillez revenir plus tard."
     },
     "error": {
-      "title": "Error",
-      "message": "Failed to load episodes. Please try again later."
+      "title": "Erreur",
+      "message": "Échec du chargement des épisodes. Veuillez réessayer plus tard."
     }
   },
   "episodeCard": {
-    "episodePrefix": "Episode",
+    "episodePrefix": "Épisode",
     "actions": {
-      "listen": "Listen",
-      "read": "Read", 
-      "download": "Download"
+      "listen": "Écouter",
+      "read": "Lire",
+      "download": "Télécharger"
     }
   }
-} 
+}

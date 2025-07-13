@@ -1,172 +1,172 @@
 {
   "ui": {
     "buttons": {
-      "allSeries": "All Series",
-      "jesusSeries": "Jesus Series", 
-      "cosmicSeries": "Cosmic Series"
+      "allSeries": "Toutes les séries",
+      "jesusSeries": "Série Jésus",
+      "cosmicSeries": "Série cosmique"
     },
     "sections": {
-      "jesusTitle": "The Life and Teachings of Jesus",
-      "jesusDescription": "Explore the complete life story and teachings of Jesus as revealed in the Urantia Book, from his birth through resurrection, with insights beyond traditional Biblical accounts.",
-      "cosmicTitle": "Cosmic Series",
-      "cosmicDescription": "Discover the cosmic teachings from the first three parts of The Urantia Book, covering everything from the nature of God to universe structure and Earth's planetary history."
+      "jesusTitle": "La vie et les enseignements de Jésus",
+      "jesusDescription": "Explorez l'histoire complète de la vie et des enseignements de Jésus tels qu'ils sont révélés dans le Livre d'Urantia, de sa naissance à sa résurrection, avec des aperçus qui vont au-delà des récits bibliques traditionnels.",
+      "cosmicTitle": "Série cosmique",
+      "cosmicDescription": "Découvrez les enseignements cosmiques des trois premières parties du Livre d'Urantia, qui couvrent tout, de la nature de Dieu à la structure de l'univers et à l'histoire planétaire de la Terre."
     },
     "badges": {
-      "jesus": "Jesus Series",
-      "cosmic": "Cosmic Series"
+      "jesus": "Série Jésus",
+      "cosmic": "Série cosmique"
     },
     "status": {
-      "showingCount": "Showing {{count}} series",
-      "noSeries": "No series found in this category.",
-      "searchNoResults": "No series found matching your search. Try adjusting your filters.",
-      "clearFilters": "Clear filters"
+      "showingCount": "Afficher les séries {{count}}",
+      "noSeries": "Aucune série trouvée dans cette catégorie.",
+      "searchNoResults": "Aucune série ne correspond à votre recherche. Essayez d'ajuster vos filtres.",
+      "clearFilters": "Effacer les filtres"
     },
     "actions": {
-      "viewEpisodes": "View Episodes",
-      "viewDetails": "View Details",
-      "episodes": "{{count}} episodes"
+      "viewEpisodes": "Voir les épisodes",
+      "viewDetails": "Voir les détails",
+      "episodes": "{{count}} épisodes"
     }
   },
   "series": {
     "jesus-1": {
-      "title": "Beyond Traditional Religion: The True Nature of God",
-      "description": "Comparing conventional religious concepts of God with the expanded Urantia perspective",
-      "logline": "Discover the loving Universal Father behind religious traditions and transform your relationship with a God who values love over fear."
+      "title": "Au-delà de la religion traditionnelle : La vraie nature de Dieu",
+      "description": "Comparer les concepts religieux conventionnels de Dieu avec la perspective élargie d'Urantia",
+      "logline": "Découvrez le Père universel aimant qui se cache derrière les traditions religieuses et transformez votre relation avec un Dieu qui privilégie l'amour à la peur."
     },
     "jesus-2": {
-      "title": "Jesus Revealed: Beyond the Biblical Account",
-      "description": "Exploring aspects of Jesus' life not found in traditional Christian texts",
-      "logline": "Explore untold stories of Jesus' travels, education, and experiences that shaped the divine human who changed our world forever."
+      "title": "Jésus révélé : Au-delà du récit biblique",
+      "description": "Explorer les aspects de la vie de Jésus qui ne figurent pas dans les textes chrétiens traditionnels",
+      "logline": "Explorez les histoires inédites des voyages, de l'éducation et des expériences de Jésus qui ont façonné l'homme divin qui a changé notre monde à jamais."
     },
     "jesus-3": {
-      "title": "The Inner Divine Presence: Thought Adjusters & Holy Spirit",
-      "description": "Comparing traditional concepts of divine guidance with Urantia teachings",
-      "logline": "Understand the remarkable connection between your mind and God's indwelling spirit, transcending traditional concepts of spiritual guidance."
+      "title": "La présence divine intérieure : Les ajusteurs de pensée et le Saint-Esprit",
+      "description": "Comparer les concepts traditionnels de la guidance divine avec les enseignements d'Urantia",
+      "logline": "Comprendre le lien remarquable qui existe entre votre esprit et l'esprit intérieur de Dieu, en transcendant les concepts traditionnels de l'accompagnement spirituel."
     },
     "jesus-4": {
-      "title": "Life After Death: The Mansion World Journey",
-      "description": "Contrasting traditional afterlife concepts with the Urantia cosmology",
-      "logline": "Discover what happens after death according to the Urantia Book—a progressive journey of growth far beyond traditional concepts of heaven."
+      "title": "La vie après la mort : Le voyage dans le monde des manoirs",
+      "description": "Contraster les concepts traditionnels de la vie après la mort avec la cosmologie d'Urantia",
+      "logline": "Découvrez ce qui se passe après la mort selon le Livre d'Urantia - un voyage progressif de croissance qui va bien au-delà des concepts traditionnels du paradis."
     },
     "jesus-5": {
-      "title": "Women in Spiritual Leadership: A New Perspective",
-      "description": "Comparing historical religious views of women with Jesus' revolutionary approach",
-      "logline": "Meet the remarkable women who followed Jesus and discover his revolutionary approach to gender equality that was centuries ahead of his time."
+      "title": "Les femmes dans le leadership spirituel : Une nouvelle perspective",
+      "description": "Comparaison entre les conceptions religieuses historiques des femmes et l'approche révolutionnaire de Jésus",
+      "logline": "Rencontrez les femmes remarquables qui ont suivi Jésus et découvrez son approche révolutionnaire de l'égalité des sexes, en avance de plusieurs siècles sur son temps."
     },
     "jesus-6": {
-      "title": "Good & Evil Reconsidered: Beyond Traditional Theology",
-      "description": "Reframing traditional concepts of sin and evil through Urantia teachings",
-      "logline": "Explore the true origins of evil, sin, and suffering, and discover a cosmic perspective that transcends traditional religious explanations."
+      "title": "Le bien et le mal reconsidérés : Au-delà de la théologie traditionnelle",
+      "description": "Recadrer les concepts traditionnels du péché et du mal grâce aux enseignements d'Urantia",
+      "logline": "Explorez les véritables origines du mal, du péché et de la souffrance, et découvrez une perspective cosmique qui transcende les explications religieuses traditionnelles."
     },
     "jesus-7": {
-      "title": "Prayer & Worship: Enhanced Understanding",
-      "description": "Expanding traditional views of communication with the Divine",
-      "logline": "Transform your spiritual practices with deeper insights into prayer and worship that enhance personal communication with the Divine."
+      "title": "Prière et culte : Une meilleure compréhension",
+      "description": "Élargir les conceptions traditionnelles de la communication avec le divin",
+      "logline": "Transformez vos pratiques spirituelles en approfondissant votre connaissance de la prière et de l'adoration, afin d'améliorer votre communication personnelle avec le Divin."
     },
     "jesus-8": {
-      "title": "Angels & Celestial Beings: The Cosmic Hierarchy",
-      "description": "Comparing traditional angelic concepts with the expanded Urantia cosmology",
-      "logline": "Meet the countless celestial personalities who serve throughout the universe, far beyond traditional religious concepts of angels."
+      "title": "Anges et êtres célestes : La hiérarchie cosmique",
+      "description": "Comparer les concepts angéliques traditionnels avec la cosmologie élargie d'Urantia",
+      "logline": "Rencontrez les innombrables personnalités célestes qui servent dans l'univers, bien au-delà des concepts religieux traditionnels des anges."
     },
     "jesus-9": {
-      "title": "The Kingdom of Heaven: Spiritual Reality vs. Religious Concept",
-      "description": "Contrasting traditional religious concepts with Jesus' actual teachings",
-      "logline": "Discover Jesus' true message about the spiritual kingdom—not a future realm, but a present reality of divine relationship."
+      "title": "Le Royaume des cieux : Réalité spirituelle et concept religieux",
+      "description": "Contraster les concepts religieux traditionnels avec les enseignements réels de Jésus",
+      "logline": "Découvrez le véritable message de Jésus sur le royaume spirituel - non pas un royaume futur, mais une réalité présente de la relation divine."
     },
     "jesus-10": {
-      "title": "Jesus' Transformative Moments: Behind the Familiar Stories",
-      "description": "Providing deeper context for familiar Biblical events",
-      "logline": "Experience familiar biblical stories with expanded details and cosmic context that transforms their spiritual significance."
+      "title": "Les moments de transformation de Jésus : Derrière les histoires familières",
+      "description": "Fournir un contexte plus approfondi pour les événements bibliques familiers",
+      "logline": "Découvrez des histoires bibliques familières avec plus de détails et un contexte cosmique qui transforme leur signification spirituelle."
     },
     "jesus-11": {
-      "title": "The Human Experience: Divine Insights on Daily Challenges",
-      "description": "Addressing universal human concerns through Urantia wisdom",
-      "logline": "Cosmic wisdom for everyday problems—practical divine insights that enhance relationships, work, and personal fulfillment."
+      "title": "L'expérience humaine : Des idées divines pour relever les défis quotidiens",
+      "description": "Répondre aux préoccupations humaines universelles grâce à la sagesse d'Urantia",
+      "logline": "La sagesse cosmique pour les problèmes quotidiens - des idées divines pratiques qui améliorent les relations, le travail et l'épanouissement personnel."
     },
     "jesus-12": {
-      "title": "Jesus' Death & Resurrection: The Expanded Narrative",
-      "description": "Offering revelatory details beyond traditional accounts",
-      "logline": "The crucifixion and resurrection reveal a cosmic victory with universal implications beyond religious doctrine about sin and salvation."
+      "title": "La mort et la résurrection de Jésus : Le récit élargi",
+      "description": "Offrir des détails révélateurs au-delà des récits traditionnels",
+      "logline": "La crucifixion et la résurrection révèlent une victoire cosmique dont les implications universelles dépassent la doctrine religieuse sur le péché et le salut."
     },
     "jesus-13": {
-      "title": "Evolving Faith: From Traditional Religion to Cosmic Truth",
-      "description": "Bridging conventional religious concepts with expanded spiritual understanding",
-      "logline": "Religious concepts evolve like everything else—see how spiritual truth has progressed from primitive belief toward cosmic revelation."
+      "title": "L'évolution de la foi : De la religion traditionnelle à la vérité cosmique",
+      "description": "Faire le lien entre les concepts religieux conventionnels et une compréhension spirituelle élargie",
+      "logline": "Les concepts religieux évoluent comme tout le reste - voyez comment la vérité spirituelle a progressé de la croyance primitive à la révélation cosmique."
     },
     "jesus-14": {
-      "title": "The Human Jesus: Beyond the Divine Image",
-      "description": "Humanizing Jesus beyond traditional religious portrayals",
-      "logline": "Jesus laughed, had hobbies, and experienced emotions—discover the fully human person behind the religious icon."
+      "title": "Le Jésus humain : Au-delà de l'image divine",
+      "description": "Humaniser Jésus au-delà des représentations religieuses traditionnelles",
+      "logline": "Jésus riait, avait des hobbies et éprouvait des émotions - découvrez la personne pleinement humaine qui se cache derrière l'icône religieuse."
     },
     "cosmic-1": {
-      "title": "Cosmic Origins: Understanding Universe Creation",
-      "description": "Introducing the fundamental cosmology of the Urantia revelation",
-      "logline": "Explore the magnificent architecture of creation—from eternal Paradise to the evolving universes of time and space."
+      "title": "Origines cosmiques : Comprendre la création de l'univers",
+      "description": "Introduction à la cosmologie fondamentale de la révélation d'Urantia",
+      "logline": "Explorez la magnifique architecture de la création, du Paradis éternel aux univers évolutifs du temps et de l'espace."
     },
     "cosmic-2": {
-      "title": "Divine Personalities: The Beings Beyond Traditional Religion",
-      "description": "Introducing celestial personalities and hierarchy",
-      "logline": "Meet the divine personalities who sustain the universe—from the Paradise Trinity to the many orders of celestial ministers."
+      "title": "Personnalités divines : Les êtres au-delà de la religion traditionnelle",
+      "description": "Présentation des personnalités célestes et de la hiérarchie",
+      "logline": "Rencontrez les personnalités divines qui soutiennent l'univers, de la Trinité du Paradis aux nombreux ordres de ministres célestes."
     },
     "cosmic-3": {
-      "title": "The Thought Adjuster: Your Inner Divine Compass",
-      "description": "Understanding the indwelling presence of God",
-      "logline": "Discover the remarkable fragment of God living within your mind—your divine pilot guiding your spiritual evolution."
+      "title": "L'Ajusteur de Pensée : Votre boussole divine intérieure",
+      "description": "Comprendre la présence intérieure de Dieu",
+      "logline": "Découvrez le remarquable fragment de Dieu qui vit dans votre esprit - votre pilote divin qui guide votre évolution spirituelle."
     },
     "cosmic-4": {
-      "title": "Our Local Universe: Nebadon's Organization",
-      "description": "Understanding our cosmic neighborhood",
-      "logline": "Learn about our local universe Nebadon—its creation, administration, and the personalities who manage our cosmic neighborhood."
+      "title": "Notre univers local : L'organisation de Nebadon",
+      "description": "Comprendre notre voisinage cosmique",
+      "logline": "Découvrez notre univers local, Nébadon, sa création, son administration et les personnalités qui gèrent notre voisinage cosmique."
     },
     "cosmic-5": {
-      "title": "Angels Among Us: The Seraphic Hosts",
-      "description": "Understanding angelic ministries",
-      "logline": "Explore the fascinating reality of angels—their nature, purpose, and how they interact with humans throughout our lives."
+      "title": "Les anges parmi nous : Les armées séraphiques",
+      "description": "Comprendre les ministères angéliques",
+      "logline": "Découvrez la réalité fascinante des anges, leur nature, leur raison d'être et la façon dont ils interagissent avec les humains tout au long de leur vie."
     },
     "cosmic-6": {
-      "title": "Life After Death: The Ascension Career",
-      "description": "Understanding the progressive journey after mortal life",
-      "logline": "The mansion worlds are just the beginning—discover your epic journey through the universe after mortal death."
+      "title": "La vie après la mort : La carrière de l'ascension",
+      "description": "Comprendre le cheminement progressif après la vie mortelle",
+      "logline": "Les mondes des manoirs ne sont qu'un début - découvrez votre voyage épique dans l'univers après la mort."
     },
     "cosmic-7": {
-      "title": "Urantia's Remarkable History",
-      "description": "Understanding Earth's unique planetary development",
-      "logline": "The untold story of Earth's (Urantia's) formation, early life development, and the emergence of humanity."
+      "title": "L'histoire remarquable d'Urantia",
+      "description": "Comprendre le développement planétaire unique de la Terre",
+      "logline": "L'histoire inédite de la formation de la Terre (Urantia), du développement des premières vies et de l'émergence de l'humanité."
     },
     "cosmic-8": {
-      "title": "The Lucifer Rebellion: Cosmic Crisis",
-      "description": "Understanding the rebellion's impact on Earth's spiritual development",
-      "logline": "The cosmic rebellion that isolated our world and continues to influence human affairs—discover the truth behind the myths of Satan."
+      "title": "La rébellion de Lucifer : La crise cosmique",
+      "description": "Comprendre l'impact de la rébellion sur le développement spirituel de la Terre",
+      "logline": "La rébellion cosmique qui a isolé notre monde et continue d'influencer les affaires humaines - découvrez la vérité derrière les mythes de Satan."
     },
     "cosmic-9": {
-      "title": "Adam & Eve: The True Story",
-      "description": "Revealing the actual mission and impact of Adam and Eve",
-      "logline": "The real mission of Adam and Eve on our world went far beyond the biblical garden story—discover their true purpose and legacy."
+      "title": "Adam et Eve : La véritable histoire",
+      "description": "Révéler la mission et l'impact réels d'Adam et Eve",
+      "logline": "La véritable mission d'Adam et Ève dans notre monde va bien au-delà de l'histoire biblique du jardin. Découvrez leur véritable objectif et leur héritage."
     },
     "cosmic-10": {
-      "title": "Melchizedek Missions: Divine Interventions",
-      "description": "Understanding key spiritual interventions in human history",
-      "logline": "Explore how Melchizedek's emergency mission to Salem became the foundation for Judaism, Christianity, and Islam."
+      "title": "Missions de Melchizédek : Interventions divines",
+      "description": "Comprendre les principales interventions spirituelles dans l'histoire de l'humanité",
+      "logline": "Découvrez comment la mission d'urgence de Melchizédek à Salem est devenue le fondement du judaïsme, du christianisme et de l'islam."
     },
     "cosmic-11": {
-      "title": "Evolution of Religion: From Fear to Faith",
-      "description": "Tracing the development of human religious concepts",
-      "logline": "Follow humanity's religious evolution from primitive fear of nature through ghost cults to enlightened spiritual understanding."
+      "title": "L'évolution de la religion : De la peur à la foi",
+      "description": "Retracer l'évolution des concepts religieux humains",
+      "logline": "Suivez l'évolution religieuse de l'humanité, de la peur primitive de la nature à la compréhension spirituelle éclairée, en passant par les cultes de fantômes."
     },
     "cosmic-12": {
-      "title": "Genuine Spirituality: The Reality of Religious Experience",
-      "description": "Understanding authentic spiritual growth",
-      "logline": "Go beyond doctrine and ritual to discover the authentic reality of personal religious experience and spiritual growth."
+      "title": "La spiritualité authentique : La réalité de l'expérience religieuse",
+      "description": "Comprendre la croissance spirituelle authentique",
+      "logline": "Aller au-delà de la doctrine et du rituel pour découvrir la réalité authentique de l'expérience religieuse personnelle et de la croissance spirituelle."
     },
     "cosmic-13": {
-      "title": "The Supreme Being: Evolving Deity",
-      "description": "Understanding the concept of experiential Deity",
-      "logline": "Discover God the Supreme—the evolving Deity whose growth depends on all our experiences and achievements in time and space."
+      "title": "L'être suprême : Une divinité en évolution",
+      "description": "Comprendre le concept de déité expérientielle",
+      "logline": "Découvrez Dieu le Suprême - la divinité évolutive dont la croissance dépend de toutes nos expériences et réalisations dans le temps et l'espace."
     },
     "cosmic-14": {
-      "title": "The Divine Family: Understanding Eternal Relationships",
-      "description": "Exploring the relationships among divine personalities",
-      "logline": "Explore the relationships between the Universal Father, Eternal Son, and Infinite Spirit—the divine family at the core of all reality."
+      "title": "La famille divine : Comprendre les relations éternelles",
+      "description": "Explorer les relations entre les personnalités divines",
+      "logline": "Explorez les relations entre le Père universel, le Fils éternel et l'Esprit infini, la famille divine au cœur de toute réalité."
     }
   }
-} 
+}

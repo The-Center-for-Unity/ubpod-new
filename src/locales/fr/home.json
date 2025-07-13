@@ -1,58 +1,58 @@
 {
   "hero": {
-    "title": "The Urantia\nBook Podcast",
-    "subtitle": "AI-powered audio journeys through cosmic wisdom",
+    "title": "Le Livre d'Urantia\nLivre d'Urantia",
+    "subtitle": "Des voyages audio alimentés par l'IA à travers la sagesse cosmique",
     "buttons": {
-      "startListening": "Start Listening",
-      "browseSeries": "Browse Series"
+      "startListening": "Commencer à écouter",
+      "browseSeries": "Parcourir la série"
     }
   },
   "series": {
-    "subtitle": "PODCAST SERIES",
-    "title": "Explore Our Collections",
-    "description": "Choose from our growing library of thematic series, each exploring a unique facet of the Urantia Book's cosmic teachings."
+    "subtitle": "SÉRIE PODCAST",
+    "title": "Découvrez nos collections",
+    "description": "Choisissez parmi notre bibliothèque croissante de séries thématiques, chacune explorant une facette unique des enseignements cosmiques du Livre d'Urantia."
   },
   "features": {
-    "subtitle": "FEATURES",
-    "title": "A New Way to Experience\nThe Urantia Book",
-    "description": "UrantiaBookPod brings the cosmic teachings to life through AI-crafted audio narrations that make complex concepts accessible and engaging.",
+    "subtitle": "CARACTÉRISTIQUES",
+    "title": "Une nouvelle façon d'expérimenter\nLe Livre d'Urantia",
+    "description": "UrantiaBookPod donne vie aux enseignements cosmiques grâce à des narrations audio conçues par l'IA qui rendent les concepts complexes accessibles et attrayants.",
     "items": {
       "aiAudio": {
-        "title": "AI-Crafted Audio Journeys",
-        "description": "Listen to engaging podcast-style narrations that explore the Urantia Book's concepts with fresh perspectives and insights."
+        "title": "Voyages audio conçus par l'IA",
+        "description": "Écoutez des narrations attrayantes de type podcast qui explorent les concepts du Livre d'Urantia avec des perspectives et des aperçus nouveaux."
       },
       "simplified": {
-        "title": "Complex Concepts Simplified",
-        "description": "Difficult cosmic teachings broken down into accessible conversations that anyone can understand and appreciate."
+        "title": "Des concepts complexes simplifiés",
+        "description": "Des enseignements cosmiques difficiles décomposés en conversations accessibles que tout le monde peut comprendre et apprécier."
       },
       "offline": {
-        "title": "Offline Access",
-        "description": "Download episodes for offline listening, perfect for commutes, walks, or times without internet access."
+        "title": "Accès hors ligne",
+        "description": "Téléchargez les épisodes pour une écoute hors ligne, idéale pour les trajets quotidiens, les promenades ou les moments sans accès à Internet."
       }
     }
   },
   "howItWorks": {
-    "subtitle": "HOW IT WORKS",
-    "title": "Simple & Accessible",
-    "description": "We've designed UrantiaBookPod to be intuitive and accessible for everyone, whether you're at home or on the go.",
+    "subtitle": "COMMENT ÇA MARCHE",
+    "title": "Simple et accessible",
+    "description": "Nous avons conçu UrantiaBookPod pour qu'il soit intuitif et accessible à tous, que vous soyez à la maison ou en déplacement.",
     "steps": {
       "browse": {
-        "title": "Browse Episodes",
-        "description": "Navigate through our collection of podcast episodes, organized by Urantia Book papers and topics."
+        "title": "Parcourir les épisodes",
+        "description": "Naviguez à travers notre collection d'épisodes de podcasts, organisés par fascicules et sujets du Livre d'Urantia."
       },
       "select": {
-        "title": "Select a Discussion",
-        "description": "Choose a podcast episode that interests you and click to access the audio discussion."
+        "title": "Sélectionner une discussion",
+        "description": "Choisissez un épisode de podcast qui vous intéresse et cliquez pour accéder à la discussion audio."
       },
       "listen": {
-        "title": "Listen & Engage",
-        "description": "Play the podcast on any device, download for offline listening, or share with friends."
+        "title": "Écouter et s'engager",
+        "description": "Lisez le podcast sur n'importe quel appareil, téléchargez-le pour l'écouter hors ligne ou partagez-le avec vos amis."
       }
     }
   },
   "cta": {
-    "title": "Begin Your Journey",
-    "description": "The Urantia Book offers profound insights into our universe, our world, and our spiritual destiny. Start exploring these cosmic teachings through our engaging podcast discussions today.",
-    "button": "Explore The Papers"
+    "title": "Commencez votre voyage",
+    "description": "Le Livre d'Urantia offre des perspectives profondes sur notre univers, notre monde et notre destinée spirituelle. Commencez dès aujourd'hui à explorer ces enseignements cosmiques à travers nos discussions passionnantes en podcast.",
+    "button": "Explorer les documents"
   }
 }

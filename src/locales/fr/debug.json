@@ -1,17 +1,17 @@
 {
-  "title": "Media URL Debugger",
+  "title": "Débogueur d'URL de médias",
   "fields": {
-    "series": "Series:",
-    "episodeNumber": "Episode Number:",
-    "fileType": "File Type:",
-    "testButton": "Test URL"
+    "series": "Série :",
+    "episodeNumber": "Numéro d'épisode :",
+    "fileType": "Type de fichier :",
+    "testButton": "URL du test"
   },
   "fileTypes": {
     "mp3": "MP3",
-    "pdf": "PDF"
+    "pdf": "PDF (EN ANGLAIS)"
   },
   "results": {
-    "generatedUrl": "Generated URL:",
-    "error": "Error:"
+    "generatedUrl": "URL générée :",
+    "error": "Erreur :"
   }
-} 
+}

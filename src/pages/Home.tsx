@@ -1,6 +1,5 @@
 // src/pages/Home.tsx
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Layout from '../components/layout/Layout';
 import { PlayCircle, Headphones, MessageCircle, Download, Sparkles } from 'lucide-react';

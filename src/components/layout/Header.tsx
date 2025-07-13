@@ -50,10 +50,10 @@ export default function Header() {
                 />
                 <div className="flex flex-col hidden sm:block">
                   <span className="title-subtitle text-xs tracking-[0.1em] leading-tight text-white/90">
-                    {language === 'es' ? 'PODCAST DEL' : 'THE URANTIA'}
+                    {t('site.subtitle_line1')}
                   </span>
                   <span className="title-subtitle text-xs tracking-[0.1em] leading-tight text-white/90">
-                    {language === 'es' ? 'LIBRO DE URANTIA' : 'BOOK PODCAST'}
+                    {t('site.subtitle_line2')}
                   </span>
                 </div>
               </LocalizedLink>

@@ -1,48 +1,48 @@
 {
   "hero": {
-    "title": "Discover Life-Changing Cosmic Wisdom",
-    "subtitle": "Immerse yourself in the Urantia Book's profound teachings through {{count}} expertly narrated audio series",
-    "description": "From the life of Jesus to cosmic origins, each series transforms complex concepts into accessible insights for spiritual growth"
+    "title": "Découvrez la sagesse cosmique qui change la vie",
+    "subtitle": "Plongez-vous dans les enseignements profonds du Livre d'Urantia grâce à des séries audio {{count}} narrées par des experts",
+    "description": "De la vie de Jésus aux origines cosmiques, chaque série transforme des concepts complexes en idées accessibles pour la croissance spirituelle"
   },
   "unavailableNotice": {
-    "title": "Series Not Available:",
-    "message": "The \"{{seriesId}}\" series is not yet available in {{language}}. Here are the series currently available in your selected language:",
-    "dismiss": "Dismiss notification"
+    "title": "Série non disponible :",
+    "message": "La série \"{{seriesId}}\" n'est pas encore disponible dans {{language}}. Voici les séries actuellement disponibles dans la langue que vous avez sélectionnée :",
+    "dismiss": "Rejeter la notification"
   },
   "featured": {
-    "title": "Begin Your Cosmic Journey",
-    "description": "Our most popular series offer perfect entry points to understanding the Urantia Book's transformative teachings:",
-    "badge": "Fan Favorite",
-    "episodeInfo": "5 episodes • ~1 hour total",
-    "startJourney": "Start your journey →"
+    "title": "Commencez votre voyage cosmique",
+    "description": "Nos séries les plus populaires offrent des points d'entrée parfaits pour comprendre les enseignements transformateurs du Livre d'Urantia :",
+    "badge": "Le favori des fans",
+    "episodeInfo": "5 épisodes - ~1 heure au total",
+    "startJourney": "Commencez votre voyage →"
   },
   "explore": {
-    "title": "Explore All Series Collections",
-    "description": "Browse our complete library of audio teachings or search for specific topics"
+    "title": "Explorer toutes les collections de séries",
+    "description": "Parcourez notre bibliothèque complète d'enseignements audio ou recherchez des sujets spécifiques"
   },
   "filters": {
-    "allSeries": "All Series ({{count}})",
-    "jesusSeries": "Jesus ({{count}})",
-    "cosmicSeries": "Cosmic ({{count}})",
-    "searchPlaceholder": "Search series by title or description...",
-    "searchResults": "Found {{count}} results for \"{{query}}\"",
-    "clearSearch": "Clear search",
-    "structuredView": "Structured View",
-    "gridView": "Grid View",
-    "filterByCategory": "Filter series by category"
+    "allSeries": "Toutes les séries ({{count}})",
+    "jesusSeries": "Jésus ({{count}})",
+    "cosmicSeries": "Cosmique ({{count}})",
+    "searchPlaceholder": "Recherche de séries par titre ou description...",
+    "searchResults": "Trouvé {{count}} résultats pour \"{{query}}\"",
+    "clearSearch": "Recherche claire",
+    "structuredView": "Vue structurée",
+    "gridView": "Vue en grille",
+    "filterByCategory": "Filtrer les séries par catégorie"
   },
   "categories": {
-    "jesusTitle": "The Life and Teachings of Jesus",
-    "cosmicTitle": "Cosmic Series"
+    "jesusTitle": "La vie et les enseignements de Jésus",
+    "cosmicTitle": "Série cosmique"
   },
   "seriesCard": {
-    "jesusLabel": "Jesus",
-    "cosmicLabel": "Cosmic",
-    "episodes": "5 episodes",
-    "viewDetails": "View Details →"
+    "jesusLabel": "Jésus",
+    "cosmicLabel": "Cosmique",
+    "episodes": "5 épisodes",
+    "viewDetails": "Voir les détails →"
   },
   "noResults": {
-    "message": "No series found matching your search. Try adjusting your filters.",
-    "clearFilters": "Clear filters"
+    "message": "Aucune série ne correspond à votre recherche. Essayez d'ajuster vos filtres.",
+    "clearFilters": "Effacer les filtres"
   }
-} 
+}

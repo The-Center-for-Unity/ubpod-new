@@ -27,7 +27,9 @@
   },
   "site": {
     "name": "Urantia Book Podcast",
-    "logo_alt": "UrantiaBookPod Logo"
+    "logo_alt": "UrantiaBookPod Logo",
+    "subtitle_line1": "THE URANTIA",
+    "subtitle_line2": "BOOK PODCAST"
   },
   "actions": {
     "back": "Back",

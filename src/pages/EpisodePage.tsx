@@ -13,9 +13,9 @@ import { mapLegacyUrl, getPlatformSeriesForPaper } from '../utils/urlUtils';
 import { getAvailableSeriesIds } from '../utils/seriesAvailabilityUtils';
 import { fadeInVariants } from '../constants/animations';
 import SocialShareMenu from '../components/ui/SocialShareMenu';
+import { getLocalizedPath } from '../utils/i18nRouteUtils';
 import MetaTags from '../components/layout/MetaTags';
 import { LocalizedLink } from '../components/shared/LocalizedLink';
-import { getLocalizedPath } from '../utils/i18nRouteUtils';
 
 export default function EpisodePage() {
   // Support both old format (/listen/:series/:id) and new format (/series/:seriesId/:episodeId)
@@ -106,8 +106,8 @@ export default function EpisodePage() {
         if (!isSeriesAvailable) {
           console.log(`[SERIES AVAILABILITY] Series ${seriesId} not available in ${language}. Available series:`, availableSeriesIds);
           // Redirect to series page with unavailable notice
-          const basePath = language === 'en' ? '' : `/${language}`;
-          navigate(`${basePath}/series?unavailable=${seriesId}`, { replace: true });
+          const localizedPath = getLocalizedPath(`/series?unavailable=${seriesId}`, language);
+          navigate(localizedPath, { replace: true });
           return;
         }
 
@@ -196,8 +196,8 @@ export default function EpisodePage() {
           if (!isSeriesAvailable) {
             console.log(`[SERIES AVAILABILITY] Legacy series ${series} not available in ${language}. Available series:`, availableSeriesIds);
             // Redirect to series page with unavailable notice
-            const basePath = language === 'en' ? '' : `/${language}`;
-            navigate(`${basePath}/series?unavailable=${series}`, { replace: true });
+            const localizedPath = getLocalizedPath(`/series?unavailable=${series}`, language);
+            navigate(localizedPath, { replace: true });
             return;
           }
         }

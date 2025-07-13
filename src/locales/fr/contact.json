@@ -1,84 +1,84 @@
 {
   "hero": {
-    "title": "Connect With Us",
-    "subtitle": "Share your experience, ask questions, or request resources"
+    "title": "Connectez-vous avec nous",
+    "subtitle": "Partagez votre expérience, posez des questions ou demandez des ressources"
   },
   "form": {
-    "title": "Get in Touch",
-    "description": "Whether you have questions about the Urantia Book Podcast, need technical assistance, or want to share your experience, we're here to help.",
-    "devNotice": "Development Mode: In this environment, emails will be sent to the development team for testing. In production, emails will be sent to the official contact address.",
+    "title": "Prendre contact",
+    "description": "Que vous ayez des questions sur le Podcast du Livre d'Urantia, que vous ayez besoin d'une assistance technique ou que vous souhaitiez partager votre expérience, nous sommes là pour vous aider.",
+    "devNotice": "Mode développement : Dans cet environnement, les courriels sont envoyés à l'équipe de développement à des fins de test. En production, les courriels seront envoyés à l'adresse de contact officielle.",
     "fields": {
       "name": {
-        "label": "Your Name",
-        "placeholder": "Enter your full name"
+        "label": "Votre nom",
+        "placeholder": "Saisissez votre nom complet"
       },
       "email": {
-        "label": "Email Address",
-        "placeholder": "Enter your email address"
+        "label": "Adresse électronique",
+        "placeholder": "Saisissez votre adresse électronique"
       },
       "inquiryType": {
-        "label": "Inquiry Type",
-        "placeholder": "Select an inquiry type",
+        "label": "Type d'enquête",
+        "placeholder": "Sélectionnez un type d'enquête",
         "options": {
-          "general": "General Question",
-          "technical": "Technical Support",
-          "content": "Content Suggestion",
-          "narration": "Narration Feedback",
-          "studyGroup": "Study Group Interest",
-          "accessibility": "Accessibility Request",
-          "translation": "Translation Inquiry",
-          "spiritual": "Spiritual Question",
-          "resource": "Resource Request",
-          "experience": "Share My Experience"
+          "general": "Question générale",
+          "technical": "Support technique",
+          "content": "Suggestion de contenu",
+          "narration": "Commentaires sur la narration",
+          "studyGroup": "Intérêt du groupe d'étude",
+          "accessibility": "Demande d'accessibilité",
+          "translation": "Enquête sur la traduction",
+          "spiritual": "Question spirituelle",
+          "resource": "Demande de ressources",
+          "experience": "Partager mon expérience"
         }
       },
       "message": {
-        "label": "Your Message",
-        "placeholder": "Enter your message or question here..."
+        "label": "Votre message",
+        "placeholder": "Saisissez ici votre message ou votre question..."
       },
       "photos": {
-        "label": "Share Photos (Optional)",
-        "placeholder": "Upload photos related to your inquiry",
-        "note": "Note: Maximum 3 photos, 5MB each."
+        "label": "Partager des photos (facultatif)",
+        "placeholder": "Téléchargez des photos en rapport avec votre demande",
+        "note": "Remarque : 3 photos au maximum, de 5 Mo chacune."
       }
     },
     "submit": {
-      "sending": "Sending...",
-      "send": "Send Message"
+      "sending": "Envoi...",
+      "send": "Envoyer un message"
     },
     "validation": {
-      "required": "Please fill out all required fields.",
-      "photoSize": "Total photo size exceeds 10MB. Please choose smaller photos.",
-      "photoLimit": "Total photo size exceeds 10MB limit"
+      "required": "Veuillez remplir tous les champs obligatoires.",
+      "photoSize": "La taille totale des photos dépasse 10 Mo. Veuillez choisir des photos plus petites.",
+      "photoLimit": "La taille totale des photos dépasse la limite de 10 Mo"
     },
-    "success": "Your message has been sent! We will get back to you soon.",
-    "error": "Failed to send message. Please try again later."
+    "success": "Votre message a été envoyé ! Nous vous répondrons dans les plus brefs délais.",
+    "error": "Échec de l'envoi du message. Veuillez réessayer plus tard."
   },
   "faq": {
-    "title": "Frequently Asked Questions",
-    "subtitle": "Find answers to common questions about the Urantia Book Podcast.",
+    "title": "Questions fréquemment posées",
+    "subtitle": "Trouvez les réponses aux questions les plus courantes sur le Podcast du Livre d'Urantia.",
     "questions": {
       "what": {
-        "question": "What is the Urantia Book Podcast?",
-        "answer": "The Urantia Book Podcast is an audio experience of the Urantia Book, allowing you to listen to its teachings while following along with the text. Our goal is to make this profound spiritual content more accessible through high-quality narration."
+        "question": "Qu'est-ce que le Podcast du Livre d'Urantia ?",
+        "answer": "Le Podcast du Livre d'Urantia est une expérience audio du Livre d'Urantia, vous permettant d'écouter ses enseignements tout en suivant le texte. Notre but est de rendre ce profond contenu spirituel plus accessible grâce à une narration de haute qualité."
       },
       "how": {
-        "question": "How do I listen to the podcast?",
-        "answer": "Simply navigate to the Papers section, select a paper that interests you, and press play. You can read along with the text as you listen, and track your progress through the book. The podcast can be accessed from any device with a web browser."
+        "question": "Comment écouter le podcast ?",
+        "answer": "Il vous suffit de vous rendre dans la section \"Articles\", de sélectionner un article qui vous intéresse et d'appuyer sur \"play\". Vous pouvez lire le texte en même temps que vous l'écoutez et suivre votre progression dans le livre. Le podcast est accessible à partir de n'importe quel appareil doté d'un navigateur web."
       },
       "download": {
-        "question": "Can I download episodes for offline listening?",
-        "answer": "Yes! Each episode can be downloaded for offline listening. Simply navigate to the paper you want to listen to, and use the download button to save the audio file to your device. This allows you to study the teachings even when you don't have an internet connection."
+        "question": "Puis-je télécharger des épisodes pour les écouter hors ligne ?",
+        "answer": "Oui ! Chaque épisode peut être téléchargé pour une écoute hors ligne. Il vous suffit de naviguer jusqu'à Fascicule que vous souhaitez écouter et d'utiliser le bouton de téléchargement pour enregistrer le fichier audio sur votre appareil. Cela vous permet d'étudier les enseignements même lorsque vous n'avez pas de connexion internet."
       },
       "suggestions": {
-        "question": "How can I suggest improvements?",
-        "answer": "We welcome your feedback and suggestions! Use the contact form above to share your ideas for improving the podcast, suggest new features, or report any technical issues you encounter. Your input helps us make the Urantia Book more accessible to everyone."
+        "question": "Comment puis-je suggérer des améliorations ?",
+        "answer": "Vos commentaires et suggestions sont les bienvenus ! Utilisez le formulaire de contact ci-dessus pour partager vos idées pour améliorer le podcast, suggérer de nouvelles fonctionnalités, ou signaler tout problème technique que vous rencontrez. Votre contribution nous aide à rendre le Livre d'Urantia plus accessible à tous."
       }
     }
   },
   "cta": {
-    "title": "Start Your Journey",
-    "description": "Begin your exploration of the Urantia Book through our podcast. Experience the teachings in a new way and deepen your understanding of its cosmic concepts.",
-    "button": "Explore Urantia Papers"
+    "title": "Commencez votre voyage",
+    "description": "Commencez votre exploration du Livre d'Urantia à travers notre podcast. Expérimentez les enseignements d'une nouvelle manière et approfondissez votre compréhension des concepts cosmiques.",
+    "button": "Explorer les Fascicules d'Urantia"
   }
-} 
+}

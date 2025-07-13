@@ -10,6 +10,7 @@ import { getEpisodesForSeries } from '../utils/episodeUtils';
 import { getAvailableSeriesIds } from '../utils/seriesAvailabilityUtils';
 import { useLanguage } from '../i18n/LanguageContext';
 import { PlayCircle } from 'lucide-react';
+import { getLocalizedPath } from '../utils/i18nRouteUtils';
 
 export default function ListenPage() {
   const { seriesId } = useParams<{ seriesId: string }>();
@@ -30,8 +31,8 @@ export default function ListenPage() {
     if (!isSeriesAvailable) {
       // Redirect to series page - the series page will show available content
       // and can display a message explaining why they were redirected
-      const basePath = language === 'es' ? '/es' : '';
-      navigate(`${basePath}/series?unavailable=${seriesId}`, { replace: true });
+      const localizedPath = getLocalizedPath(`/series?unavailable=${seriesId}`, language);
+      navigate(localizedPath, { replace: true });
       return;
     }
   }, [seriesId, language, navigate]);
@@ -59,8 +60,8 @@ export default function ListenPage() {
   }, [seriesId, language]);
 
   const handlePlay = (episode: Episode) => {
-    const basePath = language === 'es' ? '/es' : '';
-    navigate(`${basePath}/series/${seriesId}/${episode.id}`);
+    const localizedPath = getLocalizedPath(`/series/${seriesId}/${episode.id}`, language);
+    navigate(localizedPath);
   };
 
   // Get series information with translations

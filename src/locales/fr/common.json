@@ -1,40 +1,42 @@
 {
   "nav": {
-    "home": "Home",
-    "episodes": "Episodes",
-    "about": "About",
+    "home": "Accueil",
+    "episodes": "Épisodes",
+    "about": "A propos de",
     "contact": "Contact",
-    "urantia_papers": "The Urantia Papers",
-    "series_collections": "Series Collections",
-    "disclaimer": "Disclaimer",
-    "pay_it_forward": "Pay It Forward"
+    "urantia_papers": "Les Fascicules d'Urantia",
+    "series_collections": "Collections",
+    "disclaimer": "Avertissement",
+    "pay_it_forward": "Contribuer"
   },
   "footer": {
-    "copyright": "© {{year}} The Center for Unity. All rights reserved.",
-    "terms": "Terms of Service",
-    "privacy": "Privacy Policy",
-    "quick_links": "Quick Links",
-    "resources": "Resources",
-    "description": "AI-crafted audio companions for exploring cosmic truth",
-    "also_available": "Also available on",
-    "copy_rss": "Copy RSS Feed",
-    "rss_copied": "RSS feed URL copied to clipboard!",
-    "rss_copy_failed": "Failed to copy RSS feed URL",
+    "copyright": "© {{year}} The Center for Unity. Tous droits réservés.",
+    "terms": "Conditions d'utilisation",
+    "privacy": "Politique de confidentialité",
+    "quick_links": "Liens rapides",
+    "resources": "Ressources",
+    "description": "Des compagnons audio conçus par l'IA pour explorer la vérité cosmique",
+    "also_available": "Également disponible sur",
+    "copy_rss": "Copier le flux RSS",
+    "rss_copied": "URL du flux RSS copiée dans le presse-fascicules !",
+    "rss_copy_failed": "Échec de la copie de l'URL du flux RSS",
     "external_links": {
-      "urantia_foundation": "Urantia Foundation",
+      "urantia_foundation": "Fondation Urantia",
       "center_for_unity": "The Center for Unity"
     }
   },
   "site": {
-    "name": "Urantia Book Podcast",
-    "logo_alt": "UrantiaBookPod Logo"
+    "name": "Podcast du Livre d'Urantia",
+    "logo_alt": "Logo UrantiaBookPod",
+    "subtitle_line1": "L'URANTIA",
+    "subtitle_line2": "BOOK PODCAST"
   },
   "actions": {
-    "back": "Back",
-    "learn_more": "Learn More",
-    "listen_now": "Listen Now",
-    "view_all": "View All",
-    "return_home": "Return Home"
+    "back": "Retour",
+    "learn_more": "En savoir plus",
+    "listen_now": "Écouter",
+    "view_all": "Voir tout",
+    "return_home": "Retour à l'accueil"
   },
   "platforms": {
     "youtube": "YouTube",
@@ -43,17 +45,17 @@
     "amazon_music": "Amazon Music"
   },
   "share": {
-    "button": "Share",
-    "title": "Share this content",
-    "copy_link": "Copy link",
-    "share_to_x": "Share to X",
-    "share_to_facebook": "Share to Facebook",
-    "share_to_linkedin": "Share to LinkedIn",
-    "share_via_email": "Share via email",
-    "share_via_text": "Share via text",
-    "link_copied": "Link copied to clipboard!",
-    "content_copied": "Content copied to clipboard! Paste into Facebook post.",
-    "shared_success": "Shared successfully!",
-    "rss_copy_failed": "Failed to copy link"
+    "button": "Partager",
+    "title": "Partager ce contenu",
+    "copy_link": "Copier le lien",
+    "share_to_x": "Partager avec X",
+    "share_to_facebook": "Partager sur Facebook",
+    "share_to_linkedin": "Partager sur LinkedIn",
+    "share_via_email": "Partager par e-mail",
+    "share_via_text": "Partager par texte",
+    "link_copied": "Lien copié dans le presse-fascicules !",
+    "content_copied": "Contenu copié dans le presse-fascicules ! Coller dans un post Facebook.",
+    "shared_success": "Partagé avec succès !",
+    "rss_copy_failed": "Échec de la copie du lien"
   }
 }

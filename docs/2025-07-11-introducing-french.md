@@ -119,11 +119,11 @@ This document outlines a comprehensive work plan for introducing French as the s
   - ⏳ Verify fallback to English audio when French unavailable
   - ⏳ Test audio player functionality with French files
 
-#### ✅ 2.5 French Upload Script - COMPLETED
+#### ✅ 2.5 French Upload Script - COMPLETED WITH RESUME CAPABILITY
 - ✅ **Script Development**
   ```bash
   # COMPLETED: scripts/rename-and-push-french.sh
-  # Usage: ./scripts/rename-and-push-french.sh --format=[wav|mp3]
+  # Usage: ./scripts/rename-and-push-french.sh --format=[wav|mp3] [--resume] [--verify]
   # Source: ubpod:UBPod/FR Audio Files (Google Drive)
   # Dest: R2-UbPod:ubpod (R2 bucket)
   # Transform: Paper 160 Fr Int.wav → paper-160-fr.mp3
@@ -134,6 +134,49 @@ This document outlines a comprehensive work plan for introducing French as the s
   - ✅ Maintains audio quality settings consistent with existing files
   - ✅ Generates conversion logs for quality assurance
   - ✅ **Future-Proof**: Script will be reusable for Portuguese implementation
+
+- ✅ **NEW: Resume & Recovery Features**
+  - ✅ **Resume Capability**: `--resume` flag skips already uploaded files
+  - ✅ **Failure Recovery**: Continues processing even if individual files fail
+  - ✅ **Verification**: `--verify` flag checks uploaded files after processing
+  - ✅ **Force Overwrite**: `--force` flag overwrites existing files
+  - ✅ **Detailed Reporting**: Summary report with success/failure/skip counts
+  - ✅ **State Tracking**: Tracks processed, failed, and skipped files
+  - ✅ **Exit Codes**: Returns appropriate exit codes for automation
+  - ✅ **Comprehensive Logging**: Timestamped logs in `logs/french-upload/`
+
+## 📋 **IMPORTANT: Google Drive Setup Process**
+
+### **Google Drive Account & Structure**
+- **Account**: Files are stored in `contact@thecenterforunity.org` Google Drive
+- **rclone remote**: `ubpod:` points to the root of this Google Drive
+- **Main folder**: `UBPod/` contains all podcast files
+
+### **Adding New Languages to Google Drive**
+
+**Step 1: Create language folders**
+1. Navigate to your personal Google Drive where you have the language files
+2. Create organized structure: `Languages/[lang]/[LANG] Audio Files/` and `Languages/[lang]/[LANG] PDFs/`
+3. Upload/organize your files in these folders
+
+**Step 2: Create shortcuts in UBPod**
+1. Switch to `contact@thecenterforunity.org` Google Drive
+2. Navigate to `UBPod/` folder
+3. Create shortcuts to your language folders:
+   - Right-click → "Add shortcut to Drive"
+   - Link to your `Languages/[lang]/[LANG] Audio Files/` folder
+   - Name it `[LANG] Audio Files` (e.g., `FR Audio Files`)
+   - Repeat for PDFs folder
+
+**Step 3: Verify rclone access**
+```bash
+rclone lsf "ubpod:UBPod/[LANG] Audio Files" | head -5
+```
+
+**Step 4: Update upload script**
+- Copy existing script (e.g., `rename-and-push-french.sh`)
+- Update `SRC_AUDIO_DIR` and `SRC_PDF_DIR` paths
+- Update file naming patterns for the new language
 
 ### Phase 3: UI Translation (Est. 8-12 hours)
 
@@ -376,18 +419,26 @@ paper-1-fr.mp3, paper-12-fr.mp3, paper-23-fr.mp3, etc.
 
 ### C. Translation Script Commands
 ```bash
-# ✅ READY - French translation commands
-npm run translate:fr:test      # Test French translation (limited content)
-npm run translate:fr:papers    # Translate Urantia Papers only
-npm run translate:fr           # Full French translation
+# ✅ COMPLETED - French audio upload
+./scripts/rename-and-push-french.sh --format=mp3    # Used to upload French audio files
 
-# ✅ READY - French audio upload script
-./scripts/rename-and-push-french.sh --format=wav  # Convert WAV to MP3
-./scripts/rename-and-push-french.sh --format=mp3  # Direct MP3 upload
+# ✅ NEW - Unified content translation script (for all languages)
+node scripts/translate-content-unified.js --target=fr --test        # Test mode
+node scripts/translate-content-unified.js --target=fr               # Full translation
+node scripts/translate-content-unified.js --target=pt --test        # Portuguese test
+node scripts/translate-content-unified.js --target=pt               # Portuguese full
 
-# ✅ READY - File transformations handled
-# PDFs: paper160-fr.pdf → paper-160-fr.pdf
-# Audio: Paper 160 Fr Int.wav → paper-160-fr.mp3
+# ✅ NEW - UI translation script
+export DEEPL_API_KEY="your-key-here"
+node scripts/translate-ui.js                                        # Translates to French
+
+# ✅ UTILITY - Fix content structure if needed
+node scripts/fix-french-content.js                                  # Merges separated content
+
+# Supported languages for translation scripts:
+# es (Spanish), fr (French), pt (Portuguese), de (German), 
+# it (Italian), nl (Dutch), pl (Polish), ru (Russian), 
+# ja (Japanese), zh (Chinese)
 ```
 
 ### D. Quality Assurance Checklist
@@ -404,27 +455,141 @@ npm run translate:fr           # Full French translation
 
 ---
 
-**Document Version**: 1.1  
-**Last Updated**: July 11, 2025  
+**Document Version**: 1.4  
+**Last Updated**: July 13, 2025  
 **Author**: Claude Code Assistant  
 **Phase 1 Status**: ✅ COMPLETED - Infrastructure Ready  
-**Next Review**: Upon Phase 2 completion (Audio Upload)
+**Phase 2 Status**: ✅ COMPLETED - Audio Files Uploaded  
+**Phase 3 Status**: ✅ COMPLETED - UI Translation Done  
+**Phase 4 Status**: ✅ COMPLETED - Content Translation Done  
+**Current Status**: ✅ FRENCH TRANSLATION COMPLETE - Ready for Testing  
+**Next Focus**: Portuguese Translation Implementation
+
+## 🚨 CRITICAL DECISION: Routing Issues Must Be Fixed First
+
+### **Decision Made: July 11, 2025**
+During French translation testing, **critical routing inconsistencies** were discovered in the codebase. After careful analysis, the decision was made to **pause French translation work** and **fix the routing issues first** before continuing.
+
+### **Why This Decision Was Made**
+1. **Foundation Before Features**: Routing issues are architectural problems that affect all languages
+2. **Cleaner Debugging**: Separating routing fixes from translation prevents confusion during troubleshooting
+3. **Prevents Double Work**: Fixing routing issues now prevents having to fix the same problems multiple times
+4. **Better Quality**: Ensures French translation is built on solid technical foundation
+
+### **Routing Issues Discovered**
+- **Mixed Link Usage**: Some components use `Link` instead of `LocalizedLink`
+- **Manual Language Prefix Logic**: Components implementing their own language routing instead of using centralized system
+- **Hardcoded Language Text**: Components with Spanish/English text instead of i18n translations
+- **Navigation Inconsistencies**: `navigate()` calls that bypass localization
+
+**Full Details**: See `docs/2025-07-11-localized-routing-fix.md`
+
+### **Revised Implementation Plan**
+1. **⏳ Phase 1A: Fix Critical Routing Issues (1-2 days)**
+   - Fix manual basePath logic in EpisodePage.tsx and ListenPage.tsx
+   - Fix Header.tsx hardcoded text
+   - Clean up unused Link imports
+   - Investigate and fix active Link usage
+
+2. **⏳ Phase 2: Resume French Translation** (original timeline)
+   - Upload French audio files using script
+   - Translate UI components using DeepL
+   - Translate content components using DeepL
+   - Test French functionality end-to-end
 
 ## 📋 Current Todo Status
 
-### ✅ COMPLETED
+### ✅ COMPLETED - Phase 1: Infrastructure
 1. ✅ Create git branch for French translation
 2. ✅ Create French locale structure  
 3. ✅ Enable French in i18n configuration
 4. ✅ Activate French in language switcher
 5. ✅ Create French audio upload script
-6. ✅ Adapt DeepL script for French translation
-7. ✅ Test French infrastructure setup
+6. ✅ Test French infrastructure setup
+
+### ✅ COMPLETED - Routing Fixes
+7. ✅ Fix French routing issue - add French to series availability
+8. ✅ Fix French episode card links - use LocalizedLink
+9. ✅ Document localized routing audit findings
+10. ✅ Fix manual basePath logic in EpisodePage.tsx and ListenPage.tsx
+11. ✅ Fix Header.tsx hardcoded language text
+12. ✅ Clean up unused Link imports
+
+### ✅ COMPLETED - Phase 2: Audio Upload
+13. ✅ Upload French audio files using script (211 MP3 + 197 PDF files)
+14. ✅ Verify file accessibility in R2 bucket
+
+### ✅ COMPLETED - Phase 3: UI Translation
+15. ✅ Translate UI components using DeepL
+16. ✅ All 10 UI namespace files translated to French
+
+### ✅ COMPLETED - Phase 4: Content Translation
+17. ✅ Translate Urantia Papers content (197 papers)
+18. ✅ Translate Cosmic Series content (14 series)
+19. ✅ Fix content structure - merge into single content.json
+
+### ✅ COMPLETED - Scripts & Documentation
+20. ✅ Create unified translation script for future languages
+21. ✅ Create fix script for content structure issues
+22. ✅ Update documentation with learnings
 
 ### ⏳ NEXT STEPS
-8. ⏳ Upload French audio files using script
-9. ⏳ Translate UI components using DeepL
-10. ⏳ Translate content components using DeepL
-11. ⏳ Test French functionality end-to-end
+23. ⏳ Test French functionality end-to-end
+24. ⏳ Prepare for Portuguese translation
 
-The infrastructure is fully ready for the next phase of work.
+## 🔄 Work Status Update
+
+**Current Focus**: ✅ FRENCH TRANSLATION COMPLETED - Ready for Testing
+
+**Progress**: 
+- ✅ Fixed manual basePath logic in EpisodePage.tsx and ListenPage.tsx
+- ✅ Fixed Header.tsx hardcoded language text with proper i18n translations
+- ✅ Cleaned up unused Link imports
+- ✅ French routing now works correctly with proper language prefixes
+- ✅ French audio files successfully uploaded to R2 bucket
+- ✅ French UI translation completed using DeepL
+- ✅ French content translation completed (Urantia Papers + Cosmic Series)
+- ✅ Fixed content structure - merged translations into content.json
+
+**Next Phase**: Testing and Portuguese preparation
+
+## 🚨 CRITICAL LEARNING: Content Structure for i18n
+
+### **Discovery Made: July 13, 2025**
+During French content testing, discovered that the new i18n system uses a **simplified content structure**:
+
+### **Active Files (Used by Application)**
+1. **`src/locales/[lang]/content/content.json`** - ALL series content in one file
+2. **`src/locales/series-metadata.json`** - Shared metadata (language-agnostic)
+
+### **Legacy Files (NOT USED - Create Confusion)**
+- ❌ `episode-loglines.json`
+- ❌ `episode-titles.json`
+- ❌ `general-summaries.json`
+- ❌ `jesus-summaries.json`
+- ❌ `series-metadata.json` (in language folders)
+- ❌ `urantia-papers.json` (separate file)
+
+### **Correct Content Structure**
+```json
+// content.json structure
+{
+  "series-id": {
+    "seriesTitle": "Translated title",
+    "seriesDescription": "Translated description",
+    "episodes": {
+      "1": {
+        "title": "Episode title",
+        "logline": "Short description",
+        "episodeCard": "Card description",
+        "summary": "Full summary"
+      }
+    }
+  }
+}
+```
+
+### **Translation Script Updates**
+- ✅ Created `translate-content-unified.js` - works with consolidated structure
+- ✅ Created `fix-french-content.js` - merges separated content
+- ✅ Supports all DeepL languages for future translations

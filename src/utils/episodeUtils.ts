@@ -8,6 +8,7 @@ import { getTranscriptUrl } from './mediaUtils';
 import seriesMetadata from '../locales/series-metadata.json';
 import enContent from '../locales/en/content/content.json';
 import esContent from '../locales/es/content/content.json';
+import frContent from '../locales/fr/content/content.json';
 
 // Define the cosmic audio URL - use the same R2 backend that other audio files use
 const COSMIC_AUDIO_BASE_URL = import.meta.env.VITE_COSMIC_AUDIO_BASE_URL || URANTIA_AUDIO_BASE_URL;
@@ -40,8 +41,8 @@ interface SeriesMetadata {
 /**
  * Get episode data from consolidated content files
  */
-function getEpisodeContent(seriesId: string, episodeId: number, language: 'en' | 'es'): EpisodeContent | null {
-  const content = language === 'en' ? enContent : esContent;
+function getEpisodeContent(seriesId: string, episodeId: number, language: 'en' | 'es' | 'fr'): EpisodeContent | null {
+  const content = language === 'en' ? enContent : language === 'es' ? esContent : frContent;
   const seriesContent = content[seriesId as keyof typeof content] as SeriesContent | undefined;
   
   if (!seriesContent) {
@@ -111,9 +112,10 @@ export function getEpisode(seriesId: string, episodeId: number, language: string
     return undefined;
   }
   
-  // Get content for both languages to build complete episode data
+  // Get content for all languages to build complete episode data
   const enEpisodeContent = getEpisodeContent(seriesId, episodeId, 'en');
   const esEpisodeContent = getEpisodeContent(seriesId, episodeId, 'es');
+  const frEpisodeContent = getEpisodeContent(seriesId, episodeId, 'fr');
   
   if (!enEpisodeContent) {
     console.warn(`[episodeUtils] English content not found for ${seriesId}/${episodeId}`);
@@ -121,8 +123,8 @@ export function getEpisode(seriesId: string, episodeId: number, language: string
   }
   
   // Use the requested language content as primary
-  const primaryContent = language === 'es' ? esEpisodeContent : enEpisodeContent;
-  const fallbackContent = language === 'es' ? enEpisodeContent : esEpisodeContent;
+  const primaryContent = language === 'es' ? esEpisodeContent : language === 'fr' ? frEpisodeContent : enEpisodeContent;
+  const fallbackContent = enEpisodeContent;
   
   // Generate URLs
   const audioUrl = getAudioUrl(seriesId, episodeId, language);

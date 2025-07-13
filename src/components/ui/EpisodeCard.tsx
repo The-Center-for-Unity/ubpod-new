@@ -1,8 +1,8 @@
 import React, { useEffect, useMemo } from 'react';
 import { Play, FileText, Download, Music } from 'lucide-react';
-import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useLanguage } from '../../i18n/LanguageContext';
+import { LocalizedLink } from '../shared/LocalizedLink';
 import { Episode } from '../../types/index';
 import { getEpisode } from '../../utils/episodeUtils';
 
@@ -109,14 +109,14 @@ export default function EpisodeCard({ episode, onPlay }: EpisodeCardProps) {
         
         {/* Action Buttons */}
         <div className="flex flex-wrap gap-2 mt-auto">
-          <Link 
-            to={language === 'es' ? `/es/series/${series}/${id}` : `/series/${series}/${id}`}
+          <LocalizedLink 
+            to={`/series/${series}/${id}`}
             className="flex items-center gap-1 px-4 py-2 bg-gold text-navy-dark rounded-md hover:bg-gold/90 transition-colors font-medium"
             onClick={onPlay}
           >
             <Play size={16} />
             <span>{t('episodeCard.actions.listen', { defaultValue: 'Listen' })}</span>
-          </Link>
+          </LocalizedLink>
           
           {readLink && (
             <a 

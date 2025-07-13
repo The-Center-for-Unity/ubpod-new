@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { SeriesType } from '../../types/index';
 import { getAllSeries, getSeriesInfo } from '../../utils/seriesUtils';

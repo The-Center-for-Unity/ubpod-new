@@ -27,7 +27,9 @@
   },
   "site": {
     "name": "Podcast del Libro de Urantia",
-    "logo_alt": "Logo de UrantiaBookPod"
+    "logo_alt": "Logo de UrantiaBookPod",
+    "subtitle_line1": "PODCAST DEL",
+    "subtitle_line2": "LIBRO DE URANTIA"
   },
   "actions": {
     "back": "Volver",
