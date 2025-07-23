@@ -115,3 +115,7 @@ ai-digest.log
 .aidigestignore
 codebase.md
 codebase-src.md
+
+# Ignore the legacy-bkp folder and backup files
+legacy-bkp/
+src/locales/backup/

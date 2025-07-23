@@ -1,0 +1,1138 @@
+{
+  "metadata": {
+    "description": "Manual mapping template for unmapped legacy content",
+    "instructions": "For each unmapped entry, add the correct seriesId and episodeId"
+  },
+  "unmapped": {
+    "topic/establishing-jesus-ancestry": {
+      "title": "",
+      "cleanKey": "establishing jesus ancestry",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "event/forty-days-in-the-wilderness": {
+      "title": "",
+      "cleanKey": "forty days in the wilderness",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "event/jesus-attends-a-wedding-at-cana": {
+      "title": "",
+      "cleanKey": "jesus attends a wedding at cana",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "event/jesus-ordains-his-twelve-apostles": {
+      "title": "",
+      "cleanKey": "jesus ordains his twelve apostles",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "event/jesus-discourse-on-true-religion": {
+      "title": "",
+      "cleanKey": "jesus discourse on true religion",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "event/jesus-entry-into-jerusalem-palm-sunday": {
+      "title": "",
+      "cleanKey": "jesus entry into jerusalem palm sunday",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "event/peter-denies-jesus-three-times": {
+      "title": "",
+      "cleanKey": "peter denies jesus three times",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "event/pilates-last-appeal-and-surrender": {
+      "title": "",
+      "cleanKey": "pilates last appeal and surrender",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "event/the-healing-at-sundown": {
+      "title": "",
+      "cleanKey": "the healing at sundown",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "event/conference-with-johns-apostles": {
+      "title": "",
+      "cleanKey": "conference with johns apostles",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "event/jesus-cleanses-the-temple-of-moneylenders": {
+      "title": "",
+      "cleanKey": "jesus cleanses the temple of moneylenders",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "event/jesus-first-passover-age-13": {
+      "title": "",
+      "cleanKey": "jesus first passover age 13",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "event/the-king-making-episode": {
+      "title": "",
+      "cleanKey": "the king making episode",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "group/gentiles": {
+      "title": "",
+      "cleanKey": "group/gentiles",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "group/jesus-siblings": {
+      "title": "",
+      "cleanKey": "group/jesus siblings",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "person/mary-of-bethany": {
+      "title": "",
+      "cleanKey": "person/mary of bethany",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "group/pharisees": {
+      "title": "",
+      "cleanKey": "group/pharisees",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "group/sadducees": {
+      "title": "",
+      "cleanKey": "group/sadducees",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "group/samaritans": {
+      "title": "",
+      "cleanKey": "group/samaritans",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "group/sanhedrin": {
+      "title": "",
+      "cleanKey": "group/sanhedrin",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "group/seventy-disciples": {
+      "title": "",
+      "cleanKey": "group/seventy disciples",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "group/six-jerusalem-spies": {
+      "title": "",
+      "cleanKey": "group/six jerusalem spies",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "group/three-wise-men": {
+      "title": "",
+      "cleanKey": "group/three wise men",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "group/womens-evangelistic-corps": {
+      "title": "",
+      "cleanKey": "group/womens evangelistic corps",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "group/zealots": {
+      "title": "",
+      "cleanKey": "group/zealots",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "group/zebedees-family": {
+      "title": "",
+      "cleanKey": "group/zebedees family",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "object/home-of-jesus-in-nazareth": {
+      "title": "",
+      "cleanKey": "object/home of jesus in nazareth",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "person/jesus": {
+      "title": "",
+      "cleanKey": "person/jesus",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "person/rodan": {
+      "title": "",
+      "cleanKey": "person/rodan",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "person/abner": {
+      "title": "",
+      "cleanKey": "person/abner",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "person/agaman": {
+      "title": "",
+      "cleanKey": "person/agaman",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "person/andrew": {
+      "title": "",
+      "cleanKey": "person/andrew",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "person/caiaphas": {
+      "title": "",
+      "cleanKey": "person/caiaphas",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "person/david-zebedee": {
+      "title": "",
+      "cleanKey": "person/david zebedee",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "person/gadiah": {
+      "title": "",
+      "cleanKey": "person/gadiah",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "person/ganid": {
+      "title": "",
+      "cleanKey": "person/ganid",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "person/gonod": {
+      "title": "",
+      "cleanKey": "person/gonod",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "person/herod-antipas": {
+      "title": "",
+      "cleanKey": "person/herod antipas",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "person/james-brother-of-jesus": {
+      "title": "",
+      "cleanKey": "person/james brother of jesus",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "person/james-alpheus": {
+      "title": "",
+      "cleanKey": "person/james alpheus",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "person/james-zebedee": {
+      "title": "",
+      "cleanKey": "person/james zebedee",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "person/john-mark": {
+      "title": "",
+      "cleanKey": "person/john mark",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "person/john-zebedee": {
+      "title": "",
+      "cleanKey": "person/john zebedee",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "person/joseph-father-of-jesus": {
+      "title": "",
+      "cleanKey": "person/joseph father of jesus",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "person/joseph-of-arimathea": {
+      "title": "",
+      "cleanKey": "person/joseph of arimathea",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "person/josiah": {
+      "title": "",
+      "cleanKey": "person/josiah",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "person/judas-alpheus": {
+      "title": "",
+      "cleanKey": "person/judas alpheus",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "person/judas-iscariot": {
+      "title": "",
+      "cleanKey": "person/judas iscariot",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "person/lazarus": {
+      "title": "",
+      "cleanKey": "person/lazarus",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "person/martha-of-bethany": {
+      "title": "",
+      "cleanKey": "person/martha of bethany",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "person/mary-mother-of-jesus": {
+      "title": "",
+      "cleanKey": "person/mary mother of jesus",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "person/mary-wife-of-elijah-mark": {
+      "title": "",
+      "cleanKey": "person/mary wife of elijah mark",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "person/matthew-levi": {
+      "title": "",
+      "cleanKey": "person/matthew levi",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "person/miriam": {
+      "title": "",
+      "cleanKey": "person/miriam",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "person/nathaniel": {
+      "title": "",
+      "cleanKey": "person/nathaniel",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "person/paul": {
+      "title": "",
+      "cleanKey": "person/paul",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "person/philip-apostle-of-jesus": {
+      "title": "",
+      "cleanKey": "person/philip apostle of jesus",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "person/rebecca-of-sepphoris": {
+      "title": "",
+      "cleanKey": "person/rebecca of sepphoris",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "person/ruth-sister-of-jesus": {
+      "title": "",
+      "cleanKey": "person/ruth sister of jesus",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "person/salome-wife-of-zebedee": {
+      "title": "",
+      "cleanKey": "person/salome wife of zebedee",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "person/simon-peter": {
+      "title": "",
+      "cleanKey": "person/simon peter",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "person/simon-zelotes": {
+      "title": "",
+      "cleanKey": "person/simon zelotes",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "person/stephen": {
+      "title": "",
+      "cleanKey": "person/stephen",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "person/thomas-didymus": {
+      "title": "",
+      "cleanKey": "person/thomas didymus",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "person/zebedee": {
+      "title": "",
+      "cleanKey": "person/zebedee",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "relationship/jesus-james-brother-of-jesus": {
+      "title": "",
+      "cleanKey": "relationship/jesus james brother of jesus",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "relationship/jesus-judas-iscariot": {
+      "title": "",
+      "cleanKey": "relationship/jesus judas iscariot",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "topic/angels-the-daughters-of-god": {
+      "title": "",
+      "cleanKey": "angels the daughters of god",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "topic/anger-the-lack-of-understanding": {
+      "title": "",
+      "cleanKey": "anger the lack of understanding",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "topic/did-jesus-marry-anyone": {
+      "title": "",
+      "cleanKey": "did jesus marry anyone",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "topic/faith-and-righteousness": {
+      "title": "",
+      "cleanKey": "faith and righteousness",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "topic/fatherly-and-brotherly-love": {
+      "title": "",
+      "cleanKey": "fatherly and brotherly love",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "topic/history-of-baptism": {
+      "title": "",
+      "cleanKey": "history of baptism",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "topic/is-jesus-death-related-to-the-jewish-passover": {
+      "title": "",
+      "cleanKey": "is jesus death related to the jewish passover",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "topic/jesus-celestial-visitations": {
+      "title": "",
+      "cleanKey": "jesus celestial visitations",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "topic/jesus-bestowal-mission": {
+      "title": "",
+      "cleanKey": "jesus bestowal mission",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "topic/jesus-burial-cloths": {
+      "title": "",
+      "cleanKey": "jesus burial cloths",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "topic/jesus-christ-our-creator-son": {
+      "title": "",
+      "cleanKey": "jesus christ our creator son",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "topic/jesus-combined-nature-human-and-divine": {
+      "title": "",
+      "cleanKey": "jesus combined nature human and divine",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "topic/jesus-first-year-of-ministry": {
+      "title": "",
+      "cleanKey": "jesus first year of ministry",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "topic/jesus-harp": {
+      "title": "",
+      "cleanKey": "jesus harp",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "topic/jesus-miracles": {
+      "title": "",
+      "cleanKey": "jesus miracles",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "topic/jesus-parables": {
+      "title": "",
+      "cleanKey": "jesus parables",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "topic/jesus-personalized-indwelling-spirit": {
+      "title": "",
+      "cleanKey": "jesus personalized indwelling spirit",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "topic/jesus-return-the-masters-second-coming": {
+      "title": "",
+      "cleanKey": "jesus return the masters second coming",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "topic/jesus-human-rights-advocate": {
+      "title": "",
+      "cleanKey": "jesus human rights advocate",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "topic/jesus-resurrection-experience": {
+      "title": "",
+      "cleanKey": "jesus resurrection experience",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "topic/life-in-first-century-palestine": {
+      "title": "",
+      "cleanKey": "life in first century palestine",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "topic/loving-god-instead-of-fearing-god": {
+      "title": "",
+      "cleanKey": "loving god instead of fearing god",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "topic/marriage-divorce-and-children": {
+      "title": "",
+      "cleanKey": "marriage divorce and children",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "topic/meaning-of-jesus-death-on-the-cross": {
+      "title": "",
+      "cleanKey": "meaning of jesus death on the cross",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "topic/mistakes-of-jesus-early-followers": {
+      "title": "",
+      "cleanKey": "mistakes of jesus early followers",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "topic/necessity-for-jesus-departure": {
+      "title": "",
+      "cleanKey": "necessity for jesus departure",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "topic/philosophy-materialism": {
+      "title": "",
+      "cleanKey": "philosophy materialism",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "topic/philosophy-secular-totalitarianism": {
+      "title": "",
+      "cleanKey": "philosophy secular totalitarianism",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "topic/religion-the-mystery-cults": {
+      "title": "",
+      "cleanKey": "religion the mystery cults",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "topic/the-four-gospels": {
+      "title": "",
+      "cleanKey": "the four gospels",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "topic/influence-and-rule-of-the-roman-empire": {
+      "title": "",
+      "cleanKey": "influence and rule of the roman empire",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "topic/jesus-ministry-as-he-passed-by": {
+      "title": "",
+      "cleanKey": "jesus ministry as he passed by",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "topic/jesus-post-resurrection-appearances": {
+      "title": "",
+      "cleanKey": "jesus post resurrection appearances",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "topic/jesus-public-ministry": {
+      "title": "",
+      "cleanKey": "jesus public ministry",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "topic/jesus-resurrected-morontia-body": {
+      "title": "",
+      "cleanKey": "jesus resurrected morontia body",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "topic/previous-written-records": {
+      "title": "",
+      "cleanKey": "previous written records",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "topic/the-practical-power-of-personal-faith": {
+      "title": "",
+      "cleanKey": "the practical power of personal faith",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "topic/the-western-world-in-the-first-century": {
+      "title": "",
+      "cleanKey": "the western world in the first century",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "topic/training-the-kingdoms-messengers": {
+      "title": "",
+      "cleanKey": "training the kingdoms messengers",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "topic/what-did-jesus-say-about-wealth": {
+      "title": "",
+      "cleanKey": "what did jesus say about wealth",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "topic/what-led-judas-iscariot-to-betray-jesus": {
+      "title": "",
+      "cleanKey": "what led judas iscariot to betray jesus",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "topic/what-teaching-methods-did-jesus-use": {
+      "title": "",
+      "cleanKey": "what teaching methods did jesus use",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "topic/when-was-jesus-born": {
+      "title": "",
+      "cleanKey": "when was jesus born",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "topic/why-did-jesus-make-a-triumphal-entry-into-jerusalem": {
+      "title": "",
+      "cleanKey": "why did jesus make a triumphal entry into jerusalem",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "topic/why-did-the-sanhedrin-want-jesus-death": {
+      "title": "",
+      "cleanKey": "why did the sanhedrin want jesus death",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    },
+    "topic/why-were-joseph-and-mary-chosen-as-jesus-parents": {
+      "title": "",
+      "cleanKey": "why were joseph and mary chosen as jesus parents",
+      "source": "jesus-summaries",
+      "suggestedMapping": {
+        "seriesId": "UPDATE_THIS",
+        "episodeId": "UPDATE_THIS",
+        "notes": "Manual mapping required"
+      }
+    }
+  }
+}

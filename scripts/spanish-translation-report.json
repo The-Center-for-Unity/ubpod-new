@@ -1,0 +1,1484 @@
+{
+  "timestamp": "2025-07-14T05:25:20.205Z",
+  "migratedEpisodes": 56,
+  "migratedSeries": 15,
+  "needsTranslation": [
+    {
+      "seriesId": "jesus-1",
+      "episodeId": "2",
+      "title": "Amar a Dios en lugar de temerle",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "jesus-1",
+      "episodeId": "3",
+      "title": "Crecimiento del concepto de Dios",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "jesus-1",
+      "episodeId": "4",
+      "title": "El perdón divino",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "jesus-2",
+      "episodeId": "3",
+      "title": "La naturaleza combinada de Jesús",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "jesus-2",
+      "episodeId": "5",
+      "title": "Arpa de Jesús",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "jesus-3",
+      "episodeId": "3",
+      "title": "Jesús Personalizado Espíritu Morador",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "jesus-3",
+      "episodeId": "4",
+      "title": "Religión personal de Jesús",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "jesus-4",
+      "episodeId": "3",
+      "title": "La experiencia de la resurrección de Jesús",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "jesus-4",
+      "episodeId": "4",
+      "title": "El cuerpo morontial resucitado de Jesús",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "jesus-5",
+      "episodeId": "2",
+      "title": "Cuerpo Evangelístico Femenino",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "jesus-5",
+      "episodeId": "5",
+      "title": "María, madre de Jesús",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "jesus-6",
+      "episodeId": "5",
+      "title": "Ira - La falta de comprensión",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "jesus-7",
+      "episodeId": "3",
+      "title": "Discurso de Jesús sobre la verdadera religión",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "jesus-8",
+      "episodeId": "1",
+      "title": "Ángeles - las Hijas de Dios",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "jesus-8",
+      "episodeId": "2",
+      "title": "Jesús - Visitas celestiales",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "jesus-8",
+      "episodeId": "5",
+      "title": "Maquiventa Melquisedec",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "jesus-9",
+      "episodeId": "1",
+      "title": "El Reino de los Cielos",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "jesus-9",
+      "episodeId": "3",
+      "title": "El ministerio personal de Jesús al pasar",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "jesus-9",
+      "episodeId": "4",
+      "title": "La formación de los mensajeros del Reino",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "jesus-10",
+      "episodeId": "5",
+      "title": "La Última Cena",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "jesus-11",
+      "episodeId": "2",
+      "title": "Matrimonio, divorcio e hijos",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "cosmic-1",
+      "episodeId": "1",
+      "title": "El Padre Universal",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "cosmic-1",
+      "episodeId": "2",
+      "title": "El universo de los universos",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "cosmic-1",
+      "episodeId": "3",
+      "title": "Las esferas sagradas del paraíso",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "cosmic-1",
+      "episodeId": "4",
+      "title": "Los siete superuniversos",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "cosmic-1",
+      "episodeId": "5",
+      "title": "Energía-Mente y Materia",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "cosmic-2",
+      "episodeId": "1",
+      "title": "El hijo eterno",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "cosmic-2",
+      "episodeId": "2",
+      "title": "El espíritu infinito",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "cosmic-2",
+      "episodeId": "3",
+      "title": "La Trinidad del Paraíso",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "cosmic-2",
+      "episodeId": "4",
+      "title": "Los Hijos de Dios del Paraíso",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "cosmic-2",
+      "episodeId": "5",
+      "title": "Espíritus ministradores del espacio",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "cosmic-3",
+      "episodeId": "1",
+      "title": "Origen y naturaleza de los Ajustadores del Pensamiento",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "cosmic-3",
+      "episodeId": "2",
+      "title": "Misión y ministerio de los Ajustadores del Pensamiento",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "cosmic-3",
+      "episodeId": "3",
+      "title": "Relación de los ajustadores con los mortales individuales",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "cosmic-3",
+      "episodeId": "4",
+      "title": "El Ajustador y el Alma",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "cosmic-3",
+      "episodeId": "5",
+      "title": "Supervivencia de la personalidad",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "cosmic-4",
+      "episodeId": "1",
+      "title": "La evolución de los universos locales",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "cosmic-4",
+      "episodeId": "2",
+      "title": "Administración del Universo Local",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "cosmic-4",
+      "episodeId": "3",
+      "title": "El Espíritu Materno del Universo Local",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "cosmic-4",
+      "episodeId": "4",
+      "title": "El universo local Hijos de Dios",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "cosmic-4",
+      "episodeId": "5",
+      "title": "Aspectos físicos del universo local",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "cosmic-5",
+      "episodeId": "1",
+      "title": "Espíritus Ministradores del Universo Local",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "cosmic-5",
+      "episodeId": "2",
+      "title": "Las Huestes Seráficas",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "cosmic-5",
+      "episodeId": "3",
+      "title": "Guardianes Seráficos del Destino",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "cosmic-5",
+      "episodeId": "4",
+      "title": "Gobierno Planetario Seráfico",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "cosmic-5",
+      "episodeId": "5",
+      "title": "Las criaturas de Midway",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "cosmic-6",
+      "episodeId": "1",
+      "title": "Los hijos ascendentes de Dios",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "cosmic-6",
+      "episodeId": "2",
+      "title": "Los siete mundos mansión",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "cosmic-6",
+      "episodeId": "3",
+      "title": "La vida morontial",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "cosmic-6",
+      "episodeId": "4",
+      "title": "El Cuerpo de la Finalidad",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "cosmic-6",
+      "episodeId": "5",
+      "title": "Unidad universal",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "cosmic-7",
+      "episodeId": "1",
+      "title": "El origen de Urantia",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "cosmic-7",
+      "episodeId": "2",
+      "title": "Establecimiento de la vida en Urantia",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "cosmic-7",
+      "episodeId": "3",
+      "title": "Las razas del amanecer del hombre primitivo",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "cosmic-7",
+      "episodeId": "4",
+      "title": "Las razas evolutivas del color",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "cosmic-7",
+      "episodeId": "5",
+      "title": "El príncipe planetario de Urantia",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "cosmic-8",
+      "episodeId": "1",
+      "title": "La rebelión de Lucifer",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "cosmic-8",
+      "episodeId": "2",
+      "title": "Los problemas de la rebelión de Lucifer",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "cosmic-8",
+      "episodeId": "3",
+      "title": "La rebelión planetaria",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "cosmic-8",
+      "episodeId": "4",
+      "title": "El defecto de Adán y Eva",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "cosmic-8",
+      "episodeId": "5",
+      "title": "La traición de Caligastia",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "cosmic-9",
+      "episodeId": "1",
+      "title": "El Jardín del Edén",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "cosmic-9",
+      "episodeId": "2",
+      "title": "Adán y Eva",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "cosmic-9",
+      "episodeId": "3",
+      "title": "El segundo jardín",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "cosmic-9",
+      "episodeId": "4",
+      "title": "La raza violeta después de los días de Adán",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "cosmic-9",
+      "episodeId": "5",
+      "title": "El defecto de Adán y Eva",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "cosmic-10",
+      "episodeId": "1",
+      "title": "Maquiventa Melquisedec",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "cosmic-10",
+      "episodeId": "2",
+      "title": "Las enseñanzas de Melquisedec en Oriente",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "cosmic-10",
+      "episodeId": "3",
+      "title": "Las enseñanzas de Melquisedec en Levante",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "cosmic-10",
+      "episodeId": "4",
+      "title": "Yahvé-Dios de los Hebreos",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "cosmic-10",
+      "episodeId": "5",
+      "title": "Las enseñanzas de Melquisedec en Occidente",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "cosmic-11",
+      "episodeId": "1",
+      "title": "Los orígenes del culto",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "cosmic-11",
+      "episodeId": "2",
+      "title": "Evolución temprana de la religión",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "cosmic-11",
+      "episodeId": "3",
+      "title": "Los cultos fantasmales",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "cosmic-11",
+      "episodeId": "4",
+      "title": "Pecado, sacrificio y expiación",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "cosmic-11",
+      "episodeId": "5",
+      "title": "La evolución posterior de la religión",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "cosmic-12",
+      "episodeId": "1",
+      "title": "La religión en la experiencia humana",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "cosmic-12",
+      "episodeId": "2",
+      "title": "La verdadera naturaleza de la religión",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "cosmic-12",
+      "episodeId": "3",
+      "title": "Los fundamentos de la fe religiosa",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "cosmic-12",
+      "episodeId": "4",
+      "title": "La realidad de la experiencia religiosa",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "cosmic-12",
+      "episodeId": "5",
+      "title": "La fe de Jesús",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "cosmic-13",
+      "episodeId": "1",
+      "title": "Deidad y realidad",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "cosmic-13",
+      "episodeId": "2",
+      "title": "Universo Niveles de Realidad",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "cosmic-13",
+      "episodeId": "3",
+      "title": "El Ser Supremo",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "cosmic-13",
+      "episodeId": "4",
+      "title": "El Supremo Todopoderoso",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "cosmic-13",
+      "episodeId": "5",
+      "title": "Dios Supremo",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "cosmic-14",
+      "episodeId": "1",
+      "title": "La relación de Dios con el universo",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "cosmic-14",
+      "episodeId": "2",
+      "title": "La relación de Dios con el individuo",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "cosmic-14",
+      "episodeId": "3",
+      "title": "Relación del Hijo Eterno con el Universo",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "cosmic-14",
+      "episodeId": "4",
+      "title": "Relación del Espíritu Infinito con el Universo",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "cosmic-14",
+      "episodeId": "5",
+      "title": "La Unión Trinitaria de la Deidad",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "urantia-papers",
+      "episodeId": "197",
+      "title": "La Fe de Jesús",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "jesus-12",
+      "episodeId": "1",
+      "title": "Traición y arresto de Jesús",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "jesus-12",
+      "episodeId": "2",
+      "title": "Último llamamiento y rendición de Pilatos",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "jesus-12",
+      "episodeId": "3",
+      "title": "Significado de la muerte de Jesús en la cruz",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "jesus-12",
+      "episodeId": "5",
+      "title": "Las apariciones de Jesús tras la resurrección",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "jesus-13",
+      "episodeId": "1",
+      "title": "Evolución de la doctrina de la expiación",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "jesus-13",
+      "episodeId": "3",
+      "title": "Errores de los primeros seguidores de Jesús",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "jesus-13",
+      "episodeId": "4",
+      "title": "Después de Pentecostés - Pedro, Pablo y el cristianismo",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "jesus-14",
+      "episodeId": "3",
+      "title": "¿Se casó Jesús con alguien?",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    },
+    {
+      "seriesId": "jesus-14",
+      "episodeId": "5",
+      "title": "Jesús",
+      "needsEpisodeCard": true,
+      "needsSummary": true
+    }
+  ],
+  "summary": {
+    "totalEpisodes": 101,
+    "byCategory": {
+      "jesus-1": [
+        {
+          "seriesId": "jesus-1",
+          "episodeId": "2",
+          "title": "Amar a Dios en lugar de temerle",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        },
+        {
+          "seriesId": "jesus-1",
+          "episodeId": "3",
+          "title": "Crecimiento del concepto de Dios",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        },
+        {
+          "seriesId": "jesus-1",
+          "episodeId": "4",
+          "title": "El perdón divino",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        }
+      ],
+      "jesus-2": [
+        {
+          "seriesId": "jesus-2",
+          "episodeId": "3",
+          "title": "La naturaleza combinada de Jesús",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        },
+        {
+          "seriesId": "jesus-2",
+          "episodeId": "5",
+          "title": "Arpa de Jesús",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        }
+      ],
+      "jesus-3": [
+        {
+          "seriesId": "jesus-3",
+          "episodeId": "3",
+          "title": "Jesús Personalizado Espíritu Morador",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        },
+        {
+          "seriesId": "jesus-3",
+          "episodeId": "4",
+          "title": "Religión personal de Jesús",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        }
+      ],
+      "jesus-4": [
+        {
+          "seriesId": "jesus-4",
+          "episodeId": "3",
+          "title": "La experiencia de la resurrección de Jesús",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        },
+        {
+          "seriesId": "jesus-4",
+          "episodeId": "4",
+          "title": "El cuerpo morontial resucitado de Jesús",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        }
+      ],
+      "jesus-5": [
+        {
+          "seriesId": "jesus-5",
+          "episodeId": "2",
+          "title": "Cuerpo Evangelístico Femenino",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        },
+        {
+          "seriesId": "jesus-5",
+          "episodeId": "5",
+          "title": "María, madre de Jesús",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        }
+      ],
+      "jesus-6": [
+        {
+          "seriesId": "jesus-6",
+          "episodeId": "5",
+          "title": "Ira - La falta de comprensión",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        }
+      ],
+      "jesus-7": [
+        {
+          "seriesId": "jesus-7",
+          "episodeId": "3",
+          "title": "Discurso de Jesús sobre la verdadera religión",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        }
+      ],
+      "jesus-8": [
+        {
+          "seriesId": "jesus-8",
+          "episodeId": "1",
+          "title": "Ángeles - las Hijas de Dios",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        },
+        {
+          "seriesId": "jesus-8",
+          "episodeId": "2",
+          "title": "Jesús - Visitas celestiales",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        },
+        {
+          "seriesId": "jesus-8",
+          "episodeId": "5",
+          "title": "Maquiventa Melquisedec",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        }
+      ],
+      "jesus-9": [
+        {
+          "seriesId": "jesus-9",
+          "episodeId": "1",
+          "title": "El Reino de los Cielos",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        },
+        {
+          "seriesId": "jesus-9",
+          "episodeId": "3",
+          "title": "El ministerio personal de Jesús al pasar",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        },
+        {
+          "seriesId": "jesus-9",
+          "episodeId": "4",
+          "title": "La formación de los mensajeros del Reino",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        }
+      ],
+      "jesus-10": [
+        {
+          "seriesId": "jesus-10",
+          "episodeId": "5",
+          "title": "La Última Cena",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        }
+      ],
+      "jesus-11": [
+        {
+          "seriesId": "jesus-11",
+          "episodeId": "2",
+          "title": "Matrimonio, divorcio e hijos",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        }
+      ],
+      "cosmic-1": [
+        {
+          "seriesId": "cosmic-1",
+          "episodeId": "1",
+          "title": "El Padre Universal",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        },
+        {
+          "seriesId": "cosmic-1",
+          "episodeId": "2",
+          "title": "El universo de los universos",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        },
+        {
+          "seriesId": "cosmic-1",
+          "episodeId": "3",
+          "title": "Las esferas sagradas del paraíso",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        },
+        {
+          "seriesId": "cosmic-1",
+          "episodeId": "4",
+          "title": "Los siete superuniversos",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        },
+        {
+          "seriesId": "cosmic-1",
+          "episodeId": "5",
+          "title": "Energía-Mente y Materia",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        }
+      ],
+      "cosmic-2": [
+        {
+          "seriesId": "cosmic-2",
+          "episodeId": "1",
+          "title": "El hijo eterno",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        },
+        {
+          "seriesId": "cosmic-2",
+          "episodeId": "2",
+          "title": "El espíritu infinito",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        },
+        {
+          "seriesId": "cosmic-2",
+          "episodeId": "3",
+          "title": "La Trinidad del Paraíso",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        },
+        {
+          "seriesId": "cosmic-2",
+          "episodeId": "4",
+          "title": "Los Hijos de Dios del Paraíso",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        },
+        {
+          "seriesId": "cosmic-2",
+          "episodeId": "5",
+          "title": "Espíritus ministradores del espacio",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        }
+      ],
+      "cosmic-3": [
+        {
+          "seriesId": "cosmic-3",
+          "episodeId": "1",
+          "title": "Origen y naturaleza de los Ajustadores del Pensamiento",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        },
+        {
+          "seriesId": "cosmic-3",
+          "episodeId": "2",
+          "title": "Misión y ministerio de los Ajustadores del Pensamiento",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        },
+        {
+          "seriesId": "cosmic-3",
+          "episodeId": "3",
+          "title": "Relación de los ajustadores con los mortales individuales",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        },
+        {
+          "seriesId": "cosmic-3",
+          "episodeId": "4",
+          "title": "El Ajustador y el Alma",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        },
+        {
+          "seriesId": "cosmic-3",
+          "episodeId": "5",
+          "title": "Supervivencia de la personalidad",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        }
+      ],
+      "cosmic-4": [
+        {
+          "seriesId": "cosmic-4",
+          "episodeId": "1",
+          "title": "La evolución de los universos locales",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        },
+        {
+          "seriesId": "cosmic-4",
+          "episodeId": "2",
+          "title": "Administración del Universo Local",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        },
+        {
+          "seriesId": "cosmic-4",
+          "episodeId": "3",
+          "title": "El Espíritu Materno del Universo Local",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        },
+        {
+          "seriesId": "cosmic-4",
+          "episodeId": "4",
+          "title": "El universo local Hijos de Dios",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        },
+        {
+          "seriesId": "cosmic-4",
+          "episodeId": "5",
+          "title": "Aspectos físicos del universo local",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        }
+      ],
+      "cosmic-5": [
+        {
+          "seriesId": "cosmic-5",
+          "episodeId": "1",
+          "title": "Espíritus Ministradores del Universo Local",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        },
+        {
+          "seriesId": "cosmic-5",
+          "episodeId": "2",
+          "title": "Las Huestes Seráficas",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        },
+        {
+          "seriesId": "cosmic-5",
+          "episodeId": "3",
+          "title": "Guardianes Seráficos del Destino",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        },
+        {
+          "seriesId": "cosmic-5",
+          "episodeId": "4",
+          "title": "Gobierno Planetario Seráfico",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        },
+        {
+          "seriesId": "cosmic-5",
+          "episodeId": "5",
+          "title": "Las criaturas de Midway",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        }
+      ],
+      "cosmic-6": [
+        {
+          "seriesId": "cosmic-6",
+          "episodeId": "1",
+          "title": "Los hijos ascendentes de Dios",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        },
+        {
+          "seriesId": "cosmic-6",
+          "episodeId": "2",
+          "title": "Los siete mundos mansión",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        },
+        {
+          "seriesId": "cosmic-6",
+          "episodeId": "3",
+          "title": "La vida morontial",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        },
+        {
+          "seriesId": "cosmic-6",
+          "episodeId": "4",
+          "title": "El Cuerpo de la Finalidad",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        },
+        {
+          "seriesId": "cosmic-6",
+          "episodeId": "5",
+          "title": "Unidad universal",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        }
+      ],
+      "cosmic-7": [
+        {
+          "seriesId": "cosmic-7",
+          "episodeId": "1",
+          "title": "El origen de Urantia",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        },
+        {
+          "seriesId": "cosmic-7",
+          "episodeId": "2",
+          "title": "Establecimiento de la vida en Urantia",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        },
+        {
+          "seriesId": "cosmic-7",
+          "episodeId": "3",
+          "title": "Las razas del amanecer del hombre primitivo",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        },
+        {
+          "seriesId": "cosmic-7",
+          "episodeId": "4",
+          "title": "Las razas evolutivas del color",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        },
+        {
+          "seriesId": "cosmic-7",
+          "episodeId": "5",
+          "title": "El príncipe planetario de Urantia",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        }
+      ],
+      "cosmic-8": [
+        {
+          "seriesId": "cosmic-8",
+          "episodeId": "1",
+          "title": "La rebelión de Lucifer",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        },
+        {
+          "seriesId": "cosmic-8",
+          "episodeId": "2",
+          "title": "Los problemas de la rebelión de Lucifer",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        },
+        {
+          "seriesId": "cosmic-8",
+          "episodeId": "3",
+          "title": "La rebelión planetaria",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        },
+        {
+          "seriesId": "cosmic-8",
+          "episodeId": "4",
+          "title": "El defecto de Adán y Eva",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        },
+        {
+          "seriesId": "cosmic-8",
+          "episodeId": "5",
+          "title": "La traición de Caligastia",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        }
+      ],
+      "cosmic-9": [
+        {
+          "seriesId": "cosmic-9",
+          "episodeId": "1",
+          "title": "El Jardín del Edén",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        },
+        {
+          "seriesId": "cosmic-9",
+          "episodeId": "2",
+          "title": "Adán y Eva",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        },
+        {
+          "seriesId": "cosmic-9",
+          "episodeId": "3",
+          "title": "El segundo jardín",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        },
+        {
+          "seriesId": "cosmic-9",
+          "episodeId": "4",
+          "title": "La raza violeta después de los días de Adán",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        },
+        {
+          "seriesId": "cosmic-9",
+          "episodeId": "5",
+          "title": "El defecto de Adán y Eva",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        }
+      ],
+      "cosmic-10": [
+        {
+          "seriesId": "cosmic-10",
+          "episodeId": "1",
+          "title": "Maquiventa Melquisedec",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        },
+        {
+          "seriesId": "cosmic-10",
+          "episodeId": "2",
+          "title": "Las enseñanzas de Melquisedec en Oriente",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        },
+        {
+          "seriesId": "cosmic-10",
+          "episodeId": "3",
+          "title": "Las enseñanzas de Melquisedec en Levante",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        },
+        {
+          "seriesId": "cosmic-10",
+          "episodeId": "4",
+          "title": "Yahvé-Dios de los Hebreos",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        },
+        {
+          "seriesId": "cosmic-10",
+          "episodeId": "5",
+          "title": "Las enseñanzas de Melquisedec en Occidente",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        }
+      ],
+      "cosmic-11": [
+        {
+          "seriesId": "cosmic-11",
+          "episodeId": "1",
+          "title": "Los orígenes del culto",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        },
+        {
+          "seriesId": "cosmic-11",
+          "episodeId": "2",
+          "title": "Evolución temprana de la religión",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        },
+        {
+          "seriesId": "cosmic-11",
+          "episodeId": "3",
+          "title": "Los cultos fantasmales",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        },
+        {
+          "seriesId": "cosmic-11",
+          "episodeId": "4",
+          "title": "Pecado, sacrificio y expiación",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        },
+        {
+          "seriesId": "cosmic-11",
+          "episodeId": "5",
+          "title": "La evolución posterior de la religión",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        }
+      ],
+      "cosmic-12": [
+        {
+          "seriesId": "cosmic-12",
+          "episodeId": "1",
+          "title": "La religión en la experiencia humana",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        },
+        {
+          "seriesId": "cosmic-12",
+          "episodeId": "2",
+          "title": "La verdadera naturaleza de la religión",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        },
+        {
+          "seriesId": "cosmic-12",
+          "episodeId": "3",
+          "title": "Los fundamentos de la fe religiosa",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        },
+        {
+          "seriesId": "cosmic-12",
+          "episodeId": "4",
+          "title": "La realidad de la experiencia religiosa",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        },
+        {
+          "seriesId": "cosmic-12",
+          "episodeId": "5",
+          "title": "La fe de Jesús",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        }
+      ],
+      "cosmic-13": [
+        {
+          "seriesId": "cosmic-13",
+          "episodeId": "1",
+          "title": "Deidad y realidad",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        },
+        {
+          "seriesId": "cosmic-13",
+          "episodeId": "2",
+          "title": "Universo Niveles de Realidad",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        },
+        {
+          "seriesId": "cosmic-13",
+          "episodeId": "3",
+          "title": "El Ser Supremo",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        },
+        {
+          "seriesId": "cosmic-13",
+          "episodeId": "4",
+          "title": "El Supremo Todopoderoso",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        },
+        {
+          "seriesId": "cosmic-13",
+          "episodeId": "5",
+          "title": "Dios Supremo",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        }
+      ],
+      "cosmic-14": [
+        {
+          "seriesId": "cosmic-14",
+          "episodeId": "1",
+          "title": "La relación de Dios con el universo",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        },
+        {
+          "seriesId": "cosmic-14",
+          "episodeId": "2",
+          "title": "La relación de Dios con el individuo",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        },
+        {
+          "seriesId": "cosmic-14",
+          "episodeId": "3",
+          "title": "Relación del Hijo Eterno con el Universo",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        },
+        {
+          "seriesId": "cosmic-14",
+          "episodeId": "4",
+          "title": "Relación del Espíritu Infinito con el Universo",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        },
+        {
+          "seriesId": "cosmic-14",
+          "episodeId": "5",
+          "title": "La Unión Trinitaria de la Deidad",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        }
+      ],
+      "urantia-papers": [
+        {
+          "seriesId": "urantia-papers",
+          "episodeId": "197",
+          "title": "La Fe de Jesús",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        }
+      ],
+      "jesus-12": [
+        {
+          "seriesId": "jesus-12",
+          "episodeId": "1",
+          "title": "Traición y arresto de Jesús",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        },
+        {
+          "seriesId": "jesus-12",
+          "episodeId": "2",
+          "title": "Último llamamiento y rendición de Pilatos",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        },
+        {
+          "seriesId": "jesus-12",
+          "episodeId": "3",
+          "title": "Significado de la muerte de Jesús en la cruz",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        },
+        {
+          "seriesId": "jesus-12",
+          "episodeId": "5",
+          "title": "Las apariciones de Jesús tras la resurrección",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        }
+      ],
+      "jesus-13": [
+        {
+          "seriesId": "jesus-13",
+          "episodeId": "1",
+          "title": "Evolución de la doctrina de la expiación",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        },
+        {
+          "seriesId": "jesus-13",
+          "episodeId": "3",
+          "title": "Errores de los primeros seguidores de Jesús",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        },
+        {
+          "seriesId": "jesus-13",
+          "episodeId": "4",
+          "title": "Después de Pentecostés - Pedro, Pablo y el cristianismo",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        }
+      ],
+      "jesus-14": [
+        {
+          "seriesId": "jesus-14",
+          "episodeId": "3",
+          "title": "¿Se casó Jesús con alguien?",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        },
+        {
+          "seriesId": "jesus-14",
+          "episodeId": "5",
+          "title": "Jesús",
+          "needsEpisodeCard": true,
+          "needsSummary": true
+        }
+      ]
+    }
+  }
+}

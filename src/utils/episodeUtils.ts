@@ -1,7 +1,5 @@
 import { Episode, SeriesType, EpisodeTranslations } from '../types/index';
 import { getAudioUrl, getPdfUrl, JESUS_AUDIO_BASE_URL, URANTIA_AUDIO_BASE_URL } from '../config/audio';
-import episodesData from '../data/json/episodes.json';
-import cosmicSeriesMappingsData from '../data/json/cosmic-series-mappings.json';
 import { getTranscriptUrl } from './mediaUtils';
 
 // Import consolidated content files
@@ -121,26 +119,18 @@ export function getEpisode(seriesId: string, episodeId: number, language: string
     return undefined;
   }
   
-  // Get content for all languages to build complete episode data
-  const enEpisodeContent = getEpisodeContent(seriesId, episodeId, 'en');
-  const esEpisodeContent = getEpisodeContent(seriesId, episodeId, 'es');
-  const frEpisodeContent = getEpisodeContent(seriesId, episodeId, 'fr');
-  const ptEpisodeContent = getEpisodeContent(seriesId, episodeId, 'pt');
+  // Get content for the requested language (with English as fallback)
+  let episodeContent = getEpisodeContent(seriesId, episodeId, language as 'en' | 'es' | 'fr' | 'pt');
   
-  if (!enEpisodeContent) {
-    console.warn(`[episodeUtils] English content not found for ${seriesId}/${episodeId}`);
+  // Fall back to English if content not found in requested language
+  if (!episodeContent && language !== 'en') {
+    episodeContent = getEpisodeContent(seriesId, episodeId, 'en');
+  }
+  
+  if (!episodeContent) {
+    console.warn(`[episodeUtils] Content not found for ${seriesId}/${episodeId} in ${language} or English`);
     return undefined;
   }
-  
-  // Use the requested language content as primary
-  let primaryContent: EpisodeContent | null = null;
-  switch (language) {
-    case 'es': primaryContent = esEpisodeContent; break;
-    case 'fr': primaryContent = frEpisodeContent; break;
-    case 'pt': primaryContent = ptEpisodeContent; break;
-    default: primaryContent = enEpisodeContent;
-  }
-  const fallbackContent = enEpisodeContent;
   
   // Generate URLs
   const audioUrl = getAudioUrl(seriesId, episodeId, language);
@@ -150,14 +140,14 @@ export function getEpisode(seriesId: string, episodeId: number, language: string
   // Build episode object
   const episode: Episode = {
     id: episodeId,
-    title: primaryContent?.title || fallbackContent?.title || `Episode ${episodeId}`,
+    title: episodeContent.title || `Episode ${episodeId}`,
     audioUrl,
     pdfUrl,
     imageUrl,
     series: seriesId as SeriesType,
-    description: primaryContent?.logline || fallbackContent?.logline || '',
-    summary: primaryContent?.summary || fallbackContent?.summary || '',
-    cardSummary: primaryContent?.episodeCard || fallbackContent?.episodeCard || primaryContent?.logline || fallbackContent?.logline || '',
+    description: episodeContent.logline || '',
+    summary: episodeContent.summary || '',
+    cardSummary: episodeContent.episodeCard || episodeContent.logline || '',
     summaryKey: episodeMetadata.summaryKey || undefined
   };
   

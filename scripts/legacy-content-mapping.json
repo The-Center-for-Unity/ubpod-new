@@ -1,0 +1,1118 @@
+{
+  "metadata": {
+    "generated": "2025-07-14T05:24:51.629Z",
+    "statistics": {
+      "mapped": 58,
+      "unmapped": 113,
+      "bySource": {
+        "jesus-summaries": 58
+      },
+      "bySeries": {
+        "jesus-10": 4,
+        "urantia-papers": 16,
+        "jesus-5": 3,
+        "jesus-2": 3,
+        "jesus-4": 4,
+        "jesus-3": 4,
+        "jesus-1": 2,
+        "jesus-8": 2,
+        "jesus-6": 4,
+        "jesus-7": 4,
+        "jesus-11": 4,
+        "jesus-13": 2,
+        "jesus-14": 3,
+        "jesus-9": 2,
+        "jesus-12": 1
+      }
+    },
+    "description": "Mapping from legacy content keys to current series/episode structure"
+  },
+  "mapping": {
+    "event/baptism-of-jesus-in-the-jordan": {
+      "seriesId": "jesus-10",
+      "episodeId": "1",
+      "currentTitle": "Baptism of Jesus in the Jordan",
+      "source": "jesus-summaries",
+      "confidence": "medium"
+    },
+    "event/betrayal-and-arrest-of-jesus": {
+      "seriesId": "urantia-papers",
+      "episodeId": "183",
+      "currentTitle": "The Betrayal and Arrest of Jesus",
+      "source": "jesus-summaries",
+      "confidence": "medium"
+    },
+    "event/birth-and-infancy-of-jesus": {
+      "seriesId": "urantia-papers",
+      "episodeId": "122",
+      "currentTitle": "Birth and Infancy of Jesus",
+      "source": "jesus-summaries",
+      "confidence": "medium"
+    },
+    "event/jesus-establishes-the-womens-corps": {
+      "seriesId": "jesus-5",
+      "episodeId": "1",
+      "currentTitle": "Jesus Establishes the Women's Corps",
+      "source": "jesus-summaries",
+      "confidence": "medium"
+    },
+    "event/jesus-feeds-the-five-thousand": {
+      "seriesId": "jesus-10",
+      "episodeId": "2",
+      "currentTitle": "Jesus Feeds the Five Thousand",
+      "source": "jesus-summaries",
+      "confidence": "medium"
+    },
+    "event/resurrection-of-lazarus": {
+      "seriesId": "jesus-10",
+      "episodeId": "4",
+      "currentTitle": "Resurrection of Lazarus",
+      "source": "jesus-summaries",
+      "confidence": "medium"
+    },
+    "event/sojourn-in-alexandria": {
+      "seriesId": "jesus-2",
+      "episodeId": "1",
+      "currentTitle": "Sojourn in Alexandria",
+      "source": "jesus-summaries",
+      "confidence": "medium"
+    },
+    "event/the-last-supper": {
+      "seriesId": "urantia-papers",
+      "episodeId": "179",
+      "currentTitle": "The Last Supper",
+      "source": "jesus-summaries",
+      "confidence": "medium"
+    },
+    "event/the-resurrection-of-jesus": {
+      "seriesId": "jesus-4",
+      "episodeId": "5",
+      "currentTitle": "The Resurrection of Jesus",
+      "source": "jesus-summaries",
+      "confidence": "medium"
+    },
+    "event/the-second-preaching-tour": {
+      "seriesId": "urantia-papers",
+      "episodeId": "149",
+      "currentTitle": "The Second Preaching Tour",
+      "source": "jesus-summaries",
+      "confidence": "medium"
+    },
+    "event/the-transfiguration": {
+      "seriesId": "jesus-10",
+      "episodeId": "3",
+      "currentTitle": "The Transfiguration",
+      "source": "jesus-summaries",
+      "confidence": "medium"
+    },
+    "event/bestowal-of-the-spirit-of-truth": {
+      "seriesId": "jesus-3",
+      "episodeId": "2",
+      "currentTitle": "Spirit of Truth - The Comforter",
+      "source": "jesus-summaries",
+      "confidence": "medium"
+    },
+    "event/first-preaching-tour-of-galilee": {
+      "seriesId": "urantia-papers",
+      "episodeId": "146",
+      "currentTitle": "First Preaching Tour of Galilee",
+      "source": "jesus-summaries",
+      "confidence": "medium"
+    },
+    "event/jesus-alone-in-gethsemane": {
+      "seriesId": "urantia-papers",
+      "episodeId": "182",
+      "currentTitle": "In Gethsemane",
+      "source": "jesus-summaries",
+      "confidence": "medium"
+    },
+    "event/the-feast-of-tabernacles": {
+      "seriesId": "urantia-papers",
+      "episodeId": "162",
+      "currentTitle": "At the Feast of Tabernacles",
+      "source": "jesus-summaries",
+      "confidence": "medium"
+    },
+    "event/the-great-temptation": {
+      "seriesId": "jesus-1",
+      "episodeId": "5",
+      "currentTitle": "The Great Temptation",
+      "source": "jesus-summaries",
+      "confidence": "medium"
+    },
+    "group/the-twelve-apostles": {
+      "seriesId": "urantia-papers",
+      "episodeId": "139",
+      "currentTitle": "The Twelve Apostles",
+      "source": "jesus-summaries",
+      "confidence": "medium"
+    },
+    "person/elizabeth-mother-of-john-the-baptist": {
+      "seriesId": "urantia-papers",
+      "episodeId": "135",
+      "currentTitle": "John the Baptist",
+      "source": "jesus-summaries",
+      "confidence": "medium"
+    },
+    "person/gabriel": {
+      "seriesId": "jesus-8",
+      "episodeId": "3",
+      "currentTitle": "Gabriel",
+      "source": "jesus-summaries",
+      "confidence": "medium"
+    },
+    "person/machiventa-melchizedek": {
+      "seriesId": "urantia-papers",
+      "episodeId": "93",
+      "currentTitle": "Machiventa Melchizedek",
+      "source": "jesus-summaries",
+      "confidence": "medium"
+    },
+    "person/mary-magdalene": {
+      "seriesId": "jesus-5",
+      "episodeId": "3",
+      "currentTitle": "Mary Magdalene",
+      "source": "jesus-summaries",
+      "confidence": "medium"
+    },
+    "person/satan": {
+      "seriesId": "jesus-8",
+      "episodeId": "4",
+      "currentTitle": "Satan",
+      "source": "jesus-summaries",
+      "confidence": "medium"
+    },
+    "topic/accidents-and-divine-intervention": {
+      "seriesId": "jesus-6",
+      "episodeId": "4",
+      "currentTitle": "Accidents and Divine Intervention",
+      "source": "jesus-summaries",
+      "confidence": "medium"
+    },
+    "topic/acme-of-religious-living": {
+      "seriesId": "jesus-7",
+      "episodeId": "5",
+      "currentTitle": "Acme of Religious Living",
+      "source": "jesus-summaries",
+      "confidence": "medium"
+    },
+    "topic/after-pentecost-peter-paul-and-christianity": {
+      "seriesId": "urantia-papers",
+      "episodeId": "195",
+      "currentTitle": "After Pentecost",
+      "source": "jesus-summaries",
+      "confidence": "medium"
+    },
+    "topic/art-of-living": {
+      "seriesId": "jesus-11",
+      "episodeId": "1",
+      "currentTitle": "Art of Living",
+      "source": "jesus-summaries",
+      "confidence": "medium"
+    },
+    "topic/balance-and-lures-of-maturity": {
+      "seriesId": "jesus-11",
+      "episodeId": "3",
+      "currentTitle": "Balance and Lures of Maturity",
+      "source": "jesus-summaries",
+      "confidence": "medium"
+    },
+    "topic/concepts-of-the-expected-messiah": {
+      "seriesId": "jesus-13",
+      "episodeId": "2",
+      "currentTitle": "Concepts of the Expected Messiah",
+      "source": "jesus-summaries",
+      "confidence": "medium"
+    },
+    "topic/did-jesus-ever-feel-sad": {
+      "seriesId": "jesus-14",
+      "episodeId": "2",
+      "currentTitle": "Did Jesus Ever Feel Sad?",
+      "source": "jesus-summaries",
+      "confidence": "medium"
+    },
+    "topic/divine-forgiveness": {
+      "seriesId": "jesus-7",
+      "episodeId": "2",
+      "currentTitle": "Divine Forgiveness",
+      "source": "jesus-summaries",
+      "confidence": "medium"
+    },
+    "topic/evolution-of-the-atonement-doctrine": {
+      "seriesId": "urantia-papers",
+      "episodeId": "97",
+      "currentTitle": "Evolution of the God Concept Among the Hebrews",
+      "source": "jesus-summaries",
+      "confidence": "medium"
+    },
+    "topic/good-and-evil": {
+      "seriesId": "jesus-6",
+      "episodeId": "1",
+      "currentTitle": "Good and Evil",
+      "source": "jesus-summaries",
+      "confidence": "medium"
+    },
+    "topic/growth-of-the-god-concept": {
+      "seriesId": "urantia-papers",
+      "episodeId": "104",
+      "currentTitle": "Growth of the Trinity Concept",
+      "source": "jesus-summaries",
+      "confidence": "medium"
+    },
+    "topic/hobbies-and-interests-jesus-enjoyed": {
+      "seriesId": "jesus-14",
+      "episodeId": "1",
+      "currentTitle": "Hobbies and Interests Jesus Enjoyed",
+      "source": "jesus-summaries",
+      "confidence": "medium"
+    },
+    "topic/how-did-jesus-treat-women": {
+      "seriesId": "jesus-5",
+      "episodeId": "4",
+      "currentTitle": "How Did Jesus Treat Women",
+      "source": "jesus-summaries",
+      "confidence": "medium"
+    },
+    "topic/indwelling-spirit-of-god": {
+      "seriesId": "jesus-3",
+      "episodeId": "1",
+      "currentTitle": "Indwelling Spirit of God",
+      "source": "jesus-summaries",
+      "confidence": "medium"
+    },
+    "topic/overview-of-jesus-teachings": {
+      "seriesId": "jesus-9",
+      "episodeId": "2",
+      "currentTitle": "Overview of Jesus Teachings",
+      "source": "jesus-summaries",
+      "confidence": "medium"
+    },
+    "topic/personal-religion-of-jesus": {
+      "seriesId": "jesus-7",
+      "episodeId": "4",
+      "currentTitle": "Personal Religion of Jesus",
+      "source": "jesus-summaries",
+      "confidence": "medium"
+    },
+    "topic/philosophy-rodan-of-alexandria": {
+      "seriesId": "urantia-papers",
+      "episodeId": "160",
+      "currentTitle": "Rodan of Alexandria",
+      "source": "jesus-summaries",
+      "confidence": "medium"
+    },
+    "topic/the-kingdom-of-heaven": {
+      "seriesId": "urantia-papers",
+      "episodeId": "170",
+      "currentTitle": "The Kingdom of Heaven",
+      "source": "jesus-summaries",
+      "confidence": "medium"
+    },
+    "topic/the-paradise-trinity": {
+      "seriesId": "urantia-papers",
+      "episodeId": "10",
+      "currentTitle": "The Paradise Trinity",
+      "source": "jesus-summaries",
+      "confidence": "medium"
+    },
+    "topic/importance-of-the-early-home-life": {
+      "seriesId": "jesus-14",
+      "episodeId": "4",
+      "currentTitle": "Importance of the Early Home Life",
+      "source": "jesus-summaries",
+      "confidence": "medium"
+    },
+    "topic/jesus-tour-of-the-mediterranean-world": {
+      "seriesId": "jesus-2",
+      "episodeId": "2",
+      "currentTitle": "Tour of the Mediterranean World",
+      "source": "jesus-summaries",
+      "confidence": "medium"
+    },
+    "topic/profound-quotes-to-live-by": {
+      "seriesId": "jesus-9",
+      "episodeId": "5",
+      "currentTitle": "Profound Quotes to Live By",
+      "source": "jesus-summaries",
+      "confidence": "medium"
+    },
+    "topic/sonship-with-god": {
+      "seriesId": "jesus-3",
+      "episodeId": "5",
+      "currentTitle": "Sonship with God",
+      "source": "jesus-summaries",
+      "confidence": "medium"
+    },
+    "topic/spirit-of-truth-the-comforter": {
+      "seriesId": "jesus-3",
+      "episodeId": "2",
+      "currentTitle": "Spirit of Truth - The Comforter",
+      "source": "jesus-summaries",
+      "confidence": "medium"
+    },
+    "topic/star-of-bethlehem": {
+      "seriesId": "jesus-2",
+      "episodeId": "4",
+      "currentTitle": "Star of Bethlehem",
+      "source": "jesus-summaries",
+      "confidence": "medium"
+    },
+    "topic/the-personality-of-god": {
+      "seriesId": "jesus-1",
+      "episodeId": "1",
+      "currentTitle": "The Personality of God",
+      "source": "jesus-summaries",
+      "confidence": "medium"
+    },
+    "topic/the-two-thieves-on-the-cross": {
+      "seriesId": "jesus-12",
+      "episodeId": "4",
+      "currentTitle": "The Two Thieves",
+      "source": "jesus-summaries",
+      "confidence": "medium"
+    },
+    "topic/true-values": {
+      "seriesId": "jesus-11",
+      "episodeId": "4",
+      "currentTitle": "True Values",
+      "source": "jesus-summaries",
+      "confidence": "medium"
+    },
+    "topic/was-jesus-really-born-of-a-virgin": {
+      "seriesId": "jesus-13",
+      "episodeId": "5",
+      "currentTitle": "Was Jesus Really Born of a Virgin?",
+      "source": "jesus-summaries",
+      "confidence": "medium"
+    },
+    "topic/what-happens-when-we-die": {
+      "seriesId": "jesus-4",
+      "episodeId": "1",
+      "currentTitle": "What Happens When We Die",
+      "source": "jesus-summaries",
+      "confidence": "medium"
+    },
+    "topic/what-is-the-soul": {
+      "seriesId": "jesus-4",
+      "episodeId": "2",
+      "currentTitle": "What is the Soul",
+      "source": "jesus-summaries",
+      "confidence": "medium"
+    },
+    "topic/what-is-the-urantia-book": {
+      "seriesId": "jesus-4",
+      "episodeId": "2",
+      "currentTitle": "What is the Soul",
+      "source": "jesus-summaries",
+      "confidence": "medium"
+    },
+    "topic/why-are-some-people-happier-than-others": {
+      "seriesId": "jesus-11",
+      "episodeId": "5",
+      "currentTitle": "Why Are Some People Happier than Others",
+      "source": "jesus-summaries",
+      "confidence": "medium"
+    },
+    "topic/why-are-we-confronted-with-unfair-life-situations": {
+      "seriesId": "jesus-6",
+      "episodeId": "2",
+      "currentTitle": "Why Are We Confronted With Unfair Life Situations",
+      "source": "jesus-summaries",
+      "confidence": "medium"
+    },
+    "topic/why-do-we-suffer-from-affliction": {
+      "seriesId": "jesus-6",
+      "episodeId": "3",
+      "currentTitle": "Why Do We Suffer from Affliction",
+      "source": "jesus-summaries",
+      "confidence": "medium"
+    },
+    "topic/worship-and-prayer": {
+      "seriesId": "jesus-7",
+      "episodeId": "1",
+      "currentTitle": "Worship and Prayer",
+      "source": "jesus-summaries",
+      "confidence": "medium"
+    }
+  },
+  "unmapped": [
+    {
+      "key": "topic/establishing-jesus-ancestry",
+      "cleanKey": "establishing jesus ancestry",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "event/forty-days-in-the-wilderness",
+      "cleanKey": "forty days in the wilderness",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "event/jesus-attends-a-wedding-at-cana",
+      "cleanKey": "jesus attends a wedding at cana",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "event/jesus-ordains-his-twelve-apostles",
+      "cleanKey": "jesus ordains his twelve apostles",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "event/jesus-discourse-on-true-religion",
+      "cleanKey": "jesus discourse on true religion",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "event/jesus-entry-into-jerusalem-palm-sunday",
+      "cleanKey": "jesus entry into jerusalem palm sunday",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "event/peter-denies-jesus-three-times",
+      "cleanKey": "peter denies jesus three times",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "event/pilates-last-appeal-and-surrender",
+      "cleanKey": "pilates last appeal and surrender",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "event/the-healing-at-sundown",
+      "cleanKey": "the healing at sundown",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "event/conference-with-johns-apostles",
+      "cleanKey": "conference with johns apostles",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "event/jesus-cleanses-the-temple-of-moneylenders",
+      "cleanKey": "jesus cleanses the temple of moneylenders",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "event/jesus-first-passover-age-13",
+      "cleanKey": "jesus first passover age 13",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "event/the-king-making-episode",
+      "cleanKey": "the king making episode",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "group/gentiles",
+      "cleanKey": "group/gentiles",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "group/jesus-siblings",
+      "cleanKey": "group/jesus siblings",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "person/mary-of-bethany",
+      "cleanKey": "person/mary of bethany",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "group/pharisees",
+      "cleanKey": "group/pharisees",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "group/sadducees",
+      "cleanKey": "group/sadducees",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "group/samaritans",
+      "cleanKey": "group/samaritans",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "group/sanhedrin",
+      "cleanKey": "group/sanhedrin",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "group/seventy-disciples",
+      "cleanKey": "group/seventy disciples",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "group/six-jerusalem-spies",
+      "cleanKey": "group/six jerusalem spies",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "group/three-wise-men",
+      "cleanKey": "group/three wise men",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "group/womens-evangelistic-corps",
+      "cleanKey": "group/womens evangelistic corps",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "group/zealots",
+      "cleanKey": "group/zealots",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "group/zebedees-family",
+      "cleanKey": "group/zebedees family",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "object/home-of-jesus-in-nazareth",
+      "cleanKey": "object/home of jesus in nazareth",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "person/jesus",
+      "cleanKey": "person/jesus",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "person/rodan",
+      "cleanKey": "person/rodan",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "person/abner",
+      "cleanKey": "person/abner",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "person/agaman",
+      "cleanKey": "person/agaman",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "person/andrew",
+      "cleanKey": "person/andrew",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "person/caiaphas",
+      "cleanKey": "person/caiaphas",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "person/david-zebedee",
+      "cleanKey": "person/david zebedee",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "person/gadiah",
+      "cleanKey": "person/gadiah",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "person/ganid",
+      "cleanKey": "person/ganid",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "person/gonod",
+      "cleanKey": "person/gonod",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "person/herod-antipas",
+      "cleanKey": "person/herod antipas",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "person/james-brother-of-jesus",
+      "cleanKey": "person/james brother of jesus",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "person/james-alpheus",
+      "cleanKey": "person/james alpheus",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "person/james-zebedee",
+      "cleanKey": "person/james zebedee",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "person/john-mark",
+      "cleanKey": "person/john mark",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "person/john-zebedee",
+      "cleanKey": "person/john zebedee",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "person/joseph-father-of-jesus",
+      "cleanKey": "person/joseph father of jesus",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "person/joseph-of-arimathea",
+      "cleanKey": "person/joseph of arimathea",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "person/josiah",
+      "cleanKey": "person/josiah",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "person/judas-alpheus",
+      "cleanKey": "person/judas alpheus",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "person/judas-iscariot",
+      "cleanKey": "person/judas iscariot",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "person/lazarus",
+      "cleanKey": "person/lazarus",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "person/martha-of-bethany",
+      "cleanKey": "person/martha of bethany",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "person/mary-mother-of-jesus",
+      "cleanKey": "person/mary mother of jesus",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "person/mary-wife-of-elijah-mark",
+      "cleanKey": "person/mary wife of elijah mark",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "person/matthew-levi",
+      "cleanKey": "person/matthew levi",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "person/miriam",
+      "cleanKey": "person/miriam",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "person/nathaniel",
+      "cleanKey": "person/nathaniel",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "person/paul",
+      "cleanKey": "person/paul",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "person/philip-apostle-of-jesus",
+      "cleanKey": "person/philip apostle of jesus",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "person/rebecca-of-sepphoris",
+      "cleanKey": "person/rebecca of sepphoris",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "person/ruth-sister-of-jesus",
+      "cleanKey": "person/ruth sister of jesus",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "person/salome-wife-of-zebedee",
+      "cleanKey": "person/salome wife of zebedee",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "person/simon-peter",
+      "cleanKey": "person/simon peter",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "person/simon-zelotes",
+      "cleanKey": "person/simon zelotes",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "person/stephen",
+      "cleanKey": "person/stephen",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "person/thomas-didymus",
+      "cleanKey": "person/thomas didymus",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "person/zebedee",
+      "cleanKey": "person/zebedee",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "relationship/jesus-james-brother-of-jesus",
+      "cleanKey": "relationship/jesus james brother of jesus",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "relationship/jesus-judas-iscariot",
+      "cleanKey": "relationship/jesus judas iscariot",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "topic/angels-the-daughters-of-god",
+      "cleanKey": "angels the daughters of god",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "topic/anger-the-lack-of-understanding",
+      "cleanKey": "anger the lack of understanding",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "topic/did-jesus-marry-anyone",
+      "cleanKey": "did jesus marry anyone",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "topic/faith-and-righteousness",
+      "cleanKey": "faith and righteousness",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "topic/fatherly-and-brotherly-love",
+      "cleanKey": "fatherly and brotherly love",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "topic/history-of-baptism",
+      "cleanKey": "history of baptism",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "topic/is-jesus-death-related-to-the-jewish-passover",
+      "cleanKey": "is jesus death related to the jewish passover",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "topic/jesus-celestial-visitations",
+      "cleanKey": "jesus celestial visitations",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "topic/jesus-bestowal-mission",
+      "cleanKey": "jesus bestowal mission",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "topic/jesus-burial-cloths",
+      "cleanKey": "jesus burial cloths",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "topic/jesus-christ-our-creator-son",
+      "cleanKey": "jesus christ our creator son",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "topic/jesus-combined-nature-human-and-divine",
+      "cleanKey": "jesus combined nature human and divine",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "topic/jesus-first-year-of-ministry",
+      "cleanKey": "jesus first year of ministry",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "topic/jesus-harp",
+      "cleanKey": "jesus harp",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "topic/jesus-miracles",
+      "cleanKey": "jesus miracles",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "topic/jesus-parables",
+      "cleanKey": "jesus parables",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "topic/jesus-personalized-indwelling-spirit",
+      "cleanKey": "jesus personalized indwelling spirit",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "topic/jesus-return-the-masters-second-coming",
+      "cleanKey": "jesus return the masters second coming",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "topic/jesus-human-rights-advocate",
+      "cleanKey": "jesus human rights advocate",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "topic/jesus-resurrection-experience",
+      "cleanKey": "jesus resurrection experience",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "topic/life-in-first-century-palestine",
+      "cleanKey": "life in first century palestine",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "topic/loving-god-instead-of-fearing-god",
+      "cleanKey": "loving god instead of fearing god",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "topic/marriage-divorce-and-children",
+      "cleanKey": "marriage divorce and children",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "topic/meaning-of-jesus-death-on-the-cross",
+      "cleanKey": "meaning of jesus death on the cross",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "topic/mistakes-of-jesus-early-followers",
+      "cleanKey": "mistakes of jesus early followers",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "topic/necessity-for-jesus-departure",
+      "cleanKey": "necessity for jesus departure",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "topic/philosophy-materialism",
+      "cleanKey": "philosophy materialism",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "topic/philosophy-secular-totalitarianism",
+      "cleanKey": "philosophy secular totalitarianism",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "topic/religion-the-mystery-cults",
+      "cleanKey": "religion the mystery cults",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "topic/the-four-gospels",
+      "cleanKey": "the four gospels",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "topic/influence-and-rule-of-the-roman-empire",
+      "cleanKey": "influence and rule of the roman empire",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "topic/jesus-ministry-as-he-passed-by",
+      "cleanKey": "jesus ministry as he passed by",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "topic/jesus-post-resurrection-appearances",
+      "cleanKey": "jesus post resurrection appearances",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "topic/jesus-public-ministry",
+      "cleanKey": "jesus public ministry",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "topic/jesus-resurrected-morontia-body",
+      "cleanKey": "jesus resurrected morontia body",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "topic/previous-written-records",
+      "cleanKey": "previous written records",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "topic/the-practical-power-of-personal-faith",
+      "cleanKey": "the practical power of personal faith",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "topic/the-western-world-in-the-first-century",
+      "cleanKey": "the western world in the first century",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "topic/training-the-kingdoms-messengers",
+      "cleanKey": "training the kingdoms messengers",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "topic/what-did-jesus-say-about-wealth",
+      "cleanKey": "what did jesus say about wealth",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "topic/what-led-judas-iscariot-to-betray-jesus",
+      "cleanKey": "what led judas iscariot to betray jesus",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "topic/what-teaching-methods-did-jesus-use",
+      "cleanKey": "what teaching methods did jesus use",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "topic/when-was-jesus-born",
+      "cleanKey": "when was jesus born",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "topic/why-did-jesus-make-a-triumphal-entry-into-jerusalem",
+      "cleanKey": "why did jesus make a triumphal entry into jerusalem",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "topic/why-did-the-sanhedrin-want-jesus-death",
+      "cleanKey": "why did the sanhedrin want jesus death",
+      "title": "",
+      "source": "jesus-summaries"
+    },
+    {
+      "key": "topic/why-were-joseph-and-mary-chosen-as-jesus-parents",
+      "cleanKey": "why were joseph and mary chosen as jesus parents",
+      "title": "",
+      "source": "jesus-summaries"
+    }
+  ]
+}
