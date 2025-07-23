@@ -1,0 +1,41 @@
+{
+  "header": {
+    "badges": {
+      "jesusFocused": "Serie axată pe Isus",
+      "cosmicSeries": "Seria Cosmic"
+    },
+    "actions": {
+      "startListening": "Începeți să ascultați"
+    }
+  },
+  "navigation": {
+    "title": "SERII PODCAST",
+    "mobileTitle": "SERIA SELECT",
+    "filters": {
+      "all": "Toate",
+      "jesus": "Isus",
+      "cosmic": "Cosmic"
+    },
+    "noSeries": "Nu s-au găsit serii în această categorie"
+  },
+  "episodes": {
+    "title": "EPISODII",
+    "loading": "Încărcare episoade...",
+    "noEpisodes": {
+      "title": "Nu există episoade disponibile",
+      "message": "Acest serial nu are încă niciun episod. Vă rugăm să reveniți mai târziu."
+    },
+    "error": {
+      "title": "Eroare",
+      "message": "A eșuat încărcarea episoadelor. Vă rugăm să încercați din nou mai târziu."
+    }
+  },
+  "episodeCard": {
+    "episodePrefix": "Episod",
+    "actions": {
+      "listen": "Ascultați",
+      "read": "Citește",
+      "download": "Descărcare"
+    }
+  }
+}

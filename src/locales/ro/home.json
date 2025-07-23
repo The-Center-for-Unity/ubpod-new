@@ -1,0 +1,58 @@
+{
+  "hero": {
+    "title": "The Urantia\nBook Podcast",
+    "subtitle": "Călătorii audio bazate pe inteligență artificială prin înțelepciunea cosmică",
+    "buttons": {
+      "startListening": "Începeți să ascultați",
+      "browseSeries": "Răsfoiește seriile"
+    }
+  },
+  "series": {
+    "subtitle": "SERII PODCAST",
+    "title": "Explorați colecțiile noastre",
+    "description": "Alegeți din biblioteca noastră în creștere de serii tematice, fiecare explorând o fațetă unică a învățăturilor cosmice ale Cărții Urantia."
+  },
+  "features": {
+    "subtitle": "CARACTERISTICI",
+    "title": "Un nou mod de a experimenta\nCartea Urantia",
+    "description": "UrantiaBookPod aduce învățăturile cosmice la viață prin intermediul narațiunilor audio create de AI, care fac conceptele complexe accesibile și captivante.",
+    "items": {
+      "aiAudio": {
+        "title": "Călătorii audio create de AI",
+        "description": "Ascultați narațiuni captivante în stil podcast care explorează conceptele Cărții Urantia cu perspective și idei noi."
+      },
+      "simplified": {
+        "title": "Concepte complexe simplificate",
+        "description": "Învățături cosmice dificile împărțite în conversații accesibile pe care oricine le poate înțelege și aprecia."
+      },
+      "offline": {
+        "title": "Acces offline",
+        "description": "Descărcați episoade pentru ascultare offline, perfect pentru navete, plimbări sau perioade fără acces la internet."
+      }
+    }
+  },
+  "howItWorks": {
+    "subtitle": "CUM FUNCȚIONEAZĂ",
+    "title": "Simplu și accesibil",
+    "description": "Am conceput UrantiaBookPod pentru a fi intuitiv și accesibil pentru toată lumea, indiferent dacă sunteți acasă sau în deplasare.",
+    "steps": {
+      "browse": {
+        "title": "Răsfoiește episoadele",
+        "description": "Navigați prin colecția noastră de episoade podcast, organizate în funcție de lucrări și subiecte din Cartea Urantia."
+      },
+      "select": {
+        "title": "Selectați o discuție",
+        "description": "Alegeți un episod podcast care vă interesează și faceți clic pentru a accesa discuția audio."
+      },
+      "listen": {
+        "title": "Ascultați și implicați-vă",
+        "description": "Redați podcastul pe orice dispozitiv, descărcați pentru ascultare offline sau partajați cu prietenii."
+      }
+    }
+  },
+  "cta": {
+    "title": "Începe-ți călătoria",
+    "description": "Cartea Urantia oferă informații profunde despre universul nostru, lumea noastră și destinul nostru spiritual. Începeți astăzi să explorați aceste învățături cosmice prin intermediul discuțiilor noastre captivante din podcast.",
+    "button": "Explorați documentele"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "title": "Documentele Urantia",
+  "description": "Cufundați-vă în înțelepciunea cosmică prin călătoriile audio ale Cărții Urantia create de AI. Experimentați învățături profunde într-un format nou, accesibil.",
+  "search_placeholder": "Căutați lucrări după titlu, număr sau cuvânt cheie...",
+  "grid_view": "Vizualizare grilă",
+  "list_view": "Vizualizare listă",
+  "search_results": "Au fost găsite {{count}} lucrări care corespund \"{{query}}\"",
+  "clear_search": "Clar",
+  "part_header": "Parte {{id}}: {{titlu}}",
+  "part_label": "Parte {{id}}",
+  "listen_button": "Ascultați",
+  "read_button": "Citește",
+  "download_button": "Descărcare",
+  "foreword_title": "Prefață",
+  "part_1_title": "Universul central și superuniversurile",
+  "part_2_title": "Universul local",
+  "part_3_title": "Istoria Urantiei",
+  "part_4_title": "Viața și învățăturile lui Iisus"
+}

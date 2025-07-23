@@ -1,0 +1,65 @@
+{
+  "title": "EXONERARE DE RĂSPUNDERE IMPORTANTĂ",
+  "subtitle": "VĂ RUGĂM SĂ CITIȚI ÎNAINTE DE A ASCULTA",
+  "introduction": "UrantiaBookPod.com oferă episoade podcast audio generate de inteligența artificială, bazate pe documentele conținute în Cartea Urantia. Fiecare episod corespunde unei anumite lucrări din textul original.",
+  "sections": {
+    "copyright": {
+      "title": "Drepturile de autor și atribuirea",
+      "items": {
+        "0": "Textul original al Cărții Urantia este proprietatea cu drepturi de autor a Fundației Urantia.",
+        "1": "Conținutul audio furnizat pe acest site este derivat din text cu ajutorul tehnologiei AI și este destinat scopurilor educaționale și de accesibilitate.",
+        "2": "Acest serviciu nu este afiliat, aprobat sau conectat oficial la Fundația Urantia sau la vreo organizație oficială de publicare a Cărții Urantia."
+      }
+    },
+    "aiContent": {
+      "title": "Notificare importantă privind conținutul generat de inteligența artificială",
+      "warning": "ATENȚIE: Acest conținut este generat cu ajutorul tehnologiei AI, care are limitări inerente.",
+      "description": "Inteligența Artificială poate face și face greșeli atât de omisiune, cât și de comitere - ceea ce înseamnă că poate:",
+      "limitations": {
+        "0": "Omiteți detalii importante sau informații contextuale",
+        "1": "Interpretarea greșită a conceptelor filosofice",
+        "2": "Simplificarea excesivă a narațiunilor spirituale complexe",
+        "3": "Generarea ocazională de declarații inexacte"
+      },
+      "disclaimer": "Aceste episoade podcast ar trebui privite doar ca o introducere imperfectă și NU ca o reprezentare autoritară a învățăturilor din Cartea Urantia.",
+      "requirement": "Pentru un studiu serios, utilizatorii TREBUIE să se refere la versiunea oficială publicată a Cărții Urantia.",
+      "purpose": "Episoadele sunt furnizate în ciuda imperfecțiunilor lor, deoarece credem că oferă valoare ca resursă suplimentară."
+    },
+    "fairUse": {
+      "title": "Declarație de utilizare corectă",
+      "content": "Conținutul UrantiaBookPod.com este furnizat în conformitate cu principiile utilizării corecte în scopuri de comentariu, critică, cercetare, predare și îmbunătățire a accesibilității la ideile conținute în Cartea Urantia."
+    },
+    "technical": {
+      "title": "Limitările tehnice ale tehnologiei IA",
+      "description": "Conținutul audio a fost creat cu ajutorul tehnologiei AI, care are limitări semnificative atunci când abordează concepte spirituale și filosofice complexe.",
+      "feedback": "Feedback-ul de la studenții de lungă durată ai Cărții Urantia a identificat că aceste episoade generate de AI:",
+      "issues": {
+        "0": "Poate pierde nuanțe și semnificații importante",
+        "1": "Poate să nu transmită în mod adecvat profunzimea conceptelor spirituale",
+        "2": "Prezintă uneori versiuni simplificate ale unor narațiuni complexe",
+        "3": "Sunt deosebit de provocați atunci când abordează subiecte profunde precum Rebeliunea lui Lucifer"
+      },
+      "inherent": "Aceste limitări sunt inerente sistemelor AI actuale.",
+      "acknowledgment": "Recunoaștem aceste neajunsuri, oferind în continuare aceste episoade ca o resursă opțională."
+    },
+    "responsibility": {
+      "title": "Responsabilitatea și confirmarea utilizatorului",
+      "acknowledgment": "Prin accesarea acestui conținut, utilizatorii recunosc în mod explicit că înțeleg că aceste episoade podcast conțin erori, omisiuni și simplificări.",
+      "acceptance": "Utilizatorii își asumă întreaga responsabilitate pentru verificarea TUTUROR informațiilor față de textul original al Cărții Urantia.",
+      "neverUse": "Aceste interpretări generate de AI nu ar trebui să fie NICIODATĂ:",
+      "restrictions": {
+        "0": "Folosit ca sursă unică pentru înțelegerea conceptelor din Cartea Urantia",
+        "1": "Citat sau menționat ca autoritate",
+        "2": "Bazat pe înțelegerea spirituală, filosofică sau religioasă fără verificare"
+      },
+      "recommendation": "Recomandăm cu tărie citirea textului original pentru un studiu serios al acestor învățături profunde."
+    },
+    "contact": {
+      "title": "Informații de contact",
+      "content": "Pentru întrebări, preocupări sau solicitări cu privire la acest conținut, vă rugăm să ne contactați la",
+      "email": "contact@thecenterforunity.org"
+    }
+  },
+  "lastUpdated": "Ultima actualizare: 14 martie 2024",
+  "returnButton": "Înapoi la pagina de pornire"
+}

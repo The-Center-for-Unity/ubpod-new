@@ -1,0 +1,17 @@
+{
+  "title": "Depanator URL media",
+  "fields": {
+    "series": "Serie:",
+    "episodeNumber": "Numărul episodului:",
+    "fileType": "Tip fișier:",
+    "testButton": "Test URL"
+  },
+  "fileTypes": {
+    "mp3": "MP3",
+    "pdf": "PDF"
+  },
+  "results": {
+    "generatedUrl": "URL generat:",
+    "error": "Eroare:"
+  }
+}

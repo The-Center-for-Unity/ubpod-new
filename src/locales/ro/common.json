@@ -1,0 +1,61 @@
+{
+  "nav": {
+    "home": "Acasă",
+    "episodes": "Episoade",
+    "about": "Despre",
+    "contact": "Persoană de contact",
+    "urantia_papers": "Documentele Urantia",
+    "series_collections": "Colecții de serii",
+    "disclaimer": "Disclaimer",
+    "pay_it_forward": "Dă mai departe"
+  },
+  "footer": {
+    "copyright": "© {{year}} Centrul pentru Unitate. Toate drepturile rezervate.",
+    "terms": "Termeni de serviciu",
+    "privacy": "Politica de confidențialitate",
+    "quick_links": "Linkuri rapide",
+    "resources": "Resurse",
+    "description": "Însoțitori audio creați de AI pentru explorarea adevărului cosmic",
+    "also_available": "Disponibil și pe",
+    "copy_rss": "Copiere RSS Feed",
+    "rss_copied": "RSS feed URL copiat în clipboard!",
+    "rss_copy_failed": "A eșuat copierea URL-ului fluxului RSS",
+    "external_links": {
+      "urantia_foundation": "Fundația Urantia",
+      "center_for_unity": "Centrul pentru Unitate"
+    }
+  },
+  "site": {
+    "name": "Podcast Cartea Urantia",
+    "logo_alt": "Logo-ul UrantiaBookPod",
+    "subtitle_line1": "URANTIA",
+    "subtitle_line2": "PODCAST CARTE"
+  },
+  "actions": {
+    "back": "Înapoi",
+    "learn_more": "Aflați mai multe",
+    "listen_now": "Ascultă acum",
+    "view_all": "Vezi toate",
+    "return_home": "Înapoi acasă"
+  },
+  "platforms": {
+    "youtube": "YouTube",
+    "apple_podcasts": "Podcasturi Apple",
+    "spotify": "Spotify",
+    "amazon_music": "Amazon Music"
+  },
+  "share": {
+    "button": "Share",
+    "title": "Partajați acest conținut",
+    "copy_link": "Copiere link",
+    "share_to_x": "Partajați la X",
+    "share_to_facebook": "Distribuie pe Facebook",
+    "share_to_linkedin": "Distribuie pe LinkedIn",
+    "share_via_email": "Partajare prin e-mail",
+    "share_via_text": "Partajare prin text",
+    "link_copied": "Link copiat în clipboard!",
+    "content_copied": "Conținut copiat în clipboard! Lipiți în postarea Facebook.",
+    "shared_success": "Partajat cu succes!",
+    "rss_copy_failed": "Nu s-a reușit copierea linkului"
+  }
+}

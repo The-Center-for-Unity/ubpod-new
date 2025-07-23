@@ -1,0 +1,48 @@
+{
+  "hero": {
+    "title": "Descoperă înțelepciunea cosmică care îți schimbă viața",
+    "subtitle": "Cufundă-te în învățăturile profunde ale Cărții Urantia prin {{count}} seriile audio narate de experți",
+    "description": "De la viața lui Iisus la originile cosmice, fiecare serie transformă concepte complexe în idei accesibile pentru creșterea spirituală"
+  },
+  "unavailableNotice": {
+    "title": "Seria nu este disponibilă:",
+    "message": "Seria \"{{seriesId}}\" nu este încă disponibilă în {{language}}. Aici sunt seriile disponibile în prezent în limba selectată:",
+    "dismiss": "Notificare de respingere"
+  },
+  "featured": {
+    "title": "Începe-ți călătoria cosmică",
+    "description": "Cele mai populare serii ale noastre oferă puncte de intrare perfecte pentru înțelegerea învățăturilor transformatoare ale Cărții Urantia:",
+    "badge": "Favoritul fanilor",
+    "episodeInfo": "5 episoade - ~1 oră în total",
+    "startJourney": "Începe-ți călătoria →"
+  },
+  "explore": {
+    "title": "Explorați toate colecțiile de serii",
+    "description": "Răsfoiți biblioteca noastră completă de învățături audio sau căutați subiecte specifice"
+  },
+  "filters": {
+    "allSeries": "Toate seriile ({{count}})",
+    "jesusSeries": "Iisus ({{count}})",
+    "cosmicSeries": "Cosmic ({{count}})",
+    "searchPlaceholder": "Căutați seriile după titlu sau descriere...",
+    "searchResults": "S-au găsit {{count}} rezultate pentru \"{{query}}\"",
+    "clearSearch": "Căutare clară",
+    "structuredView": "Vedere structurată",
+    "gridView": "Vizualizare grilă",
+    "filterByCategory": "Filtrează seriile după categorie"
+  },
+  "categories": {
+    "jesusTitle": "Viața și învățăturile lui Iisus",
+    "cosmicTitle": "Seria Cosmic"
+  },
+  "seriesCard": {
+    "jesusLabel": "Isus",
+    "cosmicLabel": "Cosmic",
+    "episodes": "5 episoade",
+    "viewDetails": "Vezi detalii →"
+  },
+  "noResults": {
+    "message": "Nu a fost găsită nicio serie care să corespundă căutării tale. Încercați să vă ajustați filtrele.",
+    "clearFilters": "Ștergeți filtrele"
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "hero": {
+    "title": "Conectați-vă cu noi",
+    "subtitle": "Împărtășiți experiența dumneavoastră, puneți întrebări sau solicitați resurse"
+  },
+  "form": {
+    "title": "Intrați în contact",
+    "description": "Dacă aveți întrebări despre Podcastul Cărții Urantia, aveți nevoie de asistență tehnică sau doriți să vă împărtășiți experiența, suntem aici pentru a vă ajuta.",
+    "devNotice": "Modul de dezvoltare: În acest mediu, e-mailurile vor fi trimise echipei de dezvoltare pentru testare. În producție, e-mailurile vor fi trimise la adresa de contact oficială.",
+    "fields": {
+      "name": {
+        "label": "Numele dvs",
+        "placeholder": "Introduceți numele dvs. complet"
+      },
+      "email": {
+        "label": "Adresa de e-mail",
+        "placeholder": "Introduceți adresa dvs. de e-mail"
+      },
+      "inquiryType": {
+        "label": "Tip anchetă",
+        "placeholder": "Selectați un tip de anchetă",
+        "options": {
+          "general": "Întrebare generală",
+          "technical": "Asistență tehnică",
+          "content": "Sugestii de conținut",
+          "narration": "Feedback privind narațiunea",
+          "studyGroup": "Interesul grupului de studiu",
+          "accessibility": "Cerere de accesibilitate",
+          "translation": "Anchetă de traducere",
+          "spiritual": "Întrebare spirituală",
+          "resource": "Cerere de resurse",
+          "experience": "Împărtășește-mi experiența"
+        }
+      },
+      "message": {
+        "label": "Mesajul dvs",
+        "placeholder": "Introduceți mesajul sau întrebarea dvs. aici..."
+      },
+      "photos": {
+        "label": "Partajați fotografii (opțional)",
+        "placeholder": "Încărcați fotografii legate de cererea dvs",
+        "note": "Notă: Maximum 3 fotografii, 5MB fiecare."
+      }
+    },
+    "submit": {
+      "sending": "Trimiterea...",
+      "send": "Trimite mesaj"
+    },
+    "validation": {
+      "required": "Vă rugăm să completați toate câmpurile obligatorii.",
+      "photoSize": "Dimensiunea totală a fotografiilor depășește 10MB. Vă rugăm să alegeți fotografii mai mici.",
+      "photoLimit": "Dimensiunea totală a fotografiilor depășește limita de 10MB"
+    },
+    "success": "Mesajul dvs. a fost trimis! Vă vom răspunde în curând.",
+    "error": "A eșuat trimiterea mesajului. Vă rugăm să încercați din nou mai târziu."
+  },
+  "faq": {
+    "title": "Întrebări frecvente",
+    "subtitle": "Găsiți răspunsuri la întrebări frecvente despre Podcastul Cărții Urantia.",
+    "questions": {
+      "what": {
+        "question": "Ce este Podcastul Cărții Urantia?",
+        "answer": "Podcastul Cărții Urantia este o experiență audio a Cărții Urantia, care vă permite să ascultați învățăturile acesteia în timp ce urmăriți textul. Scopul nostru este de a face acest conținut spiritual profund mai accesibil prin intermediul unei narațiuni de înaltă calitate."
+      },
+      "how": {
+        "question": "Cum pot asculta podcastul?",
+        "answer": "Pur și simplu navigați la secțiunea Lucrări, selectați o lucrare care vă interesează și apăsați play. Puteți citi împreună cu textul în timp ce ascultați și vă puteți urmări progresul prin carte. Podcastul poate fi accesat de pe orice dispozitiv cu un browser web."
+      },
+      "download": {
+        "question": "Pot descărca episoade pentru ascultare offline?",
+        "answer": "Da! Fiecare episod poate fi descărcat pentru a fi ascultat offline. Pur și simplu navigați la lucrarea pe care doriți să o ascultați și utilizați butonul de descărcare pentru a salva fișierul audio pe dispozitivul dumneavoastră. Acest lucru vă permite să studiați învățăturile chiar și atunci când nu aveți o conexiune la internet."
+      },
+      "suggestions": {
+        "question": "Cum pot sugera îmbunătățiri?",
+        "answer": "Apreciem feedback-ul și sugestiile dumneavoastră! Folosiți formularul de contact de mai sus pentru a vă împărtăși ideile pentru îmbunătățirea podcastului, pentru a sugera noi caracteristici sau pentru a raporta orice probleme tehnice pe care le întâmpinați. Contribuțiile dumneavoastră ne ajută să facem Cartea Urantia mai accesibilă tuturor."
+      }
+    }
+  },
+  "cta": {
+    "title": "Începe-ți călătoria",
+    "description": "Începeți explorarea Cărții Urantia prin intermediul podcastului nostru. Experimentați învățăturile într-un mod nou și aprofundați-vă înțelegerea conceptelor sale cosmice.",
+    "button": "Explorează Documentele Urantia"
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "player": {
+    "play": "Joc",
+    "pause": "Pauză",
+    "mute": "Mută",
+    "unmute": "Dezactivați",
+    "download": "Descărcare audio",
+    "transcript": "Vezi transcrierea",
+    "read_pdf": "Citiți PDF",
+    "speed": "Viteza",
+    "skipForward": "Salt înainte 10s",
+    "skipBackward": "Sari înapoi 10s",
+    "downloadTranscript": "Descărcați transcrierea"
+  },
+  "navigation": {
+    "back_to_papers": "Înapoi la Documente",
+    "back_to_episodes": "Înapoi la Episoade",
+    "back_to_series": "Înapoi la serie",
+    "previous_episode": "Episodul anterior",
+    "next_episode": "Episodul următor"
+  },
+  "related": {
+    "title": "Episoade conexe",
+    "viewAll": "Vezi toate episoadele",
+    "related_content": "Conținut conex"
+  },
+  "share": {
+    "title": "Share",
+    "facebook": "Distribuie pe Facebook",
+    "twitter": "Distribuie pe Twitter",
+    "email": "Partajare prin e-mail"
+  },
+  "summary": {
+    "title": "Rezumat",
+    "read_more": "Citește mai mult",
+    "read_less": "Citește mai puțin"
+  },
+  "errors": {
+    "audio_not_available": "Audio nu este disponibil",
+    "cosmic_unavailable": "Audio pentru acest episod din seria Cosmic nu este încă disponibil. În prezent lucrăm la generarea acestor fișiere.",
+    "failed_to_load": "A eșuat încărcarea episodului",
+    "not_found": "Episodul nu a fost găsit",
+    "invalid_url": "URL episod invalid"
+  },
+  "meta": {
+    "title": "{{titlu}} | Cartea Urantia Podcast",
+    "description": "Ascultați {{titlu}}: {{descriere}}"
+  },
+  "external": {
+    "read_on_dj": "Citește pe DiscoverJesus.com"
+  },
+  "loading": "Încărcare..."
+}

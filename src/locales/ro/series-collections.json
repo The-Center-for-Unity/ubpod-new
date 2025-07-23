@@ -1,0 +1,172 @@
+{
+  "ui": {
+    "buttons": {
+      "allSeries": "Toate seriile",
+      "jesusSeries": "Seria Isus",
+      "cosmicSeries": "Seria Cosmic"
+    },
+    "sections": {
+      "jesusTitle": "Viața și învățăturile lui Iisus",
+      "jesusDescription": "Explorați întreaga poveste de viață și învățăturile lui Iisus, așa cum sunt dezvăluite în Cartea Urantia, de la nașterea sa până la înviere, cu perspective care depășesc relatările biblice tradiționale.",
+      "cosmicTitle": "Seria Cosmic",
+      "cosmicDescription": "Descoperiți învățăturile cosmice din primele trei părți ale Cărții Urantia, care acoperă totul, de la natura lui Dumnezeu la structura universului și istoria planetară a Pământului."
+    },
+    "badges": {
+      "jesus": "Seria Isus",
+      "cosmic": "Seria Cosmic"
+    },
+    "status": {
+      "showingCount": "Afișarea seriei {{count}}",
+      "noSeries": "Nu s-au găsit serii în această categorie.",
+      "searchNoResults": "Nu a fost găsită nicio serie care să corespundă căutării tale. Încercați să vă ajustați filtrele.",
+      "clearFilters": "Ștergeți filtrele"
+    },
+    "actions": {
+      "viewEpisodes": "Vezi episoadele",
+      "viewDetails": "Vezi detalii",
+      "episodes": "{{număr}} episoade"
+    }
+  },
+  "series": {
+    "jesus-1": {
+      "title": "Dincolo de religia tradițională: Adevărata natură a lui Dumnezeu",
+      "description": "Compararea conceptelor religioase convenționale despre Dumnezeu cu perspectiva Urantia extinsă",
+      "logline": "Descoperiți Tatăl Universal iubitor din spatele tradițiilor religioase și transformați-vă relația cu un Dumnezeu care pune dragostea mai presus de frică."
+    },
+    "jesus-2": {
+      "title": "Iisus revelat: Dincolo de relatarea biblică",
+      "description": "Explorarea unor aspecte ale vieții lui Iisus care nu se regăsesc în textele creștine tradiționale",
+      "logline": "Explorați poveștile nespuse ale călătoriilor, educației și experiențelor lui Iisus, care l-au format pe omul divin care a schimbat lumea noastră pentru totdeauna."
+    },
+    "jesus-3": {
+      "title": "Prezența divină interioară: Ajustorii gândului și Duhul Sfânt",
+      "description": "Compararea conceptelor tradiționale de ghidare divină cu învățăturile Urantia",
+      "logline": "Înțelege legătura remarcabilă dintre mintea ta și spiritul lui Dumnezeu care locuiește în tine, transcendând conceptele tradiționale de orientare spirituală."
+    },
+    "jesus-4": {
+      "title": "Viața după moarte: Călătoria în lumea conacului",
+      "description": "Contrastarea conceptelor tradiționale privind viața de apoi cu cosmologia Urantia",
+      "logline": "Descoperiți ce se întâmplă după moarte, conform Cărții Urantia - o călătorie progresivă de creștere care depășește cu mult conceptele tradiționale despre cer."
+    },
+    "jesus-5": {
+      "title": "Femeile în conducerea spirituală: O nouă perspectivă",
+      "description": "Compararea viziunilor religioase istorice asupra femeilor cu abordarea revoluționară a lui Isus",
+      "logline": "Faceți cunoștință cu femeile remarcabile care l-au urmat pe Iisus și descoperiți abordarea sa revoluționară față de egalitatea de gen, care a fost cu secole înaintea timpului său."
+    },
+    "jesus-6": {
+      "title": "Binele și răul reconsiderate: Dincolo de teologia tradițională",
+      "description": "Reformularea conceptelor tradiționale despre păcat și rău prin intermediul învățăturilor Urantia",
+      "logline": "Explorați adevăratele origini ale răului, păcatului și suferinței și descoperiți o perspectivă cosmică care transcende explicațiile religioase tradiționale."
+    },
+    "jesus-7": {
+      "title": "Rugăciune și închinare: Înțelegere îmbunătățită",
+      "description": "Extinderea viziunilor tradiționale asupra comunicării cu divinitatea",
+      "logline": "Transformați-vă practicile spirituale cu o înțelegere mai profundă a rugăciunii și închinării, care sporesc comunicarea personală cu Divinul."
+    },
+    "jesus-8": {
+      "title": "Îngeri și ființe cerești: Ierarhia Cosmică",
+      "description": "Compararea conceptelor angelice tradiționale cu cosmologia Urantia extinsă",
+      "logline": "Faceți cunoștință cu nenumăratele personalități celeste care servesc în univers, mult dincolo de conceptele religioase tradiționale despre îngeri."
+    },
+    "jesus-9": {
+      "title": "Împărăția cerurilor: Realitate spirituală vs. concept religios",
+      "description": "Contrastarea conceptelor religioase tradiționale cu învățăturile reale ale lui Iisus",
+      "logline": "Descoperiți adevăratul mesaj al lui Isus despre împărăția spirituală - nu un tărâm viitor, ci o realitate prezentă a relației divine."
+    },
+    "jesus-10": {
+      "title": "Momentele transformatoare ale lui Iisus: În spatele poveștilor cunoscute",
+      "description": "Oferirea unui context mai profund pentru evenimente biblice familiare",
+      "logline": "Experimentați povestiri biblice familiare cu detalii extinse și un context cosmic care le transformă semnificația spirituală."
+    },
+    "jesus-11": {
+      "title": "Experiența umană: Perspective divine asupra provocărilor zilnice",
+      "description": "Abordarea preocupărilor umane universale prin intermediul înțelepciunii Urantia",
+      "logline": "Înțelepciune cosmică pentru problemele cotidiene - intuiții divine practice care îmbunătățesc relațiile, munca și împlinirea personală."
+    },
+    "jesus-12": {
+      "title": "Moartea și învierea lui Iisus: Narațiunea extinsă",
+      "description": "Oferind detalii revelatoare dincolo de relatările tradiționale",
+      "logline": "Răstignirea și învierea dezvăluie o victorie cosmică cu implicații universale dincolo de doctrina religioasă despre păcat și mântuire."
+    },
+    "jesus-13": {
+      "title": "Evolutia credintei: De la religia tradițională la adevărul cosmic",
+      "description": "Crearea unei punți între conceptele religioase convenționale și înțelegerea spirituală extinsă",
+      "logline": "Conceptele religioase evoluează ca orice altceva - vedeți cum adevărul spiritual a progresat de la credința primitivă la revelația cosmică."
+    },
+    "jesus-14": {
+      "title": "Iisus uman: Dincolo de imaginea divină",
+      "description": "Umanizarea lui Iisus dincolo de portretele religioase tradiționale",
+      "logline": "Iisus râdea, avea hobby-uri și trăia emoții - descoperiți persoana pe deplin umană din spatele icoanei religioase."
+    },
+    "cosmic-1": {
+      "title": "Origini cosmice: Înțelegerea creației universului",
+      "description": "Introducere în cosmologia fundamentală a revelației Urantia",
+      "logline": "Explorați arhitectura magnifică a creației - de la Paradisul etern la universurile evolutive ale timpului și spațiului."
+    },
+    "cosmic-2": {
+      "title": "Personalități divine: Ființele de dincolo de religia tradițională",
+      "description": "Prezentarea personalităților celeste și a ierarhiei",
+      "logline": "Faceți cunoștință cu personalitățile divine care susțin universul - de la Trinitatea Paradisului la numeroasele ordine de slujitori cerești."
+    },
+    "cosmic-3": {
+      "title": "Ajustorul de gânduri: Busola ta divină interioară",
+      "description": "Înțelegerea prezenței interioare a lui Dumnezeu",
+      "logline": "Descoperă fragmentul remarcabil de Dumnezeu care trăiește în mintea ta - pilotul tău divin care îți ghidează evoluția spirituală."
+    },
+    "cosmic-4": {
+      "title": "Universul nostru local: Organizația lui Nebadon",
+      "description": "Înțelegerea vecinătății noastre cosmice",
+      "logline": "Aflați mai multe despre universul nostru local Nebadon - crearea, administrarea și personalitățile care gestionează cartierul nostru cosmic."
+    },
+    "cosmic-5": {
+      "title": "Îngeri printre noi: Oștile serafice",
+      "description": "Înțelegerea ministerelor angelice",
+      "logline": "Explorați realitatea fascinantă a îngerilor - natura lor, scopul și modul în care interacționează cu oamenii de-a lungul vieții noastre."
+    },
+    "cosmic-6": {
+      "title": "Viața după moarte: Cariera de ascensiune",
+      "description": "Înțelegerea călătoriei progresive după viața muritoare",
+      "logline": "Lumile conacului sunt doar începutul - descoperă-ți călătoria epică prin univers după moartea muritorilor."
+    },
+    "cosmic-7": {
+      "title": "Istoria remarcabilă a Urantiei",
+      "description": "Înțelegerea dezvoltării planetare unice a Pământului",
+      "logline": "Povestea nespusă a formării Pământului (Urantia), a dezvoltării vieții timpurii și a apariției umanității."
+    },
+    "cosmic-8": {
+      "title": "Rebeliunea lui Lucifer: Criza cosmică",
+      "description": "Înțelegerea impactului rebeliunii asupra dezvoltării spirituale a Pământului",
+      "logline": "Rebeliunea cosmică care a izolat lumea noastră și continuă să influențeze afacerile umane - descoperiți adevărul din spatele miturilor lui Satan."
+    },
+    "cosmic-9": {
+      "title": "Adam și Eva: Povestea adevărată",
+      "description": "Dezvăluirea misiunii și impactului real al lui Adam și Eva",
+      "logline": "Adevărata misiune a lui Adam și a Evei în lumea noastră a depășit cu mult povestea biblică a grădinii - descoperă adevăratul lor scop și moștenirea lor."
+    },
+    "cosmic-10": {
+      "title": "Misiunile Melchizedek: Intervenții divine",
+      "description": "Înțelegerea principalelor intervenții spirituale din istoria omenirii",
+      "logline": "Explorați modul în care misiunea de urgență a lui Melchizedek în Salem a devenit fundamentul iudaismului, creștinismului și islamului."
+    },
+    "cosmic-11": {
+      "title": "Evoluția religiei: De la frică la credință",
+      "description": "Urmărirea dezvoltării conceptelor religioase umane",
+      "logline": "Urmăriți evoluția religioasă a omenirii, de la frica primitivă de natură la înțelegerea spirituală iluminată, trecând prin cultele fantomelor."
+    },
+    "cosmic-12": {
+      "title": "Spiritualitate autentică: Realitatea experienței religioase",
+      "description": "Înțelegerea creșterii spirituale autentice",
+      "logline": "Mergeți dincolo de doctrină și ritual pentru a descoperi realitatea autentică a experienței religioase personale și a creșterii spirituale."
+    },
+    "cosmic-13": {
+      "title": "Ființa supremă: Deitatea în evoluție",
+      "description": "Înțelegerea conceptului de Deitate experiențială",
+      "logline": "Descoperiți-l pe Dumnezeu Supremul - divinitatea în evoluție a cărei creștere depinde de toate experiențele și realizările noastre în timp și spațiu."
+    },
+    "cosmic-14": {
+      "title": "Familia divină: Înțelegerea relațiilor eterne",
+      "description": "Explorarea relațiilor dintre personalitățile divine",
+      "logline": "Explorați relațiile dintre Tatăl Universal, Fiul Etern și Spiritul Infinit - familia divină din centrul întregii realități."
+    }
+  }
+}
