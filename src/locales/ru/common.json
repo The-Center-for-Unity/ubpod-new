@@ -1,42 +1,42 @@
 {
   "nav": {
-    "home": "Home",
-    "episodes": "Episodes",
-    "about": "About",
-    "contact": "Contact",
+    "home": "Главная",
+    "episodes": "Эпизоды",
+    "about": "О сайте",
+    "contact": "Связаться с",
     "urantia_papers": "The Urantia Papers",
-    "series_collections": "Series Collections",
-    "disclaimer": "Disclaimer",
-    "pay_it_forward": "Pay It Forward"
+    "series_collections": "Коллекции серии",
+    "disclaimer": "Отказ от ответственности",
+    "pay_it_forward": "Платить вперед"
   },
   "footer": {
-    "copyright": "© {{year}} The Center for Unity. All rights reserved.",
-    "terms": "Terms of Service",
-    "privacy": "Privacy Policy",
-    "quick_links": "Quick Links",
-    "resources": "Resources",
-    "description": "AI-crafted audio companions for exploring cosmic truth",
-    "also_available": "Also available on",
-    "copy_rss": "Copy RSS Feed",
-    "rss_copied": "RSS feed URL copied to clipboard!",
-    "rss_copy_failed": "Failed to copy RSS feed URL",
+    "copyright": "© {{year}} Центр Единства. Все права защищены.",
+    "terms": "Условия предоставления услуг",
+    "privacy": "Политика конфиденциальности",
+    "quick_links": "Быстрые ссылки",
+    "resources": "Ресурсы",
+    "description": "Созданные искусственным интеллектом аудиокомпаньоны для изучения космических истин",
+    "also_available": "Также доступно на",
+    "copy_rss": "Копирование RSS-канала",
+    "rss_copied": "URL-адрес RSS-канала скопирован в буфер обмена!",
+    "rss_copy_failed": "Не удалось скопировать URL-адрес RSS-канала",
     "external_links": {
-      "urantia_foundation": "Urantia Foundation",
-      "center_for_unity": "The Center for Unity"
+      "urantia_foundation": "Фонд Урантии",
+      "center_for_unity": "Центр единства"
     }
   },
   "site": {
-    "name": "Urantia Book Podcast",
-    "logo_alt": "UrantiaBookPod Logo",
-    "subtitle_line1": "THE URANTIA",
-    "subtitle_line2": "BOOK PODCAST"
+    "name": "Подкаст по Книге Урантии",
+    "logo_alt": "Логотип UrantiaBookPod",
+    "subtitle_line1": "УРАНТИЯ",
+    "subtitle_line2": "КНИЖНЫЙ ПОДКАСТ"
   },
   "actions": {
-    "back": "Back",
-    "learn_more": "Learn More",
-    "listen_now": "Listen Now",
-    "view_all": "View All",
-    "return_home": "Return Home"
+    "back": "Назад",
+    "learn_more": "Узнать больше",
+    "listen_now": "Слушайте сейчас",
+    "view_all": "Смотреть все",
+    "return_home": "Возвращение домой"
   },
   "platforms": {
     "youtube": "YouTube",
@@ -45,17 +45,17 @@
     "amazon_music": "Amazon Music"
   },
   "share": {
-    "button": "Share",
-    "title": "Share this content",
-    "copy_link": "Copy link",
-    "share_to_x": "Share to X",
-    "share_to_facebook": "Share to Facebook",
-    "share_to_linkedin": "Share to LinkedIn",
-    "share_via_email": "Share via email",
-    "share_via_text": "Share via text",
-    "link_copied": "Link copied to clipboard!",
-    "content_copied": "Content copied to clipboard! Paste into Facebook post.",
-    "shared_success": "Shared successfully!",
-    "rss_copy_failed": "Failed to copy link"
+    "button": "Поделиться",
+    "title": "Поделитесь этим содержимым",
+    "copy_link": "Копировать ссылку",
+    "share_to_x": "Поделиться на X",
+    "share_to_facebook": "Поделиться в Facebook",
+    "share_to_linkedin": "Поделиться в LinkedIn",
+    "share_via_email": "Поделиться по электронной почте",
+    "share_via_text": "Поделиться через текст",
+    "link_copied": "Ссылка скопирована в буфер обмена!",
+    "content_copied": "Содержимое копируется в буфер обмена! Вставить в сообщение на Facebook.",
+    "shared_success": "Успешно поделились!",
+    "rss_copy_failed": "Не удалось скопировать ссылку"
   }
 }

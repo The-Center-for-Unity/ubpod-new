@@ -1,172 +1,172 @@
 {
   "ui": {
     "buttons": {
-      "allSeries": "All Series",
-      "jesusSeries": "Jesus Series", 
-      "cosmicSeries": "Cosmic Series"
+      "allSeries": "Все серии",
+      "jesusSeries": "Серия \"Иисус",
+      "cosmicSeries": "Космическая серия"
     },
     "sections": {
-      "jesusTitle": "The Life and Teachings of Jesus",
-      "jesusDescription": "Explore the complete life story and teachings of Jesus as revealed in the Urantia Book, from his birth through resurrection, with insights beyond traditional Biblical accounts.",
-      "cosmicTitle": "Cosmic Series",
-      "cosmicDescription": "Discover the cosmic teachings from the first three parts of The Urantia Book, covering everything from the nature of God to universe structure and Earth's planetary history."
+      "jesusTitle": "Жизнь и учения Иисуса",
+      "jesusDescription": "Исследуйте полную историю жизни и учения Иисуса, как они раскрываются в Книге Урантии, от его рождения до воскресения, с пониманием того, что выходит за рамки традиционных библейских рассказов.",
+      "cosmicTitle": "Космическая серия",
+      "cosmicDescription": "Откройте для себя космические учения из первых трех частей \"Книги Урантии\", охватывающие все - от природы Бога до устройства Вселенной и планетарной истории Земли."
     },
     "badges": {
-      "jesus": "Jesus Series",
-      "cosmic": "Cosmic Series"
+      "jesus": "Серия \"Иисус",
+      "cosmic": "Космическая серия"
     },
     "status": {
-      "showingCount": "Showing {{count}} series",
-      "noSeries": "No series found in this category.",
-      "searchNoResults": "No series found matching your search. Try adjusting your filters.",
-      "clearFilters": "Clear filters"
+      "showingCount": "Показывая {{count}} серии",
+      "noSeries": "В этой категории не найдено ни одной серии.",
+      "searchNoResults": "Не найдено ни одной серии, соответствующей вашему поиску. Попробуйте настроить свои фильтры.",
+      "clearFilters": "Очистить фильтры"
     },
     "actions": {
-      "viewEpisodes": "View Episodes",
-      "viewDetails": "View Details",
-      "episodes": "{{count}} episodes"
+      "viewEpisodes": "Посмотреть эпизоды",
+      "viewDetails": "Посмотреть детали",
+      "episodes": "{{count}} эпизодов"
     }
   },
   "series": {
     "jesus-1": {
-      "title": "Beyond Traditional Religion: The True Nature of God",
-      "description": "Comparing conventional religious concepts of God with the expanded Urantia perspective",
-      "logline": "Discover the loving Universal Father behind religious traditions and transform your relationship with a God who values love over fear."
+      "title": "За пределами традиционной религии: Истинная природа Бога",
+      "description": "Сравнение традиционных религиозных представлений о Боге с расширенной урантийской перспективой",
+      "logline": "Откройте для себя любящего Всеобщего Отца, скрывающегося за религиозными традициями, и измените свои отношения с Богом, который ценит любовь выше страха."
     },
     "jesus-2": {
-      "title": "Jesus Revealed: Beyond the Biblical Account",
-      "description": "Exploring aspects of Jesus' life not found in traditional Christian texts",
-      "logline": "Explore untold stories of Jesus' travels, education, and experiences that shaped the divine human who changed our world forever."
+      "title": "Иисус Разоблаченный: За пределами библейского повествования",
+      "description": "Изучение аспектов жизни Иисуса, которые не встречаются в традиционных христианских текстах",
+      "logline": "Познакомьтесь с нерассказанными историями о путешествиях, образовании и опыте Иисуса, которые сформировали божественного человека, навсегда изменившего наш мир."
     },
     "jesus-3": {
-      "title": "The Inner Divine Presence: Thought Adjusters & Holy Spirit",
-      "description": "Comparing traditional concepts of divine guidance with Urantia teachings",
-      "logline": "Understand the remarkable connection between your mind and God's indwelling spirit, transcending traditional concepts of spiritual guidance."
+      "title": "Внутреннее божественное присутствие: Корректоры мыслей и Святой Дух",
+      "description": "Сравнение традиционных концепций божественного руководства с учениями Урантии",
+      "logline": "Поймите удивительную связь между вашим разумом и обитающим в нем Божьим духом, выходящую за рамки традиционных представлений о духовном руководстве."
     },
     "jesus-4": {
-      "title": "Life After Death: The Mansion World Journey",
-      "description": "Contrasting traditional afterlife concepts with the Urantia cosmology",
-      "logline": "Discover what happens after death according to the Urantia Book—a progressive journey of growth far beyond traditional concepts of heaven."
+      "title": "Жизнь после смерти: Путешествие в мир особняка",
+      "description": "Контраст между традиционными концепциями загробной жизни и урантийской космологией",
+      "logline": "Узнайте, что происходит после смерти, согласно Книге Урантии, - постепенное путешествие роста, выходящее далеко за рамки традиционных представлений о небесах."
     },
     "jesus-5": {
-      "title": "Women in Spiritual Leadership: A New Perspective",
-      "description": "Comparing historical religious views of women with Jesus' revolutionary approach",
-      "logline": "Meet the remarkable women who followed Jesus and discover his revolutionary approach to gender equality that was centuries ahead of his time."
+      "title": "Женщины в духовном лидерстве: Новая перспектива",
+      "description": "Сравнение исторических религиозных взглядов на женщин с революционным подходом Иисуса",
+      "logline": "Познакомьтесь с замечательными женщинами, которые последовали за Иисусом, и узнайте о его революционном подходе к гендерному равенству, опередившем свое время на столетия."
     },
     "jesus-6": {
-      "title": "Good & Evil Reconsidered: Beyond Traditional Theology",
-      "description": "Reframing traditional concepts of sin and evil through Urantia teachings",
-      "logline": "Explore the true origins of evil, sin, and suffering, and discover a cosmic perspective that transcends traditional religious explanations."
+      "title": "Добро и зло переосмыслены: За пределами традиционной теологии",
+      "description": "Переосмысление традиционных представлений о грехе и зле с помощью учения Урантии",
+      "logline": "Исследуйте истинные истоки зла, греха и страданий и откройте для себя космическую перспективу, которая выходит за рамки традиционных религиозных объяснений."
     },
     "jesus-7": {
-      "title": "Prayer & Worship: Enhanced Understanding",
-      "description": "Expanding traditional views of communication with the Divine",
-      "logline": "Transform your spiritual practices with deeper insights into prayer and worship that enhance personal communication with the Divine."
+      "title": "Молитва и поклонение: Расширенное понимание",
+      "description": "Расширение традиционных представлений об общении с Божественным",
+      "logline": "Преобразуйте свою духовную практику с помощью более глубокого понимания молитвы и поклонения, которые улучшают личное общение с Божественным."
     },
     "jesus-8": {
-      "title": "Angels & Celestial Beings: The Cosmic Hierarchy",
-      "description": "Comparing traditional angelic concepts with the expanded Urantia cosmology",
-      "logline": "Meet the countless celestial personalities who serve throughout the universe, far beyond traditional religious concepts of angels."
+      "title": "Ангелы и небесные существа: Космическая иерархия",
+      "description": "Сравнение традиционных ангельских концепций с расширенной урантийской космологией",
+      "logline": "Познакомьтесь с бесчисленными небесными личностями, которые служат во всей Вселенной, выходя далеко за рамки традиционных религиозных представлений об ангелах."
     },
     "jesus-9": {
-      "title": "The Kingdom of Heaven: Spiritual Reality vs. Religious Concept",
-      "description": "Contrasting traditional religious concepts with Jesus' actual teachings",
-      "logline": "Discover Jesus' true message about the spiritual kingdom—not a future realm, but a present reality of divine relationship."
+      "title": "Царство Небесное: Духовная реальность против религиозной концепции",
+      "description": "Сопоставление традиционных религиозных концепций с реальными учениями Иисуса",
+      "logline": "Откройте для себя истинное послание Иисуса о духовном Царстве - не о будущем царстве, а о настоящей реальности божественных отношений."
     },
     "jesus-10": {
-      "title": "Jesus' Transformative Moments: Behind the Familiar Stories",
-      "description": "Providing deeper context for familiar Biblical events",
-      "logline": "Experience familiar biblical stories with expanded details and cosmic context that transforms their spiritual significance."
+      "title": "Преображающие моменты Иисуса: За известными историями",
+      "description": "Обеспечение более глубокого контекста для знакомых библейских событий",
+      "logline": "Узнайте знакомые библейские истории с расширенными деталями и космическим контекстом, который преображает их духовное значение."
     },
     "jesus-11": {
-      "title": "The Human Experience: Divine Insights on Daily Challenges",
-      "description": "Addressing universal human concerns through Urantia wisdom",
-      "logline": "Cosmic wisdom for everyday problems—practical divine insights that enhance relationships, work, and personal fulfillment."
+      "title": "Человеческий опыт: Божественные озарения о повседневных проблемах",
+      "description": "Решение общечеловеческих проблем с помощью мудрости Урантии",
+      "logline": "Космическая мудрость для решения повседневных проблем - практические божественные прозрения, которые улучшают отношения, работу и самореализацию."
     },
     "jesus-12": {
-      "title": "Jesus' Death & Resurrection: The Expanded Narrative",
-      "description": "Offering revelatory details beyond traditional accounts",
-      "logline": "The crucifixion and resurrection reveal a cosmic victory with universal implications beyond religious doctrine about sin and salvation."
+      "title": "Смерть и воскресение Иисуса: Расширенное повествование",
+      "description": "Предлагая откровенные подробности, выходящие за рамки традиционных рассказов",
+      "logline": "Распятие и воскресение свидетельствуют о космической победе с универсальными последствиями, выходящими за рамки религиозной доктрины о грехе и спасении."
     },
     "jesus-13": {
-      "title": "Evolving Faith: From Traditional Religion to Cosmic Truth",
-      "description": "Bridging conventional religious concepts with expanded spiritual understanding",
-      "logline": "Religious concepts evolve like everything else—see how spiritual truth has progressed from primitive belief toward cosmic revelation."
+      "title": "Эволюционирующая вера: От традиционной религии к космической истине",
+      "description": "Наведение мостов между традиционными религиозными представлениями и расширенным духовным пониманием",
+      "logline": "Религиозные концепции развиваются, как и все остальное - посмотрите, как духовная истина прошла путь от примитивной веры до космического откровения."
     },
     "jesus-14": {
-      "title": "The Human Jesus: Beyond the Divine Image",
-      "description": "Humanizing Jesus beyond traditional religious portrayals",
-      "logline": "Jesus laughed, had hobbies, and experienced emotions—discover the fully human person behind the religious icon."
+      "title": "Человеческий Иисус: За пределами божественного образа",
+      "description": "Очеловечивание Иисуса за пределами традиционных религиозных представлений",
+      "logline": "Иисус смеялся, имел хобби и испытывал эмоции - откройте для себя полностью человеческую личность, скрывающуюся за религиозной иконой."
     },
     "cosmic-1": {
-      "title": "Cosmic Origins: Understanding Universe Creation",
-      "description": "Introducing the fundamental cosmology of the Urantia revelation",
-      "logline": "Explore the magnificent architecture of creation—from eternal Paradise to the evolving universes of time and space."
+      "title": "Космические истоки: Понимание создания Вселенной",
+      "description": "Введение в фундаментальную космологию Урантийского откровения",
+      "logline": "Исследуйте великолепную архитектуру творения - от вечного Рая до развивающихся вселенных времени и пространства."
     },
     "cosmic-2": {
-      "title": "Divine Personalities: The Beings Beyond Traditional Religion",
-      "description": "Introducing celestial personalities and hierarchy",
-      "logline": "Meet the divine personalities who sustain the universe—from the Paradise Trinity to the many orders of celestial ministers."
+      "title": "Божественные личности: Существа за пределами традиционной религии",
+      "description": "Знакомство с небесными личностями и иерархией",
+      "logline": "Познакомьтесь с божественными личностями, поддерживающими вселенную, - от Райской Троицы до многочисленных орденов небесных служителей."
     },
     "cosmic-3": {
-      "title": "The Thought Adjuster: Your Inner Divine Compass",
-      "description": "Understanding the indwelling presence of God",
-      "logline": "Discover the remarkable fragment of God living within your mind—your divine pilot guiding your spiritual evolution."
+      "title": "Настройщик мыслей: Ваш внутренний божественный компас",
+      "description": "Понимание пребывающего присутствия Бога",
+      "logline": "Откройте для себя удивительный фрагмент Бога, живущий в вашем сознании, - ваш божественный пилот, направляющий вашу духовную эволюцию."
     },
     "cosmic-4": {
-      "title": "Our Local Universe: Nebadon's Organization",
-      "description": "Understanding our cosmic neighborhood",
-      "logline": "Learn about our local universe Nebadon—its creation, administration, and the personalities who manage our cosmic neighborhood."
+      "title": "Наша локальная вселенная: Организация Небадона",
+      "description": "Понимание наших космических соседей",
+      "logline": "Узнайте о нашей локальной вселенной Небадон - ее создании, управлении и личностях, которые управляют нашим космическим соседом."
     },
     "cosmic-5": {
-      "title": "Angels Among Us: The Seraphic Hosts",
-      "description": "Understanding angelic ministries",
-      "logline": "Explore the fascinating reality of angels—their nature, purpose, and how they interact with humans throughout our lives."
+      "title": "Ангелы среди нас: Серафические воинства",
+      "description": "Понимание ангельских служений",
+      "logline": "Исследуйте захватывающую реальность ангелов - их природу, предназначение и то, как они взаимодействуют с людьми на протяжении всей нашей жизни."
     },
     "cosmic-6": {
-      "title": "Life After Death: The Ascension Career",
-      "description": "Understanding the progressive journey after mortal life",
-      "logline": "The mansion worlds are just the beginning—discover your epic journey through the universe after mortal death."
+      "title": "Жизнь после смерти: Карьера вознесения",
+      "description": "Понимание постепенного путешествия после земной жизни",
+      "logline": "Миры-особняки - это только начало, откройте для себя эпическое путешествие по вселенной после смерти."
     },
     "cosmic-7": {
-      "title": "Urantia's Remarkable History",
-      "description": "Understanding Earth's unique planetary development",
-      "logline": "The untold story of Earth's (Urantia's) formation, early life development, and the emergence of humanity."
+      "title": "Удивительная история Урантии",
+      "description": "Понимание уникального планетарного развития Земли",
+      "logline": "Нерассказанная история формирования Земли (Урантии), развития ранней жизни и появления человечества."
     },
     "cosmic-8": {
-      "title": "The Lucifer Rebellion: Cosmic Crisis",
-      "description": "Understanding the rebellion's impact on Earth's spiritual development",
-      "logline": "The cosmic rebellion that isolated our world and continues to influence human affairs—discover the truth behind the myths of Satan."
+      "title": "Восстание Люцифера: Космический кризис",
+      "description": "Понимание влияния восстания на духовное развитие Земли",
+      "logline": "Космическое восстание, которое изолировало наш мир и продолжает влиять на человеческие дела, - откройте правду, скрывающуюся за мифами о Сатане."
     },
     "cosmic-9": {
-      "title": "Adam & Eve: The True Story",
-      "description": "Revealing the actual mission and impact of Adam and Eve",
-      "logline": "The real mission of Adam and Eve on our world went far beyond the biblical garden story—discover their true purpose and legacy."
+      "title": "Адам и Ева: Правдивая история",
+      "description": "Раскрытие реальной миссии и влияния Адама и Евы",
+      "logline": "Настоящая миссия Адама и Евы в нашем мире выходит далеко за рамки библейской истории о саде. Откройте для себя их истинное предназначение и наследие."
     },
     "cosmic-10": {
-      "title": "Melchizedek Missions: Divine Interventions",
-      "description": "Understanding key spiritual interventions in human history",
-      "logline": "Explore how Melchizedek's emergency mission to Salem became the foundation for Judaism, Christianity, and Islam."
+      "title": "Миссии Мелхиседека: Божественные вмешательства",
+      "description": "Понимание ключевых духовных вмешательств в историю человечества",
+      "logline": "Узнайте, как чрезвычайная миссия Мелхиседека в Салеме стала основой для иудаизма, христианства и ислама."
     },
     "cosmic-11": {
-      "title": "Evolution of Religion: From Fear to Faith",
-      "description": "Tracing the development of human religious concepts",
-      "logline": "Follow humanity's religious evolution from primitive fear of nature through ghost cults to enlightened spiritual understanding."
+      "title": "Эволюция религии: От страха к вере",
+      "description": "Проследить развитие человеческих религиозных концепций",
+      "logline": "Проследите религиозную эволюцию человечества от первобытного страха перед природой через культы призраков к просветленному духовному пониманию."
     },
     "cosmic-12": {
-      "title": "Genuine Spirituality: The Reality of Religious Experience",
-      "description": "Understanding authentic spiritual growth",
-      "logline": "Go beyond doctrine and ritual to discover the authentic reality of personal religious experience and spiritual growth."
+      "title": "Подлинная духовность: Реальность религиозного опыта",
+      "description": "Понимание подлинного духовного роста",
+      "logline": "Выйдите за пределы доктрины и ритуала, чтобы открыть для себя подлинную реальность личного религиозного опыта и духовного роста."
     },
     "cosmic-13": {
-      "title": "The Supreme Being: Evolving Deity",
-      "description": "Understanding the concept of experiential Deity",
-      "logline": "Discover God the Supreme—the evolving Deity whose growth depends on all our experiences and achievements in time and space."
+      "title": "Высшее существо: Эволюционирующее божество",
+      "description": "Понимание концепции эмпирического Божества",
+      "logline": "Откройте для себя Бога-Высшего - развивающееся Божество, чей рост зависит от всех наших переживаний и достижений во времени и пространстве."
     },
     "cosmic-14": {
-      "title": "The Divine Family: Understanding Eternal Relationships",
-      "description": "Exploring the relationships among divine personalities",
-      "logline": "Explore the relationships between the Universal Father, Eternal Son, and Infinite Spirit—the divine family at the core of all reality."
+      "title": "Божественная семья: Понимание вечных отношений",
+      "description": "Исследование взаимоотношений между божественными личностями",
+      "logline": "Изучите взаимоотношения между Всеобщим Отцом, Вечным Сыном и Бесконечным Духом - божественной семьей, лежащей в основе всей реальности."
     }
   }
-} 
+}

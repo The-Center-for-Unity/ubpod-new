@@ -1,58 +1,58 @@
 {
   "hero": {
-    "title": "The Urantia\nBook Podcast",
-    "subtitle": "AI-powered audio journeys through cosmic wisdom",
+    "title": "Урантия\nПодкаст \"Книга Урантии",
+    "subtitle": "Аудиопутешествия с искусственным интеллектом по космической мудрости",
     "buttons": {
-      "startListening": "Start Listening",
-      "browseSeries": "Browse Series"
+      "startListening": "Начните слушать",
+      "browseSeries": "Просмотреть серии"
     }
   },
   "series": {
-    "subtitle": "PODCAST SERIES",
-    "title": "Explore Our Collections",
-    "description": "Choose from our growing library of thematic series, each exploring a unique facet of the Urantia Book's cosmic teachings."
+    "subtitle": "СЕРИИ ПОДКАСТОВ",
+    "title": "Изучите наши коллекции",
+    "description": "Выбирайте из нашей растущей библиотеки тематических серий, каждая из которых исследует уникальную грань космического учения Книги Урантии."
   },
   "features": {
-    "subtitle": "FEATURES",
-    "title": "A New Way to Experience\nThe Urantia Book",
-    "description": "UrantiaBookPod brings the cosmic teachings to life through AI-crafted audio narrations that make complex concepts accessible and engaging.",
+    "subtitle": "ОСОБЕННОСТИ",
+    "title": "Новый способ познания\nКнига Урантии",
+    "description": "UrantiaBookPod оживляет космические учения с помощью аудиоповествований, созданных искусственным интеллектом, которые делают сложные концепции доступными и увлекательными.",
     "items": {
       "aiAudio": {
-        "title": "AI-Crafted Audio Journeys",
-        "description": "Listen to engaging podcast-style narrations that explore the Urantia Book's concepts with fresh perspectives and insights."
+        "title": "Аудиопутешествия, созданные искусственным интеллектом",
+        "description": "Слушайте увлекательные рассказы в стиле подкастов, в которых концепции Книги Урантии рассматриваются с новой точки зрения."
       },
       "simplified": {
-        "title": "Complex Concepts Simplified",
-        "description": "Difficult cosmic teachings broken down into accessible conversations that anyone can understand and appreciate."
+        "title": "Сложные концепции в упрощенном виде",
+        "description": "Сложные космические учения изложены в доступной форме, которую может понять и оценить каждый."
       },
       "offline": {
-        "title": "Offline Access",
-        "description": "Download episodes for offline listening, perfect for commutes, walks, or times without internet access."
+        "title": "Автономный доступ",
+        "description": "Загружайте эпизоды для прослушивания в автономном режиме, что идеально подходит для поездок на работу, прогулок или времени, когда нет доступа к Интернету."
       }
     }
   },
   "howItWorks": {
-    "subtitle": "HOW IT WORKS",
-    "title": "Simple & Accessible",
-    "description": "We've designed UrantiaBookPod to be intuitive and accessible for everyone, whether you're at home or on the go.",
+    "subtitle": "КАК ЭТО РАБОТАЕТ",
+    "title": "Простота и доступность",
+    "description": "Мы разработали UrantiaBookPod так, чтобы он был интуитивно понятным и доступным для всех, будь то дома или в дороге.",
     "steps": {
       "browse": {
-        "title": "Browse Episodes",
-        "description": "Navigate through our collection of podcast episodes, organized by Urantia Book papers and topics."
+        "title": "Просмотреть эпизоды",
+        "description": "Перемещайтесь по нашей коллекции подкаст-эпизодов, организованных по статьям и темам Книги Урантии."
       },
       "select": {
-        "title": "Select a Discussion",
-        "description": "Choose a podcast episode that interests you and click to access the audio discussion."
+        "title": "Выберите обсуждение",
+        "description": "Выберите интересующий вас эпизод подкаста и нажмите, чтобы перейти к аудиообсуждению."
       },
       "listen": {
-        "title": "Listen & Engage",
-        "description": "Play the podcast on any device, download for offline listening, or share with friends."
+        "title": "Слушайте и привлекайте",
+        "description": "Воспроизводите подкаст на любом устройстве, скачивайте для прослушивания в автономном режиме или делитесь с друзьями."
       }
     }
   },
   "cta": {
-    "title": "Begin Your Journey",
-    "description": "The Urantia Book offers profound insights into our universe, our world, and our spiritual destiny. Start exploring these cosmic teachings through our engaging podcast discussions today.",
-    "button": "Explore The Papers"
+    "title": "Начните свое путешествие",
+    "description": "Книга Урантии предлагает глубокое понимание нашей вселенной, нашего мира и нашей духовной судьбы. Начните изучать эти космические учения с помощью наших увлекательных подкаст-обсуждений уже сегодня.",
+    "button": "Изучите документы"
   }
 }

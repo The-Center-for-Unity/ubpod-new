@@ -1,84 +1,84 @@
 {
   "hero": {
-    "title": "Connect With Us",
-    "subtitle": "Share your experience, ask questions, or request resources"
+    "title": "Связь с нами",
+    "subtitle": "Поделитесь своим опытом, задайте вопросы или запросите ресурсы"
   },
   "form": {
-    "title": "Get in Touch",
-    "description": "Whether you have questions about the Urantia Book Podcast, need technical assistance, or want to share your experience, we're here to help.",
-    "devNotice": "Development Mode: In this environment, emails will be sent to the development team for testing. In production, emails will be sent to the official contact address.",
+    "title": "Свяжитесь с нами",
+    "description": "Если у вас есть вопросы о подкасте \"Книга Урантии\", вам нужна техническая помощь или вы хотите поделиться своим опытом, мы готовы помочь.",
+    "devNotice": "Режим разработки: В этой среде электронные письма будут отправляться команде разработчиков для тестирования. В производственном режиме письма будут отправляться на официальный контактный адрес.",
     "fields": {
       "name": {
-        "label": "Your Name",
-        "placeholder": "Enter your full name"
+        "label": "Ваше имя",
+        "placeholder": "Введите свое полное имя"
       },
       "email": {
-        "label": "Email Address",
-        "placeholder": "Enter your email address"
+        "label": "Адрес электронной почты",
+        "placeholder": "Введите адрес электронной почты"
       },
       "inquiryType": {
-        "label": "Inquiry Type",
-        "placeholder": "Select an inquiry type",
+        "label": "Тип запроса",
+        "placeholder": "Выберите тип запроса",
         "options": {
-          "general": "General Question",
-          "technical": "Technical Support",
-          "content": "Content Suggestion",
-          "narration": "Narration Feedback",
-          "studyGroup": "Study Group Interest",
-          "accessibility": "Accessibility Request",
-          "translation": "Translation Inquiry",
-          "spiritual": "Spiritual Question",
-          "resource": "Resource Request",
-          "experience": "Share My Experience"
+          "general": "Общий вопрос",
+          "technical": "Техническая поддержка",
+          "content": "Предложение по содержанию",
+          "narration": "Обратная связь",
+          "studyGroup": "Интерес исследовательской группы",
+          "accessibility": "Запрос на доступность",
+          "translation": "Переводческое расследование",
+          "spiritual": "Духовный вопрос",
+          "resource": "Запрос ресурсов",
+          "experience": "Поделитесь моим опытом"
         }
       },
       "message": {
-        "label": "Your Message",
-        "placeholder": "Enter your message or question here..."
+        "label": "Ваше сообщение",
+        "placeholder": "Введите ваше сообщение или вопрос здесь..."
       },
       "photos": {
-        "label": "Share Photos (Optional)",
-        "placeholder": "Upload photos related to your inquiry",
-        "note": "Note: Maximum 3 photos, 5MB each."
+        "label": "Поделиться фотографиями (необязательно)",
+        "placeholder": "Загрузите фотографии, относящиеся к вашему запросу",
+        "note": "Примечание: не более 3 фотографий, по 5 МБ каждая."
       }
     },
     "submit": {
-      "sending": "Sending...",
-      "send": "Send Message"
+      "sending": "Посылаю...",
+      "send": "Отправить сообщение"
     },
     "validation": {
-      "required": "Please fill out all required fields.",
-      "photoSize": "Total photo size exceeds 10MB. Please choose smaller photos.",
-      "photoLimit": "Total photo size exceeds 10MB limit"
+      "required": "Пожалуйста, заполните все необходимые поля.",
+      "photoSize": "Общий размер фотографий превышает 10 МБ. Пожалуйста, выбирайте фотографии меньшего размера.",
+      "photoLimit": "Общий размер фотографий превышает лимит в 10 МБ"
     },
-    "success": "Your message has been sent! We will get back to you soon.",
-    "error": "Failed to send message. Please try again later."
+    "success": "Ваше сообщение отправлено! Мы свяжемся с вами в ближайшее время.",
+    "error": "Не удалось отправить сообщение. Пожалуйста, повторите попытку позже."
   },
   "faq": {
-    "title": "Frequently Asked Questions",
-    "subtitle": "Find answers to common questions about the Urantia Book Podcast.",
+    "title": "Часто задаваемые вопросы",
+    "subtitle": "Найдите ответы на распространенные вопросы о подкасте \"Книга Урантии\".",
     "questions": {
       "what": {
-        "question": "What is the Urantia Book Podcast?",
-        "answer": "The Urantia Book Podcast is an audio experience of the Urantia Book, allowing you to listen to its teachings while following along with the text. Our goal is to make this profound spiritual content more accessible through high-quality narration."
+        "question": "Что такое подкаст \"Книга Урантии\"?",
+        "answer": "Подкаст \"Книга Урантии\" - это аудиоверсия \"Книги Урантии\", позволяющая слушать ее учения, следуя за текстом. Наша цель - сделать этот глубокий духовный материал более доступным благодаря высококачественному изложению."
       },
       "how": {
-        "question": "How do I listen to the podcast?",
-        "answer": "Simply navigate to the Papers section, select a paper that interests you, and press play. You can read along with the text as you listen, and track your progress through the book. The podcast can be accessed from any device with a web browser."
+        "question": "Как прослушать подкаст?",
+        "answer": "Просто перейдите в раздел \"Документы\", выберите интересующий вас документ и нажмите кнопку \"Воспроизвести\". Вы можете читать текст по ходу прослушивания и следить за своим прогрессом в изучении книги. Доступ к подкасту возможен с любого устройства с веб-браузером."
       },
       "download": {
-        "question": "Can I download episodes for offline listening?",
-        "answer": "Yes! Each episode can be downloaded for offline listening. Simply navigate to the paper you want to listen to, and use the download button to save the audio file to your device. This allows you to study the teachings even when you don't have an internet connection."
+        "question": "Могу ли я скачать эпизоды для прослушивания в автономном режиме?",
+        "answer": "Да! Каждый эпизод можно скачать для прослушивания в автономном режиме. Просто перейдите на страницу, которую вы хотите прослушать, и воспользуйтесь кнопкой загрузки, чтобы сохранить аудиофайл на своем устройстве. Это позволит вам изучать учения, даже когда у вас нет подключения к интернету."
       },
       "suggestions": {
-        "question": "How can I suggest improvements?",
-        "answer": "We welcome your feedback and suggestions! Use the contact form above to share your ideas for improving the podcast, suggest new features, or report any technical issues you encounter. Your input helps us make the Urantia Book more accessible to everyone."
+        "question": "Как я могу предложить улучшения?",
+        "answer": "Мы приветствуем ваши отзывы и предложения! Используйте контактную форму выше, чтобы поделиться своими идеями по улучшению подкаста, предложить новые функции или сообщить о любых технических проблемах, с которыми вы столкнулись. Ваш вклад поможет нам сделать Книгу Урантии более доступной для всех."
       }
     }
   },
   "cta": {
-    "title": "Start Your Journey",
-    "description": "Begin your exploration of the Urantia Book through our podcast. Experience the teachings in a new way and deepen your understanding of its cosmic concepts.",
-    "button": "Explore Urantia Papers"
+    "title": "Начните свое путешествие",
+    "description": "Начните знакомство с Книгой Урантии с нашего подкаста. Почувствуйте учение по-новому и углубите свое понимание его космических концепций.",
+    "button": "Исследуйте \"Бумаги Урантии"
   }
-} 
+}

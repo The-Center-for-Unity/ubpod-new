@@ -1,17 +1,17 @@
 {
-  "title": "Media URL Debugger",
+  "title": "Отладчик мультимедийных URL-адресов",
   "fields": {
-    "series": "Series:",
-    "episodeNumber": "Episode Number:",
-    "fileType": "File Type:",
-    "testButton": "Test URL"
+    "series": "Серия:",
+    "episodeNumber": "Номер эпизода:",
+    "fileType": "Тип файла:",
+    "testButton": "Тестовый URL"
   },
   "fileTypes": {
     "mp3": "MP3",
     "pdf": "PDF"
   },
   "results": {
-    "generatedUrl": "Generated URL:",
-    "error": "Error:"
+    "generatedUrl": "Сгенерированный URL:",
+    "error": "Ошибка:"
   }
-} 
+}

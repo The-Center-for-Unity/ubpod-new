@@ -1,41 +1,41 @@
 {
   "header": {
     "badges": {
-      "jesusFocused": "Jesus-Focused Series",
-      "cosmicSeries": "Cosmic Series"
+      "jesusFocused": "Серия \"В центре внимания Иисус",
+      "cosmicSeries": "Космическая серия"
     },
     "actions": {
-      "startListening": "Start Listening"
+      "startListening": "Начните слушать"
     }
   },
   "navigation": {
-    "title": "PODCAST SERIES",
-    "mobileTitle": "SELECT SERIES",
+    "title": "СЕРИИ ПОДКАСТОВ",
+    "mobileTitle": "СЕРИИ ВЫБОРА",
     "filters": {
-      "all": "All",
-      "jesus": "Jesus", 
-      "cosmic": "Cosmic"
+      "all": "Все",
+      "jesus": "Иисус",
+      "cosmic": "Космический"
     },
-    "noSeries": "No series found in this category"
+    "noSeries": "Не найдено ни одной серии в этой категории"
   },
   "episodes": {
-    "title": "EPISODES",
-    "loading": "Loading episodes...",
+    "title": "ЭПИЗОДЫ",
+    "loading": "Загрузка эпизодов...",
     "noEpisodes": {
-      "title": "No Episodes Available",
-      "message": "This series doesn't have any episodes yet. Please check back later."
+      "title": "Эпизоды отсутствуют",
+      "message": "В этом сериале пока нет ни одного эпизода. Пожалуйста, загляните позже."
     },
     "error": {
-      "title": "Error",
-      "message": "Failed to load episodes. Please try again later."
+      "title": "Ошибка",
+      "message": "Не удалось загрузить эпизоды. Пожалуйста, повторите попытку позже."
     }
   },
   "episodeCard": {
-    "episodePrefix": "Episode",
+    "episodePrefix": "Эпизод",
     "actions": {
-      "listen": "Listen",
-      "read": "Read", 
-      "download": "Download"
+      "listen": "Слушать",
+      "read": "Читать",
+      "download": "Скачать"
     }
   }
-} 
+}

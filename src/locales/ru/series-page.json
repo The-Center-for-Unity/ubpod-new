@@ -1,48 +1,48 @@
 {
   "hero": {
-    "title": "Discover Life-Changing Cosmic Wisdom",
-    "subtitle": "Immerse yourself in the Urantia Book's profound teachings through {{count}} expertly narrated audio series",
-    "description": "From the life of Jesus to cosmic origins, each series transforms complex concepts into accessible insights for spiritual growth"
+    "title": "Откройте для себя судьбоносную космическую мудрость",
+    "subtitle": "Погрузитесь в глубокие учения Книги Урантии через {{count}} мастерски рассказанные аудиосерии",
+    "description": "От жизни Иисуса до космических истоков - каждая серия превращает сложные понятия в доступные для духовного роста идеи"
   },
   "unavailableNotice": {
-    "title": "Series Not Available:",
-    "message": "The \"{{seriesId}}\" series is not yet available in {{language}}. Here are the series currently available in your selected language:",
-    "dismiss": "Dismiss notification"
+    "title": "Серия недоступна:",
+    "message": "Серия \"{{seriesId}}\" еще не доступна на {{языке}}. Здесь представлены серии, доступные в настоящее время на выбранном вами языке:",
+    "dismiss": "Уведомление о прекращении работы"
   },
   "featured": {
-    "title": "Begin Your Cosmic Journey",
-    "description": "Our most popular series offer perfect entry points to understanding the Urantia Book's transformative teachings:",
-    "badge": "Fan Favorite",
-    "episodeInfo": "5 episodes • ~1 hour total",
-    "startJourney": "Start your journey →"
+    "title": "Начните свое космическое путешествие",
+    "description": "Наши самые популярные серии - это идеальная отправная точка для понимания преобразующего учения Книги Урантии:",
+    "badge": "Любимец фанатов",
+    "episodeInfo": "5 эпизодов - ~1 час в общей сложности",
+    "startJourney": "Начните свое путешествие →"
   },
   "explore": {
-    "title": "Explore All Series Collections",
-    "description": "Browse our complete library of audio teachings or search for specific topics"
+    "title": "Просмотреть все коллекции серии",
+    "description": "Просмотрите нашу полную библиотеку аудиоуроков или найдите конкретные темы"
   },
   "filters": {
-    "allSeries": "All Series ({{count}})",
-    "jesusSeries": "Jesus ({{count}})",
-    "cosmicSeries": "Cosmic ({{count}})",
-    "searchPlaceholder": "Search series by title or description...",
-    "searchResults": "Found {{count}} results for \"{{query}}\"",
-    "clearSearch": "Clear search",
-    "structuredView": "Structured View",
-    "gridView": "Grid View",
-    "filterByCategory": "Filter series by category"
+    "allSeries": "Все серии ({{count}})",
+    "jesusSeries": "Иисус ({{count}})",
+    "cosmicSeries": "Космические ({{count}})",
+    "searchPlaceholder": "Поиск серии по названию или описанию...",
+    "searchResults": "Найдено {{count}} результатов для \"{{запрос}}\"",
+    "clearSearch": "Четкий поиск",
+    "structuredView": "Структурированный вид",
+    "gridView": "Вид на сетку",
+    "filterByCategory": "Фильтруйте серии по категориям"
   },
   "categories": {
-    "jesusTitle": "The Life and Teachings of Jesus",
-    "cosmicTitle": "Cosmic Series"
+    "jesusTitle": "Жизнь и учения Иисуса",
+    "cosmicTitle": "Космическая серия"
   },
   "seriesCard": {
-    "jesusLabel": "Jesus",
-    "cosmicLabel": "Cosmic",
-    "episodes": "5 episodes",
-    "viewDetails": "View Details →"
+    "jesusLabel": "Иисус",
+    "cosmicLabel": "Космический",
+    "episodes": "5 эпизодов",
+    "viewDetails": "Посмотреть детали →"
   },
   "noResults": {
-    "message": "No series found matching your search. Try adjusting your filters.",
-    "clearFilters": "Clear filters"
+    "message": "Не найдено ни одной серии, соответствующей вашему поиску. Попробуйте настроить свои фильтры.",
+    "clearFilters": "Очистить фильтры"
   }
-} 
+}

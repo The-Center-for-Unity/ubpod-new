@@ -1,53 +1,53 @@
 {
   "player": {
-    "play": "Play",
-    "pause": "Pause",
-    "mute": "Mute",
-    "unmute": "Unmute",
-    "download": "Download Audio",
-    "transcript": "View Transcript",
-    "read_pdf": "Read PDF",
-    "speed": "Speed",
-    "skipForward": "Skip Forward 10s",
-    "skipBackward": "Skip Backward 10s",
-    "downloadTranscript": "Download Transcript"
+    "play": "Играть",
+    "pause": "Пауза",
+    "mute": "Отключить звук",
+    "unmute": "Отключить",
+    "download": "Скачать аудио",
+    "transcript": "Посмотреть стенограмму",
+    "read_pdf": "Читать PDF",
+    "speed": "Скорость",
+    "skipForward": "Пропустить вперед на 10 секунд",
+    "skipBackward": "Пропустить назад 10 секунд",
+    "downloadTranscript": "Скачать стенограмму"
   },
   "navigation": {
-    "back_to_papers": "Back to Papers",
-    "back_to_episodes": "Back to Episodes",
-    "back_to_series": "Back to Series",
-    "previous_episode": "Previous Episode",
-    "next_episode": "Next Episode"
+    "back_to_papers": "Назад к бумагам",
+    "back_to_episodes": "Назад к эпизодам",
+    "back_to_series": "Вернуться к серии",
+    "previous_episode": "Предыдущая серия",
+    "next_episode": "Следующая серия"
   },
   "related": {
-    "title": "Related Episodes",
-    "viewAll": "View All Episodes",
-    "related_content": "Related Content"
+    "title": "Связанные эпизоды",
+    "viewAll": "Посмотреть все эпизоды",
+    "related_content": "Связанный контент"
   },
   "share": {
-    "title": "Share",
-    "facebook": "Share on Facebook",
-    "twitter": "Share on Twitter",
-    "email": "Share via Email"
+    "title": "Поделиться",
+    "facebook": "Поделиться на Facebook",
+    "twitter": "Поделиться в Twitter",
+    "email": "Поделиться по электронной почте"
   },
   "summary": {
-    "title": "Summary",
-    "read_more": "Read More",
-    "read_less": "Read Less"
+    "title": "Резюме",
+    "read_more": "Читать далее",
+    "read_less": "Читать далее"
   },
   "errors": {
-    "audio_not_available": "Audio Not Available",
-    "cosmic_unavailable": "The audio for this cosmic series episode is not available yet. We are currently working on generating these files.",
-    "failed_to_load": "Failed to load episode",
-    "not_found": "Episode not found",
-    "invalid_url": "Invalid episode URL"
+    "audio_not_available": "Аудио недоступно",
+    "cosmic_unavailable": "Аудиозапись этого эпизода космического сериала пока недоступна. В настоящее время мы работаем над созданием этих файлов.",
+    "failed_to_load": "Не удалось загрузить эпизод",
+    "not_found": "Эпизод не найден",
+    "invalid_url": "Недопустимый URL-адрес эпизода"
   },
   "meta": {
-    "title": "{{title}} | Urantia Book Podcast",
-    "description": "Listen to {{title}}: {{description}}"
+    "title": "{{title}} | Подкаст по Книге Урантии",
+    "description": "Слушайте {{title}}: {{description}}"
   },
   "external": {
-    "read_on_dj": "Read on DiscoverJesus.com"
+    "read_on_dj": "Читайте на DiscoverJesus.com"
   },
-  "loading": "Loading..."
+  "loading": "Загрузка..."
 }
