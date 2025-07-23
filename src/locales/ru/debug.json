@@ -1,0 +1,17 @@
+{
+  "title": "Media URL Debugger",
+  "fields": {
+    "series": "Series:",
+    "episodeNumber": "Episode Number:",
+    "fileType": "File Type:",
+    "testButton": "Test URL"
+  },
+  "fileTypes": {
+    "mp3": "MP3",
+    "pdf": "PDF"
+  },
+  "results": {
+    "generatedUrl": "Generated URL:",
+    "error": "Error:"
+  }
+} 
