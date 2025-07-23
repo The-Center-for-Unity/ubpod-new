@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+      }
+      .form-group {
+        margin-bottom: 15px;
+      }
+      label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+      }
+      select, input {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+      }
+      button {
+        background-color: #4285f4;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+      }
+      button:hover {
+        background-color: #357ae8;
+      }
+      button:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+      }
+      .error {
+        color: red;
+        margin-top: 10px;
+      }
+      .success {
+        color: green;
+        margin-top: 10px;
+      }
+      .loading {
+        margin-top: 10px;
+        color: #666;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Import Translations</h2>
+    
+    <div class="form-group">
+      <label for="language">Select Language:</label>
+      <select id="language">
+        <option value="es">Spanish (es)</option>
+        <option value="fr">French (fr)</option>
+        <option value="pt">Portuguese (pt)</option>
+      </select>
+    </div>
+    
+    <div class="form-group">
+      <label for="source">Import Source:</label>
+      <select id="source">
+        <option value="github">GitHub Repository</option>
+        <option value="url">Custom URL</option>
+      </select>
+    </div>
+    
+    <div class="form-group" id="urlGroup" style="display: none;">
+      <label for="customUrl">Base URL:</label>
+      <input type="text" id="customUrl" placeholder="https://raw.githubusercontent.com/username/repo/branch">
+    </div>
+    
+    <button onclick="startImport()" id="importBtn">Import Translations</button>
+    
+    <div id="status"></div>
+    
+    <script>
+      document.getElementById('source').addEventListener('change', function() {
+        const urlGroup = document.getElementById('urlGroup');
+        urlGroup.style.display = this.value === 'url' ? 'block' : 'none';
+      });
+      
+      function startImport() {
+        const language = document.getElementById('language').value;
+        const source = document.getElementById('source').value;
+        const customUrl = document.getElementById('customUrl').value;
+        const importBtn = document.getElementById('importBtn');
+        const status = document.getElementById('status');
+        
+        // Validate
+        if (source === 'url' && !customUrl) {
+          status.innerHTML = '<div class="error">Please enter a URL</div>';
+          return;
+        }
+        
+        // Disable button and show loading
+        importBtn.disabled = true;
+        status.innerHTML = '<div class="loading">Importing translations... This may take a minute.</div>';
+        
+        // Call server function
+        google.script.run
+          .withSuccessHandler(function(result) {
+            status.innerHTML = '<div class="success">Import completed successfully!</div>';
+            setTimeout(() => google.script.host.close(), 2000);
+          })
+          .withFailureHandler(function(error) {
+            status.innerHTML = '<div class="error">Import failed: ' + error.message + '</div>';
+            importBtn.disabled = false;
+          })
+          .importTranslations(language);
+      }
+    </script>
+  </body>
+</html>
