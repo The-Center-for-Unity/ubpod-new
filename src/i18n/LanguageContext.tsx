@@ -27,7 +27,7 @@ export const LanguageProvider: React.FC<{children: React.ReactNode}> = ({ childr
     const langMatch = path.match(/^\/([a-z]{2})(?:\/|$)/); 
     
     let detectedLanguage = 'en';
-    if (langMatch && ['es', 'fr', 'pt'].includes(langMatch[1])) {
+    if (langMatch && ['es', 'fr', 'pt', 'ru', 'ro'].includes(langMatch[1])) {
       detectedLanguage = langMatch[1];
     }
     
@@ -47,7 +47,7 @@ export const LanguageProvider: React.FC<{children: React.ReactNode}> = ({ childr
     let basePath = currentPath;
     const langPrefixMatch = currentPath.match(/^\/([a-z]{2})(?:\/(.*))?$/);
     
-    if (langPrefixMatch && ['es', 'fr', 'pt'].includes(langPrefixMatch[1])) {
+    if (langPrefixMatch && ['es', 'fr', 'pt', 'ru', 'ro'].includes(langPrefixMatch[1])) {
       // Extract the path after the language prefix
       basePath = langPrefixMatch[2] ? `/${langPrefixMatch[2]}` : '/';
     }

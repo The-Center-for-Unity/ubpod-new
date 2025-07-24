@@ -47,12 +47,35 @@ import ptContact from '../locales/pt/contact.json';
 import ptDisclaimer from '../locales/pt/disclaimer.json';
 import ptDebug from '../locales/pt/debug.json';
 
+// Russian translations
+import ruCommon from '../locales/ru/common.json';
+import ruEpisode from '../locales/ru/episode.json';
+import ruHome from '../locales/ru/home.json';
+import ruSeries from '../locales/ru/series.json';
+import ruSeriesCollections from '../locales/ru/series-collections.json';
+import ruSeriesPage from '../locales/ru/series-page.json';
+import ruSeriesDetail from '../locales/ru/series-detail.json';
+import ruContact from '../locales/ru/contact.json';
+import ruDisclaimer from '../locales/ru/disclaimer.json';
+import ruDebug from '../locales/ru/debug.json';
+
+import roCommon from '../locales/ro/common.json';
+import roEpisode from '../locales/ro/episode.json';
+import roHome from '../locales/ro/home.json';
+import roSeries from '../locales/ro/series.json';
+import roSeriesCollections from '../locales/ro/series-collections.json';
+import roSeriesPage from '../locales/ro/series-page.json';
+import roSeriesDetail from '../locales/ro/series-detail.json';
+import roContact from '../locales/ro/contact.json';
+import roDisclaimer from '../locales/ro/disclaimer.json';
+import roDebug from '../locales/ro/debug.json';
+
 i18n
   .use(LanguageDetector) // detects user language
   .use(initReactI18next) // passes i18n down to react-i18next
   .init({
     fallbackLng: 'en',
-    supportedLngs: ['en', 'es', 'fr', 'pt'],
+    supportedLngs: ['en', 'es', 'fr', 'pt', 'ru', 'ro'],
     debug: process.env.NODE_ENV === 'development',
     interpolation: {
       escapeValue: false, // not needed for react as it escapes by default
@@ -109,6 +132,30 @@ i18n
         contact: ptContact,
         disclaimer: ptDisclaimer,
         debug: ptDebug,
+      },
+      ru: {
+        common: ruCommon,
+        episode: ruEpisode,
+        home: ruHome,
+        series: ruSeries,
+        'series-collections': ruSeriesCollections,
+        'series-page': ruSeriesPage,
+        'series-detail': ruSeriesDetail,
+        contact: ruContact,
+        disclaimer: ruDisclaimer,
+        debug: ruDebug,
+      },
+      ro: {
+        common: roCommon,
+        episode: roEpisode,
+        home: roHome,
+        series: roSeries,
+        'series-collections': roSeriesCollections,
+        'series-page': roSeriesPage,
+        'series-detail': roSeriesDetail,
+        contact: roContact,
+        disclaimer: roDisclaimer,
+        debug: roDebug,
       },
     },
     ns: ['common', 'episode', 'home', 'series', 'series-collections', 'series-page', 'series-detail', 'content'],
