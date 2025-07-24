@@ -99,6 +99,30 @@ function App() {
             <Route path="/pt/disclaimer" element={<DisclaimerPage />} />
             <Route path="/pt/contact" element={<ContactPage />} />
             
+            {/* Russian routes */}
+            <Route path="/ru" element={<HomePage />} />
+            <Route path="/ru/urantia-papers" element={<UrantiaPapersPage />} />
+            <Route path="/ru/episode/:id" element={<EpisodePage />} />
+            <Route path="/ru/listen/:series/:id" element={<LegacyRedirect />} />
+            <Route path="/ru/listen/:series" element={<ListenPage />} />
+            <Route path="/ru/series" element={<SeriesPage />} />
+            <Route path="/ru/series/:seriesId" element={<ListenPage />} />
+            <Route path="/ru/series/:seriesId/:episodeId" element={<EpisodePage />} />
+            <Route path="/ru/disclaimer" element={<DisclaimerPage />} />
+            <Route path="/ru/contact" element={<ContactPage />} />
+
+            {/* Romanian routes */}
+            <Route path="/ro" element={<HomePage />} />
+            <Route path="/ro/urantia-papers" element={<UrantiaPapersPage />} />
+            <Route path="/ro/episode/:id" element={<EpisodePage />} />
+            <Route path="/ro/listen/:series/:id" element={<LegacyRedirect />} />
+            <Route path="/ro/listen/:series" element={<ListenPage />} />
+            <Route path="/ro/series" element={<SeriesPage />} />
+            <Route path="/ro/series/:seriesId" element={<ListenPage />} />
+            <Route path="/ro/series/:seriesId/:episodeId" element={<EpisodePage />} />
+            <Route path="/ro/disclaimer" element={<DisclaimerPage />} />
+            <Route path="/ro/contact" element={<ContactPage />} />
+            
             {/* 404 route */}
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
