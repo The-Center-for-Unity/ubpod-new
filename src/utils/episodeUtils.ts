@@ -8,6 +8,9 @@ import enContent from '../locales/en/content/content.json';
 import esContent from '../locales/es/content/content.json';
 import frContent from '../locales/fr/content/content.json';
 import ptContent from '../locales/pt/content/content.json';
+import deContent from '../locales/de/content/content.json';
+import roContent from '../locales/ro/content/content.json';
+import ruContent from '../locales/ru/content/content.json';
 
 // Define the cosmic audio URL - use the same R2 backend that other audio files use
 const COSMIC_AUDIO_BASE_URL = import.meta.env.VITE_COSMIC_AUDIO_BASE_URL || URANTIA_AUDIO_BASE_URL;
@@ -40,13 +43,20 @@ interface SeriesMetadata {
 /**
  * Get episode data from consolidated content files
  */
-function getEpisodeContent(seriesId: string, episodeId: number, language: 'en' | 'es' | 'fr' | 'pt'): EpisodeContent | null {
+function getEpisodeContent(
+  seriesId: string,
+  episodeId: number,
+  language: 'en' | 'es' | 'fr' | 'pt' | 'de' | 'ro' | 'ru'
+): EpisodeContent | null {
   let content: typeof enContent;
   switch (language) {
     case 'en': content = enContent; break;
     case 'es': content = esContent; break;
     case 'fr': content = frContent; break;
     case 'pt': content = ptContent; break;
+    case 'de': content = deContent; break;
+    case 'ro': content = roContent; break;
+    case 'ru': content = ruContent; break;
     default: content = enContent;
   }
 
@@ -120,7 +130,7 @@ export function getEpisode(seriesId: string, episodeId: number, language: string
   }
   
   // Get content for the requested language (with English as fallback)
-  let episodeContent = getEpisodeContent(seriesId, episodeId, language as 'en' | 'es' | 'fr' | 'pt');
+  let episodeContent = getEpisodeContent(seriesId, episodeId, language as any);
   
   // Fall back to English if content not found in requested language
   if (!episodeContent && language !== 'en') {

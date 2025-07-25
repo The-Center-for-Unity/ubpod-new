@@ -6,7 +6,7 @@
   "list_view": "Listenansicht",
   "search_results": "Gefunden {{Anzahl}} Zeitungen, die \"{{Abfrage}}\" entsprechen",
   "clear_search": "Klar",
-  "part_header": "Teil {{id}}: {{Titel}}",
+  "part_header": "Teil {{id}}: {{title}}",
   "part_label": "Teil {{id}}",
   "listen_button": "Hören Sie",
   "read_button": "Lesen Sie",
