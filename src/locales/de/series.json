@@ -1,0 +1,19 @@
+{
+  "title": "Die Urantia-Papiere",
+  "description": "Tauchen Sie ein in die kosmische Weisheit durch die von der Künstlichen Intelligenz (KI) erstellten Audio-Reisen zum Urantia-Buch. Erleben Sie tiefgründige Lehren in einem neuen, zugänglichen Format.",
+  "search_placeholder": "Suche nach Titel, Nummer oder Stichwort...",
+  "grid_view": "Rasteransicht",
+  "list_view": "Listenansicht",
+  "search_results": "Gefunden {{Anzahl}} Zeitungen, die \"{{Abfrage}}\" entsprechen",
+  "clear_search": "Klar",
+  "part_header": "Teil {{id}}: {{Titel}}",
+  "part_label": "Teil {{id}}",
+  "listen_button": "Hören Sie",
+  "read_button": "Lesen Sie",
+  "download_button": "Herunterladen",
+  "foreword_title": "Vorwort",
+  "part_1_title": "Die Zentral- und Superuniversen",
+  "part_2_title": "Das lokale Universum",
+  "part_3_title": "Die Geschichte von Urantia",
+  "part_4_title": "Das Leben und die Lehren von Jesus"
+}

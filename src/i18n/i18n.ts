@@ -70,12 +70,24 @@ import roContact from '../locales/ro/contact.json';
 import roDisclaimer from '../locales/ro/disclaimer.json';
 import roDebug from '../locales/ro/debug.json';
 
+// German translations
+import deCommon from '../locales/de/common.json';
+import deEpisode from '../locales/de/episode.json';
+import deHome from '../locales/de/home.json';
+import deSeries from '../locales/de/series.json';
+import deSeriesCollections from '../locales/de/series-collections.json';
+import deSeriesPage from '../locales/de/series-page.json';
+import deSeriesDetail from '../locales/de/series-detail.json';
+import deContact from '../locales/de/contact.json';
+import deDisclaimer from '../locales/de/disclaimer.json';
+import deDebug from '../locales/de/debug.json';
+
 i18n
   .use(LanguageDetector) // detects user language
   .use(initReactI18next) // passes i18n down to react-i18next
   .init({
     fallbackLng: 'en',
-    supportedLngs: ['en', 'es', 'fr', 'pt', 'ru', 'ro'],
+    supportedLngs: ['en', 'es', 'fr', 'pt', 'ru', 'ro', 'de'],
     debug: process.env.NODE_ENV === 'development',
     interpolation: {
       escapeValue: false, // not needed for react as it escapes by default
@@ -156,6 +168,18 @@ i18n
         contact: roContact,
         disclaimer: roDisclaimer,
         debug: roDebug,
+      },
+      de: {
+        common: deCommon,
+        episode: deEpisode,
+        home: deHome,
+        series: deSeries,
+        'series-collections': deSeriesCollections,
+        'series-page': deSeriesPage,
+        'series-detail': deSeriesDetail,
+        contact: deContact,
+        disclaimer: deDisclaimer,
+        debug: deDebug,
       },
     },
     ns: ['common', 'episode', 'home', 'series', 'series-collections', 'series-page', 'series-detail', 'content'],

@@ -1,0 +1,17 @@
+{
+  "title": "Medien-URL-Debugger",
+  "fields": {
+    "series": "Serie:",
+    "episodeNumber": "Episode Nummer:",
+    "fileType": "Dateityp:",
+    "testButton": "Test-URL"
+  },
+  "fileTypes": {
+    "mp3": "MP3",
+    "pdf": "PDF"
+  },
+  "results": {
+    "generatedUrl": "Generierte URL:",
+    "error": "Fehler:"
+  }
+}

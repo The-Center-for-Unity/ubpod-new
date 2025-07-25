@@ -1,0 +1,84 @@
+{
+  "hero": {
+    "title": "Mit uns verbinden",
+    "subtitle": "Teilen Sie Ihre Erfahrungen, stellen Sie Fragen oder fordern Sie Ressourcen an"
+  },
+  "form": {
+    "title": "Kontakt aufnehmen",
+    "description": "Ganz gleich, ob Sie Fragen zum Urantia-Buch-Podcast haben, technische Unterstützung benötigen oder uns Ihre Erfahrungen mitteilen möchten, wir sind für Sie da.",
+    "devNotice": "Entwicklungsmodus: In dieser Umgebung werden die E-Mails zu Testzwecken an das Entwicklungsteam gesendet. In der Produktionsumgebung werden die E-Mails an die offizielle Kontaktadresse gesendet.",
+    "fields": {
+      "name": {
+        "label": "Ihr Name",
+        "placeholder": "Geben Sie Ihren vollständigen Namen ein"
+      },
+      "email": {
+        "label": "E-Mail Adresse",
+        "placeholder": "Geben Sie Ihre E-Mail Adresse ein"
+      },
+      "inquiryType": {
+        "label": "Anfrage Typ",
+        "placeholder": "Wählen Sie eine Anfrageart",
+        "options": {
+          "general": "Allgemeine Frage",
+          "technical": "Technische Unterstützung",
+          "content": "Vorschlag für den Inhalt",
+          "narration": "Feedback zur Erzählung",
+          "studyGroup": "Interesse der Studiengruppe",
+          "accessibility": "Antrag auf Zugänglichkeit",
+          "translation": "Anfrage zur Übersetzung",
+          "spiritual": "Spirituelle Frage",
+          "resource": "Ressourcenanfrage",
+          "experience": "Meine Erfahrung teilen"
+        }
+      },
+      "message": {
+        "label": "Ihre Nachricht",
+        "placeholder": "Geben Sie hier Ihre Nachricht oder Frage ein..."
+      },
+      "photos": {
+        "label": "Fotos freigeben (optional)",
+        "placeholder": "Fotos zu Ihrer Anfrage hochladen",
+        "note": "Hinweis: Maximal 3 Fotos zu je 5 MB."
+      }
+    },
+    "submit": {
+      "sending": "Ich schicke...",
+      "send": "Nachricht senden"
+    },
+    "validation": {
+      "required": "Bitte füllen Sie alle erforderlichen Felder aus.",
+      "photoSize": "Die Gesamtgröße der Fotos überschreitet 10 MB. Bitte wählen Sie kleinere Fotos.",
+      "photoLimit": "Die Gesamtgröße der Fotos überschreitet die 10 MB Grenze"
+    },
+    "success": "Ihre Nachricht wurde gesendet! Wir werden uns bald bei Ihnen melden.",
+    "error": "Nachricht konnte nicht gesendet werden. Bitte versuchen Sie es später noch einmal."
+  },
+  "faq": {
+    "title": "Häufig gestellte Fragen",
+    "subtitle": "Hier finden Sie Antworten auf häufig gestellte Fragen zum Urantia-Buch-Podcast.",
+    "questions": {
+      "what": {
+        "question": "Was ist der Urantia-Buch-Podcast?",
+        "answer": "Der Urantia-Buch-Podcast ist eine Audio-Erfahrung des Urantia-Buches, die es Ihnen ermöglicht, die Lehren des Buches zu hören und gleichzeitig dem Text zu folgen. Unser Ziel ist es, diesen tiefgründigen spirituellen Inhalt durch qualitativ hochwertige Erzählungen zugänglicher zu machen."
+      },
+      "how": {
+        "question": "Wie kann ich den Podcast anhören?",
+        "answer": "Navigieren Sie einfach zum Abschnitt \"Papers\", wählen Sie ein Papier aus, das Sie interessiert, und drücken Sie auf \"Play\". Während Sie zuhören, können Sie den Text mitlesen und Ihren Fortschritt im Buch verfolgen. Der Podcast kann von jedem Gerät mit einem Webbrowser abgerufen werden."
+      },
+      "download": {
+        "question": "Kann ich Episoden zum Offline-Hören herunterladen?",
+        "answer": "Ja! Jede Folge kann zum Offline-Hören heruntergeladen werden. Navigieren Sie einfach zu dem Papier, das Sie anhören möchten, und verwenden Sie die Download-Schaltfläche, um die Audiodatei auf Ihrem Gerät zu speichern. So können Sie die Lehren auch dann studieren, wenn Sie keine Internetverbindung haben."
+      },
+      "suggestions": {
+        "question": "Wie kann ich Verbesserungen vorschlagen?",
+        "answer": "Wir freuen uns über Ihr Feedback und Ihre Vorschläge! Nutzen Sie das Kontaktformular oben, um uns Ihre Ideen zur Verbesserung des Podcasts mitzuteilen, neue Funktionen vorzuschlagen oder technische Probleme zu melden, die Sie feststellen. Ihr Input hilft uns, das Urantia Buch für alle zugänglicher zu machen."
+      }
+    }
+  },
+  "cta": {
+    "title": "Beginnen Sie Ihre Reise",
+    "description": "Beginnen Sie Ihre Erkundung des Urantia-Buches mit Hilfe unseres Podcasts. Erleben Sie die Lehren auf eine neue Art und Weise und vertiefen Sie Ihr Verständnis der kosmischen Konzepte.",
+    "button": "Urantia Papers erforschen"
+  }
+}

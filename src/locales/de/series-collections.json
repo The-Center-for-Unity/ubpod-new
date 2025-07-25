@@ -1,0 +1,172 @@
+{
+  "ui": {
+    "buttons": {
+      "allSeries": "Alle Serien",
+      "jesusSeries": "Jesus-Serie",
+      "cosmicSeries": "Kosmische Serie"
+    },
+    "sections": {
+      "jesusTitle": "Das Leben und die Lehren von Jesus",
+      "jesusDescription": "Erforschen Sie die vollständige Lebensgeschichte und die Lehren Jesu, wie sie im Urantia-Buch offenbart werden, von seiner Geburt bis zur Auferstehung, mit Einsichten, die über die traditionellen biblischen Berichte hinausgehen.",
+      "cosmicTitle": "Kosmische Serie",
+      "cosmicDescription": "Entdecken Sie die kosmischen Lehren aus den ersten drei Teilen des Urantia-Buches, die alles von der Natur Gottes über die Struktur des Universums bis hin zur Geschichte des Planeten Erde abdecken."
+    },
+    "badges": {
+      "jesus": "Jesus-Serie",
+      "cosmic": "Kosmische Serie"
+    },
+    "status": {
+      "showingCount": "Anzeigen von {{count}} Serien",
+      "noSeries": "Keine Serien in dieser Kategorie gefunden.",
+      "searchNoResults": "Keine Serien zu Ihrer Suche gefunden. Versuchen Sie, Ihre Filter anzupassen.",
+      "clearFilters": "Filter löschen"
+    },
+    "actions": {
+      "viewEpisodes": "Episoden ansehen",
+      "viewDetails": "Details anzeigen",
+      "episodes": "{{Anzahl}} Episoden"
+    }
+  },
+  "series": {
+    "jesus-1": {
+      "title": "Jenseits der traditionellen Religion: Die wahre Natur Gottes",
+      "description": "Vergleich konventioneller religiöser Gottesvorstellungen mit der erweiterten Urantia-Perspektive",
+      "logline": "Entdecken Sie den liebevollen Universellen Vater hinter den religiösen Traditionen und verwandeln Sie Ihre Beziehung zu einem Gott, der Liebe über Angst stellt."
+    },
+    "jesus-2": {
+      "title": "Jesus offenbart: Jenseits des biblischen Berichts",
+      "description": "Erforschung von Aspekten des Lebens Jesu, die in den traditionellen christlichen Texten nicht vorkommen",
+      "logline": "Entdecken Sie die unerzählten Geschichten von Jesu Reisen, seiner Ausbildung und seinen Erfahrungen, die den göttlichen Menschen geprägt haben, der unsere Welt für immer verändert hat."
+    },
+    "jesus-3": {
+      "title": "Die innere göttliche Gegenwart: Gedankenjustierer & Heiliger Geist",
+      "description": "Vergleich traditioneller Konzepte der göttlichen Führung mit den Lehren von Urantia",
+      "logline": "Verstehen Sie die bemerkenswerte Verbindung zwischen Ihrem Verstand und dem Ihnen innewohnenden Geist Gottes, die über die traditionellen Vorstellungen von geistiger Führung hinausgeht."
+    },
+    "jesus-4": {
+      "title": "Leben nach dem Tod: Die Villenwelt-Reise",
+      "description": "Gegenüberstellung traditioneller Jenseitskonzepte mit der Kosmologie Urantias",
+      "logline": "Entdecken Sie, was laut dem Urantia-Buch nach dem Tod geschieht - eine fortschreitende Reise des Wachstums, die weit über die traditionellen Vorstellungen vom Himmel hinausgeht."
+    },
+    "jesus-5": {
+      "title": "Frauen in geistlicher Führung: Eine neue Sichtweise",
+      "description": "Vergleich historischer religiöser Ansichten über Frauen mit dem revolutionären Ansatz von Jesus",
+      "logline": "Lernen Sie die bemerkenswerten Frauen kennen, die Jesus folgten, und entdecken Sie seinen revolutionären Ansatz zur Gleichstellung der Geschlechter, der seiner Zeit um Jahrhunderte voraus war."
+    },
+    "jesus-6": {
+      "title": "Gut und Böse neu überdacht: Jenseits der traditionellen Theologie",
+      "description": "Umgestaltung der traditionellen Konzepte von Sünde und Bösem durch die Lehren von Urantia",
+      "logline": "Erforschen Sie die wahren Ursprünge des Bösen, der Sünde und des Leidens und entdecken Sie eine kosmische Perspektive, die über die traditionellen religiösen Erklärungen hinausgeht."
+    },
+    "jesus-7": {
+      "title": "Gebet und Anbetung: Verbessertes Verständnis",
+      "description": "Ausweitung der traditionellen Ansichten über die Kommunikation mit dem Göttlichen",
+      "logline": "Verändern Sie Ihre spirituelle Praxis durch tiefere Einsichten in Gebet und Gottesdienst, die die persönliche Kommunikation mit dem Göttlichen verbessern."
+    },
+    "jesus-8": {
+      "title": "Engel und himmlische Wesen: Die kosmische Hierarchie",
+      "description": "Vergleich traditioneller Engelskonzepte mit der erweiterten Kosmologie von Urantia",
+      "logline": "Lernen Sie die zahllosen himmlischen Persönlichkeiten kennen, die überall im Universum ihren Dienst tun und weit über die traditionellen religiösen Vorstellungen von Engeln hinausgehen."
+    },
+    "jesus-9": {
+      "title": "Das Himmelreich: Spirituelle Realität vs. religiöses Konzept",
+      "description": "Gegenüberstellung traditioneller religiöser Konzepte und der tatsächlichen Lehren Jesu",
+      "logline": "Entdecken Sie die wahre Botschaft Jesu über das geistliche Reich - kein zukünftiges Reich, sondern eine gegenwärtige Realität der göttlichen Beziehung."
+    },
+    "jesus-10": {
+      "title": "Die verwandelnden Momente Jesu: Hinter den vertrauten Geschichten",
+      "description": "Einen tieferen Kontext für bekannte biblische Ereignisse liefern",
+      "logline": "Erleben Sie bekannte biblische Geschichten mit erweiterten Details und einem kosmischen Kontext, der ihre spirituelle Bedeutung verändert."
+    },
+    "jesus-11": {
+      "title": "Die menschliche Erfahrung: Göttliche Einsichten zu täglichen Herausforderungen",
+      "description": "Mit der Weisheit von Urantia auf universelle menschliche Belange eingehen",
+      "logline": "Kosmische Weisheit für alltägliche Probleme - praktische göttliche Einsichten, die Beziehungen, Arbeit und persönliche Erfüllung verbessern."
+    },
+    "jesus-12": {
+      "title": "Tod und Auferstehung von Jesus: Die erweiterte Erzählung",
+      "description": "Mit aufschlussreichen Details, die über die traditionellen Berichte hinausgehen",
+      "logline": "Kreuzigung und Auferstehung offenbaren einen kosmischen Sieg mit universellen Auswirkungen über die religiöse Lehre von Sünde und Erlösung hinaus."
+    },
+    "jesus-13": {
+      "title": "Der sich entwickelnde Glaube: Von der traditionellen Religion zur kosmischen Wahrheit",
+      "description": "Brückenschlag zwischen konventionellen religiösen Konzepten und einem erweiterten spirituellen Verständnis",
+      "logline": "Religiöse Konzepte entwickeln sich wie alles andere - sehen Sie, wie sich die spirituelle Wahrheit vom primitiven Glauben zur kosmischen Offenbarung entwickelt hat."
+    },
+    "jesus-14": {
+      "title": "Der menschliche Jesus: Jenseits des göttlichen Bildes",
+      "description": "Vermenschlichung Jesu jenseits traditioneller religiöser Darstellungen",
+      "logline": "Jesus lachte, hatte Hobbys und erlebte Emotionen - entdecken Sie den ganzen Menschen hinter der religiösen Ikone."
+    },
+    "cosmic-1": {
+      "title": "Kosmische Ursprünge: Die Schöpfung des Universums verstehen",
+      "description": "Einführung in die grundlegende Kosmologie der Urantia-Offenbarung",
+      "logline": "Erforschen Sie die großartige Architektur der Schöpfung - vom ewigen Paradies bis zu den sich entwickelnden Universen von Zeit und Raum."
+    },
+    "cosmic-2": {
+      "title": "Göttliche Persönlichkeiten: Die Wesenheiten jenseits der traditionellen Religion",
+      "description": "Einführung in himmlische Persönlichkeiten und Hierarchie",
+      "logline": "Lernen Sie die göttlichen Persönlichkeiten kennen, die das Universum erhalten - von der Dreifaltigkeit des Paradieses bis zu den vielen Ordnungen der himmlischen Diener."
+    },
+    "cosmic-3": {
+      "title": "Der Gedankenjustierer: Ihr innerer göttlicher Kompass",
+      "description": "Das Verständnis der innewohnenden Gegenwart Gottes",
+      "logline": "Entdecken Sie das bemerkenswerte Fragment Gottes, das in Ihrem Geist lebt - Ihr göttlicher Pilot, der Ihre spirituelle Entwicklung leitet."
+    },
+    "cosmic-4": {
+      "title": "Unser lokales Universum: Die Organisation von Nebadon",
+      "description": "Unsere kosmische Nachbarschaft verstehen",
+      "logline": "Erfahren Sie mehr über unser Lokaluniversum Nebadon, seine Entstehung, Verwaltung und die Persönlichkeiten, die unsere kosmische Nachbarschaft verwalten."
+    },
+    "cosmic-5": {
+      "title": "Engel unter uns: Die seraphischen Heerscharen",
+      "description": "Die Dienste der Engel verstehen",
+      "logline": "Erforschen Sie die faszinierende Realität der Engel - ihr Wesen, ihren Zweck und wie sie im Laufe unseres Lebens mit den Menschen interagieren."
+    },
+    "cosmic-6": {
+      "title": "Leben nach dem Tod: Die Aufstiegslaufbahn",
+      "description": "Das Verständnis der fortschreitenden Reise nach dem irdischen Leben",
+      "logline": "Die Residenzwelten sind nur der Anfang - entdecken Sie Ihre epische Reise durch das Universum nach dem Tod der Menschen."
+    },
+    "cosmic-7": {
+      "title": "Urantias bemerkenswerte Geschichte",
+      "description": "Die einzigartige planetarische Entwicklung der Erde verstehen",
+      "logline": "Die unerzählte Geschichte der Entstehung der Erde (Urantias), der frühen Entwicklung des Lebens und der Entstehung der Menschheit."
+    },
+    "cosmic-8": {
+      "title": "Die Rebellion Luzifers: Kosmische Krise",
+      "description": "Die Auswirkungen der Rebellion auf die spirituelle Entwicklung der Erde verstehen",
+      "logline": "Die kosmische Rebellion, die unsere Welt isoliert hat und immer noch die menschlichen Angelegenheiten beeinflusst - entdecken Sie die Wahrheit hinter den Mythen über Satan."
+    },
+    "cosmic-9": {
+      "title": "Adam und Eva: Die wahre Geschichte",
+      "description": "Enthüllung der tatsächlichen Mission und Wirkung von Adam und Eva",
+      "logline": "Die wahre Mission von Adam und Eva auf unserer Welt ging weit über die biblische Gartengeschichte hinaus - entdecken Sie ihre wahre Bestimmung und ihr Vermächtnis."
+    },
+    "cosmic-10": {
+      "title": "Melchisedek-Missionen: Göttliche Interventionen",
+      "description": "Verstehen der wichtigsten spirituellen Interventionen in der Geschichte der Menschheit",
+      "logline": "Entdecken Sie, wie Melchisedeks Notmission in Salem zur Grundlage für Judentum, Christentum und Islam wurde."
+    },
+    "cosmic-11": {
+      "title": "Evolution der Religion: Von der Furcht zum Glauben",
+      "description": "Die Entwicklung menschlicher religiöser Konzepte nachvollziehen",
+      "logline": "Verfolgen Sie die religiöse Entwicklung der Menschheit von der primitiven Angst vor der Natur über Geisterkulte bis zum aufgeklärten spirituellen Verständnis."
+    },
+    "cosmic-12": {
+      "title": "Echte Spiritualität: Die Realität religiöser Erfahrung",
+      "description": "Authentisches spirituelles Wachstum verstehen",
+      "logline": "Gehen Sie über Doktrin und Rituale hinaus und entdecken Sie die authentische Realität persönlicher religiöser Erfahrung und spirituellen Wachstums."
+    },
+    "cosmic-13": {
+      "title": "Das Höchste Wesen: Die sich entwickelnde Gottheit",
+      "description": "Das Konzept der erfahrungsmäßigen Gottheit verstehen",
+      "logline": "Entdecken Sie Gott den Höchsten - die sich entwickelnde Gottheit, deren Wachstum von all unseren Erfahrungen und Errungenschaften in Zeit und Raum abhängt."
+    },
+    "cosmic-14": {
+      "title": "Die göttliche Familie: Ewige Beziehungen verstehen",
+      "description": "Erforschung der Beziehungen zwischen göttlichen Persönlichkeiten",
+      "logline": "Erforschen Sie die Beziehungen zwischen dem Universellen Vater, dem Ewigen Sohn und dem Unendlichen Geist - der göttlichen Familie, die den Kern der gesamten Realität bildet."
+    }
+  }
+}

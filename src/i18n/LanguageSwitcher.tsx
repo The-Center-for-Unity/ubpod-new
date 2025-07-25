@@ -14,6 +14,7 @@ const languages: Language[] = [
   { code: 'pt', name: 'Português', flag: '🇧🇷' },
   { code: 'ro', name: 'Română', flag: '🇷🇴' },
   { code: 'ru', name: 'Русский', flag: '🇷🇺' },
+  { code: 'de', name: 'Deutsch', flag: '🇩🇪' },
 ];
 
 export const LanguageSwitcher: React.FC<{compact?: boolean}> = ({ compact = false }) => {

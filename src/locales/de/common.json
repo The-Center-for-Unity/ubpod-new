@@ -1,0 +1,61 @@
+{
+  "nav": {
+    "home": "Startseite",
+    "episodes": "Episoden",
+    "about": "Über",
+    "contact": "Kontakt",
+    "urantia_papers": "Die Urantia-Papiere",
+    "series_collections": "Serien Sammlungen",
+    "disclaimer": "Haftungsausschluss",
+    "pay_it_forward": "Weitergeben"
+  },
+  "footer": {
+    "copyright": "© {{Jahr}} Das Zentrum für Einigkeit. Alle Rechte vorbehalten.",
+    "terms": "Bedingungen der Dienstleistung",
+    "privacy": "Datenschutzbestimmungen",
+    "quick_links": "Schnelle Links",
+    "resources": "Ressourcen",
+    "description": "KI-gesteuerte Audio-Begleiter zur Erforschung der kosmischen Wahrheit",
+    "also_available": "Auch verfügbar auf",
+    "copy_rss": "RSS-Feed kopieren",
+    "rss_copied": "RSS-Feed-URL in die Zwischenablage kopiert!",
+    "rss_copy_failed": "RSS-Feed-URL konnte nicht kopiert werden",
+    "external_links": {
+      "urantia_foundation": "Urantia-Stiftung",
+      "center_for_unity": "Das Zentrum für Einigkeit"
+    }
+  },
+  "site": {
+    "name": "Urantia Buch Podcast",
+    "logo_alt": "UrantiaBookPod Logo",
+    "subtitle_line1": "DIE URANTIE",
+    "subtitle_line2": "BUCH PODCAST"
+  },
+  "actions": {
+    "back": "Zurück",
+    "learn_more": "Mehr erfahren",
+    "listen_now": "Jetzt anhören",
+    "view_all": "Alle anzeigen",
+    "return_home": "Rückkehr nach Hause"
+  },
+  "platforms": {
+    "youtube": "YouTube",
+    "apple_podcasts": "Apple Podcasts",
+    "spotify": "Spotify",
+    "amazon_music": "Amazon Musik"
+  },
+  "share": {
+    "button": "Teilen Sie",
+    "title": "Diesen Inhalt teilen",
+    "copy_link": "Link kopieren",
+    "share_to_x": "Freigabe an X",
+    "share_to_facebook": "Auf Facebook teilen",
+    "share_to_linkedin": "Auf LinkedIn teilen",
+    "share_via_email": "Per E-Mail teilen",
+    "share_via_text": "Teilen per Text",
+    "link_copied": "Link in die Zwischenablage kopiert!",
+    "content_copied": "Inhalt in die Zwischenablage kopiert! In Facebook-Post einfügen.",
+    "shared_success": "Erfolgreich geteilt!",
+    "rss_copy_failed": "Link konnte nicht kopiert werden"
+  }
+}

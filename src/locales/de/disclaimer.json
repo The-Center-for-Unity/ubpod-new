@@ -1,0 +1,65 @@
+{
+  "title": "WICHTIGER HAFTUNGSAUSSCHLUSS",
+  "subtitle": "BITTE VOR DEM HÖREN LESEN",
+  "introduction": "UrantiaBookPod.com bietet KI-generierte Audio-Podcast-Episoden, die auf den im Urantia-Buch enthaltenen Schriften basieren. Jede Episode entspricht einer bestimmten Schrift aus dem Originaltext.",
+  "sections": {
+    "copyright": {
+      "title": "Urheberrecht und Namensnennung",
+      "items": {
+        "0": "Der Originaltext des Urantia Buches ist urheberrechtlich geschütztes Eigentum der Urantia Foundation.",
+        "1": "Die Audio-Inhalte auf dieser Website werden mit Hilfe von KI-Technologie aus dem Text abgeleitet und sind für pädagogische und barrierefreie Zwecke gedacht.",
+        "2": "Dieser Dienst ist weder mit der Urantia Foundation noch mit einer offiziellen Verlagsorganisation des Urantia Buches verbunden, noch wird er von ihr unterstützt oder ist offiziell mit ihr verbunden."
+      }
+    },
+    "aiContent": {
+      "title": "Wichtiger Hinweis zu AI-generierten Inhalten",
+      "warning": "BITTE BEACHTEN SIE: Diese Inhalte werden mit Hilfe von KI-Technologie erstellt, die inhärente Grenzen hat.",
+      "description": "Die künstliche Intelligenz kann sowohl Unterlassungs- als auch Begehungsfehler begehen - das heißt, sie kann:",
+      "limitations": {
+        "0": "Auslassen wichtiger Details oder kontextbezogener Informationen",
+        "1": "Fehlinterpretation philosophischer Konzepte",
+        "2": "Komplexe spirituelle Erzählungen zu sehr vereinfachen",
+        "3": "Gelegentlich ungenaue Angaben machen"
+      },
+      "disclaimer": "Diese Podcast-Episoden sollten nur als unvollkommene Einführung und NICHT als verbindliche Darstellung der Lehren des Urantia-Buches betrachtet werden.",
+      "requirement": "Für ein ernsthaftes Studium MUSS man sich auf die offiziell veröffentlichte Version des Urantia-Buches beziehen.",
+      "purpose": "Die Episoden werden trotz ihrer Unvollkommenheit zur Verfügung gestellt, weil wir glauben, dass sie eine wertvolle Ergänzung darstellen."
+    },
+    "fairUse": {
+      "title": "Erklärung zur fairen Nutzung",
+      "content": "Der Inhalt von UrantiaBookPod.com wird nach den Grundsätzen der fairen Nutzung zu Zwecken des Kommentars, der Kritik, der Forschung, der Lehre und der Verbesserung des Zugangs zu den im Urantia-Buch enthaltenen Ideen bereitgestellt."
+    },
+    "technical": {
+      "title": "Technische Beschränkungen der KI-Technologie",
+      "description": "Die Audioinhalte wurden mit Hilfe von KI-Technologie erstellt, die bei der Handhabung komplexer spiritueller und philosophischer Konzepte erhebliche Einschränkungen aufweist.",
+      "feedback": "Rückmeldungen von langjährigen Studenten des Urantia-Buches haben ergeben, dass diese von der KI generierten Episoden:",
+      "issues": {
+        "0": "Kann wichtige Nuancen und Bedeutungen übersehen",
+        "1": "Kann die Tiefe der geistigen Konzepte nicht angemessen vermitteln",
+        "2": "Manchmal vereinfachte Versionen komplexer Erzählungen präsentieren",
+        "3": "Sind besonders herausgefordert, wenn es um tiefgreifende Themen wie die Rebellion Luzifers geht"
+      },
+      "inherent": "Diese Einschränkungen sind den derzeitigen KI-Systemen inhärent.",
+      "acknowledgment": "Wir erkennen diese Unzulänglichkeiten an, stellen diese Episoden aber dennoch als optionale Ressource zur Verfügung."
+    },
+    "responsibility": {
+      "title": "Verantwortung und Anerkennung der Nutzer",
+      "acknowledgment": "Durch den Zugriff auf diese Inhalte erkennen die Nutzer ausdrücklich an, dass sie wissen, dass diese Podcast-Episoden Fehler, Auslassungen und Vereinfachungen enthalten.",
+      "acceptance": "Die Benutzer übernehmen die volle Verantwortung für die Überprüfung ALLER Informationen anhand des Originaltextes des Urantia-Buches.",
+      "neverUse": "Diese KI-generierten Interpretationen sollten NIEMALS sein:",
+      "restrictions": {
+        "0": "Wird als einzige Quelle für das Verständnis der Konzepte des Urantia-Buchs verwendet",
+        "1": "Zitiert oder als maßgebend referenziert",
+        "2": "Die für spirituelles, philosophisches oder religiöses Verständnis ohne Überprüfung herangezogen werden"
+      },
+      "recommendation": "Wir empfehlen dringend, den Originaltext zu lesen, um diese tiefgründigen Lehren ernsthaft zu studieren."
+    },
+    "contact": {
+      "title": "Kontaktinformationen",
+      "content": "Wenn Sie Fragen, Bedenken oder Wünsche bezüglich dieses Inhalts haben, wenden Sie sich bitte an uns",
+      "email": "contact@thecenterforunity.org"
+    }
+  },
+  "lastUpdated": "Zuletzt aktualisiert: März 14, 2024",
+  "returnButton": "Zurück zu Home"
+}

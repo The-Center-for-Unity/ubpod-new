@@ -1,0 +1,58 @@
+{
+  "hero": {
+    "title": "Das Urantia\nBuch-Podcast",
+    "subtitle": "KI-gesteuerte Audioreisen durch die kosmische Weisheit",
+    "buttons": {
+      "startListening": "Zuhören beginnen",
+      "browseSeries": "Serien durchsuchen"
+    }
+  },
+  "series": {
+    "subtitle": "PODCAST-SERIE",
+    "title": "Erkunden Sie unsere Sammlungen",
+    "description": "Wählen Sie aus unserer wachsenden Bibliothek thematischer Reihen, die jeweils eine einzigartige Facette der kosmischen Lehren des Urantia-Buches erforschen."
+  },
+  "features": {
+    "subtitle": "FEATURES",
+    "title": "Ein neuer Weg zur Erfahrung\nDas Urantia-Buch",
+    "description": "UrantiaBookPod erweckt die kosmischen Lehren durch KI-gestützte Audiokommentare zum Leben, die komplexe Konzepte zugänglich und fesselnd machen.",
+    "items": {
+      "aiAudio": {
+        "title": "KI-gesteuerte Audio-Reisen",
+        "description": "Hören Sie sich die fesselnden Erzählungen im Podcast-Stil an, die die Konzepte des Urantia-Buches mit neuen Perspektiven und Einsichten erkunden."
+      },
+      "simplified": {
+        "title": "Komplexe Konzepte vereinfacht",
+        "description": "Schwierige kosmische Lehren werden in zugängliche Gespräche zerlegt, die jeder verstehen und schätzen kann."
+      },
+      "offline": {
+        "title": "Offline-Zugang",
+        "description": "Laden Sie Episoden herunter, um sie offline zu hören - perfekt für Pendler, Spaziergänge oder Zeiten ohne Internetzugang."
+      }
+    }
+  },
+  "howItWorks": {
+    "subtitle": "WIE ES FUNKTIONIERT",
+    "title": "Einfach und leicht zugänglich",
+    "description": "Wir haben UrantiaBookPod so gestaltet, dass es intuitiv und für jeden zugänglich ist, egal ob Sie zu Hause oder unterwegs sind.",
+    "steps": {
+      "browse": {
+        "title": "Episoden durchsuchen",
+        "description": "Navigieren Sie durch unsere Sammlung von Podcast-Episoden, geordnet nach den Schriften und Themen des Urantia-Buches."
+      },
+      "select": {
+        "title": "Wählen Sie eine Diskussion",
+        "description": "Wählen Sie eine Podcast-Episode, die Sie interessiert, und klicken Sie darauf, um die Audio-Diskussion aufzurufen."
+      },
+      "listen": {
+        "title": "Zuhören und engagieren",
+        "description": "Spielen Sie den Podcast auf jedem Gerät ab, laden Sie ihn herunter, um ihn offline zu hören, oder teilen Sie ihn mit Freunden."
+      }
+    }
+  },
+  "cta": {
+    "title": "Beginnen Sie Ihre Reise",
+    "description": "Das Urantia-Buch bietet tiefe Einblicke in unser Universum, unsere Welt und unsere spirituelle Bestimmung. Beginnen Sie noch heute, diese kosmischen Lehren in unseren spannenden Podcast-Diskussionen zu erforschen.",
+    "button": "Erkunden Sie die Papiere"
+  }
+}

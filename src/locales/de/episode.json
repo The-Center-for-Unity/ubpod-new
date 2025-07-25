@@ -1,0 +1,53 @@
+{
+  "player": {
+    "play": "Spielen",
+    "pause": "Pause",
+    "mute": "Stummschalten",
+    "unmute": "Aufheben der Stummschaltung",
+    "download": "Audio herunterladen",
+    "transcript": "Ansicht Transkript",
+    "read_pdf": "PDF lesen",
+    "speed": "Geschwindigkeit",
+    "skipForward": "Vorwärts springen 10s",
+    "skipBackward": "10s rückwärts überspringen",
+    "downloadTranscript": "Transkript herunterladen"
+  },
+  "navigation": {
+    "back_to_papers": "Zurück zu Papiere",
+    "back_to_episodes": "Zurück zu den Episoden",
+    "back_to_series": "Zurück zu den Serien",
+    "previous_episode": "Vorherige Episode",
+    "next_episode": "Nächste Episode"
+  },
+  "related": {
+    "title": "Verwandte Episoden",
+    "viewAll": "Alle Episoden anzeigen",
+    "related_content": "Verwandte Inhalte"
+  },
+  "share": {
+    "title": "Teilen Sie",
+    "facebook": "Auf Facebook teilen",
+    "twitter": "Auf Twitter teilen",
+    "email": "Teilen per E-Mail"
+  },
+  "summary": {
+    "title": "Zusammenfassung",
+    "read_more": "Mehr lesen",
+    "read_less": "Weniger lesen"
+  },
+  "errors": {
+    "audio_not_available": "Audio nicht verfügbar",
+    "cosmic_unavailable": "Der Ton für diese Folge der kosmischen Serie ist noch nicht verfügbar. Wir arbeiten derzeit an der Erstellung dieser Dateien.",
+    "failed_to_load": "Episode konnte nicht geladen werden",
+    "not_found": "Episode nicht gefunden",
+    "invalid_url": "Ungültige Episoden-URL"
+  },
+  "meta": {
+    "title": "{{Titel}} | Urantia Buch Podcast",
+    "description": "Hören Sie sich {{Titel}} an: {{Beschreibung}}"
+  },
+  "external": {
+    "read_on_dj": "Lesen Sie auf DiscoverJesus.com"
+  },
+  "loading": "Laden..."
+}

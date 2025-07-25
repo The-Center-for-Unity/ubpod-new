@@ -35,7 +35,7 @@ export function getLocalizedPath(path: string, language: string): string {
  */
 export function getLanguageFromPath(path: string): string {
   const match = path.match(/^\/([a-z]{2})\//);
-  return match && ['es', 'fr', 'pt'].includes(match[1]) ? match[1] : 'en';
+  return match && ['es', 'fr', 'pt', 'ru', 'ro', 'de'].includes(match[1]) ? match[1] : 'en';
 }
 
 /**
@@ -61,6 +61,10 @@ export function getLanguageAlternates(path: string, baseUrl: string = 'https://u
   return {
     en: `${baseUrl}${basePath}`,
     es: `${baseUrl}/es${basePath}`,
-    // Add more languages as needed
+    fr: `${baseUrl}/fr${basePath}`,
+    pt: `${baseUrl}/pt${basePath}`,
+    ro: `${baseUrl}/ro${basePath}`,
+    ru: `${baseUrl}/ru${basePath}`,
+    de: `${baseUrl}/de${basePath}`,
   };
 }

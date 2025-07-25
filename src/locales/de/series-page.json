@@ -1,0 +1,48 @@
+{
+  "hero": {
+    "title": "Entdecken Sie lebensverändernde kosmische Weisheit",
+    "subtitle": "Tauchen Sie ein in die tiefgründigen Lehren des Urantia-Buches durch {{count}} fachkundig erzählte Audio-Serien",
+    "description": "Vom Leben Jesu bis zu den kosmischen Ursprüngen werden in jeder Serie komplexe Konzepte in zugängliche Einsichten für geistiges Wachstum umgewandelt"
+  },
+  "unavailableNotice": {
+    "title": "Serie nicht verfügbar:",
+    "message": "Die Serie \"{{seriesId}}\" ist noch nicht in der {{Sprache}} verfügbar. Hier sind die Serien, die derzeit in der von Ihnen gewählten Sprache verfügbar sind:",
+    "dismiss": "Benachrichtigung entlassen"
+  },
+  "featured": {
+    "title": "Beginnen Sie Ihre kosmische Reise",
+    "description": "Unsere beliebtesten Serien bieten den perfekten Einstieg in das Verständnis der transformativen Lehren des Urantia-Buches:",
+    "badge": "Fan-Favorit",
+    "episodeInfo": "5 Episoden - insgesamt ca. 1 Stunde",
+    "startJourney": "Beginnen Sie Ihre Reise →"
+  },
+  "explore": {
+    "title": "Alle Serien-Kollektionen erkunden",
+    "description": "Stöbern Sie in unserer kompletten Bibliothek mit Audio-Lehrinhalten oder suchen Sie nach bestimmten Themen"
+  },
+  "filters": {
+    "allSeries": "Alle Serien ({{Zahl}})",
+    "jesusSeries": "Jesus ({{Zahl}})",
+    "cosmicSeries": "Kosmisch ({{Zahl}})",
+    "searchPlaceholder": "Serien nach Titel oder Beschreibung suchen...",
+    "searchResults": "Gefunden {{count}} Ergebnisse für \"{{query}}\"",
+    "clearSearch": "Suche löschen",
+    "structuredView": "Strukturierte Ansicht",
+    "gridView": "Rasteransicht",
+    "filterByCategory": "Serien nach Kategorie filtern"
+  },
+  "categories": {
+    "jesusTitle": "Das Leben und die Lehren von Jesus",
+    "cosmicTitle": "Kosmische Serie"
+  },
+  "seriesCard": {
+    "jesusLabel": "Jesus",
+    "cosmicLabel": "Kosmische",
+    "episodes": "5 Episoden",
+    "viewDetails": "Details anzeigen →"
+  },
+  "noResults": {
+    "message": "Keine Serien zu Ihrer Suche gefunden. Versuchen Sie, Ihre Filter anzupassen.",
+    "clearFilters": "Filter löschen"
+  }
+}

@@ -122,6 +122,18 @@ function App() {
             <Route path="/ro/series/:seriesId/:episodeId" element={<EpisodePage />} />
             <Route path="/ro/disclaimer" element={<DisclaimerPage />} />
             <Route path="/ro/contact" element={<ContactPage />} />
+
+            {/* German routes */}
+            <Route path="/de" element={<HomePage />} />
+            <Route path="/de/urantia-papers" element={<UrantiaPapersPage />} />
+            <Route path="/de/episode/:id" element={<EpisodePage />} />
+            <Route path="/de/listen/:series/:id" element={<LegacyRedirect />} />
+            <Route path="/de/listen/:series" element={<ListenPage />} />
+            <Route path="/de/series" element={<SeriesPage />} />
+            <Route path="/de/series/:seriesId" element={<ListenPage />} />
+            <Route path="/de/series/:seriesId/:episodeId" element={<EpisodePage />} />
+            <Route path="/de/disclaimer" element={<DisclaimerPage />} />
+            <Route path="/de/contact" element={<ContactPage />} />
             
             {/* 404 route */}
             <Route path="*" element={<NotFoundPage />} />
